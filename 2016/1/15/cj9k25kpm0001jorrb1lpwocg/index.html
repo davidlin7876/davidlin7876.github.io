@@ -3,18 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: Tools | 林峰的小宇宙</title>
+  <title>CocoaPods安装命令行 | 林峰的小宇宙</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="学有所思，思有所感">
-<meta property="og:type" content="website">
-<meta property="og:title" content="林峰的小宇宙">
-<meta property="og:url" content="https://linfeng.xyz/tags/Tools/index.html">
+  <meta name="description" content="安装xcode工具 1xcode-select --install  安装rvm 12345curl -L get.rvm.io | bash -s stablervm list known （找到最新的rvm版本）rvm install 2.4   3.改数据源123gem sources -a https://gems.ruby-china.orggem sources --remove h">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CocoaPods安装命令行">
+<meta property="og:url" content="https://linfeng.xyz/2016/1/15/cj9k25kpm0001jorrb1lpwocg/index.html">
 <meta property="og:site_name" content="林峰的小宇宙">
-<meta property="og:description" content="学有所思，思有所感">
+<meta property="og:description" content="安装xcode工具 1xcode-select --install  安装rvm 12345curl -L get.rvm.io | bash -s stablervm list known （找到最新的rvm版本）rvm install 2.4   3.改数据源123gem sources -a https://gems.ruby-china.orggem sources --remove h">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-03T15:23:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="林峰的小宇宙">
-<meta name="twitter:description" content="学有所思，思有所感">
+<meta name="twitter:title" content="CocoaPods安装命令行">
+<meta name="twitter:description" content="安装xcode工具 1xcode-select --install  安装rvm 12345curl -L get.rvm.io | bash -s stablervm list known （找到最新的rvm版本）rvm install 2.4   3.改数据源123gem sources -a https://gems.ruby-china.orggem sources --remove h">
   
     <link rel="alternate" href="/atom.xml" title="林峰的小宇宙" type="application/atom+xml">
   
@@ -67,39 +69,78 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2017/9/25/cj9k25kqj000ijorrt90psxu5/" class="archive-article-date">
-  <time datetime="2017-09-24T16:00:00.000Z" itemprop="datePublished">9月 25</time>
+        <section id="main"><article id="post-CocoaPods安装命令行" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/1/15/cj9k25kpm0001jorrb1lpwocg/" class="article-date">
+  <time datetime="2016-01-14T16:00:00.000Z" itemprop="datePublished">2016-01-15</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/9/25/cj9k25kqj000ijorrt90psxu5/">Git使用备忘</a>
+    <h1 class="article-title" itemprop="name">
+      CocoaPods安装命令行
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>安装xcode工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xcode-select --install</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装rvm</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">curl -L get.rvm.io | bash -s stable</div><div class="line"></div><div class="line">rvm list known （找到最新的rvm版本）</div><div class="line"></div><div class="line">rvm install 2.4</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>3.改数据源<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gem sources -a https://gems.ruby-china.org</div><div class="line"></div><div class="line">gem sources --remove https://rubygems.org/</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>安装rails</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gem install rails</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装cocoapods</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gem install cocoapods</div></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://linfeng.xyz/2016/1/15/cj9k25kpm0001jorrb1lpwocg/" data-id="cj9k25kpm0001jorrb1lpwocg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/9/2/cj9k25kpy0004jorrca8f56e9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          “身份证校验算法swift版本”活动稿
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/1/15/cj9k25kpr0002jorruouqvdju/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">LaunchImage 载入界面标准大小</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         
