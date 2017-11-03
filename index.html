@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -96,7 +96,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '5.1.3',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -186,26 +186,6 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
           </a>
         </li>
       
@@ -1637,7 +1617,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/9/17/LoopBack学习 之 词汇表/">
+    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/9/17/LoopBack学习 之 命令行/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David Lin">
@@ -1656,7 +1636,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/9/17/LoopBack学习 之 词汇表/" itemprop="url">LoopBack学习 之 词汇表</a></h1>
+                <a class="post-title-link" href="/2017/9/17/LoopBack学习 之 命令行/" itemprop="url">LoopBack学习 之 命令行</a></h1>
         
 
         <div class="post-meta">
@@ -1708,85 +1688,64 @@
       
         
           
-            <p>准备工作：<br>安装LTS版本的Node.js.<br>安装LoopBack CLI工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
-<p>英文原地址：<a href="http://loopback.io/doc/en/lb3/LoopBack-core-concepts.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/LoopBack-core-concepts.html</a></p>
-<h1 id="LoopBack核心概念"><a href="#LoopBack核心概念" class="headerlink" title="LoopBack核心概念"></a>LoopBack核心概念</h1><p>模型是LoopBack的核心，代表后端数据源，如数据库或其他后端服务（REST，SOAP等）。LoopBack模型是具有Node和REST API的JavaScript对象。<br>LoopBack的一个关键功能是当您定义模型时，它将自动附带预定义的REST API，并具有完整的创建，读取，更新和删除操作。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/454522-ebe8bcfc2640ff85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="模型继承"></p>
-<p>在  基本模型对象对添加方法  挂钩  和验证数据。其他模型对象都“继承”它。模型具有继承层次结构，如图所示：将模型附加到持久性数据源时，它将成为 具有创建，检索，更新和删除操作的连接模型。LoopBack的内置模型从它继承。</p>
-<h4 id="内置型号"><a href="#内置型号" class="headerlink" title="内置型号"></a>内置型号</h4><p>每个LoopBack应用程序都有一组预定义的  内置模型，如用户，角色和应用程序，因此您不必从头开始创建这些常见模型</p>
-<h4 id="定制机型"><a href="#定制机型" class="headerlink" title="定制机型"></a>定制机型</h4><p>您可以  定义自己的  特定于您的应用程序的自定义模型。您可以使您的自定义模型  扩展内置模型，  以建立在用户，  应用程序和其他内置模型的预定义功能的基础上 。</p>
-<p>您可以以各种方式创建LoopBack模型，具体取决于模型基于什么样的数据源。您可以创建模型：</p>
+            <h3 id="创建新应用程序"><a href="#创建新应用程序" class="headerlink" title="创建新应用程序:"></a>创建新应用程序:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb</div></pre></td></tr></table></figure>
+<p>然后，生成器将显示消息，因为它支架应用程序包括：</p>
+<ol>
+<li>初始化  项目文件夹结构。</li>
+<li>创建默认的JSON文件。</li>
+<li>创建默认的JavaScript文件。</li>
+<li>下载并安装依赖节点模块（就好像已经手动完成  npm install）。</li>
+</ol>
+<h3 id="创建模型"><a href="#创建模型" class="headerlink" title="创建模型:"></a>创建模型:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb model</div></pre></td></tr></table></figure>
 <ul>
-<li>使用LoopBack模型生成器。</li>
-<li>从  使用模型发现的现有关系数据库中。然后，您可以使用LoopBack的模式/模型同步  API 将模型与数据库保持  同步。</li>
-<li>例如  NoSQL数据库或REST API中的自由格式数据的内省。</li>
+<li>型号名称：review</li>
+<li>资料来源：mongoDs（mongodb）</li>
+<li>基类：使用向下箭头键选择  PersistedModel。</li>
+<li>通过REST API公开审查？按RETURN接受默认值。</li>
+<li>自定义复数形式（用于构建REST URL）：按RETURN接受默认值，是。</li>
+<li>通用型号或服务器：按RETURN接受默认的常用型号。</li>
 </ul>
-<p>所有这三种方法都创建了一个  模型定义JSON文件，它通过LoopBack项目的common/models目录中的约定在LoopBack中定义您的模型; 例如，common/models/account.json。</p>
-<p>您也可以使用LoopBack API以编程方式创建和自定义模型  ，也可以手动编辑  模型定义JSON文件。在大多数情况下，您不需要使用这些技术来创建模型，但您通常将使用它们来修改和定制模型。</p>
+<p>模型生成器将在应用程序的common/models目录中创建两个定义模型的文件</p>
+<h3 id="定义关系"><a href="#定义关系" class="headerlink" title="定义关系"></a>定义关系</h3><p>现在，您将要定义模型之间的这些关系。总共有五个关系。再次，您将使用该lb命令，但这次您将使用relation子命令（关系生成器）。对于每个关系，请输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb relation</div></pre></td></tr></table></figure>
+<h4 id="查看模型JSON文件"><a href="#查看模型JSON文件" class="headerlink" title="查看模型JSON文件"></a>查看模型JSON文件</h4><p>现在，看看common/models/review.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&quot;relations&quot;: &#123;</div><div class="line">  &quot;coffeeShop&quot;: &#123;</div><div class="line">    &quot;type&quot;: &quot;belongsTo&quot;,</div><div class="line">    &quot;model&quot;: &quot;CoffeeShop&quot;,</div><div class="line">    &quot;foreignKey&quot;: &quot;&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;reviewer&quot;: &#123;</div><div class="line">    &quot;type&quot;: &quot;belongsTo&quot;,</div><div class="line">    &quot;model&quot;: &quot;Reviewer&quot;,</div><div class="line">    &quot;foreignKey&quot;: &quot;publisherId&quot;</div><div class="line">  &#125;</div><div class="line">&#125;,</div><div class="line">...</div></pre></td></tr></table></figure>
+<h4 id="定义访问控制"><a href="#定义访问控制" class="headerlink" title="定义访问控制"></a>定义访问控制</h4><p>再次，您将使用该lb工具，但这次您将使用acl子命令; 对于每个ACL，输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb acl</div></pre></td></tr></table></figure>
+<h4 id="查看review-json文件"><a href="#查看review-json文件" class="headerlink" title="查看review.json文件"></a>查看review.json文件</h4><p>完成后，ACL部分  common/models/review.json 应如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">... </div><div class="line">&quot;acls&quot;: [&#123;</div><div class="line">  &quot;accessType&quot;: &quot;*&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$everyone&quot;,</div><div class="line">  &quot;permission&quot;: &quot;DENY&quot;</div><div class="line">&#125;, &#123;</div><div class="line">  &quot;accessType&quot;: &quot;READ&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$everyone&quot;,</div><div class="line">  &quot;permission&quot;: &quot;ALLOW&quot;</div><div class="line">&#125;, &#123;</div><div class="line">  &quot;accessType&quot;: &quot;EXECUTE&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$authenticated&quot;,</div><div class="line">  &quot;permission&quot;: &quot;ALLOW&quot;,</div><div class="line">  &quot;property&quot;: &quot;create&quot;</div><div class="line">&#125;, &#123;</div><div class="line">  &quot;accessType&quot;: &quot;WRITE&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$owner&quot;,</div><div class="line">  &quot;permission&quot;: &quot;ALLOW&quot;</div><div class="line">&#125;],</div><div class="line">...</div></pre></td></tr></table></figure>
+<h3 id="添加数据源"><a href="#添加数据源" class="headerlink" title="添加数据源:"></a>添加数据源:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb datasource</div></pre></td></tr></table></figure>
+<h3 id="安装SQLDB连接器"><a href="#安装SQLDB连接器" class="headerlink" title="安装SQLDB连接器"></a>安装SQLDB连接器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install loopback-connector-mysql --save。</div></pre></td></tr></table></figure>
+<h3 id="安装MongoDB连接器"><a href="#安装MongoDB连接器" class="headerlink" title="安装MongoDB连接器"></a>安装MongoDB连接器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save loopback-connector-mongodb</div></pre></td></tr></table></figure>
+<p>该工具还将数据源定义添加到  server/datasources.json 文件中，如下所示。请注意刚刚添加的“mysqlDs”数据源，以及名为“db”的内存数据源，默认情况下是这样。</p>
+<p><strong>/server/datasources.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;db&quot;: &#123;</div><div class="line">        &quot;name&quot;: &quot;db&quot;,</div><div class="line">        &quot;connector&quot;: &quot;memory&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;mysqlDs&quot;: &#123;</div><div class="line">      &quot;host&quot;: &quot;demo.strongloop.com&quot;,</div><div class="line">      &quot;port&quot;: 3306,</div><div class="line">      &quot;url&quot;: &quot;&quot;,</div><div class="line">      &quot;database&quot;: &quot;getting_started&quot;,</div><div class="line">      &quot;password&quot;: &quot;L00pBack&quot;,</div><div class="line">      &quot;name&quot;: &quot;mysqlDs&quot;,</div><div class="line">      &quot;user&quot;: &quot;demo&quot;,</div><div class="line">      &quot;connector&quot;: &quot;mysql&quot;</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">    &quot;mongoDs&quot;: &#123;</div><div class="line">        &quot;name&quot;: &quot;mongoDs&quot;,</div><div class="line">        &quot;connector&quot;: &quot;mongodb&quot;,</div><div class="line">        &quot;host&quot;: &quot;demo.strongloop.com&quot;,</div><div class="line">        &quot;port&quot;: 27017,</div><div class="line">        &quot;database&quot;: &quot;getting_started_intermediate&quot;,</div><div class="line">        &quot;username&quot;: &quot;demo&quot;,</div><div class="line">        &quot;password&quot;: &quot;L00pBack&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="将模型连接到数据源"><a href="#将模型连接到数据源" class="headerlink" title="将模型连接到数据源"></a>将模型连接到数据源</h3><p>LoopBack应用程序使用  model-config.json  文件将模型链接到数据源。编辑  /server/model-config.json 并查找CoffeeShop条目：</p>
+<p><strong>/server/model-config.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">  &quot;CoffeeShop&quot;: &#123;</div><div class="line">    &quot;dataSource&quot;: &quot;db&quot;,</div><div class="line">    &quot;public&quot;: true</div><div class="line">  &#125;</div><div class="line">  ...</div></pre></td></tr></table></figure>
+<p>将dataSource 属性  更改  db 为  mysqlDs。这将CoffeeShop模型附加到刚刚创建和配置的MySQL数据源：</p>
+<p><strong>/server/model-config.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">  &quot;CoffeeShop&quot;: &#123;</div><div class="line">    &quot;dataSource&quot;: &quot;mysqlDs&quot;,</div><div class="line">    &quot;public&quot;: true</div><div class="line">  &#125;</div><div class="line">  ...</div></pre></td></tr></table></figure>
+<h3 id="添加一些测试数据并查看它"><a href="#添加一些测试数据并查看它" class="headerlink" title="添加一些测试数据并查看它"></a>添加一些测试数据并查看它</h3><p>现在您在LoopBack中有一个CoffeeShop模型，如何在MySQL数据库中创建相应的表？</p>
+<p>您可以直接尝试执行一些SQL语句，但是LoopBack提供了一个Node API，可以自动使用称为自动迁移的过程  。有关详细信息，请参阅  从模型创建数据库模式。</p>
+<p>该  loopback-getting-started 模块包含create-sample-models.js 演示自动迁移的  脚本。如果你从一开始就一直在追踪（而不是克隆这个模块），那么你需要从下面或从GitHub复制它   。将其放在应用程序的  /server/boot 目录中，以便在应用程序启动时执行。</p>
 <blockquote>
-<p> 注意：<br>该模型定义JSON文件包括idInjection指示环回是否会自动添加一个独特的财产  id 属性的模型。对于连接到数据库的模型，id属性对应于主键。有关详细信息，请参阅ID属性。</p>
+<p> 注意： 下面的自动迁移脚本是在应用程序初始启动时LoopBack执行的引导脚本的示例。使用引导脚本进行初始化，并执行应用程序启动时执行的任何其他逻辑。有关详细信息，请参阅定义启动脚本。</p>
 </blockquote>
-<h4 id="模型关系"><a href="#模型关系" class="headerlink" title="模型关系"></a>模型关系</h4><p>你可以表达  模型之间的关系，如  BelongsTo,  HasMany 和  HasAndBelongsToMany。 </p>
-<p>模型创建，检索，更新和删除操作</p>
-<p>当将模型连接到持久数据源（如数据库）时，它将成为一个  连接的模型，   其中包含来自PersistedModel  类的一整套创建，读取，更新和删除操作  ：</p>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>REST</th>
-<th>LoopBack模型方法</th>
-<th>相应的SQL操作</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>创建</td>
-<td>PUT / modelName 和 POST / modelName</td>
-<td>create()</td>
-<td>INSERT</td>
-</tr>
-<tr>
-<td>阅读（检索）</td>
-<td>GET / modelName？filter = …</td>
-<td>find()</td>
-<td>SELECT</td>
-</tr>
-<tr>
-<td>更新（修改）</td>
-<td>PUT / modelName</td>
-<td>updateAll()</td>
-<td>UPDATE</td>
-</tr>
-<tr>
-<td>删除（毁灭）</td>
-<td>DELETE / modelName / modelID</td>
-<td>destroyById()</td>
-<td>DELETE</td>
-</tr>
-</tbody>
-</table>
-<p>（*）列举的方法只是突出例子; 其他方法可以提供类似的功能; 例如：  findById()，  findOne()，和  findOrCreate()。 </p>
-<p>有关更多信息，请参阅PersistedModel API文档。</p>
-<h4 id="应用逻辑"><a href="#应用逻辑" class="headerlink" title="应用逻辑"></a>应用逻辑</h4><p>您可以以多种方式添加自定义应用程序逻辑; 您可以：</p>
+<p><strong>/server/boot/create-sample-models.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">module.exports = function(app) &#123;</div><div class="line">  app.dataSources.mysqlDs.automigrate(&apos;CoffeeShop&apos;, function(err) &#123;</div><div class="line">    if (err) throw err;</div><div class="line"></div><div class="line">    app.models.CoffeeShop.create([&#123;</div><div class="line">      name: &apos;Bel Cafe&apos;,</div><div class="line">      city: &apos;Vancouver&apos;</div><div class="line">    &#125;, &#123;</div><div class="line">      name: &apos;Three Bees Coffee House&apos;,</div><div class="line">      city: &apos;San Mateo&apos;</div><div class="line">    &#125;, &#123;</div><div class="line">      name: &apos;Caffe Artigiano&apos;,</div><div class="line">      city: &apos;Vancouver&apos;</div><div class="line">    &#125;, ], function(err, coffeeShops) &#123;</div><div class="line">      if (err) throw err;</div><div class="line"></div><div class="line">      console.log(&apos;Models created: \n&apos;, coffeeShops);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="更新引导脚本以添加数据"><a href="#更新引导脚本以添加数据" class="headerlink" title="更新引导脚本以添加数据"></a>更新引导脚本以添加数据</h3><p>记得早在第一部分的  入门，你  增加了一个启动脚本  来创建模型（通过自动迁移）数据库表和一些数据添加到数据库中。</p>
+<p>现在您有了一些新的模型和新的数据源，您需要更新此脚本，以便在MongoDB中创建数据结构，并通过新模型插入数据。</p>
+<p>复制和粘贴下面的代码  到  server/boot/create-sample-models.js，替换现有的代码。</p>
+<p>然后跑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save async</div></pre></td></tr></table></figure>
+<p>此启动脚本有几个功能：</p>
 <ul>
-<li>通过远程方法（自定义REST端点）， 远程  方法触发的远程  钩子  以及由模型创建，检索，更新和删除方法触发的操作钩子将应用程序逻辑添加到模型中。</li>
-<li>添加应用程序启动时运行的引导脚本。</li>
-<li>定义自定义  中间件，类似于Express中间件。</li>
+<li>createCoffeeShops()为CoffeeShop模型创建一个MySQL表，并将数据添加到表中。 这是create-sample-models.js从入门起的脚本 。</li>
+<li>createReviewers() 使用自动迁移在MongoDB中创建Reviewer数据结构，并向其添加数据。  </li>
+<li>createReviews() 在MongoDB中使用自动迁移创建评论数据结构，并向其添加数据。</li>
 </ul>
-<p>您可以在将数据保存到模型和后端数据存储之前添加验证数据的代码。</p>
-<h4 id="中间件阶段"><a href="#中间件阶段" class="headerlink" title="中间件阶段"></a>中间件阶段</h4><p>中间件  是指当HTTP请求到REST端点做出执行的功能。由于LoopBack基于  Express，LoopBack中间件与Express中间件相同  。然而，LoopBack增加了阶段的概念，以清楚地定义调用中间件的顺序。使用阶段有助于避免订购标准Express中间件可能发生的问题。</p>
-<h4 id="数据源和连接器"><a href="#数据源和连接器" class="headerlink" title="数据源和连接器"></a>数据源和连接器</h4><p><img src="http://upload-images.jianshu.io/upload_images/454522-03f84365a30b7b68.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据源和连接器模型"></p>
-<p>LoopBack将后端服务（如数据库，REST API，SOAP Web服务和存储服务）概括为  数据源。</p>
-<p>数据源由连接器支持，然后连接器直接与数据库或其他后端服务进行通信。应用程序不直接使用连接器，而是使用DataSource  和  PersistedModel  API 访问数据源  。</p>
-<h4 id="LoopBack组件"><a href="#LoopBack组件" class="headerlink" title="LoopBack组件"></a>LoopBack组件</h4><p>LoopBack组件提供额外的“插件”功能：</p>
-<ul>
-<li><strong>推送通知</strong>  - 可以将信息发送到移动应用，以立即在移动设备上的“徽章”，警报或弹出式消息中显示。</li>
-<li><strong>存储组件</strong>  - 可以向云存储提供商（Amazon，Rackspace，Openstack和Azure）以及服务器文件系统上传和下载文件。</li>
-<li><strong>第三方登录</strong>  - 集成  Passport  ，并使用来自Facebook，Google，Twitter，Github或支持OAuth，OAuth 2或OpenID的任何系统的第三方凭据启用用户登录（和帐户链接）。</li>
-<li><strong>同步</strong>  - 使移动应用程序能够脱机运行，然后在重新连接时将数据与服务器应用程序同步。</li>
-<li><strong>OAuth 2.0</strong>  - 使LoopBack应用程序能够作为oAuth 2.0提供程序来验证和授权客户端应用程序和用户访问受保护的API端点。</li>
-</ul>
-
+<h3 id="启动应用程序："><a href="#启动应用程序：" class="headerlink" title="启动应用程序："></a>启动应用程序：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node .</div></pre></td></tr></table></figure>
           
         
       
@@ -2002,7 +1961,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/9/17/LoopBack学习 之 命令行/">
+    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/9/17/LoopBack学习 之 词汇表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David Lin">
@@ -2021,7 +1980,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/9/17/LoopBack学习 之 命令行/" itemprop="url">LoopBack学习 之 命令行</a></h1>
+                <a class="post-title-link" href="/2017/9/17/LoopBack学习 之 词汇表/" itemprop="url">LoopBack学习 之 词汇表</a></h1>
         
 
         <div class="post-meta">
@@ -2073,64 +2032,85 @@
       
         
           
-            <h3 id="创建新应用程序"><a href="#创建新应用程序" class="headerlink" title="创建新应用程序:"></a>创建新应用程序:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb</div></pre></td></tr></table></figure>
-<p>然后，生成器将显示消息，因为它支架应用程序包括：</p>
-<ol>
-<li>初始化  项目文件夹结构。</li>
-<li>创建默认的JSON文件。</li>
-<li>创建默认的JavaScript文件。</li>
-<li>下载并安装依赖节点模块（就好像已经手动完成  npm install）。</li>
-</ol>
-<h3 id="创建模型"><a href="#创建模型" class="headerlink" title="创建模型:"></a>创建模型:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb model</div></pre></td></tr></table></figure>
+            <p>准备工作：<br>安装LTS版本的Node.js.<br>安装LoopBack CLI工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
+<p>英文原地址：<a href="http://loopback.io/doc/en/lb3/LoopBack-core-concepts.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/LoopBack-core-concepts.html</a></p>
+<h1 id="LoopBack核心概念"><a href="#LoopBack核心概念" class="headerlink" title="LoopBack核心概念"></a>LoopBack核心概念</h1><p>模型是LoopBack的核心，代表后端数据源，如数据库或其他后端服务（REST，SOAP等）。LoopBack模型是具有Node和REST API的JavaScript对象。<br>LoopBack的一个关键功能是当您定义模型时，它将自动附带预定义的REST API，并具有完整的创建，读取，更新和删除操作。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/454522-ebe8bcfc2640ff85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="模型继承"></p>
+<p>在  基本模型对象对添加方法  挂钩  和验证数据。其他模型对象都“继承”它。模型具有继承层次结构，如图所示：将模型附加到持久性数据源时，它将成为 具有创建，检索，更新和删除操作的连接模型。LoopBack的内置模型从它继承。</p>
+<h4 id="内置型号"><a href="#内置型号" class="headerlink" title="内置型号"></a>内置型号</h4><p>每个LoopBack应用程序都有一组预定义的  内置模型，如用户，角色和应用程序，因此您不必从头开始创建这些常见模型</p>
+<h4 id="定制机型"><a href="#定制机型" class="headerlink" title="定制机型"></a>定制机型</h4><p>您可以  定义自己的  特定于您的应用程序的自定义模型。您可以使您的自定义模型  扩展内置模型，  以建立在用户，  应用程序和其他内置模型的预定义功能的基础上 。</p>
+<p>您可以以各种方式创建LoopBack模型，具体取决于模型基于什么样的数据源。您可以创建模型：</p>
 <ul>
-<li>型号名称：review</li>
-<li>资料来源：mongoDs（mongodb）</li>
-<li>基类：使用向下箭头键选择  PersistedModel。</li>
-<li>通过REST API公开审查？按RETURN接受默认值。</li>
-<li>自定义复数形式（用于构建REST URL）：按RETURN接受默认值，是。</li>
-<li>通用型号或服务器：按RETURN接受默认的常用型号。</li>
+<li>使用LoopBack模型生成器。</li>
+<li>从  使用模型发现的现有关系数据库中。然后，您可以使用LoopBack的模式/模型同步  API 将模型与数据库保持  同步。</li>
+<li>例如  NoSQL数据库或REST API中的自由格式数据的内省。</li>
 </ul>
-<p>模型生成器将在应用程序的common/models目录中创建两个定义模型的文件</p>
-<h3 id="定义关系"><a href="#定义关系" class="headerlink" title="定义关系"></a>定义关系</h3><p>现在，您将要定义模型之间的这些关系。总共有五个关系。再次，您将使用该lb命令，但这次您将使用relation子命令（关系生成器）。对于每个关系，请输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb relation</div></pre></td></tr></table></figure>
-<h4 id="查看模型JSON文件"><a href="#查看模型JSON文件" class="headerlink" title="查看模型JSON文件"></a>查看模型JSON文件</h4><p>现在，看看common/models/review.json</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&quot;relations&quot;: &#123;</div><div class="line">  &quot;coffeeShop&quot;: &#123;</div><div class="line">    &quot;type&quot;: &quot;belongsTo&quot;,</div><div class="line">    &quot;model&quot;: &quot;CoffeeShop&quot;,</div><div class="line">    &quot;foreignKey&quot;: &quot;&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;reviewer&quot;: &#123;</div><div class="line">    &quot;type&quot;: &quot;belongsTo&quot;,</div><div class="line">    &quot;model&quot;: &quot;Reviewer&quot;,</div><div class="line">    &quot;foreignKey&quot;: &quot;publisherId&quot;</div><div class="line">  &#125;</div><div class="line">&#125;,</div><div class="line">...</div></pre></td></tr></table></figure>
-<h4 id="定义访问控制"><a href="#定义访问控制" class="headerlink" title="定义访问控制"></a>定义访问控制</h4><p>再次，您将使用该lb工具，但这次您将使用acl子命令; 对于每个ACL，输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb acl</div></pre></td></tr></table></figure>
-<h4 id="查看review-json文件"><a href="#查看review-json文件" class="headerlink" title="查看review.json文件"></a>查看review.json文件</h4><p>完成后，ACL部分  common/models/review.json 应如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">... </div><div class="line">&quot;acls&quot;: [&#123;</div><div class="line">  &quot;accessType&quot;: &quot;*&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$everyone&quot;,</div><div class="line">  &quot;permission&quot;: &quot;DENY&quot;</div><div class="line">&#125;, &#123;</div><div class="line">  &quot;accessType&quot;: &quot;READ&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$everyone&quot;,</div><div class="line">  &quot;permission&quot;: &quot;ALLOW&quot;</div><div class="line">&#125;, &#123;</div><div class="line">  &quot;accessType&quot;: &quot;EXECUTE&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$authenticated&quot;,</div><div class="line">  &quot;permission&quot;: &quot;ALLOW&quot;,</div><div class="line">  &quot;property&quot;: &quot;create&quot;</div><div class="line">&#125;, &#123;</div><div class="line">  &quot;accessType&quot;: &quot;WRITE&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$owner&quot;,</div><div class="line">  &quot;permission&quot;: &quot;ALLOW&quot;</div><div class="line">&#125;],</div><div class="line">...</div></pre></td></tr></table></figure>
-<h3 id="添加数据源"><a href="#添加数据源" class="headerlink" title="添加数据源:"></a>添加数据源:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb datasource</div></pre></td></tr></table></figure>
-<h3 id="安装SQLDB连接器"><a href="#安装SQLDB连接器" class="headerlink" title="安装SQLDB连接器"></a>安装SQLDB连接器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install loopback-connector-mysql --save。</div></pre></td></tr></table></figure>
-<h3 id="安装MongoDB连接器"><a href="#安装MongoDB连接器" class="headerlink" title="安装MongoDB连接器"></a>安装MongoDB连接器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save loopback-connector-mongodb</div></pre></td></tr></table></figure>
-<p>该工具还将数据源定义添加到  server/datasources.json 文件中，如下所示。请注意刚刚添加的“mysqlDs”数据源，以及名为“db”的内存数据源，默认情况下是这样。</p>
-<p><strong>/server/datasources.json</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;db&quot;: &#123;</div><div class="line">        &quot;name&quot;: &quot;db&quot;,</div><div class="line">        &quot;connector&quot;: &quot;memory&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;mysqlDs&quot;: &#123;</div><div class="line">      &quot;host&quot;: &quot;demo.strongloop.com&quot;,</div><div class="line">      &quot;port&quot;: 3306,</div><div class="line">      &quot;url&quot;: &quot;&quot;,</div><div class="line">      &quot;database&quot;: &quot;getting_started&quot;,</div><div class="line">      &quot;password&quot;: &quot;L00pBack&quot;,</div><div class="line">      &quot;name&quot;: &quot;mysqlDs&quot;,</div><div class="line">      &quot;user&quot;: &quot;demo&quot;,</div><div class="line">      &quot;connector&quot;: &quot;mysql&quot;</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">    &quot;mongoDs&quot;: &#123;</div><div class="line">        &quot;name&quot;: &quot;mongoDs&quot;,</div><div class="line">        &quot;connector&quot;: &quot;mongodb&quot;,</div><div class="line">        &quot;host&quot;: &quot;demo.strongloop.com&quot;,</div><div class="line">        &quot;port&quot;: 27017,</div><div class="line">        &quot;database&quot;: &quot;getting_started_intermediate&quot;,</div><div class="line">        &quot;username&quot;: &quot;demo&quot;,</div><div class="line">        &quot;password&quot;: &quot;L00pBack&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="将模型连接到数据源"><a href="#将模型连接到数据源" class="headerlink" title="将模型连接到数据源"></a>将模型连接到数据源</h3><p>LoopBack应用程序使用  model-config.json  文件将模型链接到数据源。编辑  /server/model-config.json 并查找CoffeeShop条目：</p>
-<p><strong>/server/model-config.json</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">  &quot;CoffeeShop&quot;: &#123;</div><div class="line">    &quot;dataSource&quot;: &quot;db&quot;,</div><div class="line">    &quot;public&quot;: true</div><div class="line">  &#125;</div><div class="line">  ...</div></pre></td></tr></table></figure>
-<p>将dataSource 属性  更改  db 为  mysqlDs。这将CoffeeShop模型附加到刚刚创建和配置的MySQL数据源：</p>
-<p><strong>/server/model-config.json</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">  &quot;CoffeeShop&quot;: &#123;</div><div class="line">    &quot;dataSource&quot;: &quot;mysqlDs&quot;,</div><div class="line">    &quot;public&quot;: true</div><div class="line">  &#125;</div><div class="line">  ...</div></pre></td></tr></table></figure>
-<h3 id="添加一些测试数据并查看它"><a href="#添加一些测试数据并查看它" class="headerlink" title="添加一些测试数据并查看它"></a>添加一些测试数据并查看它</h3><p>现在您在LoopBack中有一个CoffeeShop模型，如何在MySQL数据库中创建相应的表？</p>
-<p>您可以直接尝试执行一些SQL语句，但是LoopBack提供了一个Node API，可以自动使用称为自动迁移的过程  。有关详细信息，请参阅  从模型创建数据库模式。</p>
-<p>该  loopback-getting-started 模块包含create-sample-models.js 演示自动迁移的  脚本。如果你从一开始就一直在追踪（而不是克隆这个模块），那么你需要从下面或从GitHub复制它   。将其放在应用程序的  /server/boot 目录中，以便在应用程序启动时执行。</p>
+<p>所有这三种方法都创建了一个  模型定义JSON文件，它通过LoopBack项目的common/models目录中的约定在LoopBack中定义您的模型; 例如，common/models/account.json。</p>
+<p>您也可以使用LoopBack API以编程方式创建和自定义模型  ，也可以手动编辑  模型定义JSON文件。在大多数情况下，您不需要使用这些技术来创建模型，但您通常将使用它们来修改和定制模型。</p>
 <blockquote>
-<p> 注意： 下面的自动迁移脚本是在应用程序初始启动时LoopBack执行的引导脚本的示例。使用引导脚本进行初始化，并执行应用程序启动时执行的任何其他逻辑。有关详细信息，请参阅定义启动脚本。</p>
+<p> 注意：<br>该模型定义JSON文件包括idInjection指示环回是否会自动添加一个独特的财产  id 属性的模型。对于连接到数据库的模型，id属性对应于主键。有关详细信息，请参阅ID属性。</p>
 </blockquote>
-<p><strong>/server/boot/create-sample-models.js</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">module.exports = function(app) &#123;</div><div class="line">  app.dataSources.mysqlDs.automigrate(&apos;CoffeeShop&apos;, function(err) &#123;</div><div class="line">    if (err) throw err;</div><div class="line"></div><div class="line">    app.models.CoffeeShop.create([&#123;</div><div class="line">      name: &apos;Bel Cafe&apos;,</div><div class="line">      city: &apos;Vancouver&apos;</div><div class="line">    &#125;, &#123;</div><div class="line">      name: &apos;Three Bees Coffee House&apos;,</div><div class="line">      city: &apos;San Mateo&apos;</div><div class="line">    &#125;, &#123;</div><div class="line">      name: &apos;Caffe Artigiano&apos;,</div><div class="line">      city: &apos;Vancouver&apos;</div><div class="line">    &#125;, ], function(err, coffeeShops) &#123;</div><div class="line">      if (err) throw err;</div><div class="line"></div><div class="line">      console.log(&apos;Models created: \n&apos;, coffeeShops);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h3 id="更新引导脚本以添加数据"><a href="#更新引导脚本以添加数据" class="headerlink" title="更新引导脚本以添加数据"></a>更新引导脚本以添加数据</h3><p>记得早在第一部分的  入门，你  增加了一个启动脚本  来创建模型（通过自动迁移）数据库表和一些数据添加到数据库中。</p>
-<p>现在您有了一些新的模型和新的数据源，您需要更新此脚本，以便在MongoDB中创建数据结构，并通过新模型插入数据。</p>
-<p>复制和粘贴下面的代码  到  server/boot/create-sample-models.js，替换现有的代码。</p>
-<p>然后跑</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save async</div></pre></td></tr></table></figure>
-<p>此启动脚本有几个功能：</p>
+<h4 id="模型关系"><a href="#模型关系" class="headerlink" title="模型关系"></a>模型关系</h4><p>你可以表达  模型之间的关系，如  BelongsTo,  HasMany 和  HasAndBelongsToMany。 </p>
+<p>模型创建，检索，更新和删除操作</p>
+<p>当将模型连接到持久数据源（如数据库）时，它将成为一个  连接的模型，   其中包含来自PersistedModel  类的一整套创建，读取，更新和删除操作  ：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>REST</th>
+<th>LoopBack模型方法</th>
+<th>相应的SQL操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建</td>
+<td>PUT / modelName 和 POST / modelName</td>
+<td>create()</td>
+<td>INSERT</td>
+</tr>
+<tr>
+<td>阅读（检索）</td>
+<td>GET / modelName？filter = …</td>
+<td>find()</td>
+<td>SELECT</td>
+</tr>
+<tr>
+<td>更新（修改）</td>
+<td>PUT / modelName</td>
+<td>updateAll()</td>
+<td>UPDATE</td>
+</tr>
+<tr>
+<td>删除（毁灭）</td>
+<td>DELETE / modelName / modelID</td>
+<td>destroyById()</td>
+<td>DELETE</td>
+</tr>
+</tbody>
+</table>
+<p>（*）列举的方法只是突出例子; 其他方法可以提供类似的功能; 例如：  findById()，  findOne()，和  findOrCreate()。 </p>
+<p>有关更多信息，请参阅PersistedModel API文档。</p>
+<h4 id="应用逻辑"><a href="#应用逻辑" class="headerlink" title="应用逻辑"></a>应用逻辑</h4><p>您可以以多种方式添加自定义应用程序逻辑; 您可以：</p>
 <ul>
-<li>createCoffeeShops()为CoffeeShop模型创建一个MySQL表，并将数据添加到表中。 这是create-sample-models.js从入门起的脚本 。</li>
-<li>createReviewers() 使用自动迁移在MongoDB中创建Reviewer数据结构，并向其添加数据。  </li>
-<li>createReviews() 在MongoDB中使用自动迁移创建评论数据结构，并向其添加数据。</li>
+<li>通过远程方法（自定义REST端点）， 远程  方法触发的远程  钩子  以及由模型创建，检索，更新和删除方法触发的操作钩子将应用程序逻辑添加到模型中。</li>
+<li>添加应用程序启动时运行的引导脚本。</li>
+<li>定义自定义  中间件，类似于Express中间件。</li>
 </ul>
-<h3 id="启动应用程序："><a href="#启动应用程序：" class="headerlink" title="启动应用程序："></a>启动应用程序：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node .</div></pre></td></tr></table></figure>
+<p>您可以在将数据保存到模型和后端数据存储之前添加验证数据的代码。</p>
+<h4 id="中间件阶段"><a href="#中间件阶段" class="headerlink" title="中间件阶段"></a>中间件阶段</h4><p>中间件  是指当HTTP请求到REST端点做出执行的功能。由于LoopBack基于  Express，LoopBack中间件与Express中间件相同  。然而，LoopBack增加了阶段的概念，以清楚地定义调用中间件的顺序。使用阶段有助于避免订购标准Express中间件可能发生的问题。</p>
+<h4 id="数据源和连接器"><a href="#数据源和连接器" class="headerlink" title="数据源和连接器"></a>数据源和连接器</h4><p><img src="http://upload-images.jianshu.io/upload_images/454522-03f84365a30b7b68.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据源和连接器模型"></p>
+<p>LoopBack将后端服务（如数据库，REST API，SOAP Web服务和存储服务）概括为  数据源。</p>
+<p>数据源由连接器支持，然后连接器直接与数据库或其他后端服务进行通信。应用程序不直接使用连接器，而是使用DataSource  和  PersistedModel  API 访问数据源  。</p>
+<h4 id="LoopBack组件"><a href="#LoopBack组件" class="headerlink" title="LoopBack组件"></a>LoopBack组件</h4><p>LoopBack组件提供额外的“插件”功能：</p>
+<ul>
+<li><strong>推送通知</strong>  - 可以将信息发送到移动应用，以立即在移动设备上的“徽章”，警报或弹出式消息中显示。</li>
+<li><strong>存储组件</strong>  - 可以向云存储提供商（Amazon，Rackspace，Openstack和Azure）以及服务器文件系统上传和下载文件。</li>
+<li><strong>第三方登录</strong>  - 集成  Passport  ，并使用来自Facebook，Google，Twitter，Github或支持OAuth，OAuth 2或OpenID的任何系统的第三方凭据启用用户登录（和帐户链接）。</li>
+<li><strong>同步</strong>  - 使移动应用程序能够脱机运行，然后在重新连接时将数据与服务器应用程序同步。</li>
+<li><strong>OAuth 2.0</strong>  - 使LoopBack应用程序能够作为oAuth 2.0提供程序来验证和授权客户端应用程序和用户访问受保护的API端点。</li>
+</ul>
+
           
         
       
@@ -2432,7 +2412,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.3</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
 
 
 
@@ -2531,6 +2511,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
 
   
 
