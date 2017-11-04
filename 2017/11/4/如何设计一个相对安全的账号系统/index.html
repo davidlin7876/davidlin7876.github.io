@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="NodeJS," />
+  <meta name="keywords" content="K12," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Mac端的本地环境请点击：Mac配置Docker+NodeJS服务 安装安装 NodeJShttps://nodejs.org/en/download/准备命令：1yum -y install gcc make gcc-c++ openssl-devel wget 下载源码及解压：12wget https://nodejs.org/dist/v6.11.3/node-v6.11.3.tar.gzt">
-<meta name="keywords" content="NodeJS">
+<meta name="description" content="用正确的姿势保存密码。用正确的姿势传输数据。用正确的姿势加密敏感信息。用正确的姿势对数据进行备份和监控。">
+<meta name="keywords" content="K12">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS配置Docker+NodeJS服务">
-<meta property="og:url" content="https://linfeng.xyz/2017/9/17/CentOS配置Docker+NodeJS服务/index.html">
+<meta property="og:title" content="如何设计一个相对安全的账号系统？">
+<meta property="og:url" content="https://linfeng.xyz/2017/11/4/如何设计一个相对安全的账号系统/index.html">
 <meta property="og:site_name" content="林峰的小宇宙">
-<meta property="og:description" content="Mac端的本地环境请点击：Mac配置Docker+NodeJS服务 安装安装 NodeJShttps://nodejs.org/en/download/准备命令：1yum -y install gcc make gcc-c++ openssl-devel wget 下载源码及解压：12wget https://nodejs.org/dist/v6.11.3/node-v6.11.3.tar.gzt">
+<meta property="og:description" content="用正确的姿势保存密码。用正确的姿势传输数据。用正确的姿势加密敏感信息。用正确的姿势对数据进行备份和监控。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-04T02:03:59.000Z">
+<meta property="og:updated_time" content="2017-11-04T04:56:56.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS配置Docker+NodeJS服务">
-<meta name="twitter:description" content="Mac端的本地环境请点击：Mac配置Docker+NodeJS服务 安装安装 NodeJShttps://nodejs.org/en/download/准备命令：1yum -y install gcc make gcc-c++ openssl-devel wget 下载源码及解压：12wget https://nodejs.org/dist/v6.11.3/node-v6.11.3.tar.gzt">
+<meta name="twitter:title" content="如何设计一个相对安全的账号系统？">
+<meta name="twitter:description" content="用正确的姿势保存密码。用正确的姿势传输数据。用正确的姿势加密敏感信息。用正确的姿势对数据进行备份和监控。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://linfeng.xyz/2017/9/17/CentOS配置Docker+NodeJS服务/"/>
+  <link rel="canonical" href="https://linfeng.xyz/2017/11/4/如何设计一个相对安全的账号系统/"/>
 
 
 
 
 
-  <title>CentOS配置Docker+NodeJS服务 | 林峰的小宇宙</title>
+  <title>如何设计一个相对安全的账号系统？ | 林峰的小宇宙</title>
   
 
 
@@ -307,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/9/17/CentOS配置Docker+NodeJS服务/">
+    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/11/4/如何设计一个相对安全的账号系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David Lin">
@@ -324,7 +324,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CentOS配置Docker+NodeJS服务</h1>
+          <h1 class="post-title" itemprop="name headline">如何设计一个相对安全的账号系统？</h1>
         
 
         <div class="post-meta">
@@ -336,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-17T00:00:00+08:00">
-                2017-09-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-04T00:00:00+08:00">
+                2017-11-04
               </time>
             
 
@@ -346,6 +346,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/经验心得/" itemprop="url" rel="index">
+                    <span itemprop="name">经验心得</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -374,36 +396,80 @@
       
 
       
-        <p>Mac端的本地环境请点击：<a href="http://www.jianshu.com/p/e33815e71e35" target="_blank" rel="external">Mac配置Docker+NodeJS服务</a></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>安装 NodeJS<br><a href="https://nodejs.org/en/download/" title="https://nodejs.org/en/download/" target="_blank" rel="external">https://nodejs.org/en/download/</a><br>准备命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install gcc make gcc-c++ openssl-devel wget</div></pre></td></tr></table></figure></p>
-<p>下载源码及解压：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://nodejs.org/dist/v6.11.3/node-v6.11.3.tar.gz</div><div class="line">tar -zvxf node-v6.11.3.tar.gz</div></pre></td></tr></table></figure></p>
-<p>检查所需要配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure</div></pre></td></tr></table></figure></p>
-<p>编译及安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure></p>
-<p>验证是否安装配置成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node -v</div></pre></td></tr></table></figure></p>
-<hr>
+        <blockquote>
+<p>用正确的姿势保存密码。<br>用正确的姿势传输数据。<br>用正确的姿势加密敏感信息。<br>用正确的姿势对数据进行备份和监控。</p>
+</blockquote>
 <a id="more"></a>
-<p>安装loopback-cli<br><a href="http://loopback.io" title="http://loopback.io" target="_blank" rel="external">http://loopback.io</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
-<p>安装git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install git</div></pre></td></tr></table></figure></p>
-<p>安装cnpm<br><a href="https://npm.taobao.org/" title="https://npm.taobao.org/" target="_blank" rel="external">https://npm.taobao.org/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure></p>
-<p>安装zsh作为默认SHELL<br><a href="http://blog.csdn.net/w670328683/article/details/49782601" title="http://blog.csdn.net/w670328683/article/details/49782601" target="_blank" rel="external">http://blog.csdn.net/w670328683/article/details/49782601</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum -y install zsh</div><div class="line">chsh -s /bin/zsh</div><div class="line">echo $SHELL</div></pre></td></tr></table></figure></p>
-<p>安装oh-my-zsh美化zsh<br><a href="https://github.com/robbyrussell/oh-my-zsh" title="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">https://github.com/robbyrussell/oh-my-zsh</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh -c &quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;</div></pre></td></tr></table></figure></p>
-<p>安装docker和docker-compose<br><a href="http://www.linuxidc.com/Linux/2014-12/110034.htm" title="http://www.linuxidc.com/Linux/2014-12/110034.htm" target="_blank" rel="external">http://www.linuxidc.com/Linux/2014-12/110034.htm</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install docker</div><div class="line">yum install docker-compose</div></pre></td></tr></table></figure></p>
-<p>安装gem<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y gem</div></pre></td></tr></table></figure></p>
-<p>安装mosh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install mosh</div></pre></td></tr></table></figure></p>
-<p>安装Vim的插件janus<br>The distribution also requires ack, ctags, git, ruby and rake.<br><a href="https://github.com/carlhuda/janus" title="https://github.com/carlhuda/janus" target="_blank" rel="external">https://github.com/carlhuda/janus</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -L https://bit.ly/janus-bootstrap | bash</div></pre></td></tr></table></figure></p>
-<p>安装httpie<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install httpie</div></pre></td></tr></table></figure></p>
-<hr>
-<h1 id="centOS的一些命令："><a href="#centOS的一些命令：" class="headerlink" title="centOS的一些命令："></a>centOS的一些命令：</h1><p>docker的一些命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker-compose down</div><div class="line">docker-compose up -d</div><div class="line">service docker start</div><div class="line">chkconfig docker on</div></pre></td></tr></table></figure></p>
-<p>安装caddy-docker例子,测试docker功能<br><a href="https://github.com/abiosoft/caddy-docker" title="https://github.com/abiosoft/caddy-docker" target="_blank" rel="external">https://github.com/abiosoft/caddy-docker</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 2015:2015 abiosoft/caddy</div></pre></td></tr></table></figure></p>
-<p>查看log<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker ps</div><div class="line">docker exec -it xiaoyx_ws_1 sh</div><div class="line">pm2 list</div><div class="line">pm2 logs 1</div></pre></td></tr></table></figure></p>
-<p>硬盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -h</div></pre></td></tr></table></figure></p>
-<p>内存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">free -h</div></pre></td></tr></table></figure></p>
-<p>目录详情<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -lh</div></pre></td></tr></table></figure></p>
-<p>安装路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">which node</div></pre></td></tr></table></figure></p>
-<p>连接服务器（免密码）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ls .ssh</div><div class="line">ssh-keygen</div><div class="line">ssh-copy-id root@dlin.top</div><div class="line">ssh root@dlin.top</div></pre></td></tr></table></figure></p>
-<p>mosh连接服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mosh root@dlin.top</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl http://0.0.0.0:2015</div><div class="line">curl http://google.com</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ip addr</div></pre></td></tr></table></figure>
+<h1 id="用正确的姿势保存密码"><a href="#用正确的姿势保存密码" class="headerlink" title="用正确的姿势保存密码"></a>用正确的姿势保存密码</h1><h3 id="低级错误：明文保存密码"><a href="#低级错误：明文保存密码" class="headerlink" title="低级错误：明文保存密码"></a>低级错误：明文保存密码</h3><p>安全性最低的是在服务端明文保存用户的密码，一旦服务器被入侵，数据被拖走（拖库），所有用户的密码都直接的暴露在外面。</p>
+<h3 id="低级错误：可逆加密密码"><a href="#低级错误：可逆加密密码" class="headerlink" title="低级错误：可逆加密密码"></a>低级错误：可逆加密密码</h3><p>既然不能明文保存密码，那当然是加密保存了。耍个小聪明，比如把密码的字母倒着存，或者每个字母存后一个字母，或者进行异或混淆处理，表面上密码看上去已经看不出来原始的密码是什么了，但实际上这个和明文保存密码并没有本质区别，因为黑客既然可以入侵你的服务器，自然可以拿到你的加密代码，只要按你的算法进行简单的解密就可以得到原始密码。</p>
+<h3 id="错误方法：md5-加密密码"><a href="#错误方法：md5-加密密码" class="headerlink" title="错误方法：md5 加密密码"></a>错误方法：md5 加密密码</h3><p>这是早期比较主流的做法，然而，这依然是非常不安全的。因为只要枚举所有短密码进行 md5 加密，做成一个索引表，就能轻易的逆推出原始密码。</p>
+<h3 id="正确方法：加盐-hash-保存密码"><a href="#正确方法：加盐-hash-保存密码" class="headerlink" title="正确方法：加盐 hash 保存密码"></a>正确方法：加盐 hash 保存密码</h3><p>加盐hash是指在加密密码时，不只是对密码进行hash，而是对密码多加内容，放点盐（salt）再加密，一方面，由于你放的这点盐，让密码本身更长强度更高，彩虹表逆推的难度更大，也因你放的这点盐，让黑客进行撞库时运算量更大，破解的难度更高。</p>
+<p>一个健壮的、牢不可破的系统应该是：<code>即使被拿走了数据和所有的代码，也没办法破解里面的数据。</code></p>
+<h5 id="如果需要达到更高的安全等级，可以考虑："><a href="#如果需要达到更高的安全等级，可以考虑：" class="headerlink" title="如果需要达到更高的安全等级，可以考虑："></a>如果需要达到更高的安全等级，可以考虑：</h5><ol>
+<li>使用更安全的 hash 函数用来抵抗碰撞攻击，比如：SHA256, SHA512, RipeMD, WHIRLPOOL。</li>
+<li>可以使用一种大量消耗 cpu 的 hash 算法对抗暴力破解，比如PBKDF2 或者 bcrypt。</li>
+<li>比较加盐 md5 结果时，使用时间恒定的比较函数。</li>
+<li>salt 的值不要和最终 hash 的结果存在同一个数据库。</li>
+<li>最终存储的结果使用基于 key 的 hash 函数，比如 HMAC。 key 从外部安全性极高的专属服务中获得。</li>
+</ol>
+<h3 id="一些防范的方法"><a href="#一些防范的方法" class="headerlink" title="一些防范的方法"></a>一些防范的方法</h3><ul>
+<li>要求密码强度，做弱密码检测</li>
+<li>安全系数较高的验证码</li>
+<li>防止机器人。使用有一定干扰的检验码，有失效时间。异常登录检测或提示上一次登录时间地点。密码错误锁定。</li>
+<li>错误回显不要太多。</li>
+<li>token超时重新登录机制。</li>
+<li>找回密码的安全性不能低于密码认证。慎用邮箱找回，重置密码链接务必满足:有必要的话要做到确认用户信息后才可以设置密码、重置密码。</li>
+<li>可以考虑让用户预留与密码无关的个性提示信息，用于防钓鱼网站</li>
+</ul>
+<h1 id="用正确的姿势传输数据"><a href="#用正确的姿势传输数据" class="headerlink" title="用正确的姿势传输数据"></a>用正确的姿势传输数据</h1><p>使用 HTTP 协议传输数据时，数据都是明文传输的，数据从发出到服务器接收，中间可能被劫持，篡改。比如常见的 DNS 劫持，HTTP 劫持，中间人攻击。</p>
+<ul>
+<li>需要确保进行通讯的服务端是官方的、正确的服务端，而不是跟一个假的服务端在通信。</li>
+<li>确保信息在网络上传输时是加密的，只有客户端和服务端有能力对数据进行解密。</li>
+<li>确保信息在传输时不被篡改，或者数据被篡改时能立即发现。</li>
+</ul>
+<h3 id="验证服务端的合法性"><a href="#验证服务端的合法性" class="headerlink" title="验证服务端的合法性"></a>验证服务端的合法性</h3><p>加密技术：对称加密 和 非对称加密。 对称加密：加密和解密时使用的是同一个密钥。非对称加密：需要两个密钥来进行加密和解密：公开密钥（public key，简称公钥）和私有密钥（private key，简称私钥） ，公钥加密的信息只有私钥才能解开，私钥加密的信息只有公钥才能解开。<br>非对称加密是实现验证服务端合法性的基础，常见的加密算法有 RSA 、 ECC 等 。服务端生成一对公钥和私钥，公钥是公开的所有人都知道，客户端需要和服务端通信时，使用该公钥进行数据加密，由于只有真实合法的服务端才拥有对应的私钥，所有只有真实的服务端才能解密该信息，然后返回数据给客户端时，使用客户端自己生成的公钥进行加密，这样数据只有对应的客户端才能理解。<br>使用 <code>HTTPS</code> 时，数字证书里包含了名称和公钥信息，只要认证该证书是合法的，并且对方能理解用该公钥加密的信息，就能确定是合法的服务端。</p>
+<h3 id="确保通信的安全"><a href="#确保通信的安全" class="headerlink" title="确保通信的安全"></a>确保通信的安全</h3><p>既然使用非对称加密的方式，可以保证双方安全的通信，那是不是就一直使用非对称加密传输数据就行了？理论上是可以的，但是非对称加密的效率要比对称加密的效率低很多。通常的做法是，通过非对称加密的方法，协商出一个只有双方知道的对称加密密钥。<br>即使在不安全的通信环境下，也可以协商出一个只有双方才知道的对称加密密钥。密钥协商好后，双方就可以使用该密钥进行加密传输了，比如使用 AES 、 DES</p>
+<h3 id="防御重放攻击"><a href="#防御重放攻击" class="headerlink" title="防御重放攻击"></a>防御重放攻击</h3><p>即使攻击者不能解密传输的内容，但仍可以使用重放攻击尝试身份验证或用于欺骗系统。重放攻击是指攻击者将数据包截取后，向目标主机重新发送一遍数据包。<br>防御重放攻击的方法主要有：</p>
+<ul>
+<li>使用时间戳。</li>
+<li>数据包在一定时间范围内才是有效的。</li>
+<li>使用递增的序号。收到重复的数据包时可以轻易的发现。</li>
+<li>使用提问应答方式。</li>
+<li>收到数据包时可以判断出来是否应答过。<br>HTTPS 正是使用了上述的原理，保证了通信的安全。所以，任何对安全有需求的系统都应该使用 HTTPS。如果是使用自有协议开发，比如 APP 或游戏，应该使用上述的方法保障通信的安全。</li>
+</ul>
+<h1 id="用正确的姿势加密敏感信息"><a href="#用正确的姿势加密敏感信息" class="headerlink" title="用正确的姿势加密敏感信息"></a>用正确的姿势加密敏感信息</h1><p>那用户其他的敏感信息呢？比如身份证、银行卡、信用卡等信息，该如何加密保存而不被泄露呢？</p>
+<p>敏感信息加密。把敏感信息加盐hash处理。传输需要把认证过程放在SSL里用对称密钥通信加密。cookies也不能用持久型cookies，总之敏感信息不落地，要加密传输。敏感信息做no-cache。会话加令牌避免重用。</p>
+<ul>
+<li>对于身份证信息，可以像密码一样只保存 hash 的结果，可以用于用户输入身份证号后进行验证。假如需要给用户显示身份证信息，只需要保存抹掉了几位数字的身份证号。</li>
+<li>假如你的系统涉及到支付，需要用户的银行卡，信用卡（卡号，CVV码）等信息时，必须遵循 PCI DSS （第三方支付行业数据安全标准）标准。PCI DSS 是由 PCI 安全标准委员会的创始成员(visa、mastercard、American Express、Discover Financial Services、JCB等)制定，力在使国际上采用一致的数据安全措施，包括安全管理、策略、过程、网络体系结构、软件设计的要求的列表等，全面保障交易安全。</li>
+<li>如果只是银行卡，还需要遵循 ADSS （银联卡收单机构账户信息安全管理标准） 标准。</li>
+</ul>
+<h1 id="用正确的姿势对数据进行备份和监控"><a href="#用正确的姿势对数据进行备份和监控" class="headerlink" title="用正确的姿势对数据进行备份和监控"></a>用正确的姿势对数据进行备份和监控</h1><h3 id="人员和技术"><a href="#人员和技术" class="headerlink" title="人员和技术"></a>人员和技术</h3><ul>
+<li>使用现有cms时，有能力就进行代码审计，否则要隐藏cms指纹，时刻关注安全动态，打补丁。</li>
+<li>业务逻辑漏洞需要进行经常性的测试，比如密码找回，支付问题，平行垂直权限等。某些业务操作，最好设置验证码验证，或者token等。尤其是新上线的项目。</li>
+<li>关注组件漏洞，如框架、中间件、OpenSSL等，及时更新</li>
+<li>不能在生产做调试、测试，以免泄漏调试信息</li>
+<li>在新试用某一项技术前，一定要评估好该技术可能带来的风险，比如服务器代为远程请求数据时是否会造成ssrf问题，通过xml请求数据时，是否会造成xxe，flash的权限问题，callback的问题，OAuth认证，sso认证等等。</li>
+<li>员工培训，弱口令问题，上传代码到github等第三方，svn，备份，员工的安全意识，不随便在办公网打开未知文件，客服后台访问时禁止JavaScript执行等等。</li>
+</ul>
+<h3 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h3><ul>
+<li>安装waf防火墙</li>
+<li>参数化查询或白名单防注入。</li>
+<li>同时做好权限控制，并对访问记录做好监控，及时发现问题，保留现场证据。</li>
+<li>网站做好日志记录，不定时进行审计。</li>
+<li>网站最好挂个cdn，来缓解直接的攻击。</li>
+<li>服务器打补丁，装防护软件，如安全狗。</li>
+<li>服务器各端口运行服务时，一定要保证鉴权，如mongodb等等。</li>
+<li>服务器各服务最小权限原则。</li>
+<li>后台等敏感路径要隐藏起来，或者验证IP。</li>
+</ul>
+<h3 id="数据和备份"><a href="#数据和备份" class="headerlink" title="数据和备份"></a>数据和备份</h3><ul>
+<li>防SQL Injection。</li>
+<li>使用pdo来进行数据库查询，数据库权限不要太高，站库分离。</li>
+<li>备份的安全性不能低于生产。</li>
+<li>数据备份是为了防止由于硬盘损坏或人为破坏导致的数据丢失。磁盘 raid，物理备份（磁带库），异地的逻辑备份。</li>
+</ul>
+
       
     </div>
     
@@ -428,7 +494,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/NodeJS/" rel="tag"><i class="fa fa-tag"></i> NodeJS</a>
+            <a href="/tags/K12/" rel="tag"><i class="fa fa-tag"></i> K12</a>
           
         </div>
       
@@ -441,8 +507,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/9/17/LoopBack学习之核心概念/" rel="next" title="LoopBack学习之核心概念">
-                <i class="fa fa-chevron-left"></i> LoopBack学习之核心概念
+              <a href="/2017/10/26/教育科技公司创业该避开哪些坑/" rel="next" title="教育科技公司创业该避开哪些坑">
+                <i class="fa fa-chevron-left"></i> 教育科技公司创业该避开哪些坑
               </a>
             
           </div>
@@ -450,10 +516,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/9/17/LoopBack学习之命令行/" rel="prev" title="LoopBack学习之命令行">
-                LoopBack学习之命令行 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -591,7 +653,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#centOS的一些命令："><span class="nav-number">2.</span> <span class="nav-text">centOS的一些命令：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#用正确的姿势保存密码"><span class="nav-number">1.</span> <span class="nav-text">用正确的姿势保存密码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#低级错误：明文保存密码"><span class="nav-number">1.0.1.</span> <span class="nav-text">低级错误：明文保存密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#低级错误：可逆加密密码"><span class="nav-number">1.0.2.</span> <span class="nav-text">低级错误：可逆加密密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#错误方法：md5-加密密码"><span class="nav-number">1.0.3.</span> <span class="nav-text">错误方法：md5 加密密码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正确方法：加盐-hash-保存密码"><span class="nav-number">1.0.4.</span> <span class="nav-text">正确方法：加盐 hash 保存密码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#如果需要达到更高的安全等级，可以考虑："><span class="nav-number">1.0.4.0.1.</span> <span class="nav-text">如果需要达到更高的安全等级，可以考虑：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些防范的方法"><span class="nav-number">1.0.5.</span> <span class="nav-text">一些防范的方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用正确的姿势传输数据"><span class="nav-number">2.</span> <span class="nav-text">用正确的姿势传输数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#验证服务端的合法性"><span class="nav-number">2.0.1.</span> <span class="nav-text">验证服务端的合法性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确保通信的安全"><span class="nav-number">2.0.2.</span> <span class="nav-text">确保通信的安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防御重放攻击"><span class="nav-number">2.0.3.</span> <span class="nav-text">防御重放攻击</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用正确的姿势加密敏感信息"><span class="nav-number">3.</span> <span class="nav-text">用正确的姿势加密敏感信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用正确的姿势对数据进行备份和监控"><span class="nav-number">4.</span> <span class="nav-text">用正确的姿势对数据进行备份和监控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#人员和技术"><span class="nav-number">4.0.1.</span> <span class="nav-text">人员和技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器"><span class="nav-number">4.0.2.</span> <span class="nav-text">服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据和备份"><span class="nav-number">4.0.3.</span> <span class="nav-text">数据和备份</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
