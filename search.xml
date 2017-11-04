@@ -10,6 +10,7 @@
 <p>教育科技对企业家来说是一个机遇风险并存的行业，呼声大，回报高。据EdSurge介绍，美国教育科技公司在2016年共发生138笔风投交易，投融资金额累计10.3亿美元。2016年8月，TechCrunch发布了一篇文章“教育科技是金融科技之后的大热门”，声称全球教育科技的投资将达到2550亿美元。截至今天，著名股权众筹平台AngelList已列出了1.3万多家教育初创企业、公司和孵化器。</p>
 <p>企业家、创业公司和投资者在教育领域都有机会进场分得一羹。然而，市场竞争日趋激烈，这使进入一个本身就有难度的行业难上加难。</p>
 <p>以下是教育科技企业家常犯的五个错误，以及如何避免这些错误的方案。希望能抛砖引玉，给教育科技领域的初创企业家一些启发。</p>
+<a id="more"></a>
 <h1 id="问题一：对教育生态系统缺乏了解"><a href="#问题一：对教育生态系统缺乏了解" class="headerlink" title="问题一：对教育生态系统缺乏了解"></a>问题一：对教育生态系统缺乏了解</h1><p>许多上过公立学校的人坚信自己已经知道教育系统如何运作。然而事实是，除非在公共教育系统中工作过，否则认识不到学校运行的难处，也无法理解教师和学生的痛点。</p>
 <h3 id="方案：做好功课，做好准备"><a href="#方案：做好功课，做好准备" class="headerlink" title="方案：做好功课，做好准备"></a>方案：做好功课，做好准备</h3><p>不要自己预设适合教师、学生的最佳解决方案。花时间研究系统，了解产品如何为客户增值。每个学校、社区、文化都不同，也因此相应需要不同解决方案。进入这个独特生态系统的企业家必须知道他们的目标客户，以及如何帮助解决具体的问题。</p>
 <p>关于准备工作，要明白一个事实前提：教师和行政人员在一学年的时间内无法逐个尝试、评测数千种教学产品再做出购买决定。因此，要确保做好调研工作，确保产品推出一击即中。</p>
@@ -54,9 +55,9 @@
       <content type="html"><![CDATA[<h1 id="人员的招聘，技术的选型"><a href="#人员的招聘，技术的选型" class="headerlink" title="人员的招聘，技术的选型"></a>人员的招聘，技术的选型</h1><h3 id="只有找对人才能做对事，在招聘上多花时间，三步法："><a href="#只有找对人才能做对事，在招聘上多花时间，三步法：" class="headerlink" title="只有找对人才能做对事，在招聘上多花时间，三步法："></a>只有找对人才能做对事，在招聘上多花时间，三步法：</h3><ul>
 <li>对员工的表现有何期望，其相关经历中取得过什么成就，讨论期望的个性特点。仔细查看和研究简历。</li>
 <li>面试，用“八二原则”倾听和提问，提出正确的问题，恰到好处得到有用的信息，深入挖掘被面试人背景、成绩、对未来的设想。</li>
-<li>评价，分析信息是否具备期望的成功模式和个性特征。服从直觉，如果有疑虑就必须调查清楚消除疑虑。</li>
+<li>评价，分析信息是否具备期望的成功模式和个性特征。服从直觉，如果有疑虑就必须调查清楚消除疑虑。<a id="more"></a>
+<h3 id="可用平台"><a href="#可用平台" class="headerlink" title="可用平台"></a>可用平台</h3>网易云、云信、视频云、人工智能</li>
 </ul>
-<h3 id="可用平台"><a href="#可用平台" class="headerlink" title="可用平台"></a>可用平台</h3><p>网易云、云信、视频云、人工智能</p>
 <blockquote>
 <p>了解人工智能研究院中是否有可以有智能硬件运用到产品中。<br>分析还缺少的技术，技术选型，实施落地。</p>
 </blockquote>
@@ -219,6 +220,7 @@
 <p>4、点击 Add key。</p>
 <p>完成以后，验证下这个key是不是正常工作：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div><div class="line"></div><div class="line">Attempts to ssh to github</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>使用命令 git remote -v 查看你当前的 remote url</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git remote -v</div><div class="line">origin https://github.com/someaccount/someproject.git (fetch)</div><div class="line">origin https://github.com/someaccount/someproject.git (push)</div></pre></td></tr></table></figure>
 <p>如果是以上的结果那么说明此项目是使用https协议进行访问的（如果地址是git开头则表示是git协议）</p>
@@ -277,7 +279,7 @@
       <url>/2017/9/24/XCode%E5%8F%AF%E6%B8%85%E7%90%86%E7%A9%BA%E9%97%B4%E7%9A%84%E8%B7%AF%E5%BE%84/</url>
       <content type="html"><![CDATA[<h5 id="长时间使用XCode开发后，系统磁盘中占用空间会越来越大，有些空间都是可以清理的，不会对开发产生影响"><a href="#长时间使用XCode开发后，系统磁盘中占用空间会越来越大，有些空间都是可以清理的，不会对开发产生影响" class="headerlink" title="长时间使用XCode开发后，系统磁盘中占用空间会越来越大，有些空间都是可以清理的，不会对开发产生影响"></a>长时间使用XCode开发后，系统磁盘中占用空间会越来越大，有些空间都是可以清理的，不会对开发产生影响</h5><p><img src="http://upload-images.jianshu.io/upload_images/454522-8369ce372dcaad0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Developer"></p>
 <h1 id="Archive包"><a href="#Archive包" class="headerlink" title="Archive包"></a>Archive包</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/Library/Developer/Xcode/Archives</div></pre></td></tr></table></figure>
-<p>使用Xcode进行Archive操作的结果会存储在这个文件夹中，可以删除你不需要再和crash log关联的包，<strong>建议备份</strong>。<br><img src="http://upload-images.jianshu.io/upload_images/454522-e80fc9c6f73a0be8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Archives"></p>
+<p>使用Xcode进行Archive操作的结果会存储在这个文件夹中，可以删除你不需要再和crash log关联的包，<strong>建议备份</strong>。<br><img src="http://upload-images.jianshu.io/upload_images/454522-e80fc9c6f73a0be8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Archives"><br><a id="more"></a></p>
 <h1 id="编译文件"><a href="#编译文件" class="headerlink" title="编译文件"></a>编译文件</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/Library/Developer/Xcode/DerivedData</div></pre></td></tr></table></figure>
 <p>此文件夹存储了你项目编译过程中产生的文件。可以全部删除，仅会使工程下一次重新编译稍慢。<br><img src="http://upload-images.jianshu.io/upload_images/454522-f9b11b79a26c47b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="DerivedData"></p>
 <h1 id="真机log"><a href="#真机log" class="headerlink" title="真机log"></a>真机log</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~/Library/Developer/Xcode/iOS Device Logs</div></pre></td></tr></table></figure>
@@ -309,6 +311,7 @@
       <content type="html"><![CDATA[<p>服务器端环境配置请点击：<a href="http://www.jianshu.com/p/12cee6725b58" target="_blank" rel="external">CentOS配置Docker+NodeJS服务</a></p>
 <h1 id="Mac的一些安装"><a href="#Mac的一些安装" class="headerlink" title="Mac的一些安装"></a>Mac的一些安装</h1><h3 id="安装-NodeJS"><a href="#安装-NodeJS" class="headerlink" title="安装 NodeJS"></a>安装 NodeJS</h3><p><a href="https://nodejs.org/en/download/" target="_blank" rel="external">https://nodejs.org/en/download/</a></p>
 <h3 id="安装loopback-cli"><a href="#安装loopback-cli" class="headerlink" title="安装loopback-cli"></a>安装loopback-cli</h3><p><a href="http://loopback.io" title="http://loopback.io" target="_blank" rel="external">http://loopback.io</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>安装zsh作为默认SHELL<br><a href="http://blog.csdn.net/w670328683/article/details/49782601" title="http://blog.csdn.net/w670328683/article/details/49782601" target="_blank" rel="external">http://blog.csdn.net/w670328683/article/details/49782601</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew install zsh</div><div class="line">zsh --version</div><div class="line">chsh -s /bin/zsh</div><div class="line">echo $SHELL</div></pre></td></tr></table></figure></p>
 <p>安装oh-my-zsh美化zsh<br><a href="https://github.com/robbyrussell/oh-my-zsh" title="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">https://github.com/robbyrussell/oh-my-zsh</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh -c &quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;</div></pre></td></tr></table></figure></p>
 <h3 id="安装tmux分屏幕"><a href="#安装tmux分屏幕" class="headerlink" title="安装tmux分屏幕"></a>安装tmux分屏幕</h3><p><a href="https://github.com/gpakosz/.tmux" title="https://github.com/gpakosz/.tmux" target="_blank" rel="external">https://github.com/gpakosz/.tmux</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install tmux</div></pre></td></tr></table></figure></p>
@@ -506,8 +509,7 @@
 <p>可以通过从头开始编写一个LoopBack应用程序，但应用程序生成器可以做所有的“繁重的”来创建标准项目布局的基本脚手架。然后，您可以使用CLI工具自定义应用程序以满足您的需求。</p>
 <p>一般来说，文档假设您已经使用应用程序生成器创建了应用程序。</p>
 <p>创建应用程序后，您可能需要配置它，例如：关闭堆栈跟踪，禁用API资源管理器，并检索环境变量的值。有关详细信息，请参阅  环境特定配置。</p>
-<h3 id="标准工程布局"><a href="#标准工程布局" class="headerlink" title="标准工程布局"></a>标准工程布局</h3><p>应用程序生成器创建具有标准项目布局的应用程序。</p>
-<p>总结：</p>
+<h3 id="标准工程布局"><a href="#标准工程布局" class="headerlink" title="标准工程布局"></a>标准工程布局</h3><p>应用程序生成器创建具有标准项目布局的应用程序。<br><a id="more"></a><br>总结：</p>
 <ul>
 <li><p>server 目录</p>
 <ul>
@@ -802,7 +804,7 @@
 <h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><h4 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h4><p>访问控制列表，与标识所有可访问对象的主题及其访问权限的对象关联的列表。请参阅身份验证，授权和权限。</p>
 <h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>应用程序接口。允许以高级语言编写的应用程序使用操作系统或其他程序的特定数据或功能的接口。</p>
 <h4 id="APIC"><a href="#APIC" class="headerlink" title="APIC"></a>APIC</h4><p>IBM API Connect命令行工具。它为脚本LoopBack应用程序提供命令。有关更多信息，请参阅命令行工具。</p>
-<h4 id="adapter-适配器"><a href="#adapter-适配器" class="headerlink" title="adapter 适配器"></a>adapter 适配器</h4><p>提供传输特定机制，使远程对象（及其集合）在其传输中可用。看强力远程。</p>
+<h4 id="adapter-适配器"><a href="#adapter-适配器" class="headerlink" title="adapter 适配器"></a>adapter 适配器</h4><p>提供传输特定机制，使远程对象（及其集合）在其传输中可用。看强力远程。<br><a id="more"></a></p>
 <h4 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h4><p>由Google创建的移动操作系统，其中大部分是根据Apache 2.0和GPLv2开源许可证发布的。</p>
 <h4 id="AngularJS"><a href="#AngularJS" class="headerlink" title="AngularJS"></a>AngularJS</h4><p>开源客户端JavaScript框架。</p>
 <h4 id="API-Connect-API连接"><a href="#API-Connect-API连接" class="headerlink" title="API Connect API连接"></a>API Connect API连接</h4><p>IBM产品集成了StrongLoop和LoopBack技术，用于创建，运行，管理和保护API。请参阅DeveloperWorks&gt; API连接。</p>
@@ -865,13 +867,56 @@
     </entry>
     
     <entry>
+      <title><![CDATA[CentOS配置Docker+NodeJS服务]]></title>
+      <url>/2017/9/17/CentOS%E9%85%8D%E7%BD%AEDocker+NodeJS%E6%9C%8D%E5%8A%A1/</url>
+      <content type="html"><![CDATA[<p>Mac端的本地环境请点击：<a href="http://www.jianshu.com/p/e33815e71e35" target="_blank" rel="external">Mac配置Docker+NodeJS服务</a></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>安装 NodeJS<br><a href="https://nodejs.org/en/download/" title="https://nodejs.org/en/download/" target="_blank" rel="external">https://nodejs.org/en/download/</a><br>准备命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install gcc make gcc-c++ openssl-devel wget</div></pre></td></tr></table></figure></p>
+<p>下载源码及解压：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://nodejs.org/dist/v6.11.3/node-v6.11.3.tar.gz</div><div class="line">tar -zvxf node-v6.11.3.tar.gz</div></pre></td></tr></table></figure></p>
+<p>检查所需要配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure</div></pre></td></tr></table></figure></p>
+<p>编译及安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure></p>
+<p>验证是否安装配置成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node -v</div></pre></td></tr></table></figure></p>
+<hr>
+<a id="more"></a>
+<p>安装loopback-cli<br><a href="http://loopback.io" title="http://loopback.io" target="_blank" rel="external">http://loopback.io</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
+<p>安装git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install git</div></pre></td></tr></table></figure></p>
+<p>安装cnpm<br><a href="https://npm.taobao.org/" title="https://npm.taobao.org/" target="_blank" rel="external">https://npm.taobao.org/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure></p>
+<p>安装zsh作为默认SHELL<br><a href="http://blog.csdn.net/w670328683/article/details/49782601" title="http://blog.csdn.net/w670328683/article/details/49782601" target="_blank" rel="external">http://blog.csdn.net/w670328683/article/details/49782601</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum -y install zsh</div><div class="line">chsh -s /bin/zsh</div><div class="line">echo $SHELL</div></pre></td></tr></table></figure></p>
+<p>安装oh-my-zsh美化zsh<br><a href="https://github.com/robbyrussell/oh-my-zsh" title="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">https://github.com/robbyrussell/oh-my-zsh</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh -c &quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;</div></pre></td></tr></table></figure></p>
+<p>安装docker和docker-compose<br><a href="http://www.linuxidc.com/Linux/2014-12/110034.htm" title="http://www.linuxidc.com/Linux/2014-12/110034.htm" target="_blank" rel="external">http://www.linuxidc.com/Linux/2014-12/110034.htm</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install docker</div><div class="line">yum install docker-compose</div></pre></td></tr></table></figure></p>
+<p>安装gem<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y gem</div></pre></td></tr></table></figure></p>
+<p>安装mosh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install mosh</div></pre></td></tr></table></figure></p>
+<p>安装Vim的插件janus<br>The distribution also requires ack, ctags, git, ruby and rake.<br><a href="https://github.com/carlhuda/janus" title="https://github.com/carlhuda/janus" target="_blank" rel="external">https://github.com/carlhuda/janus</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -L https://bit.ly/janus-bootstrap | bash</div></pre></td></tr></table></figure></p>
+<p>安装httpie<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install httpie</div></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="centOS的一些命令："><a href="#centOS的一些命令：" class="headerlink" title="centOS的一些命令："></a>centOS的一些命令：</h1><p>docker的一些命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker-compose down</div><div class="line">docker-compose up -d</div><div class="line">service docker start</div><div class="line">chkconfig docker on</div></pre></td></tr></table></figure></p>
+<p>安装caddy-docker例子,测试docker功能<br><a href="https://github.com/abiosoft/caddy-docker" title="https://github.com/abiosoft/caddy-docker" target="_blank" rel="external">https://github.com/abiosoft/caddy-docker</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 2015:2015 abiosoft/caddy</div></pre></td></tr></table></figure></p>
+<p>查看log<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker ps</div><div class="line">docker exec -it xiaoyx_ws_1 sh</div><div class="line">pm2 list</div><div class="line">pm2 logs 1</div></pre></td></tr></table></figure></p>
+<p>硬盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -h</div></pre></td></tr></table></figure></p>
+<p>内存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">free -h</div></pre></td></tr></table></figure></p>
+<p>目录详情<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -lh</div></pre></td></tr></table></figure></p>
+<p>安装路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">which node</div></pre></td></tr></table></figure></p>
+<p>连接服务器（免密码）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ls .ssh</div><div class="line">ssh-keygen</div><div class="line">ssh-copy-id root@dlin.top</div><div class="line">ssh root@dlin.top</div></pre></td></tr></table></figure></p>
+<p>mosh连接服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mosh root@dlin.top</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl http://0.0.0.0:2015</div><div class="line">curl http://google.com</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ip addr</div></pre></td></tr></table></figure>]]></content>
+      
+        
+        <tags>
+            
+            <tag> NodeJS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[LoopBack学习之词汇表]]></title>
       <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%AF%8D%E6%B1%87%E8%A1%A8/</url>
       <content type="html"><![CDATA[<p>准备工作：<br>安装LTS版本的Node.js.<br>安装LoopBack CLI工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
 <p>英文原地址：<a href="http://loopback.io/doc/en/lb3/LoopBack-core-concepts.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/LoopBack-core-concepts.html</a></p>
 <h1 id="LoopBack核心概念"><a href="#LoopBack核心概念" class="headerlink" title="LoopBack核心概念"></a>LoopBack核心概念</h1><p>模型是LoopBack的核心，代表后端数据源，如数据库或其他后端服务（REST，SOAP等）。LoopBack模型是具有Node和REST API的JavaScript对象。<br>LoopBack的一个关键功能是当您定义模型时，它将自动附带预定义的REST API，并具有完整的创建，读取，更新和删除操作。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/454522-ebe8bcfc2640ff85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="模型继承"></p>
-<p>在  基本模型对象对添加方法  挂钩  和验证数据。其他模型对象都“继承”它。模型具有继承层次结构，如图所示：将模型附加到持久性数据源时，它将成为 具有创建，检索，更新和删除操作的连接模型。LoopBack的内置模型从它继承。</p>
+<p>在  基本模型对象对添加方法  挂钩  和验证数据。其他模型对象都“继承”它。模型具有继承层次结构，如图所示：将模型附加到持久性数据源时，它将成为 具有创建，检索，更新和删除操作的连接模型。LoopBack的内置模型从它继承。<br><a id="more"></a></p>
 <h4 id="内置型号"><a href="#内置型号" class="headerlink" title="内置型号"></a>内置型号</h4><p>每个LoopBack应用程序都有一组预定义的  内置模型，如用户，角色和应用程序，因此您不必从头开始创建这些常见模型</p>
 <h4 id="定制机型"><a href="#定制机型" class="headerlink" title="定制机型"></a>定制机型</h4><p>您可以  定义自己的  特定于您的应用程序的自定义模型。您可以使您的自定义模型  扩展内置模型，  以建立在用户，  应用程序和其他内置模型的预定义功能的基础上 。</p>
 <p>您可以以各种方式创建LoopBack模型，具体取决于模型基于什么样的数据源。您可以创建模型：</p>
@@ -982,7 +1027,7 @@
 <li>自定义复数形式（用于构建REST URL）：按RETURN接受默认值，是。</li>
 <li>通用型号或服务器：按RETURN接受默认的常用型号。</li>
 </ul>
-<p>模型生成器将在应用程序的common/models目录中创建两个定义模型的文件</p>
+<p>模型生成器将在应用程序的common/models目录中创建两个定义模型的文件<br><a id="more"></a></p>
 <h3 id="定义关系"><a href="#定义关系" class="headerlink" title="定义关系"></a>定义关系</h3><p>现在，您将要定义模型之间的这些关系。总共有五个关系。再次，您将使用该lb命令，但这次您将使用relation子命令（关系生成器）。对于每个关系，请输入：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb relation</div></pre></td></tr></table></figure>
 <h4 id="查看模型JSON文件"><a href="#查看模型JSON文件" class="headerlink" title="查看模型JSON文件"></a>查看模型JSON文件</h4><p>现在，看看common/models/review.json</p>
@@ -1040,48 +1085,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[CentOS配置Docker+NodeJS服务]]></title>
-      <url>/2017/9/17/CentOS%E9%85%8D%E7%BD%AEDocker+NodeJS%E6%9C%8D%E5%8A%A1/</url>
-      <content type="html"><![CDATA[<p>Mac端的本地环境请点击：<a href="http://www.jianshu.com/p/e33815e71e35" target="_blank" rel="external">Mac配置Docker+NodeJS服务</a></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>安装 NodeJS<br><a href="https://nodejs.org/en/download/" title="https://nodejs.org/en/download/" target="_blank" rel="external">https://nodejs.org/en/download/</a><br>准备命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install gcc make gcc-c++ openssl-devel wget</div></pre></td></tr></table></figure></p>
-<p>下载源码及解压：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://nodejs.org/dist/v6.11.3/node-v6.11.3.tar.gz</div><div class="line">tar -zvxf node-v6.11.3.tar.gz</div></pre></td></tr></table></figure></p>
-<p>检查所需要配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure</div></pre></td></tr></table></figure></p>
-<p>编译及安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure></p>
-<p>验证是否安装配置成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node -v</div></pre></td></tr></table></figure></p>
-<hr>
-<p>安装loopback-cli<br><a href="http://loopback.io" title="http://loopback.io" target="_blank" rel="external">http://loopback.io</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
-<p>安装git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install git</div></pre></td></tr></table></figure></p>
-<p>安装cnpm<br><a href="https://npm.taobao.org/" title="https://npm.taobao.org/" target="_blank" rel="external">https://npm.taobao.org/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure></p>
-<p>安装zsh作为默认SHELL<br><a href="http://blog.csdn.net/w670328683/article/details/49782601" title="http://blog.csdn.net/w670328683/article/details/49782601" target="_blank" rel="external">http://blog.csdn.net/w670328683/article/details/49782601</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum -y install zsh</div><div class="line">chsh -s /bin/zsh</div><div class="line">echo $SHELL</div></pre></td></tr></table></figure></p>
-<p>安装oh-my-zsh美化zsh<br><a href="https://github.com/robbyrussell/oh-my-zsh" title="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">https://github.com/robbyrussell/oh-my-zsh</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh -c &quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;</div></pre></td></tr></table></figure></p>
-<p>安装docker和docker-compose<br><a href="http://www.linuxidc.com/Linux/2014-12/110034.htm" title="http://www.linuxidc.com/Linux/2014-12/110034.htm" target="_blank" rel="external">http://www.linuxidc.com/Linux/2014-12/110034.htm</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install docker</div><div class="line">yum install docker-compose</div></pre></td></tr></table></figure></p>
-<p>安装gem<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y gem</div></pre></td></tr></table></figure></p>
-<p>安装mosh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install mosh</div></pre></td></tr></table></figure></p>
-<p>安装Vim的插件janus<br>The distribution also requires ack, ctags, git, ruby and rake.<br><a href="https://github.com/carlhuda/janus" title="https://github.com/carlhuda/janus" target="_blank" rel="external">https://github.com/carlhuda/janus</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -L https://bit.ly/janus-bootstrap | bash</div></pre></td></tr></table></figure></p>
-<p>安装httpie<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install httpie</div></pre></td></tr></table></figure></p>
-<hr>
-<h1 id="centOS的一些命令："><a href="#centOS的一些命令：" class="headerlink" title="centOS的一些命令："></a>centOS的一些命令：</h1><p>docker的一些命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker-compose down</div><div class="line">docker-compose up -d</div><div class="line">service docker start</div><div class="line">chkconfig docker on</div></pre></td></tr></table></figure></p>
-<p>安装caddy-docker例子,测试docker功能<br><a href="https://github.com/abiosoft/caddy-docker" title="https://github.com/abiosoft/caddy-docker" target="_blank" rel="external">https://github.com/abiosoft/caddy-docker</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 2015:2015 abiosoft/caddy</div></pre></td></tr></table></figure></p>
-<p>查看log<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker ps</div><div class="line">docker exec -it xiaoyx_ws_1 sh</div><div class="line">pm2 list</div><div class="line">pm2 logs 1</div></pre></td></tr></table></figure></p>
-<p>硬盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -h</div></pre></td></tr></table></figure></p>
-<p>内存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">free -h</div></pre></td></tr></table></figure></p>
-<p>目录详情<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -lh</div></pre></td></tr></table></figure></p>
-<p>安装路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">which node</div></pre></td></tr></table></figure></p>
-<p>连接服务器（免密码）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ls .ssh</div><div class="line">ssh-keygen</div><div class="line">ssh-copy-id root@dlin.top</div><div class="line">ssh root@dlin.top</div></pre></td></tr></table></figure></p>
-<p>mosh连接服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mosh root@dlin.top</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl http://0.0.0.0:2015</div><div class="line">curl http://google.com</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ip addr</div></pre></td></tr></table></figure>]]></content>
-      
-        
-        <tags>
-            
-            <tag> NodeJS </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[身份证校验算法swift版本]]></title>
       <url>/2017/9/2/%E8%BA%AB%E4%BB%BD%E8%AF%81%E6%A0%A1%E9%AA%8C%E7%AE%97%E6%B3%95swift%E7%89%88%E6%9C%AC/</url>
       <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/454522-e8a20d7db71d6992.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="参考的算法资料"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">func checkIsIdentityCard(_ identityCard: String) -&gt; Bool &#123;</div><div class="line">    //判断是否为空</div><div class="line">    if identityCard.characters.count &lt;= 0 &#123;</div><div class="line">        return false</div><div class="line">    &#125;</div><div class="line">    //判断是否是18位，末尾是否是x</div><div class="line">    let regex2: String = &quot;^(\\d&#123;14&#125;|\\d&#123;17&#125;)(\\d|[xX])$&quot;</div><div class="line">    let identityCardPredicate = NSPredicate(format: &quot;SELF MATCHES %@&quot;, regex2)</div><div class="line">    if !identityCardPredicate.evaluate(with: identityCard) &#123;</div><div class="line">        return false</div><div class="line">    &#125;</div><div class="line">    //判断生日是否合法</div><div class="line">    let range = NSRange(location: 6, length: 8)</div><div class="line">    let datestr: String = (identityCard as NSString).substring(with: range)</div><div class="line">    let formatter = DateFormatter()</div><div class="line">    formatter.dateFormat = &quot;yyyyMMdd&quot;</div><div class="line">    if formatter.date(from: datestr) == nil &#123;</div><div class="line">        return false</div><div class="line">    &#125;</div><div class="line">    //判断校验位</div><div class="line">    if  identityCard.characters.count == 18 &#123;</div><div class="line">        let idCardWi: [String] = [&quot;7&quot;, &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;, &quot;1&quot;, &quot;6&quot;, &quot;3&quot;, &quot;7&quot;, &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;]</div><div class="line">        //将前17位加权因子保存在数组里</div><div class="line">        let idCardY: [String] = [&quot;1&quot;, &quot;0&quot;, &quot;10&quot;, &quot;9&quot;, &quot;8&quot;, &quot;7&quot;, &quot;6&quot;, &quot;5&quot;, &quot;4&quot;, &quot;3&quot;, &quot;2&quot;]</div><div class="line">        //这是除以11后，可能产生的11位余数、验证码，也保存成数组</div><div class="line">        var idCardWiSum: Int = 0</div><div class="line">        //用来保存前17位各自乖以加权因子后的总和</div><div class="line">        for i in 0..&lt;17 &#123;</div><div class="line">            idCardWiSum += Int((identityCard as NSString).substring(with: NSRange(location: i, length: 1)))! * Int(idCardWi[i])!</div><div class="line">        &#125;</div><div class="line">        let idCardMod: Int = idCardWiSum % 11</div><div class="line">        //计算出校验码所在数组的位置</div><div class="line">        let idCardLast: String = identityCard.substring(from: identityCard.index(identityCard.endIndex, offsetBy: -1))</div><div class="line">        //得到最后一位身份证号码</div><div class="line">        //如果等于2，则说明校验码是10，身份证号码最后一位应该是X</div><div class="line">        if idCardMod == 2 &#123;</div><div class="line">            if idCardLast == &quot;X&quot; || idCardLast == &quot;x&quot; &#123;</div><div class="line">                return true</div><div class="line">            &#125; else &#123;</div><div class="line">                return false</div><div class="line">            &#125;</div><div class="line">        &#125; else &#123;</div><div class="line">            //用计算出的验证码与最后一位身份证号码匹配，如果一致，说明通过，否则是无效的身份证号码</div><div class="line">            if (idCardLast as NSString).integerValue == Int(idCardY[idCardMod]) &#123;</div><div class="line">                return true</div><div class="line">            &#125; else &#123;</div><div class="line">                return false</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return false</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -1091,34 +1094,6 @@
         <categories>
             
             <category> 经验心得 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> iOS </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[LaunchImage载入界面标准大小]]></title>
-      <url>/2016/1/15/LaunchImage%E8%BD%BD%E5%85%A5%E7%95%8C%E9%9D%A2%E6%A0%87%E5%87%86%E5%A4%A7%E5%B0%8F/</url>
-      <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/454522-0329a0b0dc2ad0ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="载入界面标准大小"></p>
-<p>iPhone Portrait iOS 8,9 Retina HD 5.5 （1242×2208） @3x</p>
-<p>iPhone Portrait iOS 8,9 Retina HD 4.7 （750×1334） @2x</p>
-<p>iPhone Portrait iOS 7-9 2x （640×960） @2x</p>
-<p>iPhone Portrait iOS 7-9 Retina 4 （640×1136） @2x</p>
-<p>iPhone Portrait iOS 5,6 1x （320×480） @1x</p>
-<p>iPhone Portrait iOS 5,6 2x （640×960） @2x</p>
-<p>iPhone Portrait iOS 5,6 Retina4 （640×1136） @2x</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 学习笔记 </category>
             
         </categories>
         
@@ -1152,6 +1127,34 @@
 </ol>
 ]]></content>
       
+        
+        <tags>
+            
+            <tag> iOS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[LaunchImage载入界面标准大小]]></title>
+      <url>/2016/1/15/LaunchImage%E8%BD%BD%E5%85%A5%E7%95%8C%E9%9D%A2%E6%A0%87%E5%87%86%E5%A4%A7%E5%B0%8F/</url>
+      <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/454522-0329a0b0dc2ad0ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="载入界面标准大小"></p>
+<p>iPhone Portrait iOS 8,9 Retina HD 5.5 （1242×2208） @3x</p>
+<p>iPhone Portrait iOS 8,9 Retina HD 4.7 （750×1334） @2x</p>
+<p>iPhone Portrait iOS 7-9 2x （640×960） @2x</p>
+<p>iPhone Portrait iOS 7-9 Retina 4 （640×1136） @2x</p>
+<p>iPhone Portrait iOS 5,6 1x （320×480） @1x</p>
+<p>iPhone Portrait iOS 5,6 2x （640×960） @2x</p>
+<p>iPhone Portrait iOS 5,6 Retina4 （640×1136） @2x</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习笔记 </category>
+            
+        </categories>
+        
         
         <tags>
             

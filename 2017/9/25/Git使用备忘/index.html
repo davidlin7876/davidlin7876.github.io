@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="林峰的小宇宙">
 <meta property="og:description" content="设置用户名邮箱12git config --global user.name davidlin7876git config --global user.email davidlin7876@163.com 生成密钥对123$ cd ~/.ssh$ lsauthorized_keys2  id_dsa       known_hosts config            id_dsa.pub 看一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-04T00:39:54.000Z">
+<meta property="og:updated_time" content="2017-11-04T02:05:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git使用备忘">
 <meta name="twitter:description" content="设置用户名邮箱12git config --global user.name davidlin7876git config --global user.email davidlin7876@163.com 生成密钥对123$ cd ~/.ssh$ lsauthorized_keys2  id_dsa       known_hosts config            id_dsa.pub 看一">
@@ -398,6 +398,7 @@
 <p>4、点击 Add key。</p>
 <p>完成以后，验证下这个key是不是正常工作：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div><div class="line"></div><div class="line">Attempts to ssh to github</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>使用命令 git remote -v 查看你当前的 remote url</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git remote -v</div><div class="line">origin https://github.com/someaccount/someproject.git (fetch)</div><div class="line">origin https://github.com/someaccount/someproject.git (push)</div></pre></td></tr></table></figure>
 <p>如果是以上的结果那么说明此项目是使用https协议进行访问的（如果地址是git开头则表示是git协议）</p>
