@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://linfeng.xyz/about/index.html</loc>
+    
+    <lastmod>2017-11-04T02:48:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://linfeng.xyz/links/index.html</loc>
     
     <lastmod>2017-11-04T02:33:55.000Z</lastmod>
@@ -110,13 +117,6 @@
     <loc>https://linfeng.xyz/2015/5/20/hello-world/</loc>
     
     <lastmod>2017-11-04T00:09:42.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://linfeng.xyz/about/index.html</loc>
-    
-    <lastmod>2017-11-03T23:55:30.000Z</lastmod>
     
   </url>
   
