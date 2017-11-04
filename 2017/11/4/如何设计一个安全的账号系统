@@ -82,14 +82,14 @@
 <meta name="description" content="用正确的姿势保存密码。用正确的姿势传输数据。用正确的姿势加密敏感信息。用正确的姿势对数据进行备份和监控。">
 <meta name="keywords" content="K12,安全">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何设计一个相对安全的账号系统？">
-<meta property="og:url" content="https://linfeng.xyz/2017/11/4/如何设计一个相对安全的账号系统？/index.html">
+<meta property="og:title" content="如何设计一个安全的账号系统?">
+<meta property="og:url" content="https://linfeng.xyz/2017/11/4/如何设计一个安全的账号系统">
 <meta property="og:site_name" content="林峰的小宇宙">
 <meta property="og:description" content="用正确的姿势保存密码。用正确的姿势传输数据。用正确的姿势加密敏感信息。用正确的姿势对数据进行备份和监控。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-04T05:08:28.000Z">
+<meta property="og:updated_time" content="2017-11-04T05:24:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何设计一个相对安全的账号系统？">
+<meta name="twitter:title" content="如何设计一个安全的账号系统?">
 <meta name="twitter:description" content="用正确的姿势保存密码。用正确的姿势传输数据。用正确的姿势加密敏感信息。用正确的姿势对数据进行备份和监控。">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://linfeng.xyz/2017/11/4/如何设计一个相对安全的账号系统？/"/>
+  <link rel="canonical" href="https://linfeng.xyz/2017/11/4/如何设计一个安全的账号系统"/>
 
 
 
 
 
-  <title>如何设计一个相对安全的账号系统？ | 林峰的小宇宙</title>
+  <title>如何设计一个安全的账号系统? | 林峰的小宇宙</title>
   
 
 
@@ -307,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/11/4/如何设计一个相对安全的账号系统？/">
+    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/11/4/如何设计一个安全的账号系统?/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David Lin">
@@ -324,7 +324,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">如何设计一个相对安全的账号系统？</h1>
+          <h1 class="post-title" itemprop="name headline">如何设计一个安全的账号系统?</h1>
         
 
         <div class="post-meta">
