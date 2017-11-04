@@ -4,8 +4,8 @@
 
     
   <url>
-    <loc>https://linfeng.xyz/2017/10/26/%E6%95%99%E8%82%B2%E7%A7%91%E6%8A%80%E5%85%AC%E5%8F%B8%E5%88%9B%E4%B8%9A%E8%AF%A5%E9%81%BF%E5%BC%80%E5%93%AA%E4%BA%9B%E5%9D%91(%E8%BD%AC)/</loc>
-    <lastmod>2017-11-04T00:11:13.000Z</lastmod>
+    <loc>https://linfeng.xyz/2017/10/26/%E6%95%99%E8%82%B2%E7%A7%91%E6%8A%80%E5%85%AC%E5%8F%B8%E5%88%9B%E4%B8%9A%E8%AF%A5%E9%81%BF%E5%BC%80%E5%93%AA%E4%BA%9B%E5%9D%91/</loc>
+    <lastmod>2017-11-04T00:40:04.000Z</lastmod>
     <data>
         <display>
         <title>教育科技公司创业该避开哪些坑</title>
@@ -27,7 +27,7 @@
     
   <url>
     <loc>https://linfeng.xyz/2017/10/25/%E5%AE%9E%E6%96%BD%E8%AE%A1%E5%88%92%E6%8F%90%E7%BA%B2/</loc>
-    <lastmod>2017-11-04T00:10:57.000Z</lastmod>
+    <lastmod>2017-11-04T00:39:59.000Z</lastmod>
     <data>
         <display>
         <title>实施计划提纲</title>
@@ -47,7 +47,7 @@
     
   <url>
     <loc>https://linfeng.xyz/2017/9/25/Git%E4%BD%BF%E7%94%A8%E5%A4%87%E5%BF%98/</loc>
-    <lastmod>2017-11-04T00:10:51.000Z</lastmod>
+    <lastmod>2017-11-04T00:39:54.000Z</lastmod>
     <data>
         <display>
         <title>Git使用备忘</title>
@@ -67,7 +67,7 @@
     
   <url>
     <loc>https://linfeng.xyz/2017/9/24/XCode%E5%8F%AF%E6%B8%85%E7%90%86%E7%A9%BA%E9%97%B4%E7%9A%84%E8%B7%AF%E5%BE%84/</loc>
-    <lastmod>2017-11-04T00:10:46.000Z</lastmod>
+    <lastmod>2017-11-04T00:39:50.000Z</lastmod>
     <data>
         <display>
         <title>XCode可清理空间的路径</title>
@@ -87,7 +87,7 @@
     
   <url>
     <loc>https://linfeng.xyz/2017/9/20/Mac%E9%85%8D%E7%BD%AEDocker+NodeJS%E6%9C%8D%E5%8A%A1/</loc>
-    <lastmod>2017-11-04T00:10:42.000Z</lastmod>
+    <lastmod>2017-11-04T00:39:44.000Z</lastmod>
     <data>
         <display>
         <title>Mac配置Docker+NodeJS服务</title>
@@ -106,11 +106,11 @@
 
     
   <url>
-    <loc>https://linfeng.xyz/2017/9/18/LoopBack%E5%AD%A6%E4%B9%A0%20%E4%B9%8B%20%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</loc>
-    <lastmod>2017-11-04T00:10:37.000Z</lastmod>
+    <loc>https://linfeng.xyz/2017/9/18/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%88%9B%E5%BB%BA%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F/</loc>
+    <lastmod>2017-11-04T00:39:40.000Z</lastmod>
     <data>
         <display>
-        <title>LoopBack学习 之 创建应用程序</title>
+        <title>LoopBack学习之创建应用程序</title>
         <pubTime>2017-09-17T16:00:00.000Z</pubTime>
         
         <tag>NodeJS</tag>
@@ -126,11 +126,11 @@
 
     
   <url>
-    <loc>https://linfeng.xyz/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%20%E4%B9%8B%20%E5%91%BD%E4%BB%A4%E8%A1%8C/</loc>
-    <lastmod>2017-11-04T00:10:33.000Z</lastmod>
+    <loc>https://linfeng.xyz/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</loc>
+    <lastmod>2017-11-04T00:39:29.000Z</lastmod>
     <data>
         <display>
-        <title>LoopBack学习 之 命令行</title>
+        <title>LoopBack学习之核心概念</title>
         <pubTime>2017-09-16T16:00:00.000Z</pubTime>
         
         <tag>NodeJS</tag>
@@ -146,31 +146,11 @@
 
     
   <url>
-    <loc>https://linfeng.xyz/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%20%E4%B9%8B%20%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</loc>
-    <lastmod>2017-11-04T00:10:28.000Z</lastmod>
+    <loc>https://linfeng.xyz/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%AF%8D%E6%B1%87%E8%A1%A8/</loc>
+    <lastmod>2017-11-04T00:39:23.000Z</lastmod>
     <data>
         <display>
-        <title>LoopBack学习 之 核心概念</title>
-        <pubTime>2017-09-16T16:00:00.000Z</pubTime>
-        
-        <tag>NodeJS</tag>
-         
-         
-           
-             
-              <breadCrumb title="学习笔记" url="https://linfeng.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://linfeng.xyz/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%20%E4%B9%8B%20%E8%AF%8D%E6%B1%87%E8%A1%A8/</loc>
-    <lastmod>2017-11-04T00:10:24.000Z</lastmod>
-    <data>
-        <display>
-        <title>LoopBack学习 之 词汇表</title>
+        <title>LoopBack学习之词汇表</title>
         <pubTime>2017-09-16T16:00:00.000Z</pubTime>
         
         <tag>NodeJS</tag>
@@ -187,7 +167,7 @@
     
   <url>
     <loc>https://linfeng.xyz/2017/9/17/CentOS%E9%85%8D%E7%BD%AEDocker+NodeJS%E6%9C%8D%E5%8A%A1/</loc>
-    <lastmod>2017-11-04T00:10:20.000Z</lastmod>
+    <lastmod>2017-11-04T00:39:18.000Z</lastmod>
     <data>
         <display>
         <title>CentOS配置Docker+NodeJS服务</title>
@@ -204,7 +184,7 @@
     
   <url>
     <loc>https://linfeng.xyz/2017/9/2/%E8%BA%AB%E4%BB%BD%E8%AF%81%E6%A0%A1%E9%AA%8C%E7%AE%97%E6%B3%95swift%E7%89%88%E6%9C%AC/</loc>
-    <lastmod>2017-11-04T00:10:17.000Z</lastmod>
+    <lastmod>2017-11-04T00:39:13.000Z</lastmod>
     <data>
         <display>
         <title>身份证校验算法swift版本</title>
@@ -223,11 +203,11 @@
 
     
   <url>
-    <loc>https://linfeng.xyz/2016/1/15/LaunchImage%20%E8%BD%BD%E5%85%A5%E7%95%8C%E9%9D%A2%E6%A0%87%E5%87%86%E5%A4%A7%E5%B0%8F/</loc>
-    <lastmod>2017-11-04T00:10:09.000Z</lastmod>
+    <loc>https://linfeng.xyz/2016/1/15/LaunchImage%E8%BD%BD%E5%85%A5%E7%95%8C%E9%9D%A2%E6%A0%87%E5%87%86%E5%A4%A7%E5%B0%8F/</loc>
+    <lastmod>2017-11-04T00:39:07.000Z</lastmod>
     <data>
         <display>
-        <title>LaunchImage 载入界面标准大小</title>
+        <title>LaunchImage载入界面标准大小</title>
         <pubTime>2016-01-14T16:00:00.000Z</pubTime>
         
         <tag>iOS</tag>
@@ -244,7 +224,7 @@
     
   <url>
     <loc>https://linfeng.xyz/2016/1/15/CocoaPods%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4%E8%A1%8C/</loc>
-    <lastmod>2017-11-04T00:10:04.000Z</lastmod>
+    <lastmod>2017-11-04T00:39:01.000Z</lastmod>
     <data>
         <display>
         <title>CocoaPods安装命令行</title>
@@ -254,6 +234,26 @@
          
          
            
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://linfeng.xyz/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%91%BD%E4%BB%A4%E8%A1%8C/</loc>
+    <lastmod>2017-11-04T00:38:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>LoopBack学习之命令行</title>
+        <pubTime>2017-09-16T16:00:00.000Z</pubTime>
+        
+        <tag>NodeJS</tag>
+         
+         
+           
+             
+              <breadCrumb title="学习笔记" url="https://linfeng.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+          
         </display>
     </data>
     </url>
