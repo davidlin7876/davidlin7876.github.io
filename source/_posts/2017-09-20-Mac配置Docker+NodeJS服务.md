@@ -18,7 +18,7 @@ top:
 ```
 npm install -g loopback-cli
 ```
-
+<!--more-->
 安装zsh作为默认SHELL
 [http://blog.csdn.net/w670328683/article/details/49782601](http://blog.csdn.net/w670328683/article/details/49782601 "http://blog.csdn.net/w670328683/article/details/49782601")
 ```

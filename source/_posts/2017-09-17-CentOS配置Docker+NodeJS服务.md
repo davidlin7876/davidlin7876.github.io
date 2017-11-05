@@ -32,6 +32,7 @@ make && make install
 node -v
 ```
 ------------
+<!--more-->
 安装loopback-cli
 [http://loopback.io](http://loopback.io "http://loopback.io")
 ```

@@ -4,8 +4,8 @@
 
 # Site
 title: 林峰的小宇宙
-subtitle: 爆发了～～～
-description: 学有所思，思有所感
+subtitle: 🔥爆发了🔥
+description: 资深软件工程师，架构师，PMP。2001年毕业于浙江工业大学计算机系， Mac/iOS 应用开发十数年。在虹软科技，尼禄软件工作期间任苹果平台的核心工程师。2015年创办宗布科技，负责团队技术架构，技术指导，项目团队管理。
 author: David Lin
 language: zh-Hans
 timezone: Asia/Shanghai
@@ -83,6 +83,10 @@ sitemap:
   path: sitemap.xml
 baidusitemap:
   path: baidusitemap.xml
+
+search:
+  path: search.xml
+  field: post
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
