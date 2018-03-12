@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iOS,Crash," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="[TOC] 前言有代码的地方，就可能会有崩溃。定位崩溃问题的方法：最直接的，通过重现的步骤去调适；但是，有时候测试无法确定崩溃的步骤，或者崩溃是线上用户发生的，这些情况下，我们仍然可以通过崩溃日志，知道崩溃的原因和崩溃的代码行，从而修复问题。  什么是崩溃？  Application crashes: An application typically crashes when it perform">
+<meta name="keywords" content="iOS,Crash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS崩溃处理">
+<meta property="og:url" content="https://linfeng.xyz/2018/3/12/iOS崩溃处理/index.html">
+<meta property="og:site_name" content="林峰的小宇宙">
+<meta property="og:description" content="[TOC] 前言有代码的地方，就可能会有崩溃。定位崩溃问题的方法：最直接的，通过重现的步骤去调适；但是，有时候测试无法确定崩溃的步骤，或者崩溃是线上用户发生的，这些情况下，我们仍然可以通过崩溃日志，知道崩溃的原因和崩溃的代码行，从而修复问题。  什么是崩溃？  Application crashes: An application typically crashes when it perform">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-3308a5a9ccc61ba1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-07925c9549337347.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-7b4a84a3698d4a90.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-68c32a7833ebe9c6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-bfa6c65a0cf14abe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-3eea9f3c830eec32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-2a06ed2f0a89f2a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-c0541ef4388e3b41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-aa96a17c73420879.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-7eb48995c17fbccd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-544f172d550c7707.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-7d682792af84ab12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-a83069318d68017c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-9504a8ef3c498051.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-d4bd4a2edfb7b114.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-e1ee4243f5bbc009.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-6e311a17a9477136.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-03-12T06:40:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS崩溃处理">
+<meta name="twitter:description" content="[TOC] 前言有代码的地方，就可能会有崩溃。定位崩溃问题的方法：最直接的，通过重现的步骤去调适；但是，有时候测试无法确定崩溃的步骤，或者崩溃是线上用户发生的，这些情况下，我们仍然可以通过崩溃日志，知道崩溃的原因和崩溃的代码行，从而修复问题。  什么是崩溃？  Application crashes: An application typically crashes when it perform">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5890308-3308a5a9ccc61ba1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://linfeng.xyz/2018/3/12/iOS崩溃处理/"/>
+
+
+
+
+
+  <title>iOS崩溃处理 | 林峰的小宇宙</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">林峰的小宇宙</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">🔥爆发了🔥</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            链接
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2018/3/12/iOS崩溃处理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="林峰的小宇宙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS崩溃处理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T00:00:00+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/经验心得/" itemprop="url" rel="index">
+                    <span itemprop="name">经验心得</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有代码的地方，就可能会有崩溃。定位崩溃问题的方法：最直接的，通过重现的步骤去调适；但是，有时候测试无法确定崩溃的步骤，或者崩溃是线上用户发生的，这些情况下，我们仍然可以通过崩溃日志，知道崩溃的原因和崩溃的代码行，从而修复问题。</p>
+<ul>
+<li>什么是崩溃？</li>
+</ul>
+<p>Application crashes: An application typically crashes when it performs an operation which is not allowed by the operating system.</p>
+<p>Server crashes, Operating system crashes, …</p>
+<ul>
+<li>定位崩溃原因的方法有哪些？</li>
+</ul>
+<p>线索1：重现步骤</p>
+<p>线索2：崩溃日志（知道崩溃的原因、崩溃的代码行等信息）</p>
+<p>那么，本文就来说说崩溃日志。</p>
+<h1 id="获取日志的几种方法"><a href="#获取日志的几种方法" class="headerlink" title="获取日志的几种方法"></a>获取日志的几种方法</h1><p>在iOS系统中，当应用崩溃的时候，系统会生成一个崩溃日志，保存在设备上。</p>
+<h3 id="1-直接在手机上查看"><a href="#1-直接在手机上查看" class="headerlink" title="1.直接在手机上查看"></a>1.直接在手机上查看</h3><p>在手机端设置里查看，如图是iOS10的界面：<br><img src="http://upload-images.jianshu.io/upload_images/5890308-3308a5a9ccc61ba1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="2-手机连PC用iTunes导出"><a href="#2-手机连PC用iTunes导出" class="headerlink" title="2.手机连PC用iTunes导出"></a>2.手机连PC用iTunes导出</h3><p>iTunes同步资料库，然后去PC对应目录下，找文件</p>
+<p>Mac OS X:   ~/Library/Logs/CrashReporter/MobileDevice/</p>
+<p>Windows XP:   C://Documents and Settings/Application Data/Apple Computer/Logs/Crash/Reporter/MobileDevice</p>
+<p>Windows Vista or 7:    C://Users/AppData/Roaming/Apple Computer/Logs/Crash/Reporter/MobileDevice</p>
+<h3 id="3-手机连XCode导出"><a href="#3-手机连XCode导出" class="headerlink" title="3.手机连XCode导出"></a>3.手机连XCode导出</h3><p>Simulator-Hardware-Device-Manage Devices<br><img src="http://upload-images.jianshu.io/upload_images/5890308-07925c9549337347.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="http://upload-images.jianshu.io/upload_images/5890308-7b4a84a3698d4a90.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="4-XCode中，对提交商店的应用，查看Crashes"><a href="#4-XCode中，对提交商店的应用，查看Crashes" class="headerlink" title="4.XCode中，对提交商店的应用，查看Crashes"></a>4.XCode中，对提交商店的应用，查看Crashes</h3><p>xcode-&gt;Window-&gt;Organizer-&gt;Crashes<br><img src="http://upload-images.jianshu.io/upload_images/5890308-68c32a7833ebe9c6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="5-用iTunes-Connect（提交商店的应用）"><a href="#5-用iTunes-Connect（提交商店的应用）" class="headerlink" title="5.用iTunes Connect（提交商店的应用）"></a>5.用iTunes Connect（提交商店的应用）</h3><p>如果应用提交到App Store了，还可以从iTunes Connect（<a href="https://itunesconnect.apple.com/）上获取到用户的崩溃日志.。通过应用提交者的apple" target="_blank" rel="external">https://itunesconnect.apple.com/）上获取到用户的崩溃日志.。通过应用提交者的apple</a> id登录，管理提交的应用，应用细节中有一个崩溃报告<br><img src="http://upload-images.jianshu.io/upload_images/5890308-bfa6c65a0cf14abe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="http://upload-images.jianshu.io/upload_images/5890308-3eea9f3c830eec32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="6-app植入第三方sdk，配合第三方平台查看"><a href="#6-app植入第三方sdk，配合第三方平台查看" class="headerlink" title="6.app植入第三方sdk，配合第三方平台查看"></a>6.app植入第三方sdk，配合第三方平台查看</h3><p>很多第三方平台，（比如蒲公英、fabric、网易云捕…）提供sdk和管理后台。</p>
+<p>只需要使用它们的sdk，并添加几行代码，app运行时，sdk会将应用Crash数据自动上传到后台，后台会进行相应的统计和分析。并给出产品各个版本的崩溃数，崩溃率，影响用户数，崩溃的机型、系统 等。</p>
+<h3 id="7-使用苹果的api，自己实现抓取崩溃信息，提交到自己写的后台"><a href="#7-使用苹果的api，自己实现抓取崩溃信息，提交到自己写的后台" class="headerlink" title="7.使用苹果的api，自己实现抓取崩溃信息，提交到自己写的后台"></a>7.使用苹果的api，自己实现抓取崩溃信息，提交到自己写的后台</h3><p>和6是一样的，有这些现成的情况下，不是很必要自己重新再写一个，但是可以简单了解一下其中的关键原理。</p>
+<h5 id="1-iOS-SDK中提供了一个现成的函数NSSetUncaughtExceptionHandler-用来做异常处理。"><a href="#1-iOS-SDK中提供了一个现成的函数NSSetUncaughtExceptionHandler-用来做异常处理。" class="headerlink" title="1.iOS SDK中提供了一个现成的函数NSSetUncaughtExceptionHandler 用来做异常处理。"></a>1.iOS SDK中提供了一个现成的函数NSSetUncaughtExceptionHandler 用来做异常处理。</h5><p><img src="http://upload-images.jianshu.io/upload_images/5890308-2a06ed2f0a89f2a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">void HandleException(NSException*exception)   //捕捉到异常时执行的方法</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">//异常的堆栈信息</div><div class="line"></div><div class="line">NSArray*stackArray = [exception callStackSymbols];</div><div class="line"></div><div class="line">//出现异常的原因</div><div class="line"></div><div class="line">NSString*reason = [exception reason];</div><div class="line"></div><div class="line">//异常名称</div><div class="line"></div><div class="line">NSString*name = [exception name];</div><div class="line"></div><div class="line">NSString*exceptionInfo = [NSStringstringWithFormat:@&quot;Exception reason：%@\nException name：%@\nException stack：%@&quot;,name, reason, stackArray];</div><div class="line"></div><div class="line">NSLog(@&quot;%@&quot;, exceptionInfo);</div><div class="line"></div><div class="line">[UncaughtExceptionHandler saveCrash:exceptionInfo]; //自己实现一个记录下这些信息的方法，作者是实现了一个写文本文件的方法</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">void InstallUncaughtExceptionHandler(void)    //注册一些抓取函数，在APPDelegate中didFinishLaunchingWithOptions调用</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">NSSetUncaughtExceptionHandler(&amp;HandleException);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="2-但NSSetUncaughtExceptionHandler功能非常有限，而引起崩溃的原因如：内存访问错误，重复释放等错误并不能被抓到，而这种错误它抛出的是Signal，因此做一个Signal处理可以抓到这一类的崩溃。"><a href="#2-但NSSetUncaughtExceptionHandler功能非常有限，而引起崩溃的原因如：内存访问错误，重复释放等错误并不能被抓到，而这种错误它抛出的是Signal，因此做一个Signal处理可以抓到这一类的崩溃。" class="headerlink" title="2.但NSSetUncaughtExceptionHandler功能非常有限，而引起崩溃的原因如：内存访问错误，重复释放等错误并不能被抓到，而这种错误它抛出的是Signal，因此做一个Signal处理可以抓到这一类的崩溃。"></a>2.但NSSetUncaughtExceptionHandler功能非常有限，而引起崩溃的原因如：内存访问错误，重复释放等错误并不能被抓到，而这种错误它抛出的是Signal，因此做一个Signal处理可以抓到这一类的崩溃。</h5><p><img src="http://upload-images.jianshu.io/upload_images/5890308-c0541ef4388e3b41.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">void SignalExceptionHandler(intsignal) //抓取到Signal异常时，执行的方法</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">NSMutableString*mstr = [[NSMutableString alloc] init];</div><div class="line"></div><div class="line">[mstr appendString:@&quot;Stack:\n&quot;];</div><div class="line"></div><div class="line">void* callstack[128];</div><div class="line"></div><div class="line">int i, frames =backtrace(callstack,128);</div><div class="line"></div><div class="line">char** strs =backtrace_symbols(callstack, frames);</div><div class="line"></div><div class="line">for(i =0; i&lt;frames;++i）&#123;</div><div class="line"></div><div class="line">[mstr appendFormat:@&quot;%s\n&quot;, strs[i]];</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">[SignalHandler saveCrash:mstr]; //同上，自己实现一个记录下这些信息的方法，作者是实现了一个写文本文件的方法</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">void InstallSignalHandler(void) //注册抓取函数和抓取的Signal类型，在APPDelegate中didFinishLaunchingWithOptions调用</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">signal(SIGHUP,SignalExceptionHandler);</div><div class="line"></div><div class="line">signal(SIGINT,SignalExceptionHandler);</div><div class="line"></div><div class="line">signal(SIGQUIT,SignalExceptionHandler);</div><div class="line"></div><div class="line">signal(SIGABRT,SignalExceptionHandler);</div><div class="line"></div><div class="line">signal(SIGILL,SignalExceptionHandler);</div><div class="line"></div><div class="line">signal(SIGSEGV,SignalExceptionHandler);</div><div class="line"></div><div class="line">signal(SIGFPE,SignalExceptionHandler);</div><div class="line"></div><div class="line">signal(SIGBUS,SignalExceptionHandler);</div><div class="line"></div><div class="line">signal(SIGPIPE,SignalExceptionHandler);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="3-写完上面两个类，在APPDelegate中didFinishLaunchingWithOptions调用"><a href="#3-写完上面两个类，在APPDelegate中didFinishLaunchingWithOptions调用" class="headerlink" title="3.写完上面两个类，在APPDelegate中didFinishLaunchingWithOptions调用"></a>3.写完上面两个类，在APPDelegate中didFinishLaunchingWithOptions调用</h5><p><img src="http://upload-images.jianshu.io/upload_images/5890308-aa96a17c73420879.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">- (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions &#123;</div><div class="line"></div><div class="line">InstallSignalHandler();</div><div class="line"></div><div class="line">InstallUncaughtExceptionHandler();</div><div class="line"></div><div class="line">return YES;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="4-可以写一个demo，按钮函数包含一些崩溃的代码，然后就会发现抓取的崩溃的函数，被执行了，崩溃信息成功输出到了指定的文本文件中。"><a href="#4-可以写一个demo，按钮函数包含一些崩溃的代码，然后就会发现抓取的崩溃的函数，被执行了，崩溃信息成功输出到了指定的文本文件中。" class="headerlink" title="4.可以写一个demo，按钮函数包含一些崩溃的代码，然后就会发现抓取的崩溃的函数，被执行了，崩溃信息成功输出到了指定的文本文件中。"></a>4.可以写一个demo，按钮函数包含一些崩溃的代码，然后就会发现抓取的崩溃的函数，被执行了，崩溃信息成功输出到了指定的文本文件中。</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">- (IBAction)buttonClick:(UIButton*)sender &#123;    //1.信号量</div><div class="line"></div><div class="line">int list[2]=&#123;1,2&#125;;</div><div class="line"></div><div class="line">int*p = list;</div><div class="line"></div><div class="line">free(p);</div><div class="line"></div><div class="line">p[1] =5;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">- (IBAction)buttonOCException:(UIButton*)sender&#123;        //2.ios崩溃</div><div class="line"></div><div class="line">NSArray*array=@[@&quot;tom&quot;,@&quot;xxx&quot;,@&quot;ooo&quot;];</div><div class="line"></div><div class="line">[array objectAtIndex:5];</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>5.得到了关键的堆栈信息，和崩溃原因</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5890308-7eb48995c17fbccd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>到这里，已经知道了，怎么获得到这些信息。下面继续讲一下，怎么根据这些信息，定位到是哪里崩溃的，以及其中可能遇到的一些问题。</p>
+<h1 id="如何读懂、解析日志"><a href="#如何读懂、解析日志" class="headerlink" title="如何读懂、解析日志"></a>如何读懂、解析日志</h1><h3 id="1-崩溃日志提供的信息"><a href="#1-崩溃日志提供的信息" class="headerlink" title="1.崩溃日志提供的信息"></a>1.崩溃日志提供的信息</h3><p><img src="http://upload-images.jianshu.io/upload_images/5890308-544f172d550c7707.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>从手机直接捞出来的日志，很有可能长这样，一推十六进制的，看不出有效信息。那么问题来了，怎么样转换为看得懂的信息呢？</p>
+<h3 id="2-认识符号文件"><a href="#2-认识符号文件" class="headerlink" title="2.认识符号文件"></a>2.认识符号文件</h3><p>符号文件是保存 16 进制函数地址映射信息的中转文件，符号集中存储着文件名、方法名、行号的信息.</p>
+<p>符号文件和崩溃日志，具有一一对应的关系。</p>
+<p>如何确定符合文件A和崩溃日志B是一一对应的？</p>
+<p>在崩溃日志中会记录一个UUID；用一些工具（比如dwarfdump），可以查询符号文件的UUID；如果是一致的，那就说明这两个文件的一对对应的符号文件和崩溃日志，可以用这个符号文件解析这个崩溃日志。</p>
+<p>然后，用dwarfdump、atos等工具，可以将崩溃日志，通过对应的符号文件，将十六进制数通过查符号表，转化为工程中的方法名，代码行号。</p>
+<p>比如：</p>
+<p>崩溃日志中有一段：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5890308-7d682792af84ab12.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>然后，用dwarfdump命令</p>
+<p>命令：dwarfdump –uuid Your.app.dSYM</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5890308-a83069318d68017c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>对比两个uuid一致，就对上了。</p>
+<p>最后，用symbolicatecrash工具，解析崩溃日志</p>
+<p>命令：</p>
+<p>cd /Users/yourMac/Desktop/崩溃文件夹</p>
+<p>symbolicatecrash ./<em>.crash ./</em>.app.dSYM &gt; symbol.crash</p>
+<p>就得到了崩溃日志。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5890308-9504a8ef3c498051.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h3 id="3-解析的原理"><a href="#3-解析的原理" class="headerlink" title="3.解析的原理"></a>3.解析的原理</h3><h5 id="（1）-原始的崩溃文件："><a href="#（1）-原始的崩溃文件：" class="headerlink" title="（1）-原始的崩溃文件："></a>（1）-原始的崩溃文件：</h5><p>原始的崩溃文件其中一行，拿出来讲解</p>
+<p>3 UncaughtExceptionDemo0x00dabe0 0x00d300e + 31698</p>
+<p>序号  进程名                  崩溃时的堆栈地址    运行时起始地址 + 偏移量</p>
+<p>应用崩溃发生时的堆栈地址为0x00dabe0，该进程的运行时起始地址是0x00d300e，崩溃处距离进程起始地址的偏移量为十进制的31698(对应十六进制为0x0007bd2)。</p>
+<p>三者对应关系： 0x00dabe0 =0x00d300e+ 0x0007bd2</p>
+<p>(崩溃时的堆栈地址= 运行时起始地址 + 偏移量)</p>
+<p>接着，去符号表中查询</p>
+<h5 id="（2）-获取符号表起始地址"><a href="#（2）-获取符号表起始地址" class="headerlink" title="（2）-获取符号表起始地址"></a>（2）-获取符号表起始地址</h5><p>命令：$otool -l Your.app.dSYM/Contents/Resources/DWARF/Your</p>
+<p>结果</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5890308-d4bd4a2edfb7b114.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>其中vmaddr = 0x00004000 就是符号表中的起始地址。</p>
+<p>符号表崩溃地址 = 符号表起始地址 + 偏移量</p>
+<p>= 0x4000 + 0x7bd2</p>
+<p>= 0xbbd2</p>
+<p>得到符号表中的崩溃地址</p>
+<h5 id="（3）-提取-debug-info"><a href="#（3）-提取-debug-info" class="headerlink" title="（3）-提取.debug_info"></a>（3）-提取.debug_info</h5><p>命令：$ dwarfdump -e –debug-info YourPath/YourApp.dSYM/Contents/Resources/DWARF &gt; info-e.txt</p>
+<p>会生成一个txt，里面包含很多个如下的内容，文件内容举例：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5890308-e1ee4243f5bbc009.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>可以知道ViewController::buttonOCException方法的地址范围：0x0000bb76-0x0000bc00。</p>
+<h5 id="（4）提取-debug-line"><a href="#（4）提取-debug-line" class="headerlink" title="（4）提取.debug_line"></a>（4）提取.debug_line</h5><p>命令：$ dwarfdump -e –debug-line YourPath/YourApp.dSYM/Contents/Resources/DWARF &gt; line-e.txt</p>
+<p>会生成一个txt，里面包含很多个如下的内容，文件内容举例：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/5890308-6e311a17a9477136.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>这里代表的意思是，每一行代码，对应的地址、偏移量。</p>
+<h5 id="（5）-结论，得到关键信息："><a href="#（5）-结论，得到关键信息：" class="headerlink" title="（5）-结论，得到关键信息："></a>（5）-结论，得到关键信息：</h5><p>解析后的崩溃日志为</p>
+<p>3UncaughtExceptionDemo-[ViewController buttonOCException:] (ViewController.m:36)</p>
+<p>崩溃所在源码文件：/Users/huangchong/iOSCrashUncaught-master/UncaughtExceptionDemo/ViewController.m</p>
+<p>发生崩溃的方法：-[ViewController :buttonOCException]</p>
+<p>发生崩溃的方法在源文件中的行号：32</p>
+<p>崩溃发生的代码行，在源文件中得行号：36</p>
+
+      
+    </div>
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束<i class="fa fa-paw"></i>感谢阅读------</div>
+    
+</div>
+      
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"><i class="fa fa-tag"></i> iOS</a>
+          
+            <a href="/tags/Crash/" rel="tag"><i class="fa fa-tag"></i> Crash</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/5/删除文件夹下所有的.git文件/" rel="next" title="删除文件夹下所有的.git文件">
+                <i class="fa fa-chevron-left"></i> 删除文件夹下所有的.git文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="David Lin" />
+            
+              <p class="site-author-name" itemprop="name">David Lin</p>
+              <p class="site-description motion-element" itemprop="description">资深软件工程师，架构师，PMP。2001年毕业于浙江工业大学计算机系， Mac/iOS 应用开发十数年。在虹软科技，尼禄软件工作期间任苹果平台的核心工程师。2015年创办宗布科技，负责团队技术架构，技术指导，项目团队管理。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#获取日志的几种方法"><span class="nav-number">2.</span> <span class="nav-text">获取日志的几种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-直接在手机上查看"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.直接在手机上查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-手机连PC用iTunes导出"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.手机连PC用iTunes导出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-手机连XCode导出"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.手机连XCode导出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-XCode中，对提交商店的应用，查看Crashes"><span class="nav-number">2.0.4.</span> <span class="nav-text">4.XCode中，对提交商店的应用，查看Crashes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-用iTunes-Connect（提交商店的应用）"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.用iTunes Connect（提交商店的应用）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-app植入第三方sdk，配合第三方平台查看"><span class="nav-number">2.0.6.</span> <span class="nav-text">6.app植入第三方sdk，配合第三方平台查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-使用苹果的api，自己实现抓取崩溃信息，提交到自己写的后台"><span class="nav-number">2.0.7.</span> <span class="nav-text">7.使用苹果的api，自己实现抓取崩溃信息，提交到自己写的后台</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-iOS-SDK中提供了一个现成的函数NSSetUncaughtExceptionHandler-用来做异常处理。"><span class="nav-number">2.0.7.0.1.</span> <span class="nav-text">1.iOS SDK中提供了一个现成的函数NSSetUncaughtExceptionHandler 用来做异常处理。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-但NSSetUncaughtExceptionHandler功能非常有限，而引起崩溃的原因如：内存访问错误，重复释放等错误并不能被抓到，而这种错误它抛出的是Signal，因此做一个Signal处理可以抓到这一类的崩溃。"><span class="nav-number">2.0.7.0.2.</span> <span class="nav-text">2.但NSSetUncaughtExceptionHandler功能非常有限，而引起崩溃的原因如：内存访问错误，重复释放等错误并不能被抓到，而这种错误它抛出的是Signal，因此做一个Signal处理可以抓到这一类的崩溃。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-写完上面两个类，在APPDelegate中didFinishLaunchingWithOptions调用"><span class="nav-number">2.0.7.0.3.</span> <span class="nav-text">3.写完上面两个类，在APPDelegate中didFinishLaunchingWithOptions调用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-可以写一个demo，按钮函数包含一些崩溃的代码，然后就会发现抓取的崩溃的函数，被执行了，崩溃信息成功输出到了指定的文本文件中。"><span class="nav-number">2.0.7.0.4.</span> <span class="nav-text">4.可以写一个demo，按钮函数包含一些崩溃的代码，然后就会发现抓取的崩溃的函数，被执行了，崩溃信息成功输出到了指定的文本文件中。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何读懂、解析日志"><span class="nav-number">3.</span> <span class="nav-text">如何读懂、解析日志</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-崩溃日志提供的信息"><span class="nav-number">3.0.1.</span> <span class="nav-text">1.崩溃日志提供的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-认识符号文件"><span class="nav-number">3.0.2.</span> <span class="nav-text">2.认识符号文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-解析的原理"><span class="nav-number">3.0.3.</span> <span class="nav-text">3.解析的原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#（1）-原始的崩溃文件："><span class="nav-number">3.0.3.0.1.</span> <span class="nav-text">（1）-原始的崩溃文件：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（2）-获取符号表起始地址"><span class="nav-number">3.0.3.0.2.</span> <span class="nav-text">（2）-获取符号表起始地址</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（3）-提取-debug-info"><span class="nav-number">3.0.3.0.3.</span> <span class="nav-text">（3）-提取.debug_info</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（4）提取-debug-line"><span class="nav-number">3.0.3.0.4.</span> <span class="nav-text">（4）提取.debug_line</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（5）-结论，得到关键信息："><span class="nav-number">3.0.3.0.5.</span> <span class="nav-text">（5）-结论，得到关键信息：</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">David Lin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.3"></script>
+
+
+</body>
+</html>
