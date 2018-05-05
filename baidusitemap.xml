@@ -4,6 +4,45 @@
 
     
   <url>
+    <loc>https://linfeng.xyz/2016/1/15/CocoaPods%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4%E8%A1%8C/</loc>
+    <lastmod>2018-05-05T03:01:46.982Z</lastmod>
+    <data>
+        <display>
+        <title>CocoaPods安装命令行</title>
+        <pubTime>2016-01-14T16:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://linfeng.xyz/2018/4/8/iOS%E5%BC%80%E5%8F%91%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%93%AA%E4%B8%AA%E5%BA%93%E5%8C%85%E5%90%AB%E4%BA%86idfa/</loc>
+    <lastmod>2018-04-08T09:00:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>iOS开发检测项目中哪个库包含了idfa</title>
+        <pubTime>2018-04-07T16:00:00.000Z</pubTime>
+        
+        <tag>iOS</tag>
+         
+        <tag>appstore</tag>
+         
+         
+           
+             
+              <breadCrumb title="经验心得" url="https://linfeng.xyz/categories/%E7%BB%8F%E9%AA%8C%E5%BF%83%E5%BE%97/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://linfeng.xyz/2018/3/12/iOS%E5%B4%A9%E6%BA%83%E5%A4%84%E7%90%86/</loc>
     <lastmod>2018-03-12T07:01:02.000Z</lastmod>
     <data>
@@ -304,23 +343,6 @@
              
               <breadCrumb title="学习笔记" url="https://linfeng.xyz/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://linfeng.xyz/2016/1/15/CocoaPods%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4%E8%A1%8C/</loc>
-    <lastmod>2017-11-04T00:39:01.000Z</lastmod>
-    <data>
-        <display>
-        <title>CocoaPods安装命令行</title>
-        <pubTime>2016-01-14T16:00:00.000Z</pubTime>
-        
-        <tag>iOS</tag>
-         
-         
-           
         </display>
     </data>
     </url>
