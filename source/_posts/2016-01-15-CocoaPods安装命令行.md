@@ -40,3 +40,7 @@ sudo gem install rails
 ```
 sudo gem install cocoapods
 ```
+
+在cocoapods 执行 sudo gem install cocoapods 的时候出现  While executing gem ... (Gem::FilePermissionError)
+    You don't have write permissions for the /usr/bin directory.
+改为 sudo gem install -n /usr/local/bin cocoapods  即可
