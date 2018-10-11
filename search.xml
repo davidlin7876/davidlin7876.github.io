@@ -33,18 +33,11 @@
 </tr>
 <tr>
 <td>-Warc-maybe-repeated-use-of-weak</td>
-<td>“weak %selec{variable\</td>
-<td>property\</td>
-<td>implicit property\</td>
-<td>instance variable}0 %1 may be accessed multiple times in this %select{function\</td>
-<td>method\</td>
-<td>block\</td>
-<td>lambda}2 and may be unpredictably set to nil assign to a strong variable to keep the object alive</td>
+<td>“weak %selec{variable│property│implicit property│instance variable}0 %1 may be accessed multiple times in this %select{function│method│block│lambda}2 and may be unpredictably set to nil assign to a strong variable to keep the object alive</td>
 </tr>
 <tr>
 <td>-Warc-non-pod-memaccess</td>
-<td>%select{destination for\</td>
-<td>source of}0 this %1 call is a pointer to ownership-qualified type %2</td>
+<td>%select{destination for│source of}0 this %1 call is a pointer to ownership-qualified type %2</td>
 </tr>
 <tr>
 <td>-Warc-performSelector-leaks</td>
@@ -52,13 +45,7 @@
 </tr>
 <tr>
 <td>-Warc-repeated-use-of-weak</td>
-<td>“weak %select{variable\</td>
-<td>property\</td>
-<td>implicit property\</td>
-<td>instance variable}0 %1 is accessed multiple times in this %select{function\</td>
-<td>method\</td>
-<td>block\</td>
-<td>lambda}2 but may be unpredictably set to nil assign to a strong variable to keep the object alive</td>
+<td>“weak %select{variable│property│implicit property│instance variable}0 %1 is accessed multiple times in this %select{function│method│block│lambda}2 but may be unpredictably set to nil assign to a strong variable to keep the object alive</td>
 </tr>
 <tr>
 <td>-Warc-retain-cycles</td>
@@ -70,19 +57,11 @@
 </tr>
 <tr>
 <td>-Warc-unsafe-retained-assign</td>
-<td>assigning %select{array literal\</td>
-<td>dictionary literal\</td>
-<td>numeric literal\</td>
-<td>boxed expression\</td>
-<td>should not happen\</td>
-<td>block literal}0 to a weak %select{property\</td>
-<td>variable}1 object will be released after assignment</td>
+<td>assigning %select{array literaldictionary literal│numeric literal│boxed expression│should not happen│block literal}0 to a weak %select{property│variable}1 object will be released after assignment</td>
 </tr>
 <tr>
 <td>-Warc-unsafe-retained-assign</td>
-<td>assigning retained object to %select{weak\</td>
-<td>unsafe_unretained}0 %select{property\</td>
-<td>variable}1 object will be released after assignment</td>
+<td>assigning retained object to %select{weak│unsafe_unretained}0 %select{property│variable}1 object will be released after assignment</td>
 </tr>
 <tr>
 <td>-Warray-bounds</td>
@@ -114,9 +93,7 @@
 </tr>
 <tr>
 <td>-Watomic-property-with-user-defined-accessor</td>
-<td>writable atomic property %0 cannot pair a synthesized %select{getter\</td>
-<td>setter}1 with a user defined %select{getter\</td>
-<td>setter}2</td>
+<td>writable atomic property %0 cannot pair a synthesized %select{getter│setter}1 with a user defined %select{getter│setter}2</td>
 </tr>
 <tr>
 <td>-Wattributes</td>
@@ -132,9 +109,7 @@
 </tr>
 <tr>
 <td>-Wavailability</td>
-<td>overriding method %select{introduced after\</td>
-<td>deprecated before\</td>
-<td>obsoleted before}0 overridden method on %1 (%2 vs. %3)</td>
+<td>overriding method %select{introduced after│deprecated before│obsoleted before}0 overridden method on %1 (%2 vs. %3)</td>
 </tr>
 <tr>
 <td>-Wavailability</td>
@@ -146,11 +121,7 @@
 </tr>
 <tr>
 <td>-Wavailability</td>
-<td>feature cannot be %select{introduced\</td>
-<td>deprecated\</td>
-<td>obsoleted}0 in %1 version %2 before it was %select{introduced\</td>
-<td>deprecated\</td>
-<td>obsoleted}3 in version %4 attribute ignored</td>
+<td>feature cannot be %select{introduced│deprecated│obsoleted}0 in %1 version %2 before it was %select{introduced│deprecated│obsoleted}3 in version %4 attribute ignored</td>
 </tr>
 <tr>
 <td>-Wbad-function-cast</td>
@@ -162,8 +133,7 @@
 </tr>
 <tr>
 <td>-Wbitwise-op-parentheses</td>
-<td>‘&amp;’ within ‘\</td>
-<td>‘</td>
+<td>‘&amp;’ within ‘│’</td>
 </tr>
 <tr>
 <td>-Wbool-conversion</td>
@@ -191,10 +161,7 @@
 </tr>
 <tr>
 <td>-Wc++-compat</td>
-<td>%select{\</td>
-<td>empty }0%select{struct\</td>
-<td>union}1 has size 0 in C, %select{size 1\</td>
-<td>non-zero size}2 in C++</td>
+<td>%select{│empty }0%select{struct│union}1 has size 0 in C, %select{size 1│non-zero size}2 in C++</td>
 </tr>
 <tr>
 <td>-Wc++11-compat</td>
@@ -226,13 +193,11 @@
 </tr>
 <tr>
 <td>-Wc++98-c++11-compat</td>
-<td>type definition in a constexpr %select{function\</td>
-<td>constructor}0 is incompatible with C++ standards before C++1y</td>
+<td>type definition in a constexpr %select{function│constructor}0 is incompatible with C++ standards before C++1y</td>
 </tr>
 <tr>
 <td>-Wc++98-c++11-compat</td>
-<td>use of this statement in a constexpr %select{function\</td>
-<td>constructor}0 is incompatible with C++ standards before C++1y</td>
+<td>use of this statement in a constexpr %select{function│constructor}0 is incompatible with C++ standards before C++1y</td>
 </tr>
 <tr>
 <td>-Wc++98-c++11-compat</td>
@@ -240,8 +205,7 @@
 </tr>
 <tr>
 <td>-Wc++98-c++11-compat</td>
-<td>variable declaration in a constexpr %select{function\</td>
-<td>constructor}0 is incompatible with C++ standards before C++1y</td>
+<td>variable declaration in a constexpr %select{function│constructor}0 is incompatible with C++ standards before C++1y</td>
 </tr>
 <tr>
 <td>-Wc++98-c++11-compat</td>
@@ -261,13 +225,7 @@
 </tr>
 <tr>
 <td>-Wc++98-compat</td>
-<td>%select{anonymous struct\</td>
-<td>union}0 member %1 with a non-trivial %select{constructor\</td>
-<td>copy constructor\</td>
-<td>move constructor\</td>
-<td>copy assignment operator\</td>
-<td>move assignment operator\</td>
-<td>destructor}2 is incompatible with C++98</td>
+<td>%select{anonymous struct│union}0 member %1 with a non-trivial %select{constructor│copy constructor│move constructor│copy assignment operator│move assignment operator│destructor}2 is incompatible with C++98</td>
 </tr>
 <tr>
 <td>-Wc++98-compat</td>
@@ -287,11 +245,7 @@
 </tr>
 <tr>
 <td>-Wc++98-compat</td>
-<td>befriending %1 without ‘%select{struct\</td>
-<td>interface\</td>
-<td>union\</td>
-<td>class\</td>
-<td>enum}0’ keyword is incompatible with C++98</td>
+<td>befriending %1 without ‘%select{struct│interface│union│class│enum}0’ keyword is incompatible with C++98</td>
 </tr>
 <tr>
 <td>-Wc++98-compat</td>
@@ -319,15 +273,7 @@
 </tr>
 <tr>
 <td>-Wc++98-compat</td>
-<td>%select{class template\</td>
-<td>class template partial\</td>
-<td>variable template\</td>
-<td>variable template partial\</td>
-<td>function template\</td>
-<td>member function\</td>
-<td>static data member\</td>
-<td>member class\</td>
-<td>member enumeration}0 specialization of %1 outside namespace %2 is incompatible with C++98</td>
+<td>%select{class template│class template partial│variable template│variable template partial│function template│member function│static data member│member class│member enumeration}0 specialization of %1 outside namespace %2 is incompatible with C++98</td>
 </tr>
 <tr>
 <td>-Wc++98-compat</td>
@@ -347,8 +293,7 @@
 </tr>
 <tr>
 <td>-Wc++98-compat</td>
-<td>non-type template argument referring to %select{function\</td>
-<td>object}0 %1 with internal linkage is incompatible with C++98</td>
+<td>non-type template argument referring to %select{function│object}0 %1 with internal linkage is incompatible with C++98</td>
 </tr>
 <tr>
 <td>-Wc++98-compat</td>
@@ -356,10 +301,7 @@
 </tr>
 <tr>
 <td>-Wc++98-compat</td>
-<td>passing object of trivial but non-POD type %0 through variadic %select{function\</td>
-<td>block\</td>
-<td>method\</td>
-<td>constructor}1 is incompatible with C++98</td>
+<td>passing object of trivial but non-POD type %0 through variadic %select{function│block│method│constructor}1 is incompatible with C++98</td>
 </tr>
 <tr>
 <td>-Wc++98-compat</td>
@@ -407,8 +349,7 @@
 </tr>
 <tr>
 <td>-Wc++98-compat-pedantic</td>
-<td>implicit conversion from array size expression of type %0 to %select{integral\</td>
-<td>enumeration}1 type %2 is incompatible with C++98</td>
+<td>implicit conversion from array size expression of type %0 to %select{integral│enumeration}1 type %2 is incompatible with C++98</td>
 </tr>
 <tr>
 <td>-Wcast-align</td>
@@ -424,8 +365,7 @@
 </tr>
 <tr>
 <td>-Wconditional-uninitialized</td>
-<td>variable %0 may be uninitialized when %select{used here\</td>
-<td>captured by block}1</td>
+<td>variable %0 may be uninitialized when %select{used here│captured by block}1</td>
 </tr>
 <tr>
 <td>-Wconstant-logical-operand</td>
@@ -501,8 +441,7 @@
 </tr>
 <tr>
 <td>-Wcustom-atomic-properties</td>
-<td>atomic by default property %0 has a user defined %select{getter\</td>
-<td>setter}1 (property should be marked ‘atomic’ if this is intended)</td>
+<td>atomic by default property %0 has a user defined %select{getter│setter}1 (property should be marked ‘atomic’ if this is intended)</td>
 </tr>
 <tr>
 <td>-Wdangling-field</td>
@@ -510,8 +449,7 @@
 </tr>
 <tr>
 <td>-Wdangling-field</td>
-<td>binding reference %select{\</td>
-<td>subobject of }1member %0 to a temporary value</td>
+<td>binding reference %select{│subobject of }1member %0 to a temporary value</td>
 </tr>
 <tr>
 <td>-Wdangling-field</td>
@@ -519,8 +457,7 @@
 </tr>
 <tr>
 <td>-Wdangling-initializer-list</td>
-<td>array backing the initializer list will be destroyed at the end of %select{the full-expression\</td>
-<td>the constructor}0</td>
+<td>array backing the initializer list will be destroyed at the end of %select{the full-expression│the constructor}0</td>
 </tr>
 <tr>
 <td>-Wdelete-incomplete</td>
@@ -540,10 +477,7 @@
 </tr>
 <tr>
 <td>-Wdeprecated</td>
-<td>definition of implicit copy %select{constructor\</td>
-<td>assignment operator}1 for %0 is deprecated because it has a user-declared %select{copy %select{assignment operator\</td>
-<td>constructor}1\</td>
-<td>destructor}2</td>
+<td>definition of implicit copy %select{constructor│assignment operator}1 for %0 is deprecated because it has a user-declared %select{copy %select{assignment operator│constructor}1│destructor}2</td>
 </tr>
 <tr>
 <td>-Wdeprecated</td>
@@ -611,13 +545,7 @@
 </tr>
 <tr>
 <td>-Wdynamic-class-memaccess</td>
-<td>%select{destination for\</td>
-<td>source of\</td>
-<td>first operand of\</td>
-<td>second operand of}0 this %1 call is a pointer to dynamic class %2 vtable pointer will be %select{overwritten\</td>
-<td>copied\</td>
-<td>moved\</td>
-<td>compared}3</td>
+<td>%select{destination for│source of│first operand of│second operand of}0 this %1 call is a pointer to dynamic class %2 vtable pointer will be %select{overwritten│copied│moved│compared}3</td>
 </tr>
 <tr>
 <td>-Wempty-body</td>
@@ -641,8 +569,7 @@
 </tr>
 <tr>
 <td>-Wenum-compare</td>
-<td>comparison of two values with different enumeration types%diff{ (and)\</td>
-<td>}0,1</td>
+<td>comparison of two values with different enumeration types%diff{ (and)│}0,1</td>
 </tr>
 <tr>
 <td>-Wenum-conversion</td>
@@ -658,10 +585,7 @@
 </tr>
 <tr>
 <td>-Wextern-c-compat</td>
-<td>%select{\</td>
-<td>empty }0%select{struct\</td>
-<td>union}1 has size 0 in C, %select{size 1\</td>
-<td>non-zero size}2 in C++</td>
+<td>%select{│empty }0%select{struct│union}1 has size 0 in C, %select{size 1│non-zero size}2 in C++</td>
 </tr>
 <tr>
 <td>-Wextern-initializer</td>
@@ -681,8 +605,7 @@
 </tr>
 <tr>
 <td>-Wformat</td>
-<td>invalid position specified for %select{field width\</td>
-<td>field precision}0</td>
+<td>invalid position specified for %select{field width│field precision}0</td>
 </tr>
 <tr>
 <td>-Wformat</td>
@@ -714,19 +637,15 @@
 </tr>
 <tr>
 <td>-Wformat</td>
-<td>‘%select{*\</td>
-<td>.*}0’ specified field %select{width\</td>
-<td>precision}0 is missing a matching ‘int’ argument</td>
+<td>‘%select{<em>│.</em>}0’ specified field %select{width│precision}0 is missing a matching ‘int’ argument</td>
 </tr>
 <tr>
 <td>-Wformat</td>
-<td>field %select{width\</td>
-<td>precision}0 should have type %1, but argument has type %2</td>
+<td>field %select{width│precision}0 should have type %1, but argument has type %2</td>
 </tr>
 <tr>
 <td>-Wformat</td>
-<td>%select{field width\</td>
-<td>precision}0 used with ‘%1’ conversion specifier, resulting in undefined behavior</td>
+<td>%select{field width│precision}0 used with ‘%1’ conversion specifier, resulting in undefined behavior</td>
 </tr>
 <tr>
 <td>-Wformat</td>
@@ -802,26 +721,7 @@
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
-<td>%0 attribute only applies to %select{functions\</td>
-<td>unions\</td>
-<td>variables and functions\</td>
-<td>functions and methods\</td>
-<td>parameters\</td>
-<td>functions, methods and blocks\</td>
-<td>functions, methods, and classes\</td>
-<td>functions, methods, and parameters\</td>
-<td>classes\</td>
-<td>variables\</td>
-<td>methods\</td>
-<td>variables, functions and labels\</td>
-<td>fields and global variables\</td>
-<td>structs\</td>
-<td>variables, functions and tag types\</td>
-<td>thread-local variables\</td>
-<td>variables and fields\</td>
-<td>variables, data members and tag types\</td>
-<td>types and namespaces\</td>
-<td>Objective-C interfaces}1</td>
+<td>%0 attribute only applies to %select{functions│unions│variables and functions│functions and methods│parameters│functions, methods and blocks│functions, methods, and classes│functions, methods, and parameters│classes│variables│methods│variables, functions and labels│fields and global variables│structs│variables, functions and tag types│thread-local variables│variables and fields│variables, data members and tag types│types and namespaces│Objective-C interfaces}1</td>
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
@@ -841,8 +741,7 @@
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
-<td>attribute %0 cannot be applied to %select{functions\</td>
-<td>Objective-C method}1 without return value</td>
+<td>attribute %0 cannot be applied to %select{functions│Objective-C method}1 without return value</td>
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
@@ -850,11 +749,7 @@
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
-<td>attribute %0 is ignored, place it after \”%select{class\</td>
-<td>struct\</td>
-<td>union\</td>
-<td>interface\</td>
-<td>enum}1\” to apply attribute to type declaration</td>
+<td>attribute %0 is ignored, place it after \”%select{class│struct│union│interface│enum}1\” to apply attribute to type declaration</td>
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
@@ -874,8 +769,7 @@
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
-<td>‘sentinel’ attribute only supported for variadic %select{functions\</td>
-<td>blocks}0</td>
+<td>‘sentinel’ attribute only supported for variadic %select{functions│blocks}0</td>
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
@@ -883,9 +777,7 @@
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
-<td>‘%0’ only applies to %select{function\</td>
-<td>pointer\</td>
-<td>Objective-C object or block pointer}1 types type here is %2</td>
+<td>‘%0’ only applies to %select{function│pointer│Objective-C object or block pointer}1 types type here is %2</td>
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
@@ -921,8 +813,7 @@
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
-<td>first field of a transparent union cannot have %select{floating point\</td>
-<td>vector}0 type %1 transparent_union attribute ignored</td>
+<td>first field of a transparent union cannot have %select{floating point│vector}0 type %1 transparent_union attribute ignored</td>
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
@@ -938,9 +829,7 @@
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
-<td>%select{alignment\</td>
-<td>size}0 of field %1 (%2 bits) does not match the %select{alignment\</td>
-<td>size}0 of the first field in transparent union transparent_union attribute ignored</td>
+<td>%select{alignment│size}0 of field %1 (%2 bits) does not match the %select{alignment│size}0 of the first field in transparent union transparent_union attribute ignored</td>
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
@@ -956,16 +845,11 @@
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
-<td>%0 attribute only applies to %select{functions\</td>
-<td>methods\</td>
-<td>properties}1 that return %select{an Objective-C object\</td>
-<td>a pointer\</td>
-<td>a non-retainable pointer}2</td>
+<td>%0 attribute only applies to %select{functions│methods│properties}1 that return %select{an Objective-C object│a pointer│a non-retainable pointer}2</td>
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
-<td>%0 attribute only applies to %select{Objective-C object\</td>
-<td>pointer}1 parameters</td>
+<td>%0 attribute only applies to %select{Objective-C object│pointer}1 parameters</td>
 </tr>
 <tr>
 <td>-Wignored-attributes</td>
@@ -977,16 +861,11 @@
 </tr>
 <tr>
 <td>-Wignored-qualifiers</td>
-<td>“‘%0’ type qualifier%s1 on return type %plural{1:has\</td>
-<td>:have}1 no effect</td>
+<td>“‘%0’ type qualifier%s1 on return type %plural{1:has│:have}1 no effect</td>
 </tr>
 <tr>
 <td>-Wignored-qualifiers</td>
-<td>ARC %select{unused\</td>
-<td>__unsafe_unretained\</td>
-<td>__strong\</td>
-<td>__weak\</td>
-<td>__autoreleasing}0 lifetime qualifier on return type is ignored</td>
+<td>ARC %select{unused│<strong>unsafe_unretained│</strong>strong│<strong>weak│</strong>autoreleasing}0 lifetime qualifier on return type is ignored</td>
 </tr>
 <tr>
 <td>-Wimplicit-atomic-properties</td>
@@ -1054,8 +933,7 @@
 </tr>
 <tr>
 <td>-Winvalid-iboutlet</td>
-<td>%select{instance variable\</td>
-<td>property}2 with %0 attribute must be an object type (invalid %1)</td>
+<td>%select{instance variable│property}2 with %0 attribute must be an object type (invalid %1)</td>
 </tr>
 <tr>
 <td>-Winvalid-noreturn</td>
@@ -1091,22 +969,15 @@
 </tr>
 <tr>
 <td>-Wlogical-op-parentheses</td>
-<td>‘&amp;&amp;’ within ‘\</td>
-<td>\</td>
-<td>‘</td>
+<td>‘&amp;&amp;’ within ‘││’</td>
 </tr>
 <tr>
 <td>-Wloop-analysis</td>
-<td>variable%select{s\</td>
-<td>%1\</td>
-<td>s %1 and %2\</td>
-<td>s %1, %2, and %3\</td>
-<td>s %1, %2, %3, and %4}0 used in loop condition not modified in loop body</td>
+<td>variable%select{s│ %1│s %1 and %2│s %1, %2, and %3│s %1, %2, %3, and %4}0 used in loop condition not modified in loop body</td>
 </tr>
 <tr>
 <td>-Wloop-analysis</td>
-<td>variable %0 is %select{decremented\</td>
-<td>incremented}1 both in the loop header and in the loop body</td>
+<td>variable %0 is %select{decremented│incremented}1 both in the loop header and in the loop body</td>
 </tr>
 <tr>
 <td>-Wmethod-signatures</td>
@@ -1126,13 +997,11 @@
 </tr>
 <tr>
 <td>-Wmismatched-parameter-types</td>
-<td>conflicting parameter types in implementation of %0%diff{: vs\</td>
-<td>}1,2</td>
+<td>conflicting parameter types in implementation of %0%diff{: vs│}1,2</td>
 </tr>
 <tr>
 <td>-Wmismatched-return-types</td>
-<td>conflicting return type in implementation of %0%diff{: vs\</td>
-<td>}1,2</td>
+<td>conflicting return type in implementation of %0%diff{: vs│}1,2</td>
 </tr>
 <tr>
 <td>-Wmissing-braces</td>
@@ -1152,8 +1021,7 @@
 </tr>
 <tr>
 <td>-Wmissing-noreturn</td>
-<td>%select{function\</td>
-<td>method}0 %1 could be declared with attribute ‘noreturn’</td>
+<td>%select{function│method}0 %1 could be declared with attribute ‘noreturn’</td>
 </tr>
 <tr>
 <td>-Wmissing-noreturn</td>
@@ -1189,11 +1057,7 @@
 </tr>
 <tr>
 <td>-Wnon-pod-varargs</td>
-<td>cannot pass %select{non-POD\</td>
-<td>non-trivial}0 object of type %1 to variadic %select{function\</td>
-<td>block\</td>
-<td>method\</td>
-<td>constructor}2 expected type from format string was %3</td>
+<td>cannot pass %select{non-POD│non-trivial}0 object of type %1 to variadic %select{function│block│method│constructor}2 expected type from format string was %3</td>
 </tr>
 <tr>
 <td>-Wnon-pod-varargs</td>
@@ -1201,11 +1065,7 @@
 </tr>
 <tr>
 <td>-Wnon-pod-varargs</td>
-<td>cannot pass object of %select{non-POD\</td>
-<td>non-trivial}0 type %1 through variadic %select{function\</td>
-<td>block\</td>
-<td>method\</td>
-<td>constructor}2 call will abort at runtime</td>
+<td>cannot pass object of %select{non-POD│non-trivial}0 type %1 through variadic %select{function│block│method│constructor}2 call will abort at runtime</td>
 </tr>
 <tr>
 <td>-Wnon-virtual-dtor</td>
@@ -1221,8 +1081,7 @@
 </tr>
 <tr>
 <td>-Wnull-arithmetic</td>
-<td>comparison between NULL and non-pointer %select{(%1 and NULL)\</td>
-<td>(NULL and %1)}0</td>
+<td>comparison between NULL and non-pointer %select{(%1 and NULL)│(NULL and %1)}0</td>
 </tr>
 <tr>
 <td>-Wnull-dereference</td>
@@ -1230,8 +1089,7 @@
 </tr>
 <tr>
 <td>-Wobjc-autosynthesis-property-ivar-name-match</td>
-<td>autosynthesized property %0 will use %select{\</td>
-<td>synthesized}1 instance variable %2, not existing instance variable %3</td>
+<td>autosynthesized property %0 will use %select{│synthesized}1 instance variable %2, not existing instance variable %3</td>
 </tr>
 <tr>
 <td>-Wobjc-forward-class-redefinition</td>
@@ -1243,11 +1101,7 @@
 </tr>
 <tr>
 <td>-Wobjc-literal-compare</td>
-<td>direct comparison of %select{an array literal\</td>
-<td>a dictionary literal\</td>
-<td>a numeric literal\</td>
-<td>a boxed expression\</td>
-<td>}0 has undefined behavior</td>
+<td>direct comparison of %select{an array literal│a dictionary literal│a numeric literal│a boxed expression│}0 has undefined behavior</td>
 </tr>
 <tr>
 <td>-Wobjc-literal-missing-atsign</td>
@@ -1355,13 +1209,11 @@
 </tr>
 <tr>
 <td>-Woverloaded-shift-op-parentheses</td>
-<td>overloaded operator %select{\</td>
-<td>}0 has lower precedence than comparison operator</td>
+<td>overloaded operator %select{│}0 has lower precedence than comparison operator</td>
 </tr>
 <tr>
 <td>-Woverloaded-virtual</td>
-<td>%q0 hides overloaded virtual %select{function\</td>
-<td>functions}1</td>
+<td>%q0 hides overloaded virtual %select{function│functions}1</td>
 </tr>
 <tr>
 <td>-Woverriding-method-mismatch</td>
@@ -1381,13 +1233,11 @@
 </tr>
 <tr>
 <td>-Woverriding-method-mismatch</td>
-<td>conflicting parameter types in declaration of %0%diff{: vs\</td>
-<td>}1,2</td>
+<td>conflicting parameter types in declaration of %0%diff{: vs│}1,2</td>
 </tr>
 <tr>
 <td>-Woverriding-method-mismatch</td>
-<td>conflicting return type in declaration of %0%diff{: vs\</td>
-<td>}1,2</td>
+<td>conflicting return type in declaration of %0%diff{: vs│}1,2</td>
 </tr>
 <tr>
 <td>-Woverriding-method-mismatch</td>
@@ -1399,25 +1249,15 @@
 </tr>
 <tr>
 <td>-Wpadded</td>
-<td>padding %select{struct\</td>
-<td>interface\</td>
-<td>class}0 %1 with %2 %select{byte\</td>
-<td>bit}3%select{\</td>
-<td>s}4 to align anonymous bit-field</td>
+<td>padding %select{struct│interface│class}0 %1 with %2 %select{byte│bit}3%select{│s}4 to align anonymous bit-field</td>
 </tr>
 <tr>
 <td>-Wpadded</td>
-<td>padding %select{struct\</td>
-<td>interface\</td>
-<td>class}0 %1 with %2 %select{byte\</td>
-<td>bit}3%select{\</td>
-<td>s}4 to align %5</td>
+<td>padding %select{struct│interface│class}0 %1 with %2 %select{byte│bit}3%select{│s}4 to align %5</td>
 </tr>
 <tr>
 <td>-Wpadded</td>
-<td>padding size of %0 with %1 %select{byte\</td>
-<td>bit}2%select{\</td>
-<td>s}3 to alignment boundary</td>
+<td>padding size of %0 with %1 %select{byte│bit}2%select{│s}3 to alignment boundary</td>
 </tr>
 <tr>
 <td>-Wparentheses</td>
@@ -1473,27 +1313,19 @@
 </tr>
 <tr>
 <td>-Wreceiver-is-weak</td>
-<td>“weak %select{receiver\</td>
-<td>property\</td>
-<td>implicit property}0 may be unpredictably set to nil</td>
+<td>“weak %select{receiver│property│implicit property}0 may be unpredictably set to nil</td>
 </tr>
 <tr>
 <td>-Wreinterpret-base-class</td>
-<td>‘reinterpret_cast’ %select{from\</td>
-<td>to}3 class %0 %select{to\</td>
-<td>from}3 its %select{virtual base\</td>
-<td>base at non-zero offset}2 %1 behaves differently from ‘static_cast’</td>
+<td>‘reinterpret_cast’ %select{from│to}3 class %0 %select{to│from}3 its %select{virtual base│base at non-zero offset}2 %1 behaves differently from ‘static_cast’</td>
 </tr>
 <tr>
 <td>-Wreorder</td>
-<td>%select{field\</td>
-<td>base class}0 %1 will be initialized after %select{field\</td>
-<td>base}2 %3</td>
+<td>%select{field│base class}0 %1 will be initialized after %select{field│base}2 %3</td>
 </tr>
 <tr>
 <td>-Wrequires-super-attribute</td>
-<td>%0 attribute cannot be applied to %select{methods in protocols\</td>
-<td>dealloc}1</td>
+<td>%0 attribute cannot be applied to %select{methods in protocols│dealloc}1</td>
 </tr>
 <tr>
 <td>-Wreturn-stack-address</td>
@@ -1521,8 +1353,7 @@
 </tr>
 <tr>
 <td>-Wreturn-type</td>
-<td>non-void %select{function\</td>
-<td>method}1 %0 should return a value, DefaultError</td>
+<td>non-void %select{function│method}1 %0 should return a value, DefaultError</td>
 </tr>
 <tr>
 <td>-Wreturn-type</td>
@@ -1554,14 +1385,11 @@
 </tr>
 <tr>
 <td>-Wself-assign-field</td>
-<td>assigning %select{field\</td>
-<td>instance variable}0 to itself</td>
+<td>assigning %select{field│instance variable}0 to itself</td>
 </tr>
 <tr>
 <td>-Wsentinel</td>
-<td>“missing sentinel in %select{function call\</td>
-<td>method dispatch\</td>
-<td>block call}0</td>
+<td>“missing sentinel in %select{function call│method dispatch│block call}0</td>
 </tr>
 <tr>
 <td>-Wsentinel</td>
@@ -1569,10 +1397,7 @@
 </tr>
 <tr>
 <td>-Wshadow</td>
-<td>declaration shadows a %select{“ “local variable\</td>
-<td>“ “variable in %2\</td>
-<td>“ “static data member of %2\</td>
-<td>“ “field of %2}1</td>
+<td>declaration shadows a %select{“ “local variable│” “variable in %2│” “static data member of %2│” “field of %2}1</td>
 </tr>
 <tr>
 <td>-Wshadow-ivar</td>
@@ -1628,21 +1453,11 @@
 </tr>
 <tr>
 <td>-Wsizeof-pointer-memaccess</td>
-<td>argument to ‘sizeof’ in %0 call is the same pointer type %1 as the %select{destination\</td>
-<td>source}2 expected %3 or an explicit length</td>
+<td>argument to ‘sizeof’ in %0 call is the same pointer type %1 as the %select{destination│source}2 expected %3 or an explicit length</td>
 </tr>
 <tr>
 <td>-Wsometimes-uninitialized</td>
-<td>variable %0 is %select{used\</td>
-<td>captured}1 uninitialized whenever %select{‘%3’ condition is %select{true\</td>
-<td>false}4\</td>
-<td>‘%3’ loop %select{is entered\</td>
-<td>exits because its condition is false}4\</td>
-<td>‘%3’ loop %select{condition is true\</td>
-<td>exits because its condition is false}4\</td>
-<td>switch %3 is taken\</td>
-<td>its declaration is reached\</td>
-<td>%3 is called}2</td>
+<td>variable %0 is %select{used│captured}1 uninitialized whenever %select{‘%3’ condition is %select{true│false}4│’%3’ loop %select{is entered│exits because its condition is false}4│’%3’ loop %select{condition is true│exits because its condition is false}4│switch %3 is taken│its declaration is reached│%3 is called}2</td>
 </tr>
 <tr>
 <td>-Wstatic-local-in-inline</td>
@@ -1658,8 +1473,7 @@
 </tr>
 <tr>
 <td>-Wstring-compare</td>
-<td>result of comparison against %select{a string literal\</td>
-<td>@encode}0 is unspecified (use strncmp instead)</td>
+<td>result of comparison against %select{a string literal│@encode}0 is unspecified (use strncmp instead)</td>
 </tr>
 <tr>
 <td>-Wstring-conversion</td>
@@ -1691,8 +1505,7 @@
 </tr>
 <tr>
 <td>-Wsuper-class-method-mismatch</td>
-<td>method parameter type %diff{doesnotmatchsuperclassmethodparametertype\</td>
-<td>does not match super class method parameter type}0,1</td>
+<td>method parameter type %diff{doesnotmatchsuperclassmethodparametertype│does not match super class method parameter type}0,1</td>
 </tr>
 <tr>
 <td>-Wswitch</td>
@@ -1736,25 +1549,19 @@
 </tr>
 <tr>
 <td>-Wtautological-compare</td>
-<td>comparison of %0 unsigned%select{\</td>
-<td>enum}2 expression is always %1</td>
+<td>comparison of %0 unsigned%select{│ enum}2 expression is always %1</td>
 </tr>
 <tr>
 <td>-Wtautological-compare</td>
-<td>%select{self-\</td>
-<td>array }0comparison always evaluates to %select{false\</td>
-<td>true\</td>
-<td>a constant}1</td>
+<td>%select{self-│array }0comparison always evaluates to %select{false│true│a constant}1</td>
 </tr>
 <tr>
 <td>-Wtautological-compare</td>
-<td>comparison of unsigned%select{\</td>
-<td>enum}2 expression %0 is always %1</td>
+<td>comparison of unsigned%select{│ enum}2 expression %0 is always %1</td>
 </tr>
 <tr>
 <td>-Wtautological-constant-out-of-range-compare</td>
-<td>comparison of constant %0 with expression of type %1 is always %select{false\</td>
-<td>true}2</td>
+<td>comparison of constant %0 with expression of type %1 is always %select{false│true}2</td>
 </tr>
 <tr>
 <td>-Wthread-safety-analysis</td>
@@ -1766,9 +1573,7 @@
 </tr>
 <tr>
 <td>-Wthread-safety-analysis</td>
-<td>%select{reading\</td>
-<td>writing}2 the value pointed to by ‘%0’ requires locking %select{‘%1’\</td>
-<td>‘%1’ exclusively}2</td>
+<td>%select{reading│writing}2 the value pointed to by ‘%0’ requires locking %select{‘%1’│’%1’ exclusively}2</td>
 </tr>
 <tr>
 <td>-Wthread-safety-analysis</td>
@@ -1780,14 +1585,11 @@
 </tr>
 <tr>
 <td>-Wthread-safety-analysis</td>
-<td>calling function ‘%0’ requires %select{shared\</td>
-<td>exclusive}2 lock on ‘%1’</td>
+<td>calling function ‘%0’ requires %select{shared│exclusive}2 lock on ‘%1’</td>
 </tr>
 <tr>
 <td>-Wthread-safety-analysis</td>
-<td>%select{reading\</td>
-<td>writing}2 variable ‘%0’ requires locking %select{‘%1’\</td>
-<td>‘%1’ exclusively}2</td>
+<td>%select{reading│writing}2 variable ‘%0’ requires locking %select{‘%1’│’%1’ exclusively}2</td>
 </tr>
 <tr>
 <td>-Wthread-safety-analysis</td>
@@ -1803,15 +1605,11 @@
 </tr>
 <tr>
 <td>-Wthread-safety-analysis</td>
-<td>%select{reading\</td>
-<td>writing}1 the value pointed to by ‘%0’ requires locking %select{any mutex\</td>
-<td>any mutex exclusively}1</td>
+<td>%select{reading│writing}1 the value pointed to by ‘%0’ requires locking %select{any mutex│any mutex exclusively}1</td>
 </tr>
 <tr>
 <td>-Wthread-safety-analysis</td>
-<td>%select{reading\</td>
-<td>writing}1 variable ‘%0’ requires locking %select{any mutex\</td>
-<td>any mutex exclusively}1</td>
+<td>%select{reading│writing}1 variable ‘%0’ requires locking %select{any mutex│any mutex exclusively}1</td>
 </tr>
 <tr>
 <td>-Wthread-safety-analysis</td>
@@ -1827,9 +1625,7 @@
 </tr>
 <tr>
 <td>-Wthread-safety-attributes</td>
-<td>%0 attribute only applies to %select{fields and global variables\</td>
-<td>functions and methods\</td>
-<td>classes and structs}1</td>
+<td>%0 attribute only applies to %select{fields and global variables│functions and methods│classes and structs}1</td>
 </tr>
 <tr>
 <td>-Wthread-safety-attributes</td>
@@ -1853,20 +1649,15 @@
 </tr>
 <tr>
 <td>-Wthread-safety-precise</td>
-<td>%select{reading\</td>
-<td>writing}2 the value pointed to by ‘%0’ requires locking %select{‘%1’\</td>
-<td>‘%1’ exclusively}2</td>
+<td>%select{reading│writing}2 the value pointed to by ‘%0’ requires locking %select{‘%1’│’%1’ exclusively}2</td>
 </tr>
 <tr>
 <td>-Wthread-safety-precise</td>
-<td>%select{reading\</td>
-<td>writing}2 variable ‘%0’ requires locking %select{‘%1’\</td>
-<td>‘%1’ exclusively}2</td>
+<td>%select{reading│writing}2 variable ‘%0’ requires locking %select{‘%1’│’%1’ exclusively}2</td>
 </tr>
 <tr>
 <td>-Wthread-safety-precise</td>
-<td>calling function ‘%0’ requires %select{shared\</td>
-<td>exclusive}2 lock on ‘%1’</td>
+<td>calling function ‘%0’ requires %select{shared│exclusive}2 lock on ‘%1’</td>
 </tr>
 <tr>
 <td>-Wtype-safety</td>
@@ -1878,8 +1669,7 @@
 </tr>
 <tr>
 <td>-Wtype-safety</td>
-<td>argument type %0 doesn’t match specified ‘%1’ type tag %select{that requires %3\</td>
-<td>}2</td>
+<td>argument type %0 doesn’t match specified ‘%1’ type tag %select{that requires %3│}2</td>
 </tr>
 <tr>
 <td>-Wundeclared-selector</td>
@@ -1895,8 +1685,7 @@
 </tr>
 <tr>
 <td>-Wundefined-internal</td>
-<td>%select{function\</td>
-<td>variable}0 %q1 has internal linkage but is not defined</td>
+<td>%select{function│variable}0 %q1 has internal linkage but is not defined</td>
 </tr>
 <tr>
 <td>-Wundefined-reinterpret-cast</td>
@@ -1924,8 +1713,7 @@
 </tr>
 <tr>
 <td>-Wuninitialized</td>
-<td>variable %0 is uninitialized when %select{used here\</td>
-<td>captured by block}1</td>
+<td>variable %0 is uninitialized when %select{used here│captured by block}1</td>
 </tr>
 <tr>
 <td>-Wuninitialized</td>
@@ -1933,8 +1721,7 @@
 </tr>
 <tr>
 <td>-Wunneeded-internal-declaration</td>
-<td>%select{function\</td>
-<td>variable}0 %1 is not needed and will not be emitted</td>
+<td>%select{function│variable}0 %1 is not needed and will not be emitted</td>
 </tr>
 <tr>
 <td>-Wunneeded-internal-declaration</td>
@@ -1970,8 +1757,7 @@
 </tr>
 <tr>
 <td>-Wunused-comparison</td>
-<td>%select{equality\</td>
-<td>inequality}0 comparison result unused</td>
+<td>%select{equality│inequality}0 comparison result unused</td>
 </tr>
 <tr>
 <td>-Wunused-const-variable</td>
@@ -2035,8 +1821,7 @@
 </tr>
 <tr>
 <td>-Wuser-defined-literals</td>
-<td>user-defined literal suffixes not starting with ‘_’ are reserved%select{ no literal will invoke this operator\</td>
-<td>}0</td>
+<td>user-defined literal suffixes not starting with ‘_’ are reserved%select{ no literal will invoke this operator│}0</td>
 </tr>
 <tr>
 <td>-Wvarargs</td>
@@ -2052,20 +1837,7 @@
 </tr>
 <tr>
 <td>-Wvector-conversion</td>
-<td>incompatible vector types %select[%diff[assigning to from\</td>
-<td>assigning to different types]0,1\</td>
-<td>%diff[passing toparameteroftype\</td>
-<td>passing to parameter of different type]0,1\</td>
-<td>%diff[returning fromafunctionwithresulttype\</td>
-<td>returning from function with different return type]0,1\</td>
-<td>%diff[converting totype\</td>
-<td>converting between types]0,1\</td>
-<td>%diff[initializing withanexpressionoftype\</td>
-<td>initializing with expression of different type]0,1\</td>
-<td>%diff[sending toparameteroftype\</td>
-<td>sending to parameter of different type]0,1\</td>
-<td>%diff[casting totype\</td>
-<td>casting between types]0,1]2</td>
+<td>incompatible vector types %select[%diff[assigning to from│assigning to different types]0,1│%diff[passing toparameteroftype│passing to parameter of different type]0,1│%diff[returning fromafunctionwithresulttype│returning from function with different return type]0,1│%diff[converting totype│converting between types]0,1│%diff[initializing withanexpressionoftype│initializing with expression of different type]0,1│%diff[sending toparameteroftype│sending to parameter of different type]0,1│%diff[casting totype│casting between types]0,1]2</td>
 </tr>
 <tr>
 <td>-Wvexing-parse</td>
@@ -2127,10 +1899,7 @@
 </tr>
 <tr>
 <td>-Wauto-import</td>
-<td>treating #%select{include\</td>
-<td>import\</td>
-<td>include_next\</td>
-<td>__include_macros}0 as an import of module ‘%1’</td>
+<td>treating #%select{include│import│include_next│__include_macros}0 as an import of module ‘%1’</td>
 </tr>
 <tr>
 <td>-Wbackslash-newline-escape</td>
@@ -2198,8 +1967,7 @@
 </tr>
 <tr>
 <td>-Wc99-compat</td>
-<td>%select{using this character in an identifier\</td>
-<td>starting an identifier with this character}0 is incompatible with C99</td>
+<td>%select{using this character in an identifier│starting an identifier with this character}0 is incompatible with C99</td>
 </tr>
 <tr>
 <td>-Wcomment</td>
@@ -2473,8 +2241,7 @@
 </tr>
 <tr>
 <td>-Wmicrosoft-exists</td>
-<td>dependent %select{__if_not_exists\</td>
-<td>__if_exists}0 declarations are ignored</td>
+<td>dependent %select{<strong>if_not_exists│</strong>if_exists}0 declarations are ignored</td>
 </tr>
 <tr>
 <td>-Wmissing-selector-name</td>
@@ -2490,8 +2257,7 @@
 </tr>
 <tr>
 <td>-Wstatic-inline-explicit-instantiation</td>
-<td>ignoring ‘%select{static\</td>
-<td>inline}0’ keyword on explicit template instantiation</td>
+<td>ignoring ‘%select{static│inline}0’ keyword on explicit template instantiation</td>
 </tr>
 </tbody>
 </table>
@@ -3651,6 +3417,75 @@
     </entry>
     
     <entry>
+      <title><![CDATA[LoopBack学习之核心概念]]></title>
+      <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
+      <content type="html"><![CDATA[<p>英文地址：<br><a href="http://loopback.io/doc/en/lb3/Glossary.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/Glossary.html</a></p>
+<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><h4 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h4><p>访问控制列表，与标识所有可访问对象的主题及其访问权限的对象关联的列表。请参阅身份验证，授权和权限。</p>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>应用程序接口。允许以高级语言编写的应用程序使用操作系统或其他程序的特定数据或功能的接口。</p>
+<h4 id="APIC"><a href="#APIC" class="headerlink" title="APIC"></a>APIC</h4><p>IBM API Connect命令行工具。它为脚本LoopBack应用程序提供命令。有关更多信息，请参阅命令行工具。</p>
+<h4 id="adapter-适配器"><a href="#adapter-适配器" class="headerlink" title="adapter 适配器"></a>adapter 适配器</h4><p>提供传输特定机制，使远程对象（及其集合）在其传输中可用。看强力远程。<br><a id="more"></a></p>
+<h4 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h4><p>由Google创建的移动操作系统，其中大部分是根据Apache 2.0和GPLv2开源许可证发布的。</p>
+<h4 id="AngularJS"><a href="#AngularJS" class="headerlink" title="AngularJS"></a>AngularJS</h4><p>开源客户端JavaScript框架。</p>
+<h4 id="API-Connect-API连接"><a href="#API-Connect-API连接" class="headerlink" title="API Connect API连接"></a>API Connect API连接</h4><p>IBM产品集成了StrongLoop和LoopBack技术，用于创建，运行，管理和保护API。请参阅DeveloperWorks&gt; API连接。</p>
+<h4 id="Arc-弧"><a href="#Arc-弧" class="headerlink" title="Arc 弧"></a>Arc 弧</h4><p>StrongLoop API生命周期图形工具套件，包括用于构建，分析和监视节点应用程序的工具。StrongLoop Arc不再处于积极的开发阶段，不久将被淘汰。</p>
+<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><h4 id="boot-script-启动脚本"><a href="#boot-script-启动脚本" class="headerlink" title="boot script 启动脚本"></a>boot script 启动脚本</h4><p>默认情况下，/server/boot目录中启动应用程序时自动运行的JavaScript函数。请参阅定义启动脚本。</p>
+<h4 id="built-in-model-内置型号"><a href="#built-in-model-内置型号" class="headerlink" title="built-in model 内置型号"></a>built-in model 内置型号</h4><p>默认情况下，每个LoopBack应用程序都有一个预定义的模型。请参阅使用内置型号。</p>
+<h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><h4 id="cluster-簇"><a href="#cluster-簇" class="headerlink" title="cluster 簇"></a>cluster 簇</h4><p>一组相同的Node worker进程在同一端口上接收请求。参见： 工人。</p>
+<h4 id="component-零件"><a href="#component-零件" class="headerlink" title="component 零件"></a>component 零件</h4><p>扩展基本LoopBack应用程序的预定义包。从根本上说，组件是将相关代码捆绑在一起作为一个单元，以使LoopBack应用程序能够轻松重用。请参阅LoopBack组件。</p>
+<h4 id="component-连接器"><a href="#component-连接器" class="headerlink" title="component 连接器"></a>component 连接器</h4><p>请参阅LoopBack连接器。</p>
+<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><h4 id="data-source-数据源"><a href="#data-source-数据源" class="headerlink" title="data source 数据源"></a>data source 数据源</h4><p>数据源使用连接器与特定数据库或其他后端系统连接。请参阅将模型连接到数据源。</p>
+<h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><h4 id="endpoint-端点"><a href="#endpoint-端点" class="headerlink" title="endpoint 端点"></a>endpoint 端点</h4><p>看路线。</p>
+<h4 id="enterprise-connector-企业连接器"><a href="#enterprise-connector-企业连接器" class="headerlink" title="enterprise connector 企业连接器"></a>enterprise connector 企业连接器</h4><p>连接到后端数据源（如Oracle，MySQL或MongoDB）的模块。</p>
+<h4 id="environment-variable-环境变量"><a href="#environment-variable-环境变量" class="headerlink" title="environment variable 环境变量"></a>environment variable 环境变量</h4><p>定义进程操作环境方面的变量。例如，环境变量可以定义主目录，命令搜索路径，正在使用的终端或当前时区。</p>
+<h4 id="event-loop-事件循环"><a href="#event-loop-事件循环" class="headerlink" title="event loop 事件循环"></a>event loop 事件循环</h4><p>运行Node.js应用程序的单线程执行过程，通常进行一系列异步函数调用。</p>
+<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><h4 id="generator-发电机"><a href="#generator-发电机" class="headerlink" title="generator 发电机"></a>generator 发电机</h4><p>支持全部或部分LoopBack应用程序的交互式命令行工具。请参阅命令行工具。</p>
+<h1 id="I"><a href="#I" class="headerlink" title="I"></a>I</h1><h4 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h4><p>苹果设备的封闭源码专有移动操作系统。</p>
+<h1 id="J"><a href="#J" class="headerlink" title="J"></a>J</h1><h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><p>JavaScript对象符号; 一种基于JavaScript对象字面符号的轻量级数据交换格式。JSON是编程语言中性，但使用各种语言的约定。</p>
+<h1 id="L"><a href="#L" class="headerlink" title="L"></a>L</h1><h4 id="lb"><a href="#lb" class="headerlink" title="lb"></a>lb</h4><p>用于脚手架和开发LoopBack应用程序的LoopBack命令行界面（CLI）工具。取代传统slc工具。</p>
+<h4 id="LDL"><a href="#LDL" class="headerlink" title="LDL"></a>LDL</h4><p>LoopBack定义语言，一种用于定义LoopBack模型和其他配置的JSON形式。</p>
+<h4 id="load-balancer-负载均衡器"><a href="#load-balancer-负载均衡器" class="headerlink" title="load balancer 负载均衡器"></a>load balancer 负载均衡器</h4><p>在一组服务器上分发工作负载的软件或硬件，以确保服务器不会过载。如果初始服务器发生故障，负载平衡器也会将用户引导到另一台服务器。</p>
+<h4 id="LoopBack-connector-LoopBack连接器"><a href="#LoopBack-connector-LoopBack连接器" class="headerlink" title="LoopBack connector LoopBack连接器"></a>LoopBack connector LoopBack连接器</h4><p>提供对后端系统（如数据库，REST API或其他服务）的访问的连接器。</p>
+<h4 id="LoopBack-DataSource-Juggler"><a href="#LoopBack-DataSource-Juggler" class="headerlink" title="LoopBack DataSource Juggler"></a>LoopBack DataSource Juggler</h4><p>对象关系映射，提供了一组通用的接口，用于与数据库，REST API和其他数据源进行交互。</p>
+<h4 id="LoopBack-model-LoopBack模型"><a href="#LoopBack-model-LoopBack模型" class="headerlink" title="LoopBack model LoopBack模型"></a>LoopBack model LoopBack模型</h4><p>由应用程序数据，验证规则，数据访问功能以及默认提供REST API的业务逻辑组成的模型。</p>
+<h1 id="M"><a href="#M" class="headerlink" title="M"></a>M</h1><h4 id="MBaaS"><a href="#MBaaS" class="headerlink" title="MBaaS"></a>MBaaS</h4><p>移动后端即服务。将移动应用程序连接到云计算服务的计算模型，通过统一的API和SDK，提供用户管理，推送通知和社交网络集成等功能。</p>
+<h4 id="middleware-function-中间件功能"><a href="#middleware-function-中间件功能" class="headerlink" title="middleware function 中间件功能"></a>middleware function 中间件功能</h4><p>当向指定的REST端点发出HTTP请求时执行的功能。由于LoopBack基于Express，LoopBack中间件与Express中间件相同。请参阅定义中间件。</p>
+<h4 id="middleware-phase-中间件阶段"><a href="#middleware-phase-中间件阶段" class="headerlink" title="middleware phase 中间件阶段"></a>middleware phase 中间件阶段</h4><p>当您调用中间件功能时，应用程序执行阶段。请参阅定义中间件。</p>
+<h4 id="model-模型"><a href="#model-模型" class="headerlink" title="model 模型"></a>model 模型</h4><p>请参阅LoopBack模型。</p>
+<h4 id="model-property-模型属性"><a href="#model-property-模型属性" class="headerlink" title="model property 模型属性"></a>model property 模型属性</h4><p>附加到模型的值; 对于持久化模型，对应于数据库列或字段。</p>
+<h1 id="N"><a href="#N" class="headerlink" title="N"></a>N</h1><h4 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h4><p>节点包管理器，用于使用npm注册表安装应用程序和管理依赖关系的命令行工具。</p>
+<h1 id="O"><a href="#O" class="headerlink" title="O"></a>O</h1><h4 id="on-premises-本地"><a href="#on-premises-本地" class="headerlink" title="on-premises 本地"></a>on-premises 本地</h4><p>涉及在用户或组织的本地计算机上安装和运行的软件。</p>
+<h4 id="operation-hook-操作钩"><a href="#operation-hook-操作钩" class="headerlink" title="operation hook 操作钩"></a>operation hook 操作钩</h4><p>由模型的高级创建，检索，更新或删除（CRUD）操作触发的代码。请参阅操作钩。</p>
+<h1 id="P"><a href="#P" class="headerlink" title="P"></a>P</h1><h4 id="Persisted-model-持久模型"><a href="#Persisted-model-持久模型" class="headerlink" title="Persisted model 持久模型"></a>Persisted model 持久模型</h4><p>一个LoopBack模型，连接到持久性数据源，自动获取基本的创建，读取，更新和删除方法。</p>
+<h4 id="production-生产"><a href="#production-生产" class="headerlink" title="production 生产"></a>production 生产</h4><p>当应用程序或API通常可用于最终用户或消费者时，软件生命周期中的阶段。与“发展”和“测试”对比。也称为“部署”。</p>
+<h4 id="production-host-生产主机"><a href="#production-host-生产主机" class="headerlink" title="production host 生产主机"></a>production host 生产主机</h4><p>运行生产应用程序的服务器。</p>
+<h4 id="property-属性"><a href="#property-属性" class="headerlink" title="property 属性"></a>property 属性</h4><p>请参阅模型属性。</p>
+<h4 id="push-notification-推送通知"><a href="#push-notification-推送通知" class="headerlink" title="push notification 推送通知"></a>push notification 推送通知</h4><p>向移动应用发送警报或消息。请参阅推送通知。</p>
+<h1 id="R"><a href="#R" class="headerlink" title="R"></a>R</h1><h4 id="remote-object-远程对象"><a href="#remote-object-远程对象" class="headerlink" title="remote object 远程对象"></a>remote object 远程对象</h4><p>通过StrongLoop应用程序通过网络导出的JavaScript对象与从模块导出功能的方式相同。您可以使用JavaScript在本地调用远程对象上的方法。</p>
+<h4 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h4><p>用于分布式超媒体系统（如万维网）的软件架构风格。该术语还经常用于描述任何使用XML（或YAML，JSON，纯文本）的简单界面，而不需要附加的消息层，例如SOAP。</p>
+<h4 id="route-路由"><a href="#route-路由" class="headerlink" title="route 路由"></a>route 路由</h4><p>识别资源的URL的一部分。例如，在http: //foo.com/products/id, the route is /products/id.</p>
+<h4 id="runtime-运行"><a href="#runtime-运行" class="headerlink" title="runtime 运行"></a>runtime 运行</h4><p>与计算机程序运行的时间段有关。</p>
+<h1 id="S"><a href="#S" class="headerlink" title="S"></a>S</h1><h4 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h4><p>软件开发套件 一组工具，API和文档，以协助以特定的计算机语言或特定的操作环境开发软件。</p>
+<h4 id="SLC"><a href="#SLC" class="headerlink" title="SLC"></a>SLC</h4><p>用于开发和操作的传统StrongLoop命令行工具。它被LoopBack CLI工具所取代lb。</p>
+<h4 id="synchronization-同步"><a href="#synchronization-同步" class="headerlink" title="synchronization 同步"></a>synchronization 同步</h4><p>在两个端点（如提供商应用程序和移动应用程序）之间实现数据一致性的过程。在此过程中，在任一端点，可以更新，创建或删除数据。请参阅同步。</p>
+<h1 id="W"><a href="#W" class="headerlink" title="W"></a>W</h1><h4 id="worker"><a href="#worker" class="headerlink" title="worker"></a>worker</h4><p>Node.js子进程。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习笔记 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> NodeJS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[LoopBack学习之命令行]]></title>
       <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%91%BD%E4%BB%A4%E8%A1%8C/</url>
       <content type="html"><![CDATA[<h3 id="创建新应用程序"><a href="#创建新应用程序" class="headerlink" title="创建新应用程序:"></a>创建新应用程序:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb</div></pre></td></tr></table></figure>
@@ -3711,75 +3546,6 @@
 <li>createReviews() 在MongoDB中使用自动迁移创建评论数据结构，并向其添加数据。</li>
 </ul>
 <h3 id="启动应用程序："><a href="#启动应用程序：" class="headerlink" title="启动应用程序："></a>启动应用程序：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node .</div></pre></td></tr></table></figure>]]></content>
-      
-        <categories>
-            
-            <category> 学习笔记 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> NodeJS </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[LoopBack学习之核心概念]]></title>
-      <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
-      <content type="html"><![CDATA[<p>英文地址：<br><a href="http://loopback.io/doc/en/lb3/Glossary.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/Glossary.html</a></p>
-<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><h4 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h4><p>访问控制列表，与标识所有可访问对象的主题及其访问权限的对象关联的列表。请参阅身份验证，授权和权限。</p>
-<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>应用程序接口。允许以高级语言编写的应用程序使用操作系统或其他程序的特定数据或功能的接口。</p>
-<h4 id="APIC"><a href="#APIC" class="headerlink" title="APIC"></a>APIC</h4><p>IBM API Connect命令行工具。它为脚本LoopBack应用程序提供命令。有关更多信息，请参阅命令行工具。</p>
-<h4 id="adapter-适配器"><a href="#adapter-适配器" class="headerlink" title="adapter 适配器"></a>adapter 适配器</h4><p>提供传输特定机制，使远程对象（及其集合）在其传输中可用。看强力远程。<br><a id="more"></a></p>
-<h4 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h4><p>由Google创建的移动操作系统，其中大部分是根据Apache 2.0和GPLv2开源许可证发布的。</p>
-<h4 id="AngularJS"><a href="#AngularJS" class="headerlink" title="AngularJS"></a>AngularJS</h4><p>开源客户端JavaScript框架。</p>
-<h4 id="API-Connect-API连接"><a href="#API-Connect-API连接" class="headerlink" title="API Connect API连接"></a>API Connect API连接</h4><p>IBM产品集成了StrongLoop和LoopBack技术，用于创建，运行，管理和保护API。请参阅DeveloperWorks&gt; API连接。</p>
-<h4 id="Arc-弧"><a href="#Arc-弧" class="headerlink" title="Arc 弧"></a>Arc 弧</h4><p>StrongLoop API生命周期图形工具套件，包括用于构建，分析和监视节点应用程序的工具。StrongLoop Arc不再处于积极的开发阶段，不久将被淘汰。</p>
-<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><h4 id="boot-script-启动脚本"><a href="#boot-script-启动脚本" class="headerlink" title="boot script 启动脚本"></a>boot script 启动脚本</h4><p>默认情况下，/server/boot目录中启动应用程序时自动运行的JavaScript函数。请参阅定义启动脚本。</p>
-<h4 id="built-in-model-内置型号"><a href="#built-in-model-内置型号" class="headerlink" title="built-in model 内置型号"></a>built-in model 内置型号</h4><p>默认情况下，每个LoopBack应用程序都有一个预定义的模型。请参阅使用内置型号。</p>
-<h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><h4 id="cluster-簇"><a href="#cluster-簇" class="headerlink" title="cluster 簇"></a>cluster 簇</h4><p>一组相同的Node worker进程在同一端口上接收请求。参见： 工人。</p>
-<h4 id="component-零件"><a href="#component-零件" class="headerlink" title="component 零件"></a>component 零件</h4><p>扩展基本LoopBack应用程序的预定义包。从根本上说，组件是将相关代码捆绑在一起作为一个单元，以使LoopBack应用程序能够轻松重用。请参阅LoopBack组件。</p>
-<h4 id="component-连接器"><a href="#component-连接器" class="headerlink" title="component 连接器"></a>component 连接器</h4><p>请参阅LoopBack连接器。</p>
-<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><h4 id="data-source-数据源"><a href="#data-source-数据源" class="headerlink" title="data source 数据源"></a>data source 数据源</h4><p>数据源使用连接器与特定数据库或其他后端系统连接。请参阅将模型连接到数据源。</p>
-<h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><h4 id="endpoint-端点"><a href="#endpoint-端点" class="headerlink" title="endpoint 端点"></a>endpoint 端点</h4><p>看路线。</p>
-<h4 id="enterprise-connector-企业连接器"><a href="#enterprise-connector-企业连接器" class="headerlink" title="enterprise connector 企业连接器"></a>enterprise connector 企业连接器</h4><p>连接到后端数据源（如Oracle，MySQL或MongoDB）的模块。</p>
-<h4 id="environment-variable-环境变量"><a href="#environment-variable-环境变量" class="headerlink" title="environment variable 环境变量"></a>environment variable 环境变量</h4><p>定义进程操作环境方面的变量。例如，环境变量可以定义主目录，命令搜索路径，正在使用的终端或当前时区。</p>
-<h4 id="event-loop-事件循环"><a href="#event-loop-事件循环" class="headerlink" title="event loop 事件循环"></a>event loop 事件循环</h4><p>运行Node.js应用程序的单线程执行过程，通常进行一系列异步函数调用。</p>
-<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><h4 id="generator-发电机"><a href="#generator-发电机" class="headerlink" title="generator 发电机"></a>generator 发电机</h4><p>支持全部或部分LoopBack应用程序的交互式命令行工具。请参阅命令行工具。</p>
-<h1 id="I"><a href="#I" class="headerlink" title="I"></a>I</h1><h4 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h4><p>苹果设备的封闭源码专有移动操作系统。</p>
-<h1 id="J"><a href="#J" class="headerlink" title="J"></a>J</h1><h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><p>JavaScript对象符号; 一种基于JavaScript对象字面符号的轻量级数据交换格式。JSON是编程语言中性，但使用各种语言的约定。</p>
-<h1 id="L"><a href="#L" class="headerlink" title="L"></a>L</h1><h4 id="lb"><a href="#lb" class="headerlink" title="lb"></a>lb</h4><p>用于脚手架和开发LoopBack应用程序的LoopBack命令行界面（CLI）工具。取代传统slc工具。</p>
-<h4 id="LDL"><a href="#LDL" class="headerlink" title="LDL"></a>LDL</h4><p>LoopBack定义语言，一种用于定义LoopBack模型和其他配置的JSON形式。</p>
-<h4 id="load-balancer-负载均衡器"><a href="#load-balancer-负载均衡器" class="headerlink" title="load balancer 负载均衡器"></a>load balancer 负载均衡器</h4><p>在一组服务器上分发工作负载的软件或硬件，以确保服务器不会过载。如果初始服务器发生故障，负载平衡器也会将用户引导到另一台服务器。</p>
-<h4 id="LoopBack-connector-LoopBack连接器"><a href="#LoopBack-connector-LoopBack连接器" class="headerlink" title="LoopBack connector LoopBack连接器"></a>LoopBack connector LoopBack连接器</h4><p>提供对后端系统（如数据库，REST API或其他服务）的访问的连接器。</p>
-<h4 id="LoopBack-DataSource-Juggler"><a href="#LoopBack-DataSource-Juggler" class="headerlink" title="LoopBack DataSource Juggler"></a>LoopBack DataSource Juggler</h4><p>对象关系映射，提供了一组通用的接口，用于与数据库，REST API和其他数据源进行交互。</p>
-<h4 id="LoopBack-model-LoopBack模型"><a href="#LoopBack-model-LoopBack模型" class="headerlink" title="LoopBack model LoopBack模型"></a>LoopBack model LoopBack模型</h4><p>由应用程序数据，验证规则，数据访问功能以及默认提供REST API的业务逻辑组成的模型。</p>
-<h1 id="M"><a href="#M" class="headerlink" title="M"></a>M</h1><h4 id="MBaaS"><a href="#MBaaS" class="headerlink" title="MBaaS"></a>MBaaS</h4><p>移动后端即服务。将移动应用程序连接到云计算服务的计算模型，通过统一的API和SDK，提供用户管理，推送通知和社交网络集成等功能。</p>
-<h4 id="middleware-function-中间件功能"><a href="#middleware-function-中间件功能" class="headerlink" title="middleware function 中间件功能"></a>middleware function 中间件功能</h4><p>当向指定的REST端点发出HTTP请求时执行的功能。由于LoopBack基于Express，LoopBack中间件与Express中间件相同。请参阅定义中间件。</p>
-<h4 id="middleware-phase-中间件阶段"><a href="#middleware-phase-中间件阶段" class="headerlink" title="middleware phase 中间件阶段"></a>middleware phase 中间件阶段</h4><p>当您调用中间件功能时，应用程序执行阶段。请参阅定义中间件。</p>
-<h4 id="model-模型"><a href="#model-模型" class="headerlink" title="model 模型"></a>model 模型</h4><p>请参阅LoopBack模型。</p>
-<h4 id="model-property-模型属性"><a href="#model-property-模型属性" class="headerlink" title="model property 模型属性"></a>model property 模型属性</h4><p>附加到模型的值; 对于持久化模型，对应于数据库列或字段。</p>
-<h1 id="N"><a href="#N" class="headerlink" title="N"></a>N</h1><h4 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h4><p>节点包管理器，用于使用npm注册表安装应用程序和管理依赖关系的命令行工具。</p>
-<h1 id="O"><a href="#O" class="headerlink" title="O"></a>O</h1><h4 id="on-premises-本地"><a href="#on-premises-本地" class="headerlink" title="on-premises 本地"></a>on-premises 本地</h4><p>涉及在用户或组织的本地计算机上安装和运行的软件。</p>
-<h4 id="operation-hook-操作钩"><a href="#operation-hook-操作钩" class="headerlink" title="operation hook 操作钩"></a>operation hook 操作钩</h4><p>由模型的高级创建，检索，更新或删除（CRUD）操作触发的代码。请参阅操作钩。</p>
-<h1 id="P"><a href="#P" class="headerlink" title="P"></a>P</h1><h4 id="Persisted-model-持久模型"><a href="#Persisted-model-持久模型" class="headerlink" title="Persisted model 持久模型"></a>Persisted model 持久模型</h4><p>一个LoopBack模型，连接到持久性数据源，自动获取基本的创建，读取，更新和删除方法。</p>
-<h4 id="production-生产"><a href="#production-生产" class="headerlink" title="production 生产"></a>production 生产</h4><p>当应用程序或API通常可用于最终用户或消费者时，软件生命周期中的阶段。与“发展”和“测试”对比。也称为“部署”。</p>
-<h4 id="production-host-生产主机"><a href="#production-host-生产主机" class="headerlink" title="production host 生产主机"></a>production host 生产主机</h4><p>运行生产应用程序的服务器。</p>
-<h4 id="property-属性"><a href="#property-属性" class="headerlink" title="property 属性"></a>property 属性</h4><p>请参阅模型属性。</p>
-<h4 id="push-notification-推送通知"><a href="#push-notification-推送通知" class="headerlink" title="push notification 推送通知"></a>push notification 推送通知</h4><p>向移动应用发送警报或消息。请参阅推送通知。</p>
-<h1 id="R"><a href="#R" class="headerlink" title="R"></a>R</h1><h4 id="remote-object-远程对象"><a href="#remote-object-远程对象" class="headerlink" title="remote object 远程对象"></a>remote object 远程对象</h4><p>通过StrongLoop应用程序通过网络导出的JavaScript对象与从模块导出功能的方式相同。您可以使用JavaScript在本地调用远程对象上的方法。</p>
-<h4 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h4><p>用于分布式超媒体系统（如万维网）的软件架构风格。该术语还经常用于描述任何使用XML（或YAML，JSON，纯文本）的简单界面，而不需要附加的消息层，例如SOAP。</p>
-<h4 id="route-路由"><a href="#route-路由" class="headerlink" title="route 路由"></a>route 路由</h4><p>识别资源的URL的一部分。例如，在http: //foo.com/products/id, the route is /products/id.</p>
-<h4 id="runtime-运行"><a href="#runtime-运行" class="headerlink" title="runtime 运行"></a>runtime 运行</h4><p>与计算机程序运行的时间段有关。</p>
-<h1 id="S"><a href="#S" class="headerlink" title="S"></a>S</h1><h4 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h4><p>软件开发套件 一组工具，API和文档，以协助以特定的计算机语言或特定的操作环境开发软件。</p>
-<h4 id="SLC"><a href="#SLC" class="headerlink" title="SLC"></a>SLC</h4><p>用于开发和操作的传统StrongLoop命令行工具。它被LoopBack CLI工具所取代lb。</p>
-<h4 id="synchronization-同步"><a href="#synchronization-同步" class="headerlink" title="synchronization 同步"></a>synchronization 同步</h4><p>在两个端点（如提供商应用程序和移动应用程序）之间实现数据一致性的过程。在此过程中，在任一端点，可以更新，创建或删除数据。请参阅同步。</p>
-<h1 id="W"><a href="#W" class="headerlink" title="W"></a>W</h1><h4 id="worker"><a href="#worker" class="headerlink" title="worker"></a>worker</h4><p>Node.js子进程。</p>
-]]></content>
       
         <categories>
             
@@ -3862,6 +3628,34 @@
     </entry>
     
     <entry>
+      <title><![CDATA[LaunchImage载入界面标准大小]]></title>
+      <url>/2016/1/15/LaunchImage%E8%BD%BD%E5%85%A5%E7%95%8C%E9%9D%A2%E6%A0%87%E5%87%86%E5%A4%A7%E5%B0%8F/</url>
+      <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/454522-0329a0b0dc2ad0ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="载入界面标准大小"></p>
+<p>iPhone Portrait iOS 8,9 Retina HD 5.5 （1242×2208） @3x</p>
+<p>iPhone Portrait iOS 8,9 Retina HD 4.7 （750×1334） @2x</p>
+<p>iPhone Portrait iOS 7-9 2x （640×960） @2x</p>
+<p>iPhone Portrait iOS 7-9 Retina 4 （640×1136） @2x</p>
+<p>iPhone Portrait iOS 5,6 1x （320×480） @1x</p>
+<p>iPhone Portrait iOS 5,6 2x （640×960） @2x</p>
+<p>iPhone Portrait iOS 5,6 Retina4 （640×1136） @2x</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习笔记 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[CocoaPods安装命令行]]></title>
       <url>/2016/1/15/CocoaPods%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4%E8%A1%8C/</url>
       <content type="html"><![CDATA[<ol>
@@ -3884,34 +3678,6 @@
 <p>在cocoapods 执行 sudo gem install cocoapods 的时候出现  While executing gem … (Gem::FilePermissionError)<br>    You don’t have write permissions for the /usr/bin directory.<br>改为 sudo gem install -n /usr/local/bin cocoapods  即可</p>
 ]]></content>
       
-        
-        <tags>
-            
-            <tag> iOS </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[LaunchImage载入界面标准大小]]></title>
-      <url>/2016/1/15/LaunchImage%E8%BD%BD%E5%85%A5%E7%95%8C%E9%9D%A2%E6%A0%87%E5%87%86%E5%A4%A7%E5%B0%8F/</url>
-      <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/454522-0329a0b0dc2ad0ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="载入界面标准大小"></p>
-<p>iPhone Portrait iOS 8,9 Retina HD 5.5 （1242×2208） @3x</p>
-<p>iPhone Portrait iOS 8,9 Retina HD 4.7 （750×1334） @2x</p>
-<p>iPhone Portrait iOS 7-9 2x （640×960） @2x</p>
-<p>iPhone Portrait iOS 7-9 Retina 4 （640×1136） @2x</p>
-<p>iPhone Portrait iOS 5,6 1x （320×480） @1x</p>
-<p>iPhone Portrait iOS 5,6 2x （640×960） @2x</p>
-<p>iPhone Portrait iOS 5,6 Retina4 （640×1136） @2x</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 学习笔记 </category>
-            
-        </categories>
-        
         
         <tags>
             
