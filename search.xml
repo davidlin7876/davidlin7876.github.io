@@ -7,7 +7,7 @@
       <url>/2018/10/10/%E8%AD%A6%E5%91%8A%E6%B6%88%E9%99%A4%E5%BC%BA%E8%BF%AB%E7%97%87%E7%9A%84%E9%80%89%E6%8B%A9/</url>
       <content type="html"><![CDATA[<p>[TOC]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#pragma clang diagnostic push</div><div class="line">#pragma clang diagnostic ignored &quot;-Wdeprecated-declarations&quot;</div><div class="line">这里写出现警告的代码</div><div class="line"></div><div class="line">#pragma clang diagnostic pop</div></pre></td></tr></table></figure></p>
 <p>这样就消除了方法弃用的警告！</p>
-<p>附Warnings对照表：<br><a id="more"></a></p>
+<p>点阅读全文查看全部的Warnings对照表<br><a id="more"></a></p>
 <h3 id="Semantic-Warnings"><a href="#Semantic-Warnings" class="headerlink" title="Semantic Warnings"></a>Semantic Warnings</h3><table>
 <thead>
 <tr>
