@@ -7,6 +7,7 @@
       <url>/2018/10/10/%E8%AD%A6%E5%91%8A%E6%B6%88%E9%99%A4%E5%BC%BA%E8%BF%AB%E7%97%87%E7%9A%84%E9%80%89%E6%8B%A9/</url>
       <content type="html"><![CDATA[<p>[TOC]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#pragma clang diagnostic push</div><div class="line">#pragma clang diagnostic ignored &quot;-Wdeprecated-declarations&quot;</div><div class="line">这里写出现警告的代码</div><div class="line"></div><div class="line">#pragma clang diagnostic pop</div></pre></td></tr></table></figure></p>
 <p>这样就消除了方法弃用的警告！</p>
+<p>附Warnings对照表：<br><a id="more"></a></p>
 <h3 id="Semantic-Warnings"><a href="#Semantic-Warnings" class="headerlink" title="Semantic Warnings"></a>Semantic Warnings</h3><table>
 <thead>
 <tr>
@@ -3628,34 +3629,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[LaunchImage载入界面标准大小]]></title>
-      <url>/2016/1/15/LaunchImage%E8%BD%BD%E5%85%A5%E7%95%8C%E9%9D%A2%E6%A0%87%E5%87%86%E5%A4%A7%E5%B0%8F/</url>
-      <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/454522-0329a0b0dc2ad0ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="载入界面标准大小"></p>
-<p>iPhone Portrait iOS 8,9 Retina HD 5.5 （1242×2208） @3x</p>
-<p>iPhone Portrait iOS 8,9 Retina HD 4.7 （750×1334） @2x</p>
-<p>iPhone Portrait iOS 7-9 2x （640×960） @2x</p>
-<p>iPhone Portrait iOS 7-9 Retina 4 （640×1136） @2x</p>
-<p>iPhone Portrait iOS 5,6 1x （320×480） @1x</p>
-<p>iPhone Portrait iOS 5,6 2x （640×960） @2x</p>
-<p>iPhone Portrait iOS 5,6 Retina4 （640×1136） @2x</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 学习笔记 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> iOS </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[CocoaPods安装命令行]]></title>
       <url>/2016/1/15/CocoaPods%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4%E8%A1%8C/</url>
       <content type="html"><![CDATA[<ol>
@@ -3678,6 +3651,34 @@
 <p>在cocoapods 执行 sudo gem install cocoapods 的时候出现  While executing gem … (Gem::FilePermissionError)<br>    You don’t have write permissions for the /usr/bin directory.<br>改为 sudo gem install -n /usr/local/bin cocoapods  即可</p>
 ]]></content>
       
+        
+        <tags>
+            
+            <tag> iOS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[LaunchImage载入界面标准大小]]></title>
+      <url>/2016/1/15/LaunchImage%E8%BD%BD%E5%85%A5%E7%95%8C%E9%9D%A2%E6%A0%87%E5%87%86%E5%A4%A7%E5%B0%8F/</url>
+      <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/454522-0329a0b0dc2ad0ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="载入界面标准大小"></p>
+<p>iPhone Portrait iOS 8,9 Retina HD 5.5 （1242×2208） @3x</p>
+<p>iPhone Portrait iOS 8,9 Retina HD 4.7 （750×1334） @2x</p>
+<p>iPhone Portrait iOS 7-9 2x （640×960） @2x</p>
+<p>iPhone Portrait iOS 7-9 Retina 4 （640×1136） @2x</p>
+<p>iPhone Portrait iOS 5,6 1x （320×480） @1x</p>
+<p>iPhone Portrait iOS 5,6 2x （640×960） @2x</p>
+<p>iPhone Portrait iOS 5,6 Retina4 （640×1136） @2x</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习笔记 </category>
+            
+        </categories>
+        
         
         <tags>
             
