@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="[TOC] 前言作者：黄翀 有代码的地方，就可能会有崩溃。定位崩溃问题的方法：最直接的，通过重现的步骤去调适；但是，有时候测试无法确定崩溃的步骤，或者崩溃是线上用户发生的，这些情况下，我们仍然可以通过崩溃日志，知道崩溃的原因和崩溃的代码行，从而修复问题。  什么是崩溃？  Application crashes: An application typically crashes when it p">
+<meta name="description" content="[TOC] 前言有代码的地方，就可能会有崩溃。定位崩溃问题的方法：最直接的，通过重现的步骤去调适；但是，有时候测试无法确定崩溃的步骤，或者崩溃是线上用户发生的，这些情况下，我们仍然可以通过崩溃日志，知道崩溃的原因和崩溃的代码行，从而修复问题。  什么是崩溃？  Application crashes: An application typically crashes when it perform">
 <meta name="keywords" content="iOS,Crash">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS崩溃处理">
 <meta property="og:url" content="https://linfeng.xyz/2018/3/12/iOS崩溃处理/index.html">
 <meta property="og:site_name" content="林峰的小宇宙">
-<meta property="og:description" content="[TOC] 前言作者：黄翀 有代码的地方，就可能会有崩溃。定位崩溃问题的方法：最直接的，通过重现的步骤去调适；但是，有时候测试无法确定崩溃的步骤，或者崩溃是线上用户发生的，这些情况下，我们仍然可以通过崩溃日志，知道崩溃的原因和崩溃的代码行，从而修复问题。  什么是崩溃？  Application crashes: An application typically crashes when it p">
+<meta property="og:description" content="[TOC] 前言有代码的地方，就可能会有崩溃。定位崩溃问题的方法：最直接的，通过重现的步骤去调适；但是，有时候测试无法确定崩溃的步骤，或者崩溃是线上用户发生的，这些情况下，我们仍然可以通过崩溃日志，知道崩溃的原因和崩溃的代码行，从而修复问题。  什么是崩溃？  Application crashes: An application typically crashes when it perform">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-3308a5a9ccc61ba1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-07925c9549337347.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -104,10 +104,10 @@
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-d4bd4a2edfb7b114.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-e1ee4243f5bbc009.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/5890308-6e311a17a9477136.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-03-12T07:01:02.000Z">
+<meta property="og:updated_time" content="2019-01-14T07:15:04.183Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS崩溃处理">
-<meta name="twitter:description" content="[TOC] 前言作者：黄翀 有代码的地方，就可能会有崩溃。定位崩溃问题的方法：最直接的，通过重现的步骤去调适；但是，有时候测试无法确定崩溃的步骤，或者崩溃是线上用户发生的，这些情况下，我们仍然可以通过崩溃日志，知道崩溃的原因和崩溃的代码行，从而修复问题。  什么是崩溃？  Application crashes: An application typically crashes when it p">
+<meta name="twitter:description" content="[TOC] 前言有代码的地方，就可能会有崩溃。定位崩溃问题的方法：最直接的，通过重现的步骤去调适；但是，有时候测试无法确定崩溃的步骤，或者崩溃是线上用户发生的，这些情况下，我们仍然可以通过崩溃日志，知道崩溃的原因和崩溃的代码行，从而修复问题。  什么是崩溃？  Application crashes: An application typically crashes when it perform">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/5890308-3308a5a9ccc61ba1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -415,8 +415,7 @@
 
       
         <p>[TOC]</p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>作者：黄翀</p>
-<p>有代码的地方，就可能会有崩溃。定位崩溃问题的方法：最直接的，通过重现的步骤去调适；但是，有时候测试无法确定崩溃的步骤，或者崩溃是线上用户发生的，这些情况下，我们仍然可以通过崩溃日志，知道崩溃的原因和崩溃的代码行，从而修复问题。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有代码的地方，就可能会有崩溃。定位崩溃问题的方法：最直接的，通过重现的步骤去调适；但是，有时候测试无法确定崩溃的步骤，或者崩溃是线上用户发生的，这些情况下，我们仍然可以通过崩溃日志，知道崩溃的原因和崩溃的代码行，从而修复问题。</p>
 <ul>
 <li>什么是崩溃？</li>
 </ul>
@@ -703,7 +702,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

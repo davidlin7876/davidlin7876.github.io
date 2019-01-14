@@ -2307,8 +2307,7 @@
       <title><![CDATA[iOS崩溃处理]]></title>
       <url>/2018/3/12/iOS%E5%B4%A9%E6%BA%83%E5%A4%84%E7%90%86/</url>
       <content type="html"><![CDATA[<p>[TOC]</p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>作者：黄翀</p>
-<p>有代码的地方，就可能会有崩溃。定位崩溃问题的方法：最直接的，通过重现的步骤去调适；但是，有时候测试无法确定崩溃的步骤，或者崩溃是线上用户发生的，这些情况下，我们仍然可以通过崩溃日志，知道崩溃的原因和崩溃的代码行，从而修复问题。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有代码的地方，就可能会有崩溃。定位崩溃问题的方法：最直接的，通过重现的步骤去调适；但是，有时候测试无法确定崩溃的步骤，或者崩溃是线上用户发生的，这些情况下，我们仍然可以通过崩溃日志，知道崩溃的原因和崩溃的代码行，从而修复问题。</p>
 <ul>
 <li>什么是崩溃？</li>
 </ul>
@@ -3418,75 +3417,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[LoopBack学习之核心概念]]></title>
-      <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
-      <content type="html"><![CDATA[<p>英文地址：<br><a href="http://loopback.io/doc/en/lb3/Glossary.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/Glossary.html</a></p>
-<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><h4 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h4><p>访问控制列表，与标识所有可访问对象的主题及其访问权限的对象关联的列表。请参阅身份验证，授权和权限。</p>
-<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>应用程序接口。允许以高级语言编写的应用程序使用操作系统或其他程序的特定数据或功能的接口。</p>
-<h4 id="APIC"><a href="#APIC" class="headerlink" title="APIC"></a>APIC</h4><p>IBM API Connect命令行工具。它为脚本LoopBack应用程序提供命令。有关更多信息，请参阅命令行工具。</p>
-<h4 id="adapter-适配器"><a href="#adapter-适配器" class="headerlink" title="adapter 适配器"></a>adapter 适配器</h4><p>提供传输特定机制，使远程对象（及其集合）在其传输中可用。看强力远程。<br><a id="more"></a></p>
-<h4 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h4><p>由Google创建的移动操作系统，其中大部分是根据Apache 2.0和GPLv2开源许可证发布的。</p>
-<h4 id="AngularJS"><a href="#AngularJS" class="headerlink" title="AngularJS"></a>AngularJS</h4><p>开源客户端JavaScript框架。</p>
-<h4 id="API-Connect-API连接"><a href="#API-Connect-API连接" class="headerlink" title="API Connect API连接"></a>API Connect API连接</h4><p>IBM产品集成了StrongLoop和LoopBack技术，用于创建，运行，管理和保护API。请参阅DeveloperWorks&gt; API连接。</p>
-<h4 id="Arc-弧"><a href="#Arc-弧" class="headerlink" title="Arc 弧"></a>Arc 弧</h4><p>StrongLoop API生命周期图形工具套件，包括用于构建，分析和监视节点应用程序的工具。StrongLoop Arc不再处于积极的开发阶段，不久将被淘汰。</p>
-<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><h4 id="boot-script-启动脚本"><a href="#boot-script-启动脚本" class="headerlink" title="boot script 启动脚本"></a>boot script 启动脚本</h4><p>默认情况下，/server/boot目录中启动应用程序时自动运行的JavaScript函数。请参阅定义启动脚本。</p>
-<h4 id="built-in-model-内置型号"><a href="#built-in-model-内置型号" class="headerlink" title="built-in model 内置型号"></a>built-in model 内置型号</h4><p>默认情况下，每个LoopBack应用程序都有一个预定义的模型。请参阅使用内置型号。</p>
-<h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><h4 id="cluster-簇"><a href="#cluster-簇" class="headerlink" title="cluster 簇"></a>cluster 簇</h4><p>一组相同的Node worker进程在同一端口上接收请求。参见： 工人。</p>
-<h4 id="component-零件"><a href="#component-零件" class="headerlink" title="component 零件"></a>component 零件</h4><p>扩展基本LoopBack应用程序的预定义包。从根本上说，组件是将相关代码捆绑在一起作为一个单元，以使LoopBack应用程序能够轻松重用。请参阅LoopBack组件。</p>
-<h4 id="component-连接器"><a href="#component-连接器" class="headerlink" title="component 连接器"></a>component 连接器</h4><p>请参阅LoopBack连接器。</p>
-<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><h4 id="data-source-数据源"><a href="#data-source-数据源" class="headerlink" title="data source 数据源"></a>data source 数据源</h4><p>数据源使用连接器与特定数据库或其他后端系统连接。请参阅将模型连接到数据源。</p>
-<h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><h4 id="endpoint-端点"><a href="#endpoint-端点" class="headerlink" title="endpoint 端点"></a>endpoint 端点</h4><p>看路线。</p>
-<h4 id="enterprise-connector-企业连接器"><a href="#enterprise-connector-企业连接器" class="headerlink" title="enterprise connector 企业连接器"></a>enterprise connector 企业连接器</h4><p>连接到后端数据源（如Oracle，MySQL或MongoDB）的模块。</p>
-<h4 id="environment-variable-环境变量"><a href="#environment-variable-环境变量" class="headerlink" title="environment variable 环境变量"></a>environment variable 环境变量</h4><p>定义进程操作环境方面的变量。例如，环境变量可以定义主目录，命令搜索路径，正在使用的终端或当前时区。</p>
-<h4 id="event-loop-事件循环"><a href="#event-loop-事件循环" class="headerlink" title="event loop 事件循环"></a>event loop 事件循环</h4><p>运行Node.js应用程序的单线程执行过程，通常进行一系列异步函数调用。</p>
-<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><h4 id="generator-发电机"><a href="#generator-发电机" class="headerlink" title="generator 发电机"></a>generator 发电机</h4><p>支持全部或部分LoopBack应用程序的交互式命令行工具。请参阅命令行工具。</p>
-<h1 id="I"><a href="#I" class="headerlink" title="I"></a>I</h1><h4 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h4><p>苹果设备的封闭源码专有移动操作系统。</p>
-<h1 id="J"><a href="#J" class="headerlink" title="J"></a>J</h1><h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><p>JavaScript对象符号; 一种基于JavaScript对象字面符号的轻量级数据交换格式。JSON是编程语言中性，但使用各种语言的约定。</p>
-<h1 id="L"><a href="#L" class="headerlink" title="L"></a>L</h1><h4 id="lb"><a href="#lb" class="headerlink" title="lb"></a>lb</h4><p>用于脚手架和开发LoopBack应用程序的LoopBack命令行界面（CLI）工具。取代传统slc工具。</p>
-<h4 id="LDL"><a href="#LDL" class="headerlink" title="LDL"></a>LDL</h4><p>LoopBack定义语言，一种用于定义LoopBack模型和其他配置的JSON形式。</p>
-<h4 id="load-balancer-负载均衡器"><a href="#load-balancer-负载均衡器" class="headerlink" title="load balancer 负载均衡器"></a>load balancer 负载均衡器</h4><p>在一组服务器上分发工作负载的软件或硬件，以确保服务器不会过载。如果初始服务器发生故障，负载平衡器也会将用户引导到另一台服务器。</p>
-<h4 id="LoopBack-connector-LoopBack连接器"><a href="#LoopBack-connector-LoopBack连接器" class="headerlink" title="LoopBack connector LoopBack连接器"></a>LoopBack connector LoopBack连接器</h4><p>提供对后端系统（如数据库，REST API或其他服务）的访问的连接器。</p>
-<h4 id="LoopBack-DataSource-Juggler"><a href="#LoopBack-DataSource-Juggler" class="headerlink" title="LoopBack DataSource Juggler"></a>LoopBack DataSource Juggler</h4><p>对象关系映射，提供了一组通用的接口，用于与数据库，REST API和其他数据源进行交互。</p>
-<h4 id="LoopBack-model-LoopBack模型"><a href="#LoopBack-model-LoopBack模型" class="headerlink" title="LoopBack model LoopBack模型"></a>LoopBack model LoopBack模型</h4><p>由应用程序数据，验证规则，数据访问功能以及默认提供REST API的业务逻辑组成的模型。</p>
-<h1 id="M"><a href="#M" class="headerlink" title="M"></a>M</h1><h4 id="MBaaS"><a href="#MBaaS" class="headerlink" title="MBaaS"></a>MBaaS</h4><p>移动后端即服务。将移动应用程序连接到云计算服务的计算模型，通过统一的API和SDK，提供用户管理，推送通知和社交网络集成等功能。</p>
-<h4 id="middleware-function-中间件功能"><a href="#middleware-function-中间件功能" class="headerlink" title="middleware function 中间件功能"></a>middleware function 中间件功能</h4><p>当向指定的REST端点发出HTTP请求时执行的功能。由于LoopBack基于Express，LoopBack中间件与Express中间件相同。请参阅定义中间件。</p>
-<h4 id="middleware-phase-中间件阶段"><a href="#middleware-phase-中间件阶段" class="headerlink" title="middleware phase 中间件阶段"></a>middleware phase 中间件阶段</h4><p>当您调用中间件功能时，应用程序执行阶段。请参阅定义中间件。</p>
-<h4 id="model-模型"><a href="#model-模型" class="headerlink" title="model 模型"></a>model 模型</h4><p>请参阅LoopBack模型。</p>
-<h4 id="model-property-模型属性"><a href="#model-property-模型属性" class="headerlink" title="model property 模型属性"></a>model property 模型属性</h4><p>附加到模型的值; 对于持久化模型，对应于数据库列或字段。</p>
-<h1 id="N"><a href="#N" class="headerlink" title="N"></a>N</h1><h4 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h4><p>节点包管理器，用于使用npm注册表安装应用程序和管理依赖关系的命令行工具。</p>
-<h1 id="O"><a href="#O" class="headerlink" title="O"></a>O</h1><h4 id="on-premises-本地"><a href="#on-premises-本地" class="headerlink" title="on-premises 本地"></a>on-premises 本地</h4><p>涉及在用户或组织的本地计算机上安装和运行的软件。</p>
-<h4 id="operation-hook-操作钩"><a href="#operation-hook-操作钩" class="headerlink" title="operation hook 操作钩"></a>operation hook 操作钩</h4><p>由模型的高级创建，检索，更新或删除（CRUD）操作触发的代码。请参阅操作钩。</p>
-<h1 id="P"><a href="#P" class="headerlink" title="P"></a>P</h1><h4 id="Persisted-model-持久模型"><a href="#Persisted-model-持久模型" class="headerlink" title="Persisted model 持久模型"></a>Persisted model 持久模型</h4><p>一个LoopBack模型，连接到持久性数据源，自动获取基本的创建，读取，更新和删除方法。</p>
-<h4 id="production-生产"><a href="#production-生产" class="headerlink" title="production 生产"></a>production 生产</h4><p>当应用程序或API通常可用于最终用户或消费者时，软件生命周期中的阶段。与“发展”和“测试”对比。也称为“部署”。</p>
-<h4 id="production-host-生产主机"><a href="#production-host-生产主机" class="headerlink" title="production host 生产主机"></a>production host 生产主机</h4><p>运行生产应用程序的服务器。</p>
-<h4 id="property-属性"><a href="#property-属性" class="headerlink" title="property 属性"></a>property 属性</h4><p>请参阅模型属性。</p>
-<h4 id="push-notification-推送通知"><a href="#push-notification-推送通知" class="headerlink" title="push notification 推送通知"></a>push notification 推送通知</h4><p>向移动应用发送警报或消息。请参阅推送通知。</p>
-<h1 id="R"><a href="#R" class="headerlink" title="R"></a>R</h1><h4 id="remote-object-远程对象"><a href="#remote-object-远程对象" class="headerlink" title="remote object 远程对象"></a>remote object 远程对象</h4><p>通过StrongLoop应用程序通过网络导出的JavaScript对象与从模块导出功能的方式相同。您可以使用JavaScript在本地调用远程对象上的方法。</p>
-<h4 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h4><p>用于分布式超媒体系统（如万维网）的软件架构风格。该术语还经常用于描述任何使用XML（或YAML，JSON，纯文本）的简单界面，而不需要附加的消息层，例如SOAP。</p>
-<h4 id="route-路由"><a href="#route-路由" class="headerlink" title="route 路由"></a>route 路由</h4><p>识别资源的URL的一部分。例如，在http: //foo.com/products/id, the route is /products/id.</p>
-<h4 id="runtime-运行"><a href="#runtime-运行" class="headerlink" title="runtime 运行"></a>runtime 运行</h4><p>与计算机程序运行的时间段有关。</p>
-<h1 id="S"><a href="#S" class="headerlink" title="S"></a>S</h1><h4 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h4><p>软件开发套件 一组工具，API和文档，以协助以特定的计算机语言或特定的操作环境开发软件。</p>
-<h4 id="SLC"><a href="#SLC" class="headerlink" title="SLC"></a>SLC</h4><p>用于开发和操作的传统StrongLoop命令行工具。它被LoopBack CLI工具所取代lb。</p>
-<h4 id="synchronization-同步"><a href="#synchronization-同步" class="headerlink" title="synchronization 同步"></a>synchronization 同步</h4><p>在两个端点（如提供商应用程序和移动应用程序）之间实现数据一致性的过程。在此过程中，在任一端点，可以更新，创建或删除数据。请参阅同步。</p>
-<h1 id="W"><a href="#W" class="headerlink" title="W"></a>W</h1><h4 id="worker"><a href="#worker" class="headerlink" title="worker"></a>worker</h4><p>Node.js子进程。</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 学习笔记 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> NodeJS </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[LoopBack学习之命令行]]></title>
       <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%91%BD%E4%BB%A4%E8%A1%8C/</url>
       <content type="html"><![CDATA[<h3 id="创建新应用程序"><a href="#创建新应用程序" class="headerlink" title="创建新应用程序:"></a>创建新应用程序:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb</div></pre></td></tr></table></figure>
@@ -3547,6 +3477,75 @@
 <li>createReviews() 在MongoDB中使用自动迁移创建评论数据结构，并向其添加数据。</li>
 </ul>
 <h3 id="启动应用程序："><a href="#启动应用程序：" class="headerlink" title="启动应用程序："></a>启动应用程序：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node .</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> 学习笔记 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> NodeJS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[LoopBack学习之核心概念]]></title>
+      <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
+      <content type="html"><![CDATA[<p>英文地址：<br><a href="http://loopback.io/doc/en/lb3/Glossary.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/Glossary.html</a></p>
+<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><h4 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h4><p>访问控制列表，与标识所有可访问对象的主题及其访问权限的对象关联的列表。请参阅身份验证，授权和权限。</p>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>应用程序接口。允许以高级语言编写的应用程序使用操作系统或其他程序的特定数据或功能的接口。</p>
+<h4 id="APIC"><a href="#APIC" class="headerlink" title="APIC"></a>APIC</h4><p>IBM API Connect命令行工具。它为脚本LoopBack应用程序提供命令。有关更多信息，请参阅命令行工具。</p>
+<h4 id="adapter-适配器"><a href="#adapter-适配器" class="headerlink" title="adapter 适配器"></a>adapter 适配器</h4><p>提供传输特定机制，使远程对象（及其集合）在其传输中可用。看强力远程。<br><a id="more"></a></p>
+<h4 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h4><p>由Google创建的移动操作系统，其中大部分是根据Apache 2.0和GPLv2开源许可证发布的。</p>
+<h4 id="AngularJS"><a href="#AngularJS" class="headerlink" title="AngularJS"></a>AngularJS</h4><p>开源客户端JavaScript框架。</p>
+<h4 id="API-Connect-API连接"><a href="#API-Connect-API连接" class="headerlink" title="API Connect API连接"></a>API Connect API连接</h4><p>IBM产品集成了StrongLoop和LoopBack技术，用于创建，运行，管理和保护API。请参阅DeveloperWorks&gt; API连接。</p>
+<h4 id="Arc-弧"><a href="#Arc-弧" class="headerlink" title="Arc 弧"></a>Arc 弧</h4><p>StrongLoop API生命周期图形工具套件，包括用于构建，分析和监视节点应用程序的工具。StrongLoop Arc不再处于积极的开发阶段，不久将被淘汰。</p>
+<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><h4 id="boot-script-启动脚本"><a href="#boot-script-启动脚本" class="headerlink" title="boot script 启动脚本"></a>boot script 启动脚本</h4><p>默认情况下，/server/boot目录中启动应用程序时自动运行的JavaScript函数。请参阅定义启动脚本。</p>
+<h4 id="built-in-model-内置型号"><a href="#built-in-model-内置型号" class="headerlink" title="built-in model 内置型号"></a>built-in model 内置型号</h4><p>默认情况下，每个LoopBack应用程序都有一个预定义的模型。请参阅使用内置型号。</p>
+<h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><h4 id="cluster-簇"><a href="#cluster-簇" class="headerlink" title="cluster 簇"></a>cluster 簇</h4><p>一组相同的Node worker进程在同一端口上接收请求。参见： 工人。</p>
+<h4 id="component-零件"><a href="#component-零件" class="headerlink" title="component 零件"></a>component 零件</h4><p>扩展基本LoopBack应用程序的预定义包。从根本上说，组件是将相关代码捆绑在一起作为一个单元，以使LoopBack应用程序能够轻松重用。请参阅LoopBack组件。</p>
+<h4 id="component-连接器"><a href="#component-连接器" class="headerlink" title="component 连接器"></a>component 连接器</h4><p>请参阅LoopBack连接器。</p>
+<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><h4 id="data-source-数据源"><a href="#data-source-数据源" class="headerlink" title="data source 数据源"></a>data source 数据源</h4><p>数据源使用连接器与特定数据库或其他后端系统连接。请参阅将模型连接到数据源。</p>
+<h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><h4 id="endpoint-端点"><a href="#endpoint-端点" class="headerlink" title="endpoint 端点"></a>endpoint 端点</h4><p>看路线。</p>
+<h4 id="enterprise-connector-企业连接器"><a href="#enterprise-connector-企业连接器" class="headerlink" title="enterprise connector 企业连接器"></a>enterprise connector 企业连接器</h4><p>连接到后端数据源（如Oracle，MySQL或MongoDB）的模块。</p>
+<h4 id="environment-variable-环境变量"><a href="#environment-variable-环境变量" class="headerlink" title="environment variable 环境变量"></a>environment variable 环境变量</h4><p>定义进程操作环境方面的变量。例如，环境变量可以定义主目录，命令搜索路径，正在使用的终端或当前时区。</p>
+<h4 id="event-loop-事件循环"><a href="#event-loop-事件循环" class="headerlink" title="event loop 事件循环"></a>event loop 事件循环</h4><p>运行Node.js应用程序的单线程执行过程，通常进行一系列异步函数调用。</p>
+<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><h4 id="generator-发电机"><a href="#generator-发电机" class="headerlink" title="generator 发电机"></a>generator 发电机</h4><p>支持全部或部分LoopBack应用程序的交互式命令行工具。请参阅命令行工具。</p>
+<h1 id="I"><a href="#I" class="headerlink" title="I"></a>I</h1><h4 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h4><p>苹果设备的封闭源码专有移动操作系统。</p>
+<h1 id="J"><a href="#J" class="headerlink" title="J"></a>J</h1><h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><p>JavaScript对象符号; 一种基于JavaScript对象字面符号的轻量级数据交换格式。JSON是编程语言中性，但使用各种语言的约定。</p>
+<h1 id="L"><a href="#L" class="headerlink" title="L"></a>L</h1><h4 id="lb"><a href="#lb" class="headerlink" title="lb"></a>lb</h4><p>用于脚手架和开发LoopBack应用程序的LoopBack命令行界面（CLI）工具。取代传统slc工具。</p>
+<h4 id="LDL"><a href="#LDL" class="headerlink" title="LDL"></a>LDL</h4><p>LoopBack定义语言，一种用于定义LoopBack模型和其他配置的JSON形式。</p>
+<h4 id="load-balancer-负载均衡器"><a href="#load-balancer-负载均衡器" class="headerlink" title="load balancer 负载均衡器"></a>load balancer 负载均衡器</h4><p>在一组服务器上分发工作负载的软件或硬件，以确保服务器不会过载。如果初始服务器发生故障，负载平衡器也会将用户引导到另一台服务器。</p>
+<h4 id="LoopBack-connector-LoopBack连接器"><a href="#LoopBack-connector-LoopBack连接器" class="headerlink" title="LoopBack connector LoopBack连接器"></a>LoopBack connector LoopBack连接器</h4><p>提供对后端系统（如数据库，REST API或其他服务）的访问的连接器。</p>
+<h4 id="LoopBack-DataSource-Juggler"><a href="#LoopBack-DataSource-Juggler" class="headerlink" title="LoopBack DataSource Juggler"></a>LoopBack DataSource Juggler</h4><p>对象关系映射，提供了一组通用的接口，用于与数据库，REST API和其他数据源进行交互。</p>
+<h4 id="LoopBack-model-LoopBack模型"><a href="#LoopBack-model-LoopBack模型" class="headerlink" title="LoopBack model LoopBack模型"></a>LoopBack model LoopBack模型</h4><p>由应用程序数据，验证规则，数据访问功能以及默认提供REST API的业务逻辑组成的模型。</p>
+<h1 id="M"><a href="#M" class="headerlink" title="M"></a>M</h1><h4 id="MBaaS"><a href="#MBaaS" class="headerlink" title="MBaaS"></a>MBaaS</h4><p>移动后端即服务。将移动应用程序连接到云计算服务的计算模型，通过统一的API和SDK，提供用户管理，推送通知和社交网络集成等功能。</p>
+<h4 id="middleware-function-中间件功能"><a href="#middleware-function-中间件功能" class="headerlink" title="middleware function 中间件功能"></a>middleware function 中间件功能</h4><p>当向指定的REST端点发出HTTP请求时执行的功能。由于LoopBack基于Express，LoopBack中间件与Express中间件相同。请参阅定义中间件。</p>
+<h4 id="middleware-phase-中间件阶段"><a href="#middleware-phase-中间件阶段" class="headerlink" title="middleware phase 中间件阶段"></a>middleware phase 中间件阶段</h4><p>当您调用中间件功能时，应用程序执行阶段。请参阅定义中间件。</p>
+<h4 id="model-模型"><a href="#model-模型" class="headerlink" title="model 模型"></a>model 模型</h4><p>请参阅LoopBack模型。</p>
+<h4 id="model-property-模型属性"><a href="#model-property-模型属性" class="headerlink" title="model property 模型属性"></a>model property 模型属性</h4><p>附加到模型的值; 对于持久化模型，对应于数据库列或字段。</p>
+<h1 id="N"><a href="#N" class="headerlink" title="N"></a>N</h1><h4 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h4><p>节点包管理器，用于使用npm注册表安装应用程序和管理依赖关系的命令行工具。</p>
+<h1 id="O"><a href="#O" class="headerlink" title="O"></a>O</h1><h4 id="on-premises-本地"><a href="#on-premises-本地" class="headerlink" title="on-premises 本地"></a>on-premises 本地</h4><p>涉及在用户或组织的本地计算机上安装和运行的软件。</p>
+<h4 id="operation-hook-操作钩"><a href="#operation-hook-操作钩" class="headerlink" title="operation hook 操作钩"></a>operation hook 操作钩</h4><p>由模型的高级创建，检索，更新或删除（CRUD）操作触发的代码。请参阅操作钩。</p>
+<h1 id="P"><a href="#P" class="headerlink" title="P"></a>P</h1><h4 id="Persisted-model-持久模型"><a href="#Persisted-model-持久模型" class="headerlink" title="Persisted model 持久模型"></a>Persisted model 持久模型</h4><p>一个LoopBack模型，连接到持久性数据源，自动获取基本的创建，读取，更新和删除方法。</p>
+<h4 id="production-生产"><a href="#production-生产" class="headerlink" title="production 生产"></a>production 生产</h4><p>当应用程序或API通常可用于最终用户或消费者时，软件生命周期中的阶段。与“发展”和“测试”对比。也称为“部署”。</p>
+<h4 id="production-host-生产主机"><a href="#production-host-生产主机" class="headerlink" title="production host 生产主机"></a>production host 生产主机</h4><p>运行生产应用程序的服务器。</p>
+<h4 id="property-属性"><a href="#property-属性" class="headerlink" title="property 属性"></a>property 属性</h4><p>请参阅模型属性。</p>
+<h4 id="push-notification-推送通知"><a href="#push-notification-推送通知" class="headerlink" title="push notification 推送通知"></a>push notification 推送通知</h4><p>向移动应用发送警报或消息。请参阅推送通知。</p>
+<h1 id="R"><a href="#R" class="headerlink" title="R"></a>R</h1><h4 id="remote-object-远程对象"><a href="#remote-object-远程对象" class="headerlink" title="remote object 远程对象"></a>remote object 远程对象</h4><p>通过StrongLoop应用程序通过网络导出的JavaScript对象与从模块导出功能的方式相同。您可以使用JavaScript在本地调用远程对象上的方法。</p>
+<h4 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h4><p>用于分布式超媒体系统（如万维网）的软件架构风格。该术语还经常用于描述任何使用XML（或YAML，JSON，纯文本）的简单界面，而不需要附加的消息层，例如SOAP。</p>
+<h4 id="route-路由"><a href="#route-路由" class="headerlink" title="route 路由"></a>route 路由</h4><p>识别资源的URL的一部分。例如，在http: //foo.com/products/id, the route is /products/id.</p>
+<h4 id="runtime-运行"><a href="#runtime-运行" class="headerlink" title="runtime 运行"></a>runtime 运行</h4><p>与计算机程序运行的时间段有关。</p>
+<h1 id="S"><a href="#S" class="headerlink" title="S"></a>S</h1><h4 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h4><p>软件开发套件 一组工具，API和文档，以协助以特定的计算机语言或特定的操作环境开发软件。</p>
+<h4 id="SLC"><a href="#SLC" class="headerlink" title="SLC"></a>SLC</h4><p>用于开发和操作的传统StrongLoop命令行工具。它被LoopBack CLI工具所取代lb。</p>
+<h4 id="synchronization-同步"><a href="#synchronization-同步" class="headerlink" title="synchronization 同步"></a>synchronization 同步</h4><p>在两个端点（如提供商应用程序和移动应用程序）之间实现数据一致性的过程。在此过程中，在任一端点，可以更新，创建或删除数据。请参阅同步。</p>
+<h1 id="W"><a href="#W" class="headerlink" title="W"></a>W</h1><h4 id="worker"><a href="#worker" class="headerlink" title="worker"></a>worker</h4><p>Node.js子进程。</p>
+]]></content>
       
         <categories>
             
