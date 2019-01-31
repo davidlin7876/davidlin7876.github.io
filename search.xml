@@ -3,6 +3,320 @@
   
     
     <entry>
+      <title><![CDATA[GCD回顾温习总结(Swift)]]></title>
+      <url>/2019/1/30/GCD%E5%9B%9E%E9%A1%BE%E6%B8%A9%E4%B9%A0%E6%80%BB%E7%BB%93(Swift)/</url>
+      <content type="html"><![CDATA[<p>[TOC]</p>
+<h1 id="1-GCD-简介"><a href="#1-GCD-简介" class="headerlink" title="1. GCD 简介"></a>1. GCD 简介</h1><p>什么是 GCD 呢?</p>
+<blockquote>
+<p>Grand Central Dispatch(GCD) 是 Apple 开发的一个多核编程的较新的解决方法。它主要用于优化应用程序以支持多核处理器以及其他对称多处理系统。它是一个在线程池模式的基础上执行的并发任务。在 Mac OS X 10.6 雪豹中首次推出，也可在 iOS 4 及以上版本使用。</p>
+</blockquote>
+<p>为什么要用 GCD 呢？</p>
+<ul>
+<li>GCD 可用于多核的并行运算</li>
+<li>GCD 会自动利用更多的 CPU 内核（比如双核、四核）</li>
+<li>GCD 会自动管理线程的生命周期（创建线程、调度任务、销毁线程）</li>
+<li>程序员只需要告诉 GCD 想要执行什么任务，不需要编写任何线程管理代码</li>
+</ul>
+<h1 id="2-GCD-任务和队列"><a href="#2-GCD-任务和队列" class="headerlink" title="2. GCD 任务和队列"></a>2. GCD 任务和队列</h1><h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><p>就是执行操作的意思，换句话说就是你在线程中执行的那段代码。在 GCD 中是放在 block 中的。执行任务有两种方式：同步执行（sync）和异步执行（async）。两者的主要区别是：是否等待队列的任务执行结束，以及是否具备开启新线程的能力。</p>
+<ul>
+<li>同步执行（sync）：<ul>
+<li>同步添加任务到指定的队列中，在添加的任务执行结束之前，会一直等待，直到队列里面的任务完成之后再继续执行。</li>
+<li>只能在当前线程中执行任务，不具备开启新线程的能力。</li>
+</ul>
+</li>
+<li>异步执行（async）：<ul>
+<li>异步添加任务到指定的队列中，它不会做任何等待，可以继续执行任务。</li>
+<li>可以在新的线程中执行任务，具备开启新线程的能力。<blockquote>
+<p>注意：异步执行（async）虽然具有开启新线程的能力，但是并不一定开启新线程。这跟任务所指定的队列类型有关。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h3 id="队列（Dispatch-Queue）"><a href="#队列（Dispatch-Queue）" class="headerlink" title="队列（Dispatch Queue）"></a>队列（Dispatch Queue）</h3><p>这里的队列指执行任务的等待队列，即用来存放任务的队列。队列是一种特殊的线性表，采用 FIFO（先进先出）的原则，即新任务总是被插入到队列的末尾，而读取任务的时候总是从队列的头部开始读取。每读取一个任务，则从队列中释放一个任务。</p>
+<p>在 GCD 中有两种队列：串行队列和并发队列。两者都符合 FIFO（先进先出）的原则。两者的主要区别是：执行顺序不同，以及开启线程数不同。</p>
+<ul>
+<li>串行队列（Serial Dispatch Queue）：<ul>
+<li>每次只有一个任务被执行。让任务一个接着一个地执行。（只开启一个线程，一个任务执行完毕后，再执行下一个任务）<br><img src="https://upload-images.jianshu.io/upload_images/1877784-4faca27116209f35.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000" alt="串行队列"> </li>
+</ul>
+</li>
+<li>并发队列（Concurrent Dispatch Queue）：<ul>
+<li>可以让多个任务并发（同时）执行。（可以开启多个线程，并且同时执行任务）<br><img src="https://upload-images.jianshu.io/upload_images/1877784-97f3931d1b187b11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000" alt="并发队列"> <blockquote>
+<p>注意：并发队列的并发功能只有在异步（dispatch_async）函数下才有效</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-GCD-的使用步骤"><a href="#3-GCD-的使用步骤" class="headerlink" title="3. GCD 的使用步骤"></a>3. GCD 的使用步骤</h1><ol>
+<li>创建一个队列（串行队列或并发队列）</li>
+<li>将任务追加到任务的等待队列中，然后系统就会根据任务类型执行任务（同步执行或异步执行）<h2 id="3-1-队列的创建方法-获取方法"><a href="#3-1-队列的创建方法-获取方法" class="headerlink" title="3.1 队列的创建方法/获取方法"></a>3.1 队列的创建方法/获取方法</h2></li>
+</ol>
+<ul>
+<li><p>可以使用<code>dispatch_queue_create</code>来创建队列，需要传入两个参数，第一个参数表示队列的唯一标识符，用于 DEBUG，可为空，Dispatch Queue 的名称推荐使用应用程序 ID 这种逆序全程域名；第二个参数用来识别是串行队列还是并发队列。<code>DISPATCH_QUEUE_SERIAL</code> 表示串行队列，<code>DISPATCH_QUEUE_CONCURRENT</code> 表示并发队列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// objective-c写法</div><div class="line">// 串行队列的创建方法</div><div class="line">dispatch_queue_t queue = dispatch_queue_create(&quot;net.bujige.testQueue&quot;, DISPATCH_QUEUE_SERIAL);</div><div class="line">// 并发队列的创建方法</div><div class="line">let queue = DispatchQueue(label: &quot;com.David.testQueue&quot;)</div><div class="line"></div><div class="line">// swift写法</div><div class="line">// 串行队列的创建方法</div><div class="line">let queue = DispatchQueue(label:&quot;com.David.testQueue&quot;)</div><div class="line">// 并发队列的创建方法</div><div class="line">let queue = DispatchQueue(label:&quot;com.David.testQueue&quot;, qos:.utility, attributes:.concurrent)</div></pre></td></tr></table></figure>
+</li>
+<li><p>对于串行队列，GCD 提供了的一种特殊的串行队列：主队列（Main Dispatch Queue）。</p>
+<ul>
+<li>所有放在主队列中的任务，都会放到主线程中执行。</li>
+<li>可使用dispatch_get_main_queue()获得主队列。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 主队列的获取方法</div><div class="line">// objective-c写法</div><div class="line">dispatch_queue_t queue = dispatch_get_main_queue();</div><div class="line">// swift写法</div><div class="line">let mainQueue = DispatchQueue.main</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>对于并发队列，GCD 默认提供了全局并发队列（Global Dispatch Queue）。</p>
+<ul>
+<li>可以使用<code>dispatch_get_global_queue</code>来获取。需要传入两个参数。第一个参数表示队列优先级，一般用<code>DISPATCH_QUEUE_PRIORITY_DEFAULT</code>。第二个参数暂时没用，用0即可。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 全局并发队列的获取方法</div><div class="line">// objective-c写法</div><div class="line">dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);</div><div class="line">// swift写法</div><div class="line">let globalQueue = DispatchQueue.global()</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-2-任务的创建方法"><a href="#3-2-任务的创建方法" class="headerlink" title="3.2 任务的创建方法"></a>3.2 任务的创建方法</h2><p>GCD 提供了同步执行任务的创建方法<code>dispatch_sync</code>和异步执行任务创建方法<code>dispatch_async</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">// 同步执行任务创建方法</div><div class="line">dispatch_sync(queue, ^&#123;</div><div class="line">// 这里放同步执行任务代码</div><div class="line">&#125;);</div><div class="line">// 异步执行任务创建方法</div><div class="line">dispatch_async(queue, ^&#123;</div><div class="line">// 这里放异步执行任务代码</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//swift写法</div><div class="line">queue.sync &#123;</div><div class="line">// 这里放同步执行任务代码</div><div class="line">&#125;</div><div class="line">queue.async &#123;</div><div class="line">// 这里放异步执行任务代码</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>虽然使用 GCD 只需两步，但是既然我们有两种队列（串行队列/并发队列），两种任务执行方式（同步执行/异步执行），那么我们就有了四种不同的组合方式。这四种不同的组合方式是：</p>
+<blockquote>
+<ol>
+<li>同步执行 + 并发队列</li>
+<li>异步执行 + 并发队列</li>
+<li>同步执行 + 串行队列</li>
+<li>异步执行 + 串行队列</li>
+</ol>
+</blockquote>
+<p>实际上，刚才还说了两种特殊队列：全局并发队列、主队列。全局并发队列可以作为普通并发队列来使用。但是主队列因为有点特殊，所以我们就又多了两种组合方式。这样就有六种不同的组合方式了。</p>
+<blockquote>
+<ol>
+<li>同步执行 + 主队列</li>
+<li>异步执行 + 主队列</li>
+</ol>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>区别</th>
+<th>并发队列</th>
+<th>串行队列</th>
+<th>主队列</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>同步(sync)</td>
+<td>没有开启新线程，串行执行任务</td>
+<td>没有开启新线程，串行执行任务</td>
+<td>主线程调用：死锁卡住不执行</td>
+</tr>
+<tr>
+<td>异步(async)</td>
+<td>有开启新线程，并发执行任务</td>
+<td>有开启新线程(1条)，串行执行任务</td>
+<td>没有开启新线程，串行执行任务</td>
+</tr>
+</tbody>
+</table>
+<h1 id="4-GCD-的基本使用"><a href="#4-GCD-的基本使用" class="headerlink" title="4. GCD 的基本使用"></a>4. GCD 的基本使用</h1><h2 id="4-1-同步执行-并发队列"><a href="#4-1-同步执行-并发队列" class="headerlink" title="4.1 同步执行 + 并发队列"></a>4.1 同步执行 + 并发队列</h2><ul>
+<li>在当前线程中执行任务，不会开启新线程，执行完一个任务，再执行下一个任务<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">* 同步执行 + 并发队列</div><div class="line">* 特点：在当前线程中执行任务，不会开启新线程，执行完一个任务，再执行下一个任务。</div><div class="line">*/</div><div class="line">func syncConcurrent() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;syncConcurrent---begin&quot;)</div><div class="line">    let queue = DispatchQueue(label:&quot;com.David.testQueue&quot;, qos:.utility, attributes:.concurrent)</div><div class="line">    queue.sync &#123;</div><div class="line">        sleep(3)</div><div class="line">        print(&quot;1---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle1&quot;)</div><div class="line">    queue.sync &#123;</div><div class="line">        sleep(2)</div><div class="line">        print(&quot;2---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle2&quot;)</div><div class="line">    queue.sync &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;3---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;syncConcurrent---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>currentThread—<nsthread: 0x600001996880="">{number = 1, name = main}<br>syncConcurrent—begin<br>1—<nsthread: 0x600001996880="">{number = 1, name = main}<br>middle1<br>2—<nsthread: 0x600001996880="">{number = 1, name = main}<br>middle2<br>3—<nsthread: 0x600001996880="">{number = 1, name = main}<br>syncConcurrent—end</nsthread:></nsthread:></nsthread:></nsthread:></p>
+</blockquote>
+<p>从同步执行 + 并发队列中可看到：</p>
+<ul>
+<li>所有任务都是在当前线程（主线程）中执行的，没有开启新的线程（同步执行不具备开启新线程的能力）。</li>
+<li>所有任务都在打印的syncConcurrent—begin和syncConcurrent—end之间执行的（同步任务需要等待队列的任务执行结束）。</li>
+<li>任务按顺序执行的。按顺序执行的原因：虽然并发队列可以开启多个线程，并且同时执行多个任务。但是因为本身不能创建新线程，只有当前线程这一个线程（同步任务不具备开启新线程的能力），所以也就不存在并发。而且当前线程只有等待当前队列中正在执行的任务执行完毕之后，才能继续接着执行下面的操作（同步任务需要等待队列的任务执行结束）。所以任务只能一个接一个按顺序执行，不能同时被执行。</li>
+</ul>
+<h2 id="4-2-异步执行-并发队列"><a href="#4-2-异步执行-并发队列" class="headerlink" title="4.2 异步执行 + 并发队列"></a>4.2 异步执行 + 并发队列</h2><ul>
+<li>可以开启多个线程，任务交替（同时）执行。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">* 异步执行 + 并发队列</div><div class="line">* 特点：可以开启多个线程，任务交替（同时）执行。</div><div class="line">*/</div><div class="line">func asyncConcurrent() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;asyncConcurrent---begin&quot;)</div><div class="line">    let queue = DispatchQueue(label:&quot;com.david.testQueue&quot;, qos:.utility, attributes:.concurrent)</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(3)</div><div class="line">        print(&quot;1---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle1&quot;)</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(2)</div><div class="line">        print(&quot;2---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle2&quot;)</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;3---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;asyncConcurrent---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>currentThread—<nsthread: 0x600002379240="">{number = 1, name = main}<br>asyncConcurrent—begin<br>middle1<br>middle2<br>asyncConcurrent—end<br>3—<nsthread: 0x600002315880="">{number = 3, name = (null)}<br>2—<nsthread: 0x6000023299c0="">{number = 4, name = (null)}<br>1—<nsthread: 0x600002338a40="">{number = 5, name = (null)}</nsthread:></nsthread:></nsthread:></nsthread:></p>
+</blockquote>
+<p>在异步执行 + 并发队列中可以看出：</p>
+<ul>
+<li>除了当前线程（主线程），系统又开启了3个线程，并且任务是交替/同时执行的。（异步执行具备开启新线程的能力。且并发队列可开启多个线程，同时执行多个任务）。</li>
+<li>所有任务是在打印的syncConcurrent—begin和syncConcurrent—end之后才执行的。说明当前线程没有等待，而是直接开启了新线程，在新线程中执行任务（异步执行不做等待，可以继续执行任务）。</li>
+</ul>
+<h2 id="4-3-同步执行-串行队列"><a href="#4-3-同步执行-串行队列" class="headerlink" title="4.3 同步执行 + 串行队列"></a>4.3 同步执行 + 串行队列</h2><ul>
+<li>不会开启新线程，在当前线程执行任务。任务是串行的，执行完一个任务，再执行下一个任务。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">* 同步执行 + 串行队列</div><div class="line">* 特点：不会开启新线程，在当前线程执行任务。任务是串行的，执行完一个任务，再执行下一个任务。</div><div class="line">*/</div><div class="line">func syncSerial() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;syncSerial---begin&quot;)</div><div class="line">    let queue = DispatchQueue(label:&quot;com.David.testQueue&quot;)</div><div class="line">    queue.sync &#123;</div><div class="line">        sleep(3)</div><div class="line">        print(&quot;1---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle1&quot;)</div><div class="line">    queue.sync &#123;</div><div class="line">        sleep(2)</div><div class="line">        print(&quot;2---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle2&quot;)</div><div class="line">    queue.sync &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;3---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    sleep(1)</div><div class="line">    print(&quot;syncConcurrent---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>currentThread—<nsthread: 0x6000007e1900="">{number = 1, name = main}<br>syncConcurrent—begin<br>1—<nsthread: 0x6000007e1900="">{number = 1, name = main}<br>middle1<br>2—<nsthread: 0x6000007e1900="">{number = 1, name = main}<br>middle2<br>3—<nsthread: 0x6000007e1900="">{number = 1, name = main}<br>syncConcurrent—end</nsthread:></nsthread:></nsthread:></nsthread:></p>
+</blockquote>
+<p>在同步执行 + 串行队列可以看到：</p>
+<ul>
+<li>所有任务都是在当前线程（主线程）中执行的，并没有开启新的线程（同步执行不具备开启新线程的能力）。</li>
+<li>所有任务都在打印的syncConcurrent—begin和syncConcurrent—end之间执行（同步任务需要等待队列的任务执行结束）。<br>任务是按顺序执行的（串行队列每次只有一个任务被执行，任务一个接一个按顺序执行）。</li>
+</ul>
+<h2 id="4-4-异步执行-串行队列"><a href="#4-4-异步执行-串行队列" class="headerlink" title="4.4 异步执行 + 串行队列"></a>4.4 异步执行 + 串行队列</h2><ul>
+<li>会开启新线程，但是因为任务是串行的，执行完一个任务，再执行下一个任务<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">* 异步执行 + 串行队列</div><div class="line">* 特点：会开启新线程，但是因为任务是串行的，执行完一个任务，再执行下一个任务。</div><div class="line">*/</div><div class="line">func asyncSerial() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;asyncSerial---begin&quot;)</div><div class="line">    let queue = DispatchQueue(label:&quot;com.David.testQueue&quot;)</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(3)</div><div class="line">        print(&quot;1---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle1&quot;)</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(2)</div><div class="line">        print(&quot;2---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle2&quot;)</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;3---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    sleep(1)</div><div class="line">    print(&quot;asyncSerial---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>currentThread—<nsthread: 0x600001ead9c0="">{number = 1, name = main}<br>asyncSerial—begin<br>middle1<br>middle2<br>asyncSerial—end<br>1—<nsthread: 0x600001ecc000="">{number = 3, name = (null)}<br>2—<nsthread: 0x600001ecc000="">{number = 3, name = (null)}<br>3—<nsthread: 0x600001ecc000="">{number = 3, name = (null)}</nsthread:></nsthread:></nsthread:></nsthread:></p>
+</blockquote>
+<p>在异步执行 + 串行队列可以看到：</p>
+<ul>
+<li>开启了一条新线程（异步执行具备开启新线程的能力，串行队列只开启一个线程）。</li>
+<li>所有任务是在打印的syncConcurrent—begin和syncConcurrent—end之后才开始执行的（异步执行不会做任何等待，可以继续执行任务）。<br>任务是按顺序执行的（串行队列每次只有一个任务被执行，任务一个接一个按顺序执行）。</li>
+</ul>
+<h2 id="4-5-同步执行-主队列"><a href="#4-5-同步执行-主队列" class="headerlink" title="4.5 同步执行 + 主队列"></a>4.5 同步执行 + 主队列</h2><p><code>同步执行 + 主队列</code>在不同线程中调用结果也是不一样，在主线程中调用会出现死锁，而在其他线程中则不会。</p>
+<h3 id="4-5-1-在主线程中调用-同步执行-主队列"><a href="#4-5-1-在主线程中调用-同步执行-主队列" class="headerlink" title="4.5.1 在主线程中调用 同步执行 + 主队列"></a>4.5.1 在主线程中调用 <code>同步执行 + 主队列</code></h3><ul>
+<li>互相等待卡住不可行<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">* 同步执行 + 主队列</div><div class="line">* 特点(主线程调用)：互等卡主不执行。</div><div class="line">* 特点(其他线程调用)：不会开启新线程，执行完一个任务，再执行下一个任务。</div><div class="line">*/</div><div class="line">func syncMain() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;syncMain---begin&quot;)</div><div class="line">    let queue = DispatchQueue.main</div><div class="line">    queue.sync &#123;</div><div class="line">        sleep(3)</div><div class="line">        print(&quot;1---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle1&quot;)</div><div class="line">    queue.sync &#123;</div><div class="line">        sleep(2)</div><div class="line">        print(&quot;2---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle2&quot;)</div><div class="line">    queue.sync &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;3---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;syncMain---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>currentThread—<nsthread: 0x600003f1e780="">{number = 1, name = main}<br>syncMain—begin</nsthread:></p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/454522-7c87be73855fe537.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="syncMain Error"></p>
+<p>在同步执行 + 主队列可以惊奇的发现：</p>
+<ul>
+<li>在主线程中使用同步执行 + 主队列，追加到主线程的任务1、任务2、任务3都不再执行了，而且syncMain—end也没有打印，在XCode 9上还会报崩溃。这是为什么呢？</li>
+</ul>
+<p>这是因为我们在主线程中执行syncMain方法，相当于把syncMain任务放到了主线程的队列中。而同步执行会等待当前队列中的任务执行完毕，才会接着执行。那么当我们把任务1追加到主队列中，任务1就在等待主线程处理完syncMain任务。而syncMain任务需要等待任务1执行完毕，才能接着执行。<br>那么，现在的情况就是syncMain任务和任务1都在等对方执行完毕。这样大家互相等待，所以就卡住了，所以我们的任务执行不了，而且syncMain—end也没有打印。</p>
+<h2 id="4-6-异步执行-主队列"><a href="#4-6-异步执行-主队列" class="headerlink" title="4.6 异步执行 + 主队列"></a>4.6 异步执行 + 主队列</h2><ul>
+<li>只在主线程中执行任务，执行完一个任务，再执行下一个任务。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">* 异步执行 + 主队列</div><div class="line">* 特点：只在主线程中执行任务，执行完一个任务，再执行下一个任务</div><div class="line">*/</div><div class="line">func asyncMain() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;asyncMain---begin&quot;)</div><div class="line">    let queue = DispatchQueue.main</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(3)</div><div class="line">        print(&quot;1---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle1&quot;)</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(2)</div><div class="line">        print(&quot;2---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle2&quot;)</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;3---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;asyncMain---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>currentThread—<nsthread: 0x6000038de800="">{number = 1, name = main}<br>asyncMain—begin<br>middle1<br>middle2<br>asyncMain—end<br>1—<nsthread: 0x6000038de800="">{number = 1, name = main}<br>2—<nsthread: 0x6000038de800="">{number = 1, name = main}<br>3—<nsthread: 0x6000038de800="">{number = 1, name = main}</nsthread:></nsthread:></nsthread:></nsthread:></p>
+</blockquote>
+<p>在异步执行 + 主队列可以看到：</p>
+<ul>
+<li>所有任务都是在当前线程（主线程）中执行的，并没有开启新的线程（虽然异步执行具备开启线程的能力，但因为是主队列，所以所有任务都在主线程中）。</li>
+<li>所有任务是在打印的syncConcurrent—begin和syncConcurrent—end之后才开始执行的（异步执行不会做任何等待，可以继续执行任务）。</li>
+<li>任务是按顺序执行的（因为主队列是串行队列，每次只有一个任务被执行，任务一个接一个按顺序执行）。</li>
+</ul>
+<h2 id="4-8-同步执行-全局队列"><a href="#4-8-同步执行-全局队列" class="headerlink" title="4.8 同步执行 + 全局队列"></a>4.8 同步执行 + 全局队列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">* 同步执行 + 全局（并发）队列</div><div class="line">* 特点：在当前线程中执行任务，不会开启新线程，执行完一个任务，再执行下一个任务。</div><div class="line">*/</div><div class="line">func asyncGlobal() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;asyncMain---begin&quot;)</div><div class="line">    let queue = DispatchQueue.global()</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(3)</div><div class="line">        print(&quot;1---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle1&quot;)</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(2)</div><div class="line">        print(&quot;2---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle2&quot;)</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;3---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;asyncGlobal---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>currentThread—<nsthread: 0x600002c868c0="">{number = 1, name = main}<br>syncGlobal—begin<br>1—<nsthread: 0x600002c868c0="">{number = 1, name = main}<br>middle1<br>2—<nsthread: 0x600002c868c0="">{number = 1, name = main}<br>middle2<br>3—<nsthread: 0x600002c868c0="">{number = 1, name = main}<br>syncMain—end</nsthread:></nsthread:></nsthread:></nsthread:></p>
+</blockquote>
+<h2 id="4-7-异步执行-全局队列"><a href="#4-7-异步执行-全局队列" class="headerlink" title="4.7 异步执行 + 全局队列"></a>4.7 异步执行 + 全局队列</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">func asyncGlobal() &#123;</div><div class="line">/**</div><div class="line">* 异步执行 + 全局（并发）队列</div><div class="line">* 特点：可以开启多个线程，任务交替（同时）执行。</div><div class="line">*/</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;asyncMain---begin&quot;)</div><div class="line">    let queue = DispatchQueue.global()</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(3)</div><div class="line">        print(&quot;1---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle1&quot;)</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(2)</div><div class="line">        print(&quot;2---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;middle2&quot;)</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;3---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;asyncGlobal---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>currentThread—<nsthread: 0x600001c3e880="">{number = 1, name = main}<br>asyncMain—begin<br>middle1<br>middle2<br>asyncGlobal—end<br>3—<nsthread: 0x600001c5c040="">{number = 3, name = (null)}<br>2—<nsthread: 0x600001c61ec0="">{number = 4, name = (null)}<br>1—<nsthread: 0x600001c76080="">{number = 5, name = (null)}</nsthread:></nsthread:></nsthread:></nsthread:></p>
+</blockquote>
+<h1 id="5-GCD-线程间的通信"><a href="#5-GCD-线程间的通信" class="headerlink" title="5. GCD 线程间的通信"></a>5. GCD 线程间的通信</h1><p>在iOS开发过程中，我们一般在主线程里边进行UI刷新，例如：点击、滚动、拖拽等事件。我们通常把一些耗时的操作放在其他线程，比如说图片下载、文件上传等耗时操作。而当我们有时候在其他线程完成了耗时操作时，需要回到主线程，那么就用到了线程之间的通讯。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">func communication() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;communication---begin&quot;)</div><div class="line">    DispatchQueue.global().async &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;1---\(Thread.current)&quot;)</div><div class="line">        DispatchQueue.main.async &#123;</div><div class="line">            sleep(2)</div><div class="line">            print(&quot;2---\(Thread.current)&quot;)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    print(&quot;communication---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>currentThread—<nsthread: 0x60000035fbc0="">{number = 1, name = main}<br>communication—begin<br>communication—end<br>1—<nsthread: 0x60000033a5c0="">{number = 3, name = (null)}<br>2—<nsthread: 0x60000035fbc0="">{number = 1, name = main}</nsthread:></nsthread:></nsthread:></p>
+</blockquote>
+<ul>
+<li>可以看到在其他线程中先执行任务，执行完了之后回到主线程执行主线程的相应操作。</li>
+</ul>
+<h1 id="6-GCD-的其他方法"><a href="#6-GCD-的其他方法" class="headerlink" title="6. GCD 的其他方法"></a>6. GCD 的其他方法</h1><h2 id="6-1-GCD-栅栏方法：dispatch-barrier-async"><a href="#6-1-GCD-栅栏方法：dispatch-barrier-async" class="headerlink" title="6.1 GCD 栅栏方法：dispatch_barrier_async"></a>6.1 GCD 栅栏方法：dispatch_barrier_async</h2><ul>
+<li>我们有时需要异步执行两组操作，而且第一组操作执行完之后，才能开始执行第二组操作。这样我们就需要一个相当于<code>栅栏</code>一样的一个方法将两组异步执行的操作组给分割起来，当然这里的操作组里可以包含一个或多个任务。这就需要用到<code>dispatch_barrier_async</code>方法在两个操作组间形成栅栏。<br><code>dispatch_barrier_async</code>函数会等待前边追加到并发队列中的任务全部执行完毕之后，再将指定的任务追加到该异步队列中。然后在<code>dispatch_barrier_async</code>函数追加的任务执行完毕之后，异步队列才恢复为一般动作，接着追加任务到该异步队列并开始执行。具体如下图所示：<br><img src="https://upload-images.jianshu.io/upload_images/1877784-4d6d77fafd3ad007.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000" alt="dispatch_barrier_async"><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">func barrier() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;communication---begin&quot;)</div><div class="line">    let queue = DispatchQueue(label:&quot;com.David.testQueue&quot;, qos:.default, attributes:.concurrent)</div><div class="line">    //        let queue = DispatchQueue.global()</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;1---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    queue.async(group: nil, qos: .default, flags: .barrier) &#123;</div><div class="line">        sleep(2)</div><div class="line">        print(&quot;barrier---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;2---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;3---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;communication---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>currentThread—<nsthread: 0x6000016d68c0="">{number = 1, name = main}<br>communication—beginc<br>communication—end<br>1—<nsthread: 0x6000016b5940="">{number = 3, name = (null)}<br>barrier—<nsthread: 0x6000016b4b40="">{number = 4, name = (null)}<br>3—<nsthread: 0x6000016b5940="">{number = 3, name = (null)}<br>2—<nsthread: 0x6000016b4b40="">{number = 4, name = (null)}</nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></p>
+</blockquote>
+<p>如果queue替换成下面global，实际是错的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let queue = DispatchQueue.global()</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>currentThread—<nsthread: 0x60000225ad00="">{number = 1, name = main}<br>communication—begin<br>communication—end<br>1—<nsthread: 0x600002235a00="">{number = 5, name = (null)}<br>2—<nsthread: 0x60000223a440="">{number = 4, name = (null)}<br>3—<nsthread: 0x600002230980="">{number = 3, name = (null)}<br>barrier—<nsthread: 0x60000223a680="">{number = 6, name = (null)}</nsthread:></nsthread:></nsthread:></nsthread:></nsthread:></p>
+</blockquote>
+<h2 id="6-2-GCD-延时执行方法：dispatch-after"><a href="#6-2-GCD-延时执行方法：dispatch-after" class="headerlink" title="6.2 GCD 延时执行方法：dispatch_after"></a>6.2 GCD 延时执行方法：dispatch_after</h2><p>我们经常会遇到这样的需求：在指定时间（例如3秒）之后执行某个任务。可以用 GCD 的<code>dispatch_after</code>函数来实现。<br>需要注意的是：<code>dispatch_after</code>函数并不是在指定时间之后才开始执行处理，而是在指定时间之后将任务追加到主队列中。严格来说，这个时间并不是绝对准确的，但想要大致延迟执行任务，<code>dispatch_after</code>函数是很有效的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">* 延时执行方法 dispatch_after</div><div class="line">*/</div><div class="line">func after() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;after---begin&quot;)</div><div class="line">    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+2) &#123;</div><div class="line">        print(&quot;after---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;after---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>currentThread—<nsthread: 0x6000027d99c0="">{number = 1, name = main}<br>after—begin<br>after—end<br>after—<nsthread: 0x6000027d99c0="">{number = 1, name = main}</nsthread:></nsthread:></p>
+</blockquote>
+<h2 id="6-3-GCD-一次性代码（只执行一次）：dispatch-once"><a href="#6-3-GCD-一次性代码（只执行一次）：dispatch-once" class="headerlink" title="6.3 GCD 一次性代码（只执行一次）：dispatch_once"></a>6.3 GCD 一次性代码（只执行一次）：dispatch_once</h2><ul>
+<li>我们在创建单例、或者有整个程序运行过程中只执行一次的代码时，我们就用到了 GCD 的 <code>dispatch_once</code> 函数。使用<br><code>dispatch_once</code> 函数能保证某段代码在程序运行过程中只被执行1次，并且即使在多线程的环境下，<code>dispatch_once</code>也可以保证线程安全。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">* 一次性代码（只执行一次）dispatch_once</div><div class="line">*/</div><div class="line">- (void)once &#123;</div><div class="line">    static dispatch_once_t onceToken;</div><div class="line">    dispatch_once(&amp;onceToken, ^&#123;</div><div class="line">        // 只执行1次的代码(这里面默认是线程安全的)</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="6-4-GCD-快速迭代方法：dispatch-apply"><a href="#6-4-GCD-快速迭代方法：dispatch-apply" class="headerlink" title="6.4 GCD 快速迭代方法：dispatch_apply"></a>6.4 GCD 快速迭代方法：dispatch_apply</h2><ul>
+<li>通常我们会用 for 循环遍历，但是 GCD 给我们提供了快速迭代的函数<code>dispatch_apply</code>。<code>dispatch_apply</code>按照指定的次数将指定的任务追加到指定的队列中，并等待全部队列执行结束。</li>
+</ul>
+<p>如果是在串行队列中使用 <code>dispatch_apply</code>，那么就和 for 循环一样，按顺序同步执行。可这样就体现不出快速迭代的意义了。<br>我们可以利用并发队列进行异步执行。比如说遍历 0~5 这6个数字，for 循环的做法是每次取出一个元素，逐个遍历。<code>dispatch_apply</code> 可以 在多个线程中同时（异步）遍历多个数字。<br>还有一点，无论是在串行队列，还是异步队列中，dispatch_apply 都会等待全部任务执行完毕，这点就像是同步操作，也像是队列组中的 <code>dispatch_group_wait</code>方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">func apply() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;apply---begin&quot;)</div><div class="line">    DispatchQueue.concurrentPerform(iterations: 3) &#123; (index) in</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;apply\(index)---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;apply---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>currentThread—<nsthread: 0x6000021819c0="">{number = 1, name = main}<br>apply—begin<br>apply1—<nsthread: 0x6000021e6700="">{number = 4, name = (null)}<br>apply0—<nsthread: 0x6000021819c0="">{number = 1, name = main}<br>apply2—<nsthread: 0x6000021dd5c0="">{number = 3, name = (null)}<br>apply—end</nsthread:></nsthread:></nsthread:></nsthread:></p>
+</blockquote>
+<p>因为是在并发队列中异步执行任务，所以各个任务的执行时间长短不定，最后结束顺序也不定。但是<code>apply---end</code>一定在最后执行。这是因为<code>dispatch_apply</code>函数会等待全部任务执行完毕。</p>
+<h2 id="GCD-队列组：dispatch-group"><a href="#GCD-队列组：dispatch-group" class="headerlink" title="GCD 队列组：dispatch_group"></a>GCD 队列组：dispatch_group</h2><p>有时候我们会有这样的需求：分别异步执行2个耗时任务，然后当2个耗时任务都执行完毕后再回到主线程执行任务。这时候我们可以用到 GCD 的队列组。</p>
+<ul>
+<li>调用队列组的 <code>dispatch_group_async</code> 先把任务放到队列中，然后将队列放入队列组中。或者使用队列组的 <code>dispatch_group_enter</code>、<code>dispatch_group_leave</code> 组合 来实现 <code>dispatch_group_async</code>。</li>
+<li>调用队列组的 <code>dispatch_group_notify</code> 回到指定线程执行任务。或者使用 <code>dispatch_group_wait</code> 回到当前线程继续向下执行（会阻塞当前线程）。<h3 id="dispatch-group-notify"><a href="#dispatch-group-notify" class="headerlink" title="dispatch_group_notify"></a>dispatch_group_notify</h3></li>
+<li>监听 group 中任务的完成状态，当所有的任务都执行完成后，追加任务到 group 中，并执行任务。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">* 队列组 dispatch_group_notify</div><div class="line">*/</div><div class="line">func groupNotify() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;groupNotify---begin&quot;)</div><div class="line">    let queue = DispatchQueue.global()</div><div class="line">    let group = DispatchGroup()</div><div class="line">    queue.async(group: group) &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;1---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    queue.async(group: group) &#123;</div><div class="line">        sleep(2)</div><div class="line">        print(&quot;2---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    group.notify(queue: queue) &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;3---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;groupNotify---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>currentThread—<nsthread: 0x600002caa8c0="">{number = 1, name = main}<br>groupNotify—begin<br>groupNotify—end<br>1—<nsthread: 0x600002ce1a00="">{number = 3, name = (null)}<br>2—<nsthread: 0x600002cc5f00="">{number = 4, name = (null)}<br>3—<nsthread: 0x600002cc5f00="">{number = 4, name = (null)}</nsthread:></nsthread:></nsthread:></nsthread:></p>
+</blockquote>
+<h3 id="6-5-2-dispatch-group-wait"><a href="#6-5-2-dispatch-group-wait" class="headerlink" title="6.5.2 dispatch_group_wait"></a>6.5.2 dispatch_group_wait</h3><ul>
+<li>暂停当前线程（阻塞当前线程），等待指定的 group 中的任务执行完成后，才会往下继续执行。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">* 队列组 dispatch_group_wait</div><div class="line">*/</div><div class="line">func groupWait() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;groupWait---begin&quot;)</div><div class="line">    let queue = DispatchQueue.global()</div><div class="line">    let group = DispatchGroup()</div><div class="line">    queue.async(group: group) &#123;</div><div class="line">        sleep(2)</div><div class="line">        print(&quot;1---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    queue.async(group: group) &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;2---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    group.wait()</div><div class="line">    print(&quot;groupWait---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>currentThread—<nsthread: 0x6000001f28c0="">{number = 1, name = main}<br>groupWait—begin<br>2—<nsthread: 0x600000191c80="">{number = 3, name = (null)}<br>1—<nsthread: 0x6000001bfd40="">{number = 4, name = (null)}<br>groupWait—end</nsthread:></nsthread:></nsthread:></p>
+</blockquote>
+<p>从<code>dispatch_group_wai</code>t相关代码运行输出结果可以看出：<br>当所有任务执行完成之后，才执行 <code>dispatch_group_wait</code> 之后的操作。但是，使用<code>dispatch_group_wait</code>会阻塞当前线程。</p>
+<h3 id="6-5-3-dispatch-group-enter、dispatch-group-leave"><a href="#6-5-3-dispatch-group-enter、dispatch-group-leave" class="headerlink" title="6.5.3 dispatch_group_enter、dispatch_group_leave"></a>6.5.3 dispatch_group_enter、dispatch_group_leave</h3><p>-<code>dispatch_group_enter</code> 标志着一个任务追加到 group，执行一次，相当于 group 中未执行完毕任务数+1</p>
+<ul>
+<li><code>dispatch_group_leave</code> 标志着一个任务离开了 group，执行一次，相当于 group 中未执行完毕任务数-1。</li>
+<li>当 group 中未执行完毕任务数为0的时候，才会使<code>dispatch_group_wait</code>解除阻塞，以及执行追加到<code>dispatch_group_notify</code>中的任务。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">func groupEnterAndLeave() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;groupEnterAndLeave---begin&quot;)</div><div class="line">    let queue = DispatchQueue.global()</div><div class="line">    let group = DispatchGroup()</div><div class="line">    group.enter()</div><div class="line">    queue.async() &#123;</div><div class="line">        sleep(2)</div><div class="line">        print(&quot;1---\(Thread.current)&quot;)</div><div class="line">        group.leave()</div><div class="line">    &#125;</div><div class="line">    group.enter()</div><div class="line">    queue.async() &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;2---\(Thread.current)&quot;)</div><div class="line">        group.leave()</div><div class="line">    &#125;</div><div class="line">    group.notify(queue: queue) &#123;</div><div class="line">        sleep(1)</div><div class="line">        print(&quot;3---\(Thread.current)&quot;)</div><div class="line">    &#125;</div><div class="line">    print(&quot;groupEnterAndLeave---end&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>currentThread—<nsthread: 0x600002bf68c0="">{number = 1, name = main}<br>groupEnterAndLeave—begin<br>groupEnterAndLeave—end<br>2—<nsthread: 0x600002b9c700="">{number = 3, name = (null)}<br>1—<nsthread: 0x600002b991c0="">{number = 4, name = (null)}<br>3—<nsthread: 0x600002b991c0="">{number = 4, name = (null)}</nsthread:></nsthread:></nsthread:></nsthread:></p>
+</blockquote>
+<p>从<code>dispatch_group_enter</code>、<code>dispatch_group_leave</code>相关代码运行结果中可以看出：当所有任务执行完成之后，才执行 <code>dispatch_group_notify</code> 中的任务。这里的<code>dispatch_group_enter</code>、<code>dispatch_group_leave</code>组合，其实等同于<code>dispatch_group_async</code>。</p>
+<h2 id="6-6-GCD-信号量：dispatch-semaphore"><a href="#6-6-GCD-信号量：dispatch-semaphore" class="headerlink" title="6.6 GCD 信号量：dispatch_semaphore"></a>6.6 GCD 信号量：dispatch_semaphore</h2><p>GCD 中的信号量是指 Dispatch Semaphore，是持有计数的信号。类似于过高速路收费站的栏杆。可以通过时，打开栏杆，不可以通过时，关闭栏杆。在 Dispatch Semaphore 中，使用计数来完成这个功能，计数为0时等待，不可通过。计数为1或大于1时，计数减1且不等待，可通过。<br>Dispatch Semaphore 提供了三个函数。</p>
+<ul>
+<li><p><code>dispatch_semaphore_create</code>：创建一个Semaphore并初始化信号的总量</p>
+</li>
+<li><p><code>dispatch_semaphore_signal</code>：发送一个信号，让信号总量加1</p>
+</li>
+<li><p><code>dispatch_semaphore_wait</code>：可以使总信号量减1，当信号总量为0时就会一直等待（阻塞所在线程），否则就可以正常执行。</p>
+</li>
+</ul>
+<blockquote>
+<p>注意：信号量的使用前提是：想清楚你需要处理哪个线程等待（阻塞），又要哪个线程继续执行，然后使用信号量。</p>
+</blockquote>
+<p>Dispatch Semaphore 在实际开发中主要用于：</p>
+<ul>
+<li>保持线程同步，将异步执行任务转换为同步执行任务</li>
+<li>保证线程安全，为线程加锁</li>
+</ul>
+<h3 id="6-6-1-Dispatch-Semaphore-线程同步"><a href="#6-6-1-Dispatch-Semaphore-线程同步" class="headerlink" title="6.6.1 Dispatch Semaphore 线程同步"></a>6.6.1 Dispatch Semaphore 线程同步</h3><p>我们在开发中，会遇到这样的需求：异步执行耗时任务，并使用异步执行的结果进行一些额外的操作。换句话说，相当于，将将异步执行任务转换为同步执行任务。比如说：AFNetworking 中 AFURLSessionManager.m 里面的 <code>tasksForKeyPath:</code> 方法。通过引入信号量的方式，等待异步执行任务结果，获取到 tasks，然后再返回该 tasks。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">- (NSArray *)tasksForKeyPath:(NSString *)keyPath &#123;</div><div class="line">    __block NSArray *tasks = nil;</div><div class="line">    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);</div><div class="line">    [self.session getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) &#123;</div><div class="line">        if ([keyPath isEqualToString:NSStringFromSelector(@selector(dataTasks))]) &#123;</div><div class="line">            tasks = dataTasks;</div><div class="line">        &#125; else if ([keyPath isEqualToString:NSStringFromSelector(@selector(uploadTasks))]) &#123;</div><div class="line">            tasks = uploadTasks;</div><div class="line">        &#125; else if ([keyPath isEqualToString:NSStringFromSelector(@selector(downloadTasks))]) &#123;</div><div class="line">            tasks = downloadTasks;</div><div class="line">        &#125; else if ([keyPath isEqualToString:NSStringFromSelector(@selector(tasks))]) &#123;</div><div class="line">            tasks = [@[dataTasks, uploadTasks, downloadTasks] valueForKeyPath:@&quot;@unionOfArrays.self&quot;];</div><div class="line">        &#125;</div><div class="line">        dispatch_semaphore_signal(semaphore);</div><div class="line">    &#125;];</div><div class="line">    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</div><div class="line">    return tasks;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面，我们来利用 Dispatch Semaphore 实现线程同步，将<code>异步</code>执行任务转换为<code>同步</code>执行任务。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">func semaphoreSync() &#123;</div><div class="line">    print(&quot;currentThread---\(Thread.current)&quot;)</div><div class="line">    print(&quot;semaphoreSync---begin&quot;)</div><div class="line">    let queue = DispatchQueue.global()</div><div class="line">    let semaphore = DispatchSemaphore(value: 0)</div><div class="line">    var number = 0</div><div class="line">    queue.async &#123;</div><div class="line">        sleep(2)</div><div class="line">        number = 100</div><div class="line">        print(&quot;1---\(Thread.current)&quot;)</div><div class="line">        semaphore.signal()</div><div class="line">    &#125;</div><div class="line">    semaphore.wait()</div><div class="line">    print(&quot;semaphoreSync---end,number = \(number)&quot;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>currentThread—<nsthread: 0x600003ce59c0="">{number = 1, name = main}<br>semaphoreSync—begin<br>1—<nsthread: 0x600003cbc800="">{number = 3, name = (null)}<br>semaphoreSync—end,number = 100</nsthread:></nsthread:></p>
+</blockquote>
+<p>从 Dispatch Semaphore 实现线程同步的代码可以看到：</p>
+<ul>
+<li><code>semaphore---end</code> 是在执行完  <code>number = 100;</code> 之后才打印的。而且输出结果 number 为 100。<br>这是因为<code>异步执行</code>不会做任何等待，可以继续执行任务。<code>异步执行</code>将任务1追加到队列之后，不做等待，接着执行<code>dispatch_semaphore_wait</code>方法。此时 semaphore == 0，当前线程进入等待状态。然后，异步任务1开始执行。任务1执行到<code>dispatch_semaphore_signal</code>之后，总信号量，此时 semaphore == 1，<code>dispatch_semaphore_wait</code>方法使总信号量减1，正在被阻塞的线程（主线程）恢复继续执行。最后打印<code>semaphore---end,number = 100</code>。这样就实现了线程同步，将异步执行任务转换为同步执行任务。</li>
+</ul>
+<h1 id="7-考题：GCD来实现读写操作"><a href="#7-考题：GCD来实现读写操作" class="headerlink" title="7 考题：GCD来实现读写操作"></a>7 考题：GCD来实现读写操作</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">private let queue = DispatchQueue(label: &quot;com.davie.readwrite&quot;, attributes: .concurrent)</div><div class="line">private var _someString: NSString?</div><div class="line">var someString:NSString? &#123;</div><div class="line">    get &#123;</div><div class="line">        var tempString:NSString?</div><div class="line">        let semphore = DispatchSemaphore(value: 1)</div><div class="line">        queue.async() &#123;</div><div class="line">            sleep(1)</div><div class="line">            tempString = self._someString</div><div class="line">            print(&quot;read:\(tempString ?? &quot;NULL&quot;),\(semphore),\(Thread.current)&quot;)</div><div class="line">            semphore.signal()</div><div class="line">        &#125;</div><div class="line">        semphore.wait()</div><div class="line">        return tempString</div><div class="line">    &#125;</div><div class="line">    set &#123;</div><div class="line">        // 写数据时使用串行</div><div class="line">        queue.async(flags: .barrier) &#123;</div><div class="line">        sleep(1)</div><div class="line">        self._someString = newValue</div><div class="line">        print(&quot;write:\(self._someString ?? &quot;NULL&quot;),\(Thread.current)&quot;)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var a = self.someString</div><div class="line">self.someString = &quot;22&quot;</div><div class="line">a = self.someString</div><div class="line">a = self.someString</div></pre></td></tr></table></figure>
+<blockquote>
+<p>read:NULL,<os_dispatch_semaphore: 0x600000d02e40="">,<nsthread: 0x600003b79200="">{number = 3, name = (null)}<br>write:22,<nsthread: 0x600003b79200="">{number = 3, name = (null)}<br>read:22,<os_dispatch_semaphore: 0x600000d03390="">,<nsthread: 0x600003b79200="">{number = 3, name = (null)}<br>read:22,<os_dispatch_semaphore: 0x600000d033e0="">,<nsthread: 0x600003b72880="">{number = 4, name = (null)}</nsthread:></os_dispatch_semaphore:></nsthread:></os_dispatch_semaphore:></nsthread:></nsthread:></os_dispatch_semaphore:></p>
+</blockquote>
+<p>如果用let queue = DispatchQueue.global() 实际barrier模式的栅栏不起作用</p>
+<blockquote>
+<p>read:NULL,<os_dispatch_semaphore: 0x600001fdcaa0="">,<nsthread: 0x6000029a1f40="">{number = 4, name = (null)}<br>read:NULL,<os_dispatch_semaphore: 0x600001fdd0e0="">,<nsthread: 0x600002993b40="">{number = 5, name = (null)}<br>read:NULL,<os_dispatch_semaphore: 0x600001fdd5e0="">,<nsthread: 0x6000029a1f00="">{number = 3, name = (null)}<br>write:22,<nsthread: 0x60000299c800="">{number = 6, name = (null)}</nsthread:></nsthread:></os_dispatch_semaphore:></nsthread:></os_dispatch_semaphore:></nsthread:></os_dispatch_semaphore:></p>
+</blockquote>
+<p>如果用let semphore = DispatchSemaphore(value: 0),实际读模式就变成了用了同一个线程的串型，后2次read中间等待了一秒</p>
+<blockquote>
+<p>read:NULL,<os_dispatch_semaphore: 0x6000033f62b0="">,<nsthread: 0x600000585480="">{number = 3, name = (null)}<br>write:22,<nsthread: 0x600000585480="">{number = 3, name = (null)}<br>read:22,<os_dispatch_semaphore: 0x6000033f62b0="">,<nsthread: 0x600000585480="">{number = 3, name = (null)}<br>read:22,<os_dispatch_semaphore: 0x6000033d0410="">,<nsthread: 0x600000585480="">{number = 3, name = (null)}</nsthread:></os_dispatch_semaphore:></nsthread:></os_dispatch_semaphore:></nsthread:></nsthread:></os_dispatch_semaphore:></p>
+</blockquote>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><p><a href="https://www.jianshu.com/p/2d57c72016c6" target="_blank" rel="external">iOS 多线程：『GCD』详尽总结</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> 回顾温习 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[建立私有的pod库]]></title>
       <url>/2019/1/16/%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E7%A7%81%E6%9C%89%E7%9A%84pod%E5%BA%93/</url>
       <content type="html"><![CDATA[<p><code>GitHub私有库居然免费了，很开心的把原来的pod库迁移了过来，并写了一个教程。</code></p>
@@ -3395,6 +3709,152 @@
     </entry>
     
     <entry>
+      <title><![CDATA[LoopBack学习之核心概念]]></title>
+      <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
+      <content type="html"><![CDATA[<p>英文地址：<br><a href="http://loopback.io/doc/en/lb3/Glossary.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/Glossary.html</a></p>
+<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><h4 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h4><p>访问控制列表，与标识所有可访问对象的主题及其访问权限的对象关联的列表。请参阅身份验证，授权和权限。</p>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>应用程序接口。允许以高级语言编写的应用程序使用操作系统或其他程序的特定数据或功能的接口。</p>
+<h4 id="APIC"><a href="#APIC" class="headerlink" title="APIC"></a>APIC</h4><p>IBM API Connect命令行工具。它为脚本LoopBack应用程序提供命令。有关更多信息，请参阅命令行工具。</p>
+<h4 id="adapter-适配器"><a href="#adapter-适配器" class="headerlink" title="adapter 适配器"></a>adapter 适配器</h4><p>提供传输特定机制，使远程对象（及其集合）在其传输中可用。看强力远程。<br><a id="more"></a></p>
+<h4 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h4><p>由Google创建的移动操作系统，其中大部分是根据Apache 2.0和GPLv2开源许可证发布的。</p>
+<h4 id="AngularJS"><a href="#AngularJS" class="headerlink" title="AngularJS"></a>AngularJS</h4><p>开源客户端JavaScript框架。</p>
+<h4 id="API-Connect-API连接"><a href="#API-Connect-API连接" class="headerlink" title="API Connect API连接"></a>API Connect API连接</h4><p>IBM产品集成了StrongLoop和LoopBack技术，用于创建，运行，管理和保护API。请参阅DeveloperWorks&gt; API连接。</p>
+<h4 id="Arc-弧"><a href="#Arc-弧" class="headerlink" title="Arc 弧"></a>Arc 弧</h4><p>StrongLoop API生命周期图形工具套件，包括用于构建，分析和监视节点应用程序的工具。StrongLoop Arc不再处于积极的开发阶段，不久将被淘汰。</p>
+<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><h4 id="boot-script-启动脚本"><a href="#boot-script-启动脚本" class="headerlink" title="boot script 启动脚本"></a>boot script 启动脚本</h4><p>默认情况下，/server/boot目录中启动应用程序时自动运行的JavaScript函数。请参阅定义启动脚本。</p>
+<h4 id="built-in-model-内置型号"><a href="#built-in-model-内置型号" class="headerlink" title="built-in model 内置型号"></a>built-in model 内置型号</h4><p>默认情况下，每个LoopBack应用程序都有一个预定义的模型。请参阅使用内置型号。</p>
+<h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><h4 id="cluster-簇"><a href="#cluster-簇" class="headerlink" title="cluster 簇"></a>cluster 簇</h4><p>一组相同的Node worker进程在同一端口上接收请求。参见： 工人。</p>
+<h4 id="component-零件"><a href="#component-零件" class="headerlink" title="component 零件"></a>component 零件</h4><p>扩展基本LoopBack应用程序的预定义包。从根本上说，组件是将相关代码捆绑在一起作为一个单元，以使LoopBack应用程序能够轻松重用。请参阅LoopBack组件。</p>
+<h4 id="component-连接器"><a href="#component-连接器" class="headerlink" title="component 连接器"></a>component 连接器</h4><p>请参阅LoopBack连接器。</p>
+<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><h4 id="data-source-数据源"><a href="#data-source-数据源" class="headerlink" title="data source 数据源"></a>data source 数据源</h4><p>数据源使用连接器与特定数据库或其他后端系统连接。请参阅将模型连接到数据源。</p>
+<h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><h4 id="endpoint-端点"><a href="#endpoint-端点" class="headerlink" title="endpoint 端点"></a>endpoint 端点</h4><p>看路线。</p>
+<h4 id="enterprise-connector-企业连接器"><a href="#enterprise-connector-企业连接器" class="headerlink" title="enterprise connector 企业连接器"></a>enterprise connector 企业连接器</h4><p>连接到后端数据源（如Oracle，MySQL或MongoDB）的模块。</p>
+<h4 id="environment-variable-环境变量"><a href="#environment-variable-环境变量" class="headerlink" title="environment variable 环境变量"></a>environment variable 环境变量</h4><p>定义进程操作环境方面的变量。例如，环境变量可以定义主目录，命令搜索路径，正在使用的终端或当前时区。</p>
+<h4 id="event-loop-事件循环"><a href="#event-loop-事件循环" class="headerlink" title="event loop 事件循环"></a>event loop 事件循环</h4><p>运行Node.js应用程序的单线程执行过程，通常进行一系列异步函数调用。</p>
+<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><h4 id="generator-发电机"><a href="#generator-发电机" class="headerlink" title="generator 发电机"></a>generator 发电机</h4><p>支持全部或部分LoopBack应用程序的交互式命令行工具。请参阅命令行工具。</p>
+<h1 id="I"><a href="#I" class="headerlink" title="I"></a>I</h1><h4 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h4><p>苹果设备的封闭源码专有移动操作系统。</p>
+<h1 id="J"><a href="#J" class="headerlink" title="J"></a>J</h1><h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><p>JavaScript对象符号; 一种基于JavaScript对象字面符号的轻量级数据交换格式。JSON是编程语言中性，但使用各种语言的约定。</p>
+<h1 id="L"><a href="#L" class="headerlink" title="L"></a>L</h1><h4 id="lb"><a href="#lb" class="headerlink" title="lb"></a>lb</h4><p>用于脚手架和开发LoopBack应用程序的LoopBack命令行界面（CLI）工具。取代传统slc工具。</p>
+<h4 id="LDL"><a href="#LDL" class="headerlink" title="LDL"></a>LDL</h4><p>LoopBack定义语言，一种用于定义LoopBack模型和其他配置的JSON形式。</p>
+<h4 id="load-balancer-负载均衡器"><a href="#load-balancer-负载均衡器" class="headerlink" title="load balancer 负载均衡器"></a>load balancer 负载均衡器</h4><p>在一组服务器上分发工作负载的软件或硬件，以确保服务器不会过载。如果初始服务器发生故障，负载平衡器也会将用户引导到另一台服务器。</p>
+<h4 id="LoopBack-connector-LoopBack连接器"><a href="#LoopBack-connector-LoopBack连接器" class="headerlink" title="LoopBack connector LoopBack连接器"></a>LoopBack connector LoopBack连接器</h4><p>提供对后端系统（如数据库，REST API或其他服务）的访问的连接器。</p>
+<h4 id="LoopBack-DataSource-Juggler"><a href="#LoopBack-DataSource-Juggler" class="headerlink" title="LoopBack DataSource Juggler"></a>LoopBack DataSource Juggler</h4><p>对象关系映射，提供了一组通用的接口，用于与数据库，REST API和其他数据源进行交互。</p>
+<h4 id="LoopBack-model-LoopBack模型"><a href="#LoopBack-model-LoopBack模型" class="headerlink" title="LoopBack model LoopBack模型"></a>LoopBack model LoopBack模型</h4><p>由应用程序数据，验证规则，数据访问功能以及默认提供REST API的业务逻辑组成的模型。</p>
+<h1 id="M"><a href="#M" class="headerlink" title="M"></a>M</h1><h4 id="MBaaS"><a href="#MBaaS" class="headerlink" title="MBaaS"></a>MBaaS</h4><p>移动后端即服务。将移动应用程序连接到云计算服务的计算模型，通过统一的API和SDK，提供用户管理，推送通知和社交网络集成等功能。</p>
+<h4 id="middleware-function-中间件功能"><a href="#middleware-function-中间件功能" class="headerlink" title="middleware function 中间件功能"></a>middleware function 中间件功能</h4><p>当向指定的REST端点发出HTTP请求时执行的功能。由于LoopBack基于Express，LoopBack中间件与Express中间件相同。请参阅定义中间件。</p>
+<h4 id="middleware-phase-中间件阶段"><a href="#middleware-phase-中间件阶段" class="headerlink" title="middleware phase 中间件阶段"></a>middleware phase 中间件阶段</h4><p>当您调用中间件功能时，应用程序执行阶段。请参阅定义中间件。</p>
+<h4 id="model-模型"><a href="#model-模型" class="headerlink" title="model 模型"></a>model 模型</h4><p>请参阅LoopBack模型。</p>
+<h4 id="model-property-模型属性"><a href="#model-property-模型属性" class="headerlink" title="model property 模型属性"></a>model property 模型属性</h4><p>附加到模型的值; 对于持久化模型，对应于数据库列或字段。</p>
+<h1 id="N"><a href="#N" class="headerlink" title="N"></a>N</h1><h4 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h4><p>节点包管理器，用于使用npm注册表安装应用程序和管理依赖关系的命令行工具。</p>
+<h1 id="O"><a href="#O" class="headerlink" title="O"></a>O</h1><h4 id="on-premises-本地"><a href="#on-premises-本地" class="headerlink" title="on-premises 本地"></a>on-premises 本地</h4><p>涉及在用户或组织的本地计算机上安装和运行的软件。</p>
+<h4 id="operation-hook-操作钩"><a href="#operation-hook-操作钩" class="headerlink" title="operation hook 操作钩"></a>operation hook 操作钩</h4><p>由模型的高级创建，检索，更新或删除（CRUD）操作触发的代码。请参阅操作钩。</p>
+<h1 id="P"><a href="#P" class="headerlink" title="P"></a>P</h1><h4 id="Persisted-model-持久模型"><a href="#Persisted-model-持久模型" class="headerlink" title="Persisted model 持久模型"></a>Persisted model 持久模型</h4><p>一个LoopBack模型，连接到持久性数据源，自动获取基本的创建，读取，更新和删除方法。</p>
+<h4 id="production-生产"><a href="#production-生产" class="headerlink" title="production 生产"></a>production 生产</h4><p>当应用程序或API通常可用于最终用户或消费者时，软件生命周期中的阶段。与“发展”和“测试”对比。也称为“部署”。</p>
+<h4 id="production-host-生产主机"><a href="#production-host-生产主机" class="headerlink" title="production host 生产主机"></a>production host 生产主机</h4><p>运行生产应用程序的服务器。</p>
+<h4 id="property-属性"><a href="#property-属性" class="headerlink" title="property 属性"></a>property 属性</h4><p>请参阅模型属性。</p>
+<h4 id="push-notification-推送通知"><a href="#push-notification-推送通知" class="headerlink" title="push notification 推送通知"></a>push notification 推送通知</h4><p>向移动应用发送警报或消息。请参阅推送通知。</p>
+<h1 id="R"><a href="#R" class="headerlink" title="R"></a>R</h1><h4 id="remote-object-远程对象"><a href="#remote-object-远程对象" class="headerlink" title="remote object 远程对象"></a>remote object 远程对象</h4><p>通过StrongLoop应用程序通过网络导出的JavaScript对象与从模块导出功能的方式相同。您可以使用JavaScript在本地调用远程对象上的方法。</p>
+<h4 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h4><p>用于分布式超媒体系统（如万维网）的软件架构风格。该术语还经常用于描述任何使用XML（或YAML，JSON，纯文本）的简单界面，而不需要附加的消息层，例如SOAP。</p>
+<h4 id="route-路由"><a href="#route-路由" class="headerlink" title="route 路由"></a>route 路由</h4><p>识别资源的URL的一部分。例如，在http: //foo.com/products/id, the route is /products/id.</p>
+<h4 id="runtime-运行"><a href="#runtime-运行" class="headerlink" title="runtime 运行"></a>runtime 运行</h4><p>与计算机程序运行的时间段有关。</p>
+<h1 id="S"><a href="#S" class="headerlink" title="S"></a>S</h1><h4 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h4><p>软件开发套件 一组工具，API和文档，以协助以特定的计算机语言或特定的操作环境开发软件。</p>
+<h4 id="SLC"><a href="#SLC" class="headerlink" title="SLC"></a>SLC</h4><p>用于开发和操作的传统StrongLoop命令行工具。它被LoopBack CLI工具所取代lb。</p>
+<h4 id="synchronization-同步"><a href="#synchronization-同步" class="headerlink" title="synchronization 同步"></a>synchronization 同步</h4><p>在两个端点（如提供商应用程序和移动应用程序）之间实现数据一致性的过程。在此过程中，在任一端点，可以更新，创建或删除数据。请参阅同步。</p>
+<h1 id="W"><a href="#W" class="headerlink" title="W"></a>W</h1><h4 id="worker"><a href="#worker" class="headerlink" title="worker"></a>worker</h4><p>Node.js子进程。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习笔记 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> NodeJS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[LoopBack学习之命令行]]></title>
+      <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%91%BD%E4%BB%A4%E8%A1%8C/</url>
+      <content type="html"><![CDATA[<h3 id="创建新应用程序"><a href="#创建新应用程序" class="headerlink" title="创建新应用程序:"></a>创建新应用程序:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb</div></pre></td></tr></table></figure>
+<p>然后，生成器将显示消息，因为它支架应用程序包括：</p>
+<ol>
+<li>初始化  项目文件夹结构。</li>
+<li>创建默认的JSON文件。</li>
+<li>创建默认的JavaScript文件。</li>
+<li>下载并安装依赖节点模块（就好像已经手动完成  npm install）。</li>
+</ol>
+<h3 id="创建模型"><a href="#创建模型" class="headerlink" title="创建模型:"></a>创建模型:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb model</div></pre></td></tr></table></figure>
+<ul>
+<li>型号名称：review</li>
+<li>资料来源：mongoDs（mongodb）</li>
+<li>基类：使用向下箭头键选择  PersistedModel。</li>
+<li>通过REST API公开审查？按RETURN接受默认值。</li>
+<li>自定义复数形式（用于构建REST URL）：按RETURN接受默认值，是。</li>
+<li>通用型号或服务器：按RETURN接受默认的常用型号。</li>
+</ul>
+<p>模型生成器将在应用程序的common/models目录中创建两个定义模型的文件<br><a id="more"></a></p>
+<h3 id="定义关系"><a href="#定义关系" class="headerlink" title="定义关系"></a>定义关系</h3><p>现在，您将要定义模型之间的这些关系。总共有五个关系。再次，您将使用该lb命令，但这次您将使用relation子命令（关系生成器）。对于每个关系，请输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb relation</div></pre></td></tr></table></figure>
+<h4 id="查看模型JSON文件"><a href="#查看模型JSON文件" class="headerlink" title="查看模型JSON文件"></a>查看模型JSON文件</h4><p>现在，看看common/models/review.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&quot;relations&quot;: &#123;</div><div class="line">  &quot;coffeeShop&quot;: &#123;</div><div class="line">    &quot;type&quot;: &quot;belongsTo&quot;,</div><div class="line">    &quot;model&quot;: &quot;CoffeeShop&quot;,</div><div class="line">    &quot;foreignKey&quot;: &quot;&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;reviewer&quot;: &#123;</div><div class="line">    &quot;type&quot;: &quot;belongsTo&quot;,</div><div class="line">    &quot;model&quot;: &quot;Reviewer&quot;,</div><div class="line">    &quot;foreignKey&quot;: &quot;publisherId&quot;</div><div class="line">  &#125;</div><div class="line">&#125;,</div><div class="line">...</div></pre></td></tr></table></figure>
+<h4 id="定义访问控制"><a href="#定义访问控制" class="headerlink" title="定义访问控制"></a>定义访问控制</h4><p>再次，您将使用该lb工具，但这次您将使用acl子命令; 对于每个ACL，输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb acl</div></pre></td></tr></table></figure>
+<h4 id="查看review-json文件"><a href="#查看review-json文件" class="headerlink" title="查看review.json文件"></a>查看review.json文件</h4><p>完成后，ACL部分  common/models/review.json 应如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">... </div><div class="line">&quot;acls&quot;: [&#123;</div><div class="line">  &quot;accessType&quot;: &quot;*&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$everyone&quot;,</div><div class="line">  &quot;permission&quot;: &quot;DENY&quot;</div><div class="line">&#125;, &#123;</div><div class="line">  &quot;accessType&quot;: &quot;READ&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$everyone&quot;,</div><div class="line">  &quot;permission&quot;: &quot;ALLOW&quot;</div><div class="line">&#125;, &#123;</div><div class="line">  &quot;accessType&quot;: &quot;EXECUTE&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$authenticated&quot;,</div><div class="line">  &quot;permission&quot;: &quot;ALLOW&quot;,</div><div class="line">  &quot;property&quot;: &quot;create&quot;</div><div class="line">&#125;, &#123;</div><div class="line">  &quot;accessType&quot;: &quot;WRITE&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$owner&quot;,</div><div class="line">  &quot;permission&quot;: &quot;ALLOW&quot;</div><div class="line">&#125;],</div><div class="line">...</div></pre></td></tr></table></figure>
+<h3 id="添加数据源"><a href="#添加数据源" class="headerlink" title="添加数据源:"></a>添加数据源:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb datasource</div></pre></td></tr></table></figure>
+<h3 id="安装SQLDB连接器"><a href="#安装SQLDB连接器" class="headerlink" title="安装SQLDB连接器"></a>安装SQLDB连接器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install loopback-connector-mysql --save。</div></pre></td></tr></table></figure>
+<h3 id="安装MongoDB连接器"><a href="#安装MongoDB连接器" class="headerlink" title="安装MongoDB连接器"></a>安装MongoDB连接器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save loopback-connector-mongodb</div></pre></td></tr></table></figure>
+<p>该工具还将数据源定义添加到  server/datasources.json 文件中，如下所示。请注意刚刚添加的“mysqlDs”数据源，以及名为“db”的内存数据源，默认情况下是这样。</p>
+<p><strong>/server/datasources.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;db&quot;: &#123;</div><div class="line">        &quot;name&quot;: &quot;db&quot;,</div><div class="line">        &quot;connector&quot;: &quot;memory&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;mysqlDs&quot;: &#123;</div><div class="line">      &quot;host&quot;: &quot;demo.strongloop.com&quot;,</div><div class="line">      &quot;port&quot;: 3306,</div><div class="line">      &quot;url&quot;: &quot;&quot;,</div><div class="line">      &quot;database&quot;: &quot;getting_started&quot;,</div><div class="line">      &quot;password&quot;: &quot;L00pBack&quot;,</div><div class="line">      &quot;name&quot;: &quot;mysqlDs&quot;,</div><div class="line">      &quot;user&quot;: &quot;demo&quot;,</div><div class="line">      &quot;connector&quot;: &quot;mysql&quot;</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">    &quot;mongoDs&quot;: &#123;</div><div class="line">        &quot;name&quot;: &quot;mongoDs&quot;,</div><div class="line">        &quot;connector&quot;: &quot;mongodb&quot;,</div><div class="line">        &quot;host&quot;: &quot;demo.strongloop.com&quot;,</div><div class="line">        &quot;port&quot;: 27017,</div><div class="line">        &quot;database&quot;: &quot;getting_started_intermediate&quot;,</div><div class="line">        &quot;username&quot;: &quot;demo&quot;,</div><div class="line">        &quot;password&quot;: &quot;L00pBack&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="将模型连接到数据源"><a href="#将模型连接到数据源" class="headerlink" title="将模型连接到数据源"></a>将模型连接到数据源</h3><p>LoopBack应用程序使用  model-config.json  文件将模型链接到数据源。编辑  /server/model-config.json 并查找CoffeeShop条目：</p>
+<p><strong>/server/model-config.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">  &quot;CoffeeShop&quot;: &#123;</div><div class="line">    &quot;dataSource&quot;: &quot;db&quot;,</div><div class="line">    &quot;public&quot;: true</div><div class="line">  &#125;</div><div class="line">  ...</div></pre></td></tr></table></figure>
+<p>将dataSource 属性  更改  db 为  mysqlDs。这将CoffeeShop模型附加到刚刚创建和配置的MySQL数据源：</p>
+<p><strong>/server/model-config.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">  &quot;CoffeeShop&quot;: &#123;</div><div class="line">    &quot;dataSource&quot;: &quot;mysqlDs&quot;,</div><div class="line">    &quot;public&quot;: true</div><div class="line">  &#125;</div><div class="line">  ...</div></pre></td></tr></table></figure>
+<h3 id="添加一些测试数据并查看它"><a href="#添加一些测试数据并查看它" class="headerlink" title="添加一些测试数据并查看它"></a>添加一些测试数据并查看它</h3><p>现在您在LoopBack中有一个CoffeeShop模型，如何在MySQL数据库中创建相应的表？</p>
+<p>您可以直接尝试执行一些SQL语句，但是LoopBack提供了一个Node API，可以自动使用称为自动迁移的过程  。有关详细信息，请参阅  从模型创建数据库模式。</p>
+<p>该  loopback-getting-started 模块包含create-sample-models.js 演示自动迁移的  脚本。如果你从一开始就一直在追踪（而不是克隆这个模块），那么你需要从下面或从GitHub复制它   。将其放在应用程序的  /server/boot 目录中，以便在应用程序启动时执行。</p>
+<blockquote>
+<p> 注意： 下面的自动迁移脚本是在应用程序初始启动时LoopBack执行的引导脚本的示例。使用引导脚本进行初始化，并执行应用程序启动时执行的任何其他逻辑。有关详细信息，请参阅定义启动脚本。</p>
+</blockquote>
+<p><strong>/server/boot/create-sample-models.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">module.exports = function(app) &#123;</div><div class="line">  app.dataSources.mysqlDs.automigrate(&apos;CoffeeShop&apos;, function(err) &#123;</div><div class="line">    if (err) throw err;</div><div class="line"></div><div class="line">    app.models.CoffeeShop.create([&#123;</div><div class="line">      name: &apos;Bel Cafe&apos;,</div><div class="line">      city: &apos;Vancouver&apos;</div><div class="line">    &#125;, &#123;</div><div class="line">      name: &apos;Three Bees Coffee House&apos;,</div><div class="line">      city: &apos;San Mateo&apos;</div><div class="line">    &#125;, &#123;</div><div class="line">      name: &apos;Caffe Artigiano&apos;,</div><div class="line">      city: &apos;Vancouver&apos;</div><div class="line">    &#125;, ], function(err, coffeeShops) &#123;</div><div class="line">      if (err) throw err;</div><div class="line"></div><div class="line">      console.log(&apos;Models created: \n&apos;, coffeeShops);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="更新引导脚本以添加数据"><a href="#更新引导脚本以添加数据" class="headerlink" title="更新引导脚本以添加数据"></a>更新引导脚本以添加数据</h3><p>记得早在第一部分的  入门，你  增加了一个启动脚本  来创建模型（通过自动迁移）数据库表和一些数据添加到数据库中。</p>
+<p>现在您有了一些新的模型和新的数据源，您需要更新此脚本，以便在MongoDB中创建数据结构，并通过新模型插入数据。</p>
+<p>复制和粘贴下面的代码  到  server/boot/create-sample-models.js，替换现有的代码。</p>
+<p>然后跑</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save async</div></pre></td></tr></table></figure>
+<p>此启动脚本有几个功能：</p>
+<ul>
+<li>createCoffeeShops()为CoffeeShop模型创建一个MySQL表，并将数据添加到表中。 这是create-sample-models.js从入门起的脚本 。</li>
+<li>createReviewers() 使用自动迁移在MongoDB中创建Reviewer数据结构，并向其添加数据。  </li>
+<li>createReviews() 在MongoDB中使用自动迁移创建评论数据结构，并向其添加数据。</li>
+</ul>
+<h3 id="启动应用程序："><a href="#启动应用程序：" class="headerlink" title="启动应用程序："></a>启动应用程序：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node .</div></pre></td></tr></table></figure>]]></content>
+      
+        <categories>
+            
+            <category> 学习笔记 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> NodeJS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[LoopBack学习之词汇表]]></title>
       <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%AF%8D%E6%B1%87%E8%A1%A8/</url>
       <content type="html"><![CDATA[<p>准备工作：<br>安装LTS版本的Node.js.<br>安装LoopBack CLI工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
@@ -3493,75 +3953,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[LoopBack学习之核心概念]]></title>
-      <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
-      <content type="html"><![CDATA[<p>英文地址：<br><a href="http://loopback.io/doc/en/lb3/Glossary.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/Glossary.html</a></p>
-<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><h4 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h4><p>访问控制列表，与标识所有可访问对象的主题及其访问权限的对象关联的列表。请参阅身份验证，授权和权限。</p>
-<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>应用程序接口。允许以高级语言编写的应用程序使用操作系统或其他程序的特定数据或功能的接口。</p>
-<h4 id="APIC"><a href="#APIC" class="headerlink" title="APIC"></a>APIC</h4><p>IBM API Connect命令行工具。它为脚本LoopBack应用程序提供命令。有关更多信息，请参阅命令行工具。</p>
-<h4 id="adapter-适配器"><a href="#adapter-适配器" class="headerlink" title="adapter 适配器"></a>adapter 适配器</h4><p>提供传输特定机制，使远程对象（及其集合）在其传输中可用。看强力远程。<br><a id="more"></a></p>
-<h4 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h4><p>由Google创建的移动操作系统，其中大部分是根据Apache 2.0和GPLv2开源许可证发布的。</p>
-<h4 id="AngularJS"><a href="#AngularJS" class="headerlink" title="AngularJS"></a>AngularJS</h4><p>开源客户端JavaScript框架。</p>
-<h4 id="API-Connect-API连接"><a href="#API-Connect-API连接" class="headerlink" title="API Connect API连接"></a>API Connect API连接</h4><p>IBM产品集成了StrongLoop和LoopBack技术，用于创建，运行，管理和保护API。请参阅DeveloperWorks&gt; API连接。</p>
-<h4 id="Arc-弧"><a href="#Arc-弧" class="headerlink" title="Arc 弧"></a>Arc 弧</h4><p>StrongLoop API生命周期图形工具套件，包括用于构建，分析和监视节点应用程序的工具。StrongLoop Arc不再处于积极的开发阶段，不久将被淘汰。</p>
-<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><h4 id="boot-script-启动脚本"><a href="#boot-script-启动脚本" class="headerlink" title="boot script 启动脚本"></a>boot script 启动脚本</h4><p>默认情况下，/server/boot目录中启动应用程序时自动运行的JavaScript函数。请参阅定义启动脚本。</p>
-<h4 id="built-in-model-内置型号"><a href="#built-in-model-内置型号" class="headerlink" title="built-in model 内置型号"></a>built-in model 内置型号</h4><p>默认情况下，每个LoopBack应用程序都有一个预定义的模型。请参阅使用内置型号。</p>
-<h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><h4 id="cluster-簇"><a href="#cluster-簇" class="headerlink" title="cluster 簇"></a>cluster 簇</h4><p>一组相同的Node worker进程在同一端口上接收请求。参见： 工人。</p>
-<h4 id="component-零件"><a href="#component-零件" class="headerlink" title="component 零件"></a>component 零件</h4><p>扩展基本LoopBack应用程序的预定义包。从根本上说，组件是将相关代码捆绑在一起作为一个单元，以使LoopBack应用程序能够轻松重用。请参阅LoopBack组件。</p>
-<h4 id="component-连接器"><a href="#component-连接器" class="headerlink" title="component 连接器"></a>component 连接器</h4><p>请参阅LoopBack连接器。</p>
-<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><h4 id="data-source-数据源"><a href="#data-source-数据源" class="headerlink" title="data source 数据源"></a>data source 数据源</h4><p>数据源使用连接器与特定数据库或其他后端系统连接。请参阅将模型连接到数据源。</p>
-<h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><h4 id="endpoint-端点"><a href="#endpoint-端点" class="headerlink" title="endpoint 端点"></a>endpoint 端点</h4><p>看路线。</p>
-<h4 id="enterprise-connector-企业连接器"><a href="#enterprise-connector-企业连接器" class="headerlink" title="enterprise connector 企业连接器"></a>enterprise connector 企业连接器</h4><p>连接到后端数据源（如Oracle，MySQL或MongoDB）的模块。</p>
-<h4 id="environment-variable-环境变量"><a href="#environment-variable-环境变量" class="headerlink" title="environment variable 环境变量"></a>environment variable 环境变量</h4><p>定义进程操作环境方面的变量。例如，环境变量可以定义主目录，命令搜索路径，正在使用的终端或当前时区。</p>
-<h4 id="event-loop-事件循环"><a href="#event-loop-事件循环" class="headerlink" title="event loop 事件循环"></a>event loop 事件循环</h4><p>运行Node.js应用程序的单线程执行过程，通常进行一系列异步函数调用。</p>
-<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><h4 id="generator-发电机"><a href="#generator-发电机" class="headerlink" title="generator 发电机"></a>generator 发电机</h4><p>支持全部或部分LoopBack应用程序的交互式命令行工具。请参阅命令行工具。</p>
-<h1 id="I"><a href="#I" class="headerlink" title="I"></a>I</h1><h4 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h4><p>苹果设备的封闭源码专有移动操作系统。</p>
-<h1 id="J"><a href="#J" class="headerlink" title="J"></a>J</h1><h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><p>JavaScript对象符号; 一种基于JavaScript对象字面符号的轻量级数据交换格式。JSON是编程语言中性，但使用各种语言的约定。</p>
-<h1 id="L"><a href="#L" class="headerlink" title="L"></a>L</h1><h4 id="lb"><a href="#lb" class="headerlink" title="lb"></a>lb</h4><p>用于脚手架和开发LoopBack应用程序的LoopBack命令行界面（CLI）工具。取代传统slc工具。</p>
-<h4 id="LDL"><a href="#LDL" class="headerlink" title="LDL"></a>LDL</h4><p>LoopBack定义语言，一种用于定义LoopBack模型和其他配置的JSON形式。</p>
-<h4 id="load-balancer-负载均衡器"><a href="#load-balancer-负载均衡器" class="headerlink" title="load balancer 负载均衡器"></a>load balancer 负载均衡器</h4><p>在一组服务器上分发工作负载的软件或硬件，以确保服务器不会过载。如果初始服务器发生故障，负载平衡器也会将用户引导到另一台服务器。</p>
-<h4 id="LoopBack-connector-LoopBack连接器"><a href="#LoopBack-connector-LoopBack连接器" class="headerlink" title="LoopBack connector LoopBack连接器"></a>LoopBack connector LoopBack连接器</h4><p>提供对后端系统（如数据库，REST API或其他服务）的访问的连接器。</p>
-<h4 id="LoopBack-DataSource-Juggler"><a href="#LoopBack-DataSource-Juggler" class="headerlink" title="LoopBack DataSource Juggler"></a>LoopBack DataSource Juggler</h4><p>对象关系映射，提供了一组通用的接口，用于与数据库，REST API和其他数据源进行交互。</p>
-<h4 id="LoopBack-model-LoopBack模型"><a href="#LoopBack-model-LoopBack模型" class="headerlink" title="LoopBack model LoopBack模型"></a>LoopBack model LoopBack模型</h4><p>由应用程序数据，验证规则，数据访问功能以及默认提供REST API的业务逻辑组成的模型。</p>
-<h1 id="M"><a href="#M" class="headerlink" title="M"></a>M</h1><h4 id="MBaaS"><a href="#MBaaS" class="headerlink" title="MBaaS"></a>MBaaS</h4><p>移动后端即服务。将移动应用程序连接到云计算服务的计算模型，通过统一的API和SDK，提供用户管理，推送通知和社交网络集成等功能。</p>
-<h4 id="middleware-function-中间件功能"><a href="#middleware-function-中间件功能" class="headerlink" title="middleware function 中间件功能"></a>middleware function 中间件功能</h4><p>当向指定的REST端点发出HTTP请求时执行的功能。由于LoopBack基于Express，LoopBack中间件与Express中间件相同。请参阅定义中间件。</p>
-<h4 id="middleware-phase-中间件阶段"><a href="#middleware-phase-中间件阶段" class="headerlink" title="middleware phase 中间件阶段"></a>middleware phase 中间件阶段</h4><p>当您调用中间件功能时，应用程序执行阶段。请参阅定义中间件。</p>
-<h4 id="model-模型"><a href="#model-模型" class="headerlink" title="model 模型"></a>model 模型</h4><p>请参阅LoopBack模型。</p>
-<h4 id="model-property-模型属性"><a href="#model-property-模型属性" class="headerlink" title="model property 模型属性"></a>model property 模型属性</h4><p>附加到模型的值; 对于持久化模型，对应于数据库列或字段。</p>
-<h1 id="N"><a href="#N" class="headerlink" title="N"></a>N</h1><h4 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h4><p>节点包管理器，用于使用npm注册表安装应用程序和管理依赖关系的命令行工具。</p>
-<h1 id="O"><a href="#O" class="headerlink" title="O"></a>O</h1><h4 id="on-premises-本地"><a href="#on-premises-本地" class="headerlink" title="on-premises 本地"></a>on-premises 本地</h4><p>涉及在用户或组织的本地计算机上安装和运行的软件。</p>
-<h4 id="operation-hook-操作钩"><a href="#operation-hook-操作钩" class="headerlink" title="operation hook 操作钩"></a>operation hook 操作钩</h4><p>由模型的高级创建，检索，更新或删除（CRUD）操作触发的代码。请参阅操作钩。</p>
-<h1 id="P"><a href="#P" class="headerlink" title="P"></a>P</h1><h4 id="Persisted-model-持久模型"><a href="#Persisted-model-持久模型" class="headerlink" title="Persisted model 持久模型"></a>Persisted model 持久模型</h4><p>一个LoopBack模型，连接到持久性数据源，自动获取基本的创建，读取，更新和删除方法。</p>
-<h4 id="production-生产"><a href="#production-生产" class="headerlink" title="production 生产"></a>production 生产</h4><p>当应用程序或API通常可用于最终用户或消费者时，软件生命周期中的阶段。与“发展”和“测试”对比。也称为“部署”。</p>
-<h4 id="production-host-生产主机"><a href="#production-host-生产主机" class="headerlink" title="production host 生产主机"></a>production host 生产主机</h4><p>运行生产应用程序的服务器。</p>
-<h4 id="property-属性"><a href="#property-属性" class="headerlink" title="property 属性"></a>property 属性</h4><p>请参阅模型属性。</p>
-<h4 id="push-notification-推送通知"><a href="#push-notification-推送通知" class="headerlink" title="push notification 推送通知"></a>push notification 推送通知</h4><p>向移动应用发送警报或消息。请参阅推送通知。</p>
-<h1 id="R"><a href="#R" class="headerlink" title="R"></a>R</h1><h4 id="remote-object-远程对象"><a href="#remote-object-远程对象" class="headerlink" title="remote object 远程对象"></a>remote object 远程对象</h4><p>通过StrongLoop应用程序通过网络导出的JavaScript对象与从模块导出功能的方式相同。您可以使用JavaScript在本地调用远程对象上的方法。</p>
-<h4 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h4><p>用于分布式超媒体系统（如万维网）的软件架构风格。该术语还经常用于描述任何使用XML（或YAML，JSON，纯文本）的简单界面，而不需要附加的消息层，例如SOAP。</p>
-<h4 id="route-路由"><a href="#route-路由" class="headerlink" title="route 路由"></a>route 路由</h4><p>识别资源的URL的一部分。例如，在http: //foo.com/products/id, the route is /products/id.</p>
-<h4 id="runtime-运行"><a href="#runtime-运行" class="headerlink" title="runtime 运行"></a>runtime 运行</h4><p>与计算机程序运行的时间段有关。</p>
-<h1 id="S"><a href="#S" class="headerlink" title="S"></a>S</h1><h4 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h4><p>软件开发套件 一组工具，API和文档，以协助以特定的计算机语言或特定的操作环境开发软件。</p>
-<h4 id="SLC"><a href="#SLC" class="headerlink" title="SLC"></a>SLC</h4><p>用于开发和操作的传统StrongLoop命令行工具。它被LoopBack CLI工具所取代lb。</p>
-<h4 id="synchronization-同步"><a href="#synchronization-同步" class="headerlink" title="synchronization 同步"></a>synchronization 同步</h4><p>在两个端点（如提供商应用程序和移动应用程序）之间实现数据一致性的过程。在此过程中，在任一端点，可以更新，创建或删除数据。请参阅同步。</p>
-<h1 id="W"><a href="#W" class="headerlink" title="W"></a>W</h1><h4 id="worker"><a href="#worker" class="headerlink" title="worker"></a>worker</h4><p>Node.js子进程。</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 学习笔记 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> NodeJS </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[CentOS配置Docker+NodeJS服务]]></title>
       <url>/2017/9/17/CentOS%E9%85%8D%E7%BD%AEDocker+NodeJS%E6%9C%8D%E5%8A%A1/</url>
       <content type="html"><![CDATA[<p>Mac端的本地环境请点击：<a href="http://www.jianshu.com/p/e33815e71e35" target="_blank" rel="external">Mac配置Docker+NodeJS服务</a></p>
@@ -3595,83 +3986,6 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl http://0.0.0.0:2015</div><div class="line">curl http://google.com</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ip addr</div></pre></td></tr></table></figure>]]></content>
       
-        
-        <tags>
-            
-            <tag> NodeJS </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[LoopBack学习之命令行]]></title>
-      <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%91%BD%E4%BB%A4%E8%A1%8C/</url>
-      <content type="html"><![CDATA[<h3 id="创建新应用程序"><a href="#创建新应用程序" class="headerlink" title="创建新应用程序:"></a>创建新应用程序:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb</div></pre></td></tr></table></figure>
-<p>然后，生成器将显示消息，因为它支架应用程序包括：</p>
-<ol>
-<li>初始化  项目文件夹结构。</li>
-<li>创建默认的JSON文件。</li>
-<li>创建默认的JavaScript文件。</li>
-<li>下载并安装依赖节点模块（就好像已经手动完成  npm install）。</li>
-</ol>
-<h3 id="创建模型"><a href="#创建模型" class="headerlink" title="创建模型:"></a>创建模型:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb model</div></pre></td></tr></table></figure>
-<ul>
-<li>型号名称：review</li>
-<li>资料来源：mongoDs（mongodb）</li>
-<li>基类：使用向下箭头键选择  PersistedModel。</li>
-<li>通过REST API公开审查？按RETURN接受默认值。</li>
-<li>自定义复数形式（用于构建REST URL）：按RETURN接受默认值，是。</li>
-<li>通用型号或服务器：按RETURN接受默认的常用型号。</li>
-</ul>
-<p>模型生成器将在应用程序的common/models目录中创建两个定义模型的文件<br><a id="more"></a></p>
-<h3 id="定义关系"><a href="#定义关系" class="headerlink" title="定义关系"></a>定义关系</h3><p>现在，您将要定义模型之间的这些关系。总共有五个关系。再次，您将使用该lb命令，但这次您将使用relation子命令（关系生成器）。对于每个关系，请输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb relation</div></pre></td></tr></table></figure>
-<h4 id="查看模型JSON文件"><a href="#查看模型JSON文件" class="headerlink" title="查看模型JSON文件"></a>查看模型JSON文件</h4><p>现在，看看common/models/review.json</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&quot;relations&quot;: &#123;</div><div class="line">  &quot;coffeeShop&quot;: &#123;</div><div class="line">    &quot;type&quot;: &quot;belongsTo&quot;,</div><div class="line">    &quot;model&quot;: &quot;CoffeeShop&quot;,</div><div class="line">    &quot;foreignKey&quot;: &quot;&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;reviewer&quot;: &#123;</div><div class="line">    &quot;type&quot;: &quot;belongsTo&quot;,</div><div class="line">    &quot;model&quot;: &quot;Reviewer&quot;,</div><div class="line">    &quot;foreignKey&quot;: &quot;publisherId&quot;</div><div class="line">  &#125;</div><div class="line">&#125;,</div><div class="line">...</div></pre></td></tr></table></figure>
-<h4 id="定义访问控制"><a href="#定义访问控制" class="headerlink" title="定义访问控制"></a>定义访问控制</h4><p>再次，您将使用该lb工具，但这次您将使用acl子命令; 对于每个ACL，输入：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb acl</div></pre></td></tr></table></figure>
-<h4 id="查看review-json文件"><a href="#查看review-json文件" class="headerlink" title="查看review.json文件"></a>查看review.json文件</h4><p>完成后，ACL部分  common/models/review.json 应如下所示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">... </div><div class="line">&quot;acls&quot;: [&#123;</div><div class="line">  &quot;accessType&quot;: &quot;*&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$everyone&quot;,</div><div class="line">  &quot;permission&quot;: &quot;DENY&quot;</div><div class="line">&#125;, &#123;</div><div class="line">  &quot;accessType&quot;: &quot;READ&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$everyone&quot;,</div><div class="line">  &quot;permission&quot;: &quot;ALLOW&quot;</div><div class="line">&#125;, &#123;</div><div class="line">  &quot;accessType&quot;: &quot;EXECUTE&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$authenticated&quot;,</div><div class="line">  &quot;permission&quot;: &quot;ALLOW&quot;,</div><div class="line">  &quot;property&quot;: &quot;create&quot;</div><div class="line">&#125;, &#123;</div><div class="line">  &quot;accessType&quot;: &quot;WRITE&quot;,</div><div class="line">  &quot;principalType&quot;: &quot;ROLE&quot;,</div><div class="line">  &quot;principalId&quot;: &quot;$owner&quot;,</div><div class="line">  &quot;permission&quot;: &quot;ALLOW&quot;</div><div class="line">&#125;],</div><div class="line">...</div></pre></td></tr></table></figure>
-<h3 id="添加数据源"><a href="#添加数据源" class="headerlink" title="添加数据源:"></a>添加数据源:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb datasource</div></pre></td></tr></table></figure>
-<h3 id="安装SQLDB连接器"><a href="#安装SQLDB连接器" class="headerlink" title="安装SQLDB连接器"></a>安装SQLDB连接器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install loopback-connector-mysql --save。</div></pre></td></tr></table></figure>
-<h3 id="安装MongoDB连接器"><a href="#安装MongoDB连接器" class="headerlink" title="安装MongoDB连接器"></a>安装MongoDB连接器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save loopback-connector-mongodb</div></pre></td></tr></table></figure>
-<p>该工具还将数据源定义添加到  server/datasources.json 文件中，如下所示。请注意刚刚添加的“mysqlDs”数据源，以及名为“db”的内存数据源，默认情况下是这样。</p>
-<p><strong>/server/datasources.json</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;db&quot;: &#123;</div><div class="line">        &quot;name&quot;: &quot;db&quot;,</div><div class="line">        &quot;connector&quot;: &quot;memory&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;mysqlDs&quot;: &#123;</div><div class="line">      &quot;host&quot;: &quot;demo.strongloop.com&quot;,</div><div class="line">      &quot;port&quot;: 3306,</div><div class="line">      &quot;url&quot;: &quot;&quot;,</div><div class="line">      &quot;database&quot;: &quot;getting_started&quot;,</div><div class="line">      &quot;password&quot;: &quot;L00pBack&quot;,</div><div class="line">      &quot;name&quot;: &quot;mysqlDs&quot;,</div><div class="line">      &quot;user&quot;: &quot;demo&quot;,</div><div class="line">      &quot;connector&quot;: &quot;mysql&quot;</div><div class="line">    &#125;</div><div class="line">    ...</div><div class="line">    &quot;mongoDs&quot;: &#123;</div><div class="line">        &quot;name&quot;: &quot;mongoDs&quot;,</div><div class="line">        &quot;connector&quot;: &quot;mongodb&quot;,</div><div class="line">        &quot;host&quot;: &quot;demo.strongloop.com&quot;,</div><div class="line">        &quot;port&quot;: 27017,</div><div class="line">        &quot;database&quot;: &quot;getting_started_intermediate&quot;,</div><div class="line">        &quot;username&quot;: &quot;demo&quot;,</div><div class="line">        &quot;password&quot;: &quot;L00pBack&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="将模型连接到数据源"><a href="#将模型连接到数据源" class="headerlink" title="将模型连接到数据源"></a>将模型连接到数据源</h3><p>LoopBack应用程序使用  model-config.json  文件将模型链接到数据源。编辑  /server/model-config.json 并查找CoffeeShop条目：</p>
-<p><strong>/server/model-config.json</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">  &quot;CoffeeShop&quot;: &#123;</div><div class="line">    &quot;dataSource&quot;: &quot;db&quot;,</div><div class="line">    &quot;public&quot;: true</div><div class="line">  &#125;</div><div class="line">  ...</div></pre></td></tr></table></figure>
-<p>将dataSource 属性  更改  db 为  mysqlDs。这将CoffeeShop模型附加到刚刚创建和配置的MySQL数据源：</p>
-<p><strong>/server/model-config.json</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">  &quot;CoffeeShop&quot;: &#123;</div><div class="line">    &quot;dataSource&quot;: &quot;mysqlDs&quot;,</div><div class="line">    &quot;public&quot;: true</div><div class="line">  &#125;</div><div class="line">  ...</div></pre></td></tr></table></figure>
-<h3 id="添加一些测试数据并查看它"><a href="#添加一些测试数据并查看它" class="headerlink" title="添加一些测试数据并查看它"></a>添加一些测试数据并查看它</h3><p>现在您在LoopBack中有一个CoffeeShop模型，如何在MySQL数据库中创建相应的表？</p>
-<p>您可以直接尝试执行一些SQL语句，但是LoopBack提供了一个Node API，可以自动使用称为自动迁移的过程  。有关详细信息，请参阅  从模型创建数据库模式。</p>
-<p>该  loopback-getting-started 模块包含create-sample-models.js 演示自动迁移的  脚本。如果你从一开始就一直在追踪（而不是克隆这个模块），那么你需要从下面或从GitHub复制它   。将其放在应用程序的  /server/boot 目录中，以便在应用程序启动时执行。</p>
-<blockquote>
-<p> 注意： 下面的自动迁移脚本是在应用程序初始启动时LoopBack执行的引导脚本的示例。使用引导脚本进行初始化，并执行应用程序启动时执行的任何其他逻辑。有关详细信息，请参阅定义启动脚本。</p>
-</blockquote>
-<p><strong>/server/boot/create-sample-models.js</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">module.exports = function(app) &#123;</div><div class="line">  app.dataSources.mysqlDs.automigrate(&apos;CoffeeShop&apos;, function(err) &#123;</div><div class="line">    if (err) throw err;</div><div class="line"></div><div class="line">    app.models.CoffeeShop.create([&#123;</div><div class="line">      name: &apos;Bel Cafe&apos;,</div><div class="line">      city: &apos;Vancouver&apos;</div><div class="line">    &#125;, &#123;</div><div class="line">      name: &apos;Three Bees Coffee House&apos;,</div><div class="line">      city: &apos;San Mateo&apos;</div><div class="line">    &#125;, &#123;</div><div class="line">      name: &apos;Caffe Artigiano&apos;,</div><div class="line">      city: &apos;Vancouver&apos;</div><div class="line">    &#125;, ], function(err, coffeeShops) &#123;</div><div class="line">      if (err) throw err;</div><div class="line"></div><div class="line">      console.log(&apos;Models created: \n&apos;, coffeeShops);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<h3 id="更新引导脚本以添加数据"><a href="#更新引导脚本以添加数据" class="headerlink" title="更新引导脚本以添加数据"></a>更新引导脚本以添加数据</h3><p>记得早在第一部分的  入门，你  增加了一个启动脚本  来创建模型（通过自动迁移）数据库表和一些数据添加到数据库中。</p>
-<p>现在您有了一些新的模型和新的数据源，您需要更新此脚本，以便在MongoDB中创建数据结构，并通过新模型插入数据。</p>
-<p>复制和粘贴下面的代码  到  server/boot/create-sample-models.js，替换现有的代码。</p>
-<p>然后跑</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install --save async</div></pre></td></tr></table></figure>
-<p>此启动脚本有几个功能：</p>
-<ul>
-<li>createCoffeeShops()为CoffeeShop模型创建一个MySQL表，并将数据添加到表中。 这是create-sample-models.js从入门起的脚本 。</li>
-<li>createReviewers() 使用自动迁移在MongoDB中创建Reviewer数据结构，并向其添加数据。  </li>
-<li>createReviews() 在MongoDB中使用自动迁移创建评论数据结构，并向其添加数据。</li>
-</ul>
-<h3 id="启动应用程序："><a href="#启动应用程序：" class="headerlink" title="启动应用程序："></a>启动应用程序：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ node .</div></pre></td></tr></table></figure>]]></content>
-      
-        <categories>
-            
-            <category> 学习笔记 </category>
-            
-        </categories>
-        
         
         <tags>
             
