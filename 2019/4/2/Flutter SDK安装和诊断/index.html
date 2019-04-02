@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="iOS,appstore," />
+  <meta name="keywords" content="iOS,Android," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="[TOC] 今天上架的时候被提醒项目中包含idfa，请删除后重新提交。当时就纳闷了，明明sharesdk选的是无idfa的，之前项目提交都是没有问题的，怎么这回就出问题了，想想也没有其他可能用到idfa的第三方库，于是就去查找看看有没有办法可以检测项目中使用了idfa的第三方库，功夫不费有心人，方法就是在终端中进入项目目录，然后敲入命令：grep -r advertisingIdentifier">
-<meta name="keywords" content="iOS,appstore">
+<meta name="description" content="[TOC] 安装本文以Mac系统为例 访问官网安装：https://flutter.dev/docs/get-started/install/macos 下载SDK包flutter_macos_v1.2.1-stable.zip命令行执行下面几个步骤：12345➜ cd ~/development //替换成自己的目录➜ unzip ~/Downloads/flutter_macos_v1.2.1">
+<meta name="keywords" content="iOS,Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS开发检测项目中哪个库包含了idfa">
-<meta property="og:url" content="https://linfeng.xyz/2018/4/8/iOS开发检测项目中哪个库包含了idfa/index.html">
+<meta property="og:title" content="Flutter SDK安装和诊断">
+<meta property="og:url" content="https://linfeng.xyz/2019/4/2/Flutter SDK安装和诊断/index.html">
 <meta property="og:site_name" content="林峰的小宇宙">
-<meta property="og:description" content="[TOC] 今天上架的时候被提醒项目中包含idfa，请删除后重新提交。当时就纳闷了，明明sharesdk选的是无idfa的，之前项目提交都是没有问题的，怎么这回就出问题了，想想也没有其他可能用到idfa的第三方库，于是就去查找看看有没有办法可以检测项目中使用了idfa的第三方库，功夫不费有心人，方法就是在终端中进入项目目录，然后敲入命令：grep -r advertisingIdentifier">
+<meta property="og:description" content="[TOC] 安装本文以Mac系统为例 访问官网安装：https://flutter.dev/docs/get-started/install/macos 下载SDK包flutter_macos_v1.2.1-stable.zip命令行执行下面几个步骤：12345➜ cd ~/development //替换成自己的目录➜ unzip ~/Downloads/flutter_macos_v1.2.1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-08T09:00:15.000Z">
+<meta property="og:updated_time" content="2019-04-02T05:23:21.883Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS开发检测项目中哪个库包含了idfa">
-<meta name="twitter:description" content="[TOC] 今天上架的时候被提醒项目中包含idfa，请删除后重新提交。当时就纳闷了，明明sharesdk选的是无idfa的，之前项目提交都是没有问题的，怎么这回就出问题了，想想也没有其他可能用到idfa的第三方库，于是就去查找看看有没有办法可以检测项目中使用了idfa的第三方库，功夫不费有心人，方法就是在终端中进入项目目录，然后敲入命令：grep -r advertisingIdentifier">
+<meta name="twitter:title" content="Flutter SDK安装和诊断">
+<meta name="twitter:description" content="[TOC] 安装本文以Mac系统为例 访问官网安装：https://flutter.dev/docs/get-started/install/macos 下载SDK包flutter_macos_v1.2.1-stable.zip命令行执行下面几个步骤：12345➜ cd ~/development //替换成自己的目录➜ unzip ~/Downloads/flutter_macos_v1.2.1">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://linfeng.xyz/2018/4/8/iOS开发检测项目中哪个库包含了idfa/"/>
+  <link rel="canonical" href="https://linfeng.xyz/2019/4/2/Flutter SDK安装和诊断/"/>
 
 
 
 
 
-  <title>iOS开发检测项目中哪个库包含了idfa | 林峰的小宇宙</title>
+  <title>Flutter SDK安装和诊断 | 林峰的小宇宙</title>
   
 
 
@@ -307,7 +307,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2018/4/8/iOS开发检测项目中哪个库包含了idfa/">
+    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2019/4/2/Flutter SDK安装和诊断/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David Lin">
@@ -324,7 +324,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">iOS开发检测项目中哪个库包含了idfa</h1>
+          <h1 class="post-title" itemprop="name headline">Flutter SDK安装和诊断</h1>
         
 
         <div class="post-meta">
@@ -336,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-08T00:00:00+08:00">
-                2018-04-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-02T00:00:00+08:00">
+                2019-04-02
               </time>
             
 
@@ -359,8 +359,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/经验心得/" itemprop="url" rel="index">
-                    <span itemprop="name">经验心得</span>
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
                   </a>
                 </span>
 
@@ -397,7 +397,56 @@
 
       
         <p>[TOC]</p>
-<p>今天上架的时候被提醒项目中包含idfa，请删除后重新提交。当时就纳闷了，明明sharesdk选的是无idfa的，之前项目提交都是没有问题的，怎么这回就出问题了，想想也没有其他可能用到idfa的第三方库，于是就去查找看看有没有办法可以检测项目中使用了idfa的第三方库，功夫不费有心人，方法就是在终端中进入项目目录，然后敲入命令：<br><code>grep -r advertisingIdentifier .</code><br>后等待一会如果有额外输出就会在终端中显示，没有包含的话终端就不会有任何打印，最后的”.”可不能省略哦。</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>本文以Mac系统为例</p>
+<h2 id="访问官网安装："><a href="#访问官网安装：" class="headerlink" title="访问官网安装："></a>访问官网安装：</h2><p><a href="https://flutter.dev/docs/get-started/install/macos" target="_blank" rel="external">https://flutter.dev/docs/get-started/install/macos</a></p>
+<h3 id="下载SDK包flutter-macos-v1-2-1-stable-zip"><a href="#下载SDK包flutter-macos-v1-2-1-stable-zip" class="headerlink" title="下载SDK包flutter_macos_v1.2.1-stable.zip"></a>下载SDK包flutter_macos_v1.2.1-stable.zip</h3><h3 id="命令行执行下面几个步骤："><a href="#命令行执行下面几个步骤：" class="headerlink" title="命令行执行下面几个步骤："></a>命令行执行下面几个步骤：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">➜ cd ~/development //替换成自己的目录</div><div class="line">➜ unzip ~/Downloads/flutter_macos_v1.2.1-stable.zip</div><div class="line">➜ export PATH=&quot;$PATH:`pwd`/flutter/bin&quot;</div><div class="line">➜ flutter precache</div><div class="line">➜ flutter doctor</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="doctor提示问题"><a href="#doctor提示问题" class="headerlink" title="doctor提示问题"></a>doctor提示问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">Doctor summary (to see all details, run flutter doctor -v):</div><div class="line">[✓] Flutter (Channel stable, v1.2.1, on Mac OS X 10.14.3 18D109, locale</div><div class="line">    zh-Hans-CN)</div><div class="line">[!] Android toolchain - develop for Android devices (Android SDK version 26.0.1)</div><div class="line">    ✗ Flutter requires Android SDK 28 and the Android BuildTools 28.0.3</div><div class="line">      To update using sdkmanager, run:</div><div class="line">        /Users/david/Library/Android/sdk/tools/bin/sdkmanager</div><div class="line">        &quot;platforms;android-28&quot; &quot;build-tools;28.0.3&quot;</div><div class="line">      or visit https://flutter.io/setup/#android-setup for detailed</div><div class="line">      instructions.</div><div class="line">    ! Some Android licenses not accepted.  To resolve this, run: flutter doctor</div><div class="line">      --android-licenses</div><div class="line">[!] iOS toolchain - develop for iOS devices (Xcode 10.2)</div><div class="line">    ✗ libimobiledevice and ideviceinstaller are not installed. To install with</div><div class="line">      Brew, run:</div><div class="line">        brew update</div><div class="line">        brew install --HEAD usbmuxd</div><div class="line">        brew link usbmuxd</div><div class="line">        brew install --HEAD libimobiledevice</div><div class="line">        brew install ideviceinstaller</div><div class="line">    ✗ ios-deploy not installed. To install:</div><div class="line">        brew install ios-deploy</div><div class="line">[!] Android Studio (version 2.3)</div><div class="line">    ✗ Flutter plugin not installed; this adds Flutter specific functionality.</div><div class="line">    ✗ Dart plugin not installed; this adds Dart specific functionality.</div><div class="line">[!] VS Code (version 1.7.2)</div><div class="line">    ✗ Flutter extension not installed; install from</div><div class="line">      https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter</div><div class="line">[!] Connected device</div><div class="line">    ! No devices available</div><div class="line"></div><div class="line">! Doctor found issues in 5 categories.</div></pre></td></tr></table></figure>
+<h1 id="解决中遇到的问题"><a href="#解决中遇到的问题" class="headerlink" title="解决中遇到的问题"></a>解决中遇到的问题</h1><h2 id="1，运行precache很慢"><a href="#1，运行precache很慢" class="headerlink" title="1，运行precache很慢"></a>1，运行precache很慢</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Downloading android-arm64-profile/darwin-x64 tools... ⢿ (This is taking an unexpect</div></pre></td></tr></table></figure>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">➜ export PUB_HOSTED_URL=https://pub.flutter-io.cn</div><div class="line">➜ export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</div><div class="line">➜ flutter precache</div></pre></td></tr></table></figure>
+<h2 id="2，更新brew很慢"><a href="#2，更新brew很慢" class="headerlink" title="2，更新brew很慢"></a>2，更新brew很慢</h2><h3 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h3><p>使用中科大的镜像替换默认源</p>
+<ul>
+<li><p>第一步，替换brew.git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">➜ cd &quot;$(brew --repo)&quot;</div><div class="line">➜ git remote set-url origin https://mirrors.ustc.edu.cn/brew.git</div></pre></td></tr></table></figure>
+</li>
+<li><p>第二步：替换homebrew-core.git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">➜ cd &quot;$(brew --repo)/Library/Taps/homebrew/homebrew-core&quot;</div><div class="line">➜ git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git</div></pre></td></tr></table></figure>
+</li>
+<li><p>最后使用下面命令进行更新，发现速度变的很快。替换镜像完成。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">➜ brew update</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="3，brew遇到SSL-certificate-problem"><a href="#3，brew遇到SSL-certificate-problem" class="headerlink" title="3，brew遇到SSL certificate problem"></a>3，brew遇到SSL certificate problem</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">➜ brew install --HEAD usbmuxd</div><div class="line">==&gt; Cloning https://git.sukimashita.com/libusbmuxd.git</div><div class="line">Cloning into &apos;/Users/david/Library/Caches/Homebrew/usbmuxd--git&apos;...</div><div class="line">fatal: unable to access &apos;https://git.sukimashita.com/libusbmuxd.git/&apos;: SSL certificate problem: certificate has expired</div><div class="line">Error: An exception occurred within a child process:</div><div class="line">  DownloadError: Failed to download resource &quot;usbmuxd&quot;</div><div class="line">Failure while executing; `git clone --branch master https://git.sukimashita.com/libusbmuxd.git /Users/david/Library/Caches/Homebrew/usbmuxd--git` exited with 128. Here&apos;s the output:</div><div class="line">Cloning into &apos;/Users/david/Library/Caches/Homebrew/usbmuxd--git&apos;...</div><div class="line">fatal: unable to access &apos;https://git.sukimashita.com/libusbmuxd.git/&apos;: SSL certificate problem: certificate has expired</div></pre></td></tr></table></figure>
+<h3 id="解决方案-2"><a href="#解决方案-2" class="headerlink" title="解决方案"></a>解决方案</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">➜ git config --global http.sslVerify false</div></pre></td></tr></table></figure>
+<h2 id="4，android-licenses长时间没有反应"><a href="#4，android-licenses长时间没有反应" class="headerlink" title="4，android-licenses长时间没有反应"></a>4，android-licenses长时间没有反应</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">➜ flutter doctor</div><div class="line">Doctor summary (to see all details, run flutter doctor -v):</div><div class="line">[✓] Flutter (Channel beta, v1.3.8, on Mac OS X 10.14.3 18D109, locale zh-Hans-CN)</div><div class="line">⢿ Checking Android licenses is taking an unexpectedly long time...</div></pre></td></tr></table></figure>
+<h3 id="解决方案-3"><a href="#解决方案-3" class="headerlink" title="解决方案"></a>解决方案</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">➜ flutter doctor --android-licenses</div><div class="line">Warning: File /Users/david/.android/repositories.cfg could not be loaded.</div><div class="line">All SDK package licenses accepted.======] 100% Computing updates...</div></pre></td></tr></table></figure>
+<h2 id="5，Install-the-Flutter-and-Dart-plugins"><a href="#5，Install-the-Flutter-and-Dart-plugins" class="headerlink" title="5，Install the Flutter and Dart plugins"></a>5，Install the Flutter and Dart plugins</h2><h3 id="Android-Studio-解决方案"><a href="#Android-Studio-解决方案" class="headerlink" title="Android Studio 解决方案"></a>Android Studio 解决方案</h3><p>To install these:</p>
+<ul>
+<li>Start Android Studio.</li>
+<li>Open plugin preferences (Preferences &gt; Plugins on macOS, File &gt; Settings &gt; Plugins on Windows &amp; Linux).</li>
+<li>Select Browse repositories, select the Flutter plugin and click Install.</li>
+<li>Click Yes when prompted to install the Dart plugin.</li>
+<li>Click Restart when prompted.</li>
+</ul>
+<h3 id="VSCode-解决方案"><a href="#VSCode-解决方案" class="headerlink" title="VSCode 解决方案"></a>VSCode 解决方案</h3><ul>
+<li>Start VS Code.</li>
+<li>Invoke View &gt; Command Palette….</li>
+<li>Type “install”, and select Extensions: Install Extensions.</li>
+<li>Type “flutter” in the extensions search field, select Flutter in the list, and click Install. This also installs the required Dart plugin.</li>
+</ul>
+<h4 id="VSCode-Validate-your-setup-with-the-Flutter-Doctor"><a href="#VSCode-Validate-your-setup-with-the-Flutter-Doctor" class="headerlink" title="VSCode Validate your setup with the Flutter Doctor"></a>VSCode Validate your setup with the Flutter Doctor</h4><ul>
+<li>Invoke View &gt; Command Palette….</li>
+<li>Type “doctor”, and select the Flutter: Run Flutter Doctor.</li>
+<li>Review the output in the OUTPUT pane for any issues.</li>
+</ul>
+<h2 id="6，Android-SDK版本不匹配"><a href="#6，Android-SDK版本不匹配" class="headerlink" title="6，Android SDK版本不匹配"></a>6，Android SDK版本不匹配</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">➜ flutter doctor</div><div class="line">Doctor summary (to see all details, run flutter doctor -v):</div><div class="line">[✓] Flutter (Channel beta, v1.3.8, on Mac OS X 10.14.3 18D109, locale</div><div class="line">    zh-Hans-CN)</div><div class="line">[!] Android toolchain - develop for Android devices (Android SDK version 28.0.3)</div><div class="line">    ✗ Flutter requires Android SDK 28 and the Android BuildTools 28.0.3</div><div class="line">      To update using sdkmanager, run:</div><div class="line">        /Users/david/Library/Android/sdk/tools/bin/sdkmanager</div><div class="line">        &quot;platforms;android-28&quot; &quot;build-tools;28.0.3&quot;</div><div class="line">      or visit https://flutter.io/setup/#android-setup for detailed</div><div class="line">      instructions.</div><div class="line">[✓] iOS toolchain - develop for iOS devices (Xcode 10.2)</div><div class="line">[✓] Android Studio (version 3.3)</div><div class="line">[✓] VS Code (version 1.32.3)</div><div class="line">[✓] Connected device (1 available)</div></pre></td></tr></table></figure>
+<h3 id="解决方案-4"><a href="#解决方案-4" class="headerlink" title="解决方案"></a>解决方案</h3><ul>
+<li>点击androidStudio菜单的Settings</li>
+<li>点击Appearance&amp;Behavior</li>
+<li>点击System Settings</li>
+<li>安装Android SDK 28</li>
+</ul>
+<h2 id="最后所有诊断都通过"><a href="#最后所有诊断都通过" class="headerlink" title="最后所有诊断都通过"></a>最后所有诊断都通过</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">➜ flutter doctor</div><div class="line">Doctor summary (to see all details, run flutter doctor -v):</div><div class="line">[✓] Flutter (Channel beta, v1.3.8, on Mac OS X 10.14.3 18D109, locale</div><div class="line">    zh-Hans-CN)</div><div class="line">[✓] Android toolchain - develop for Android devices (Android SDK version 28.0.3)</div><div class="line">[✓] iOS toolchain - develop for iOS devices (Xcode 10.2)</div><div class="line">[✓] Android Studio (version 3.3)</div><div class="line">[✓] VS Code (version 1.32.3)</div><div class="line">[✓] Connected device (1 available)</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -425,7 +474,7 @@
           
             <a href="/tags/iOS/" rel="tag"><i class="fa fa-tag"></i> iOS</a>
           
-            <a href="/tags/appstore/" rel="tag"><i class="fa fa-tag"></i> appstore</a>
+            <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
           
         </div>
       
@@ -438,8 +487,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/3/12/iOS崩溃处理/" rel="next" title="iOS崩溃处理">
-                <i class="fa fa-chevron-left"></i> iOS崩溃处理
+              <a href="/2019/2/1/Operation和OperationQueue温习总结/" rel="next" title="Operation和OperationQueue温习总结">
+                <i class="fa fa-chevron-left"></i> Operation和OperationQueue温习总结
               </a>
             
           </div>
@@ -447,10 +496,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/10/警告消除强迫症的选择/" rel="prev" title="ios deprecated 警告消除 强迫症的选择">
-                ios deprecated 警告消除 强迫症的选择 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -502,8 +547,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -569,6 +623,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#访问官网安装："><span class="nav-number">1.1.</span> <span class="nav-text">访问官网安装：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载SDK包flutter-macos-v1-2-1-stable-zip"><span class="nav-number">1.1.1.</span> <span class="nav-text">下载SDK包flutter_macos_v1.2.1-stable.zip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行执行下面几个步骤："><span class="nav-number">1.1.2.</span> <span class="nav-text">命令行执行下面几个步骤：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#doctor提示问题"><span class="nav-number">1.1.3.</span> <span class="nav-text">doctor提示问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决中遇到的问题"><span class="nav-number">2.</span> <span class="nav-text">解决中遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1，运行precache很慢"><span class="nav-number">2.1.</span> <span class="nav-text">1，运行precache很慢</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">2.1.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2，更新brew很慢"><span class="nav-number">2.2.</span> <span class="nav-text">2，更新brew很慢</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3，brew遇到SSL-certificate-problem"><span class="nav-number">2.3.</span> <span class="nav-text">3，brew遇到SSL certificate problem</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案-2"><span class="nav-number">2.3.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4，android-licenses长时间没有反应"><span class="nav-number">2.4.</span> <span class="nav-text">4，android-licenses长时间没有反应</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案-3"><span class="nav-number">2.4.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5，Install-the-Flutter-and-Dart-plugins"><span class="nav-number">2.5.</span> <span class="nav-text">5，Install the Flutter and Dart plugins</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-Studio-解决方案"><span class="nav-number">2.5.1.</span> <span class="nav-text">Android Studio 解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VSCode-解决方案"><span class="nav-number">2.5.2.</span> <span class="nav-text">VSCode 解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VSCode-Validate-your-setup-with-the-Flutter-Doctor"><span class="nav-number">2.5.2.1.</span> <span class="nav-text">VSCode Validate your setup with the Flutter Doctor</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6，Android-SDK版本不匹配"><span class="nav-number">2.6.</span> <span class="nav-text">6，Android SDK版本不匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案-4"><span class="nav-number">2.6.1.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后所有诊断都通过"><span class="nav-number">2.7.</span> <span class="nav-text">最后所有诊断都通过</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
