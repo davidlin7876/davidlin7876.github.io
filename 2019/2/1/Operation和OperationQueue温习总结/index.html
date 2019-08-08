@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="林峰的小宇宙">
 <meta property="og:description" content="[TOC] NSOperation、NSOperationQueue 简介、操作和操作队列、使用步骤和基本使用方法、控制串行/并发执行、NSOperation 操作依赖和优先级、线程间的通信、线程同步和线程安全，以及 NSOperation、NSOperationQueue 常用属性和方法归纳。 1. NSOperation、NSOperationQueue 简介NSOperation、NSOpe">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-01T09:16:05.354Z">
+<meta property="og:updated_time" content="2019-07-01T05:44:26.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Operation和OperationQueue温习总结">
 <meta name="twitter:description" content="[TOC] NSOperation、NSOperationQueue 简介、操作和操作队列、使用步骤和基本使用方法、控制串行/并发执行、NSOperation 操作依赖和优先级、线程间的通信、线程同步和线程安全，以及 NSOperation、NSOperationQueue 常用属性和方法归纳。 1. NSOperation、NSOperationQueue 简介NSOperation、NSOpe">
@@ -434,6 +434,7 @@
 <li>自定义继承自 NSOperation 的子类，通过实现内部相应的方法来封装操作。</li>
 </ul>
 <p>在不使用 NSOperationQueue，单独使用 NSOperation 的情况下系统同步执行操作，下面我们学习以下操作的三种创建方式。</p>
+<a id="more"></a>
 <h3 id="4-1-1-使用子类-NSInvocationOperation-swift中无这种方式"><a href="#4-1-1-使用子类-NSInvocationOperation-swift中无这种方式" class="headerlink" title="4.1.1 使用子类 NSInvocationOperation swift中无这种方式"></a>4.1.1 使用子类 <code>NSInvocationOperation</code> swift中无这种方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">* 使用子类 NSInvocationOperation</div><div class="line">*/</div><div class="line">- (void)useInvocationOperation &#123;</div><div class="line">    // 1.创建 NSInvocationOperation 对象</div><div class="line">    NSLog(@&quot;start---%@&quot;, [NSThread currentThread]); // 打印当前线程</div><div class="line">    NSInvocationOperation *op = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(task1) object:nil];</div><div class="line">    // 2.调用 start 方法开始执行操作</div><div class="line">    [op start];</div><div class="line">&#125;</div><div class="line">/**</div><div class="line">* 任务1</div><div class="line">*/</div><div class="line">- (void)task1 &#123;</div><div class="line">    for (int i = 0; i &lt; 2; i++) &#123;</div><div class="line">        [NSThread sleepForTimeInterval:2]; // 模拟耗时操作</div><div class="line">        NSLog(@&quot;%d---%@&quot;, i, [NSThread currentThread]); // 打印当前线程</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>2019-02-01 10:39:50.336606+0800 NSInvocationOperationDemo[85071:3570974] start—<nsthread: 0x600000265400="">{number = 1, name = main}<br>2019-02-01 10:39:52.337095+0800 NSInvocationOperationDemo[85071:3570974] 0—<nsthread: 0x600000265400="">{number = 1, name = main}<br>2019-02-01 10:39:54.337249+0800 NSInvocationOperationDemo[85071:3570974] 1—<nsthread: 0x600000265400="">{number = 1, name = main}</nsthread:></nsthread:></nsthread:></p>
