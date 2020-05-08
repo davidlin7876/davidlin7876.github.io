@@ -94,13 +94,13 @@
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/0c/ec/0cb6e6d34295cef460e48d139bc944ec.png">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/70/bc/70dc4e1c222ddfaee8aa06df85c22bbc.png">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/ac/2f/ac7d1cec200f7ea7cb6cbab04eda252f.png">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/DUwiayJ0Mj1Hia4gUAaqCwjBKQeSXYRwID3FZD6hyZpZocPJiaBoibAYfTTFicdwuRFg406vDHwpXN09FsJCRtYRILA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/DUwiayJ0Mj1Hia4gUAaqCwjBKQeSXYRwIDfvhQ6WSqzWBxwXpFwhyXtvKjBywzDGeL6LcSCAu0LxG57QF2xkzkOw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
-<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/DUwiayJ0Mj1Hia4gUAaqCwjBKQeSXYRwID2NnHYibAqVQEfJuVhAySGTibOnFFB023Nvw7chJxicQmhKyXfgzrbpPKw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="http://static.flin.catxn.cn/640-4.png">
+<meta property="og:image" content="http://static.flin.catxn.cn/640-5.png">
+<meta property="og:image" content="http://static.flin.catxn.cn/640-6.png">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/3e/cc/3ec97a9f584132c2bcdbca60fd2888cc.png">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/8a/f6/8ae7bf36f618a999da8847cbb4da4bf6.png">
 <meta property="og:image" content="https://linfeng.xyz/2020/5/1/Flutter技术开发入门和一些心得/media/15873090806806/15873604446994.jpg">
-<meta property="og:updated_time" content="2020-05-08T01:48:36.310Z">
+<meta property="og:updated_time" content="2020-05-08T01:53:42.299Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flutter技术开发入门和一些心得">
 <meta name="twitter:description" content="[TOC] Flutter是什么？Flutter 是 Google推出并开源的移动应用开发框架，主打跨平台、高保真、高性能。  它开辟了全新的思路，提供了一整套从底层渲染逻辑到上层开发语言的完整解决方案：视图渲染完全闭环在其框架内部，不依赖于底层操作系统提供的任何组件，从根本上保证了视图渲染在 Android 和 iOS 上的高度一致性。 Flutter 的开发语言 Dart，是 Google 专">
@@ -477,11 +477,11 @@
 <p>RenderObject: 根据Widget的布局属性进行layout，paint ，负责真正的渲染</p>
 <p>从创建到渲染的大体流程是：根据Widget生成Element，然后创建相应的RenderObject并关联到Element.renderObject属性上，最后再通过RenderObject来完成布局排列和绘制。</p>
 <p>例如下面这段布局代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Container(</div><div class="line">      color: Colors.blue,</div><div class="line">      child: Row(</div><div class="line">        children: &lt;Widget&gt;[</div><div class="line">	Image.asset(&apos;image&apos;),</div><div class="line">	Text(&apos;text&apos;),</div><div class="line">	],</div><div class="line">    ),</div><div class="line">);</div></pre></td></tr></table></figure></p>
-<p>对应三棵树的结构如下图<br><img src="https://mmbiz.qpic.cn/mmbiz_png/DUwiayJ0Mj1Hia4gUAaqCwjBKQeSXYRwID3FZD6hyZpZocPJiaBoibAYfTTFicdwuRFg406vDHwpXN09FsJCRtYRILA/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<p>对应三棵树的结构如下图<br><img src="http://static.flin.catxn.cn/640-4.png" alt=""></p>
 <p>了解了这三棵树，我们再来看下页面刷新的时候具体做了哪些操作</p>
-<p>当需要更新UI的时候，Framework通知Engine，Engine会等到下个Vsync信号到达的时候，会通知Framework进行animate, build，layout，paint，最后生成layer提交给Engine。Engine会把layer进行组合，生成纹理，最后通过Open Gl接口提交数据给GPU， GPU经过处理后在显示器上面显示，如下图：<br><img src="https://mmbiz.qpic.cn/mmbiz_png/DUwiayJ0Mj1Hia4gUAaqCwjBKQeSXYRwIDfvhQ6WSqzWBxwXpFwhyXtvKjBywzDGeL6LcSCAu0LxG57QF2xkzkOw/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<p>当需要更新UI的时候，Framework通知Engine，Engine会等到下个Vsync信号到达的时候，会通知Framework进行animate, build，layout，paint，最后生成layer提交给Engine。Engine会把layer进行组合，生成纹理，最后通过Open Gl接口提交数据给GPU， GPU经过处理后在显示器上面显示，如下图：<br><img src="http://static.flin.catxn.cn/640-5.png" alt=""></p>
 <p>结合前面的例子，如果text文本或者image内容发生变化会触发哪些操作呢？</p>
-<p>Widget是不可改变，需要重新创建一颗新树，build开始，然后对上一帧的element树做遍历，调用他的updateChild，看子节点类型跟之前是不是一样，不一样的话就把子节点扔掉，创造一个新的，一样的话就做内容更新，对renderObject做updateRenderObject操作，updateRenderObject内部实现会判断现在的节点跟上一帧是不是有改动，有改动才会别标记dirty，重新layout、paint，再生成新的layer交给GPU，流程如下图：<br><img src="https://mmbiz.qpic.cn/mmbiz_png/DUwiayJ0Mj1Hia4gUAaqCwjBKQeSXYRwID2NnHYibAqVQEfJuVhAySGTibOnFFB023Nvw7chJxicQmhKyXfgzrbpPKw/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<p>Widget是不可改变，需要重新创建一颗新树，build开始，然后对上一帧的element树做遍历，调用他的updateChild，看子节点类型跟之前是不是一样，不一样的话就把子节点扔掉，创造一个新的，一样的话就做内容更新，对renderObject做updateRenderObject操作，updateRenderObject内部实现会判断现在的节点跟上一帧是不是有改动，有改动才会别标记dirty，重新layout、paint，再生成新的layer交给GPU，流程如下图：<br><img src="http://static.flin.catxn.cn/640-6.png" alt=""></p>
 <h3 id="Widget中的State到底是什么？"><a href="#Widget中的State到底是什么？" class="headerlink" title="Widget中的State到底是什么？"></a>Widget中的State到底是什么？</h3><p>Widget 有 StatelessWidget 和 StatefulWidget 两种类型。StatefulWidget 应对有交互、需要动态变化视觉效果的场景，而 StatelessWidget 则用于处理静态的、无状态的视图展示。StatefulWidget 的场景已经完全覆盖了 StatelessWidget，因此我们在构建界面时，往往会大量使用 StatefulWidget 来处理静态的视图展示需求，看起来似乎也没什么问题。</p>
 <p>那么，StatelessWidget 存在的必要性在哪里？StatefulWidget 是否是 Flutter 中的万金油？</p>
 <h4 id="UI-编程范式"><a href="#UI-编程范式" class="headerlink" title="UI 编程范式"></a>UI 编程范式</h4><p>如果你有过原生系统（Android、iOS）或原生 JavaScript 开发经验的话，应该知道视图开发是命令式的，需要精确地告诉操作系统或浏览器用何种方式去做事情。比如，如果我们想要变更界面的某个文案，则需要找到具体的文本控件并调用它的控件方法命令，才能完成文字变更。<br>Flutter 的视图开发是声明式的，其核心设计思想就是将视图和数据分离<br>对我们来说，如果要实现同样的需求，则要稍微麻烦点：除了设计好 Widget 布局方案之外，还需要提前维护一套文案数据集，并为需要变化的 Widget 绑定数据集中的数据，使 Widget 根据这个数据集完成渲染。<br>但是，当需要变更界面的文案时，我们只要改变数据集中的文案数据，并通知 Flutter 框架触发 Widget 的重新渲染即可。这样一来，开发者将无需再精确关注 UI 编程中的各个过程细节，只要维护好数据集即可。比起命令式的视图开发方式需要挨个设置不同组件（Widget）的视觉属性，这种方式要便捷得多。<br>总结来说，命令式编程强调精确控制过程细节；而声明式编程强调通过意图输出结果整体。对应到 Flutter 中，意图是绑定了组件状态的 State，结果则是重新渲染后的组件。在 Widget 的生命周期内，应用到 State 中的任何更改都将强制 Widget 重新构建。<br>其中，对于组件完成创建后就无需变更的场景，状态的绑定是可选项。这里“可选”就区分出了 Widget 的两种类型，即：StatelessWidget 不带绑定状态，而 StatefulWidget 带绑定状态。当你所要构建的用户界面不随任何状态信息的变化而变化时，需要选择使用 StatelessWidget，反之则选用 StatefulWidget。前者一般用于静态内容的展示，而后者则用于存在交互反馈的内容呈现中。<br><img src="https://static001.geekbang.org/resource/image/3e/cc/3ec97a9f584132c2bcdbca60fd2888cc.png" alt=""><br><img src="https://static001.geekbang.org/resource/image/8a/f6/8ae7bf36f618a999da8847cbb4da4bf6.png" alt=""></p>
