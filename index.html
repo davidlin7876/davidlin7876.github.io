@@ -306,6 +306,481 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2020/5/1/Flutter技术开发入门和一些心得/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="林峰的小宇宙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/5/1/Flutter技术开发入门和一些心得/" itemprop="url">Flutter技术开发入门和一些心得</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-01T00:00:00+08:00">
+                2020-05-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>[TOC]</p>
+<h1 id="Flutter是什么？"><a href="#Flutter是什么？" class="headerlink" title="Flutter是什么？"></a>Flutter是什么？</h1><p>Flutter 是 Google推出并开源的移动应用开发框架，主打跨平台、高保真、高性能。</p>
+<ul>
+<li>它开辟了全新的思路，提供了一整套从底层渲染逻辑到上层开发语言的完整解决方案：视图渲染完全闭环在其框架内部，不依赖于底层操作系统提供的任何组件，从根本上保证了视图渲染在 Android 和 iOS 上的高度一致性。</li>
+<li>Flutter 的开发语言 Dart，是 Google 专门为（大）前端开发量身打造的专属语言，借助于先进的工具链和编译器，成为了少数同时支持 JIT 和 AOT 的语言之一，开发期调试效率高，发布期运行速度快、执行性能好，在代码执行效率上可以媲美原生 App。</li>
+<li>Flutter提供了丰富的组件、接口，开发者可以很快地为 Flutter添加 native扩展。</li>
+</ul>
+<h1 id="Flutter的特性"><a href="#Flutter的特性" class="headerlink" title="Flutter的特性"></a>Flutter的特性</h1><h2 id="跨平台自绘引擎"><a href="#跨平台自绘引擎" class="headerlink" title="跨平台自绘引擎"></a>跨平台自绘引擎</h2><p>Flutter与用于构建移动应用程序的其它大多数框架不同，因为Flutter既不使用WebView，也不使用操作系统的原生控件。 相反，Flutter使用自己的高性能渲染引擎来绘制widget。这样不仅可以保证在Android和iOS上UI的一致性，而且也可以避免对原生控件依赖而带来的限制及高昂的维护成本。</p>
+<p>Flutter使用Skia作为其2D渲染引擎，Skia是Google的一个2D图形处理函数库，包含字型、坐标转换，以及点阵图都有高效能且简洁的表现，Skia是跨平台的，并提供了非常友好的API，目前Google Chrome浏览器和Android均采用Skia作为其绘图引擎。</p>
+<p>目前Flutter默认支持iOS、Android、Fuchsia（Google新的自研操作系统）三个移动平台。但Flutter亦可支持Web开发（Flutter for web）和PC开发。</p>
+<h2 id="高性能"><a href="#高性能" class="headerlink" title="高性能"></a>高性能</h2><p>Flutter高性能主要靠两点来保证，首先，Flutter APP采用Dart语言开发。Dart在 JIT（即时编译）模式下，速度与 JavaScript基本持平。但是 Dart支持 AOT(提前编译)，当以 AOT模式运行时，JavaScript便远远追不上了。速度的提升对高帧率下的视图数据计算很有帮助。其次，Flutter使用自己的渲染引擎来绘制UI，布局数据等由Dart语言直接控制，所以在布局过程中不需要像RN那样要在JavaScript和Native之间通信，这在一些滑动和拖动的场景下具有明显优势，因为在滑动和拖动过程往往都会引起布局发生变化，所以JavaScript需要和Native之间不停的同步布局信息，这和在浏览器中要JavaScript频繁操作DOM所带来的问题是相同的，都会带来比较可观的性能开销。</p>
+<h2 id="开发效率高"><a href="#开发效率高" class="headerlink" title="开发效率高"></a>开发效率高</h2><p>Dart运行时和编译器支持Flutter的两个关键特性的组合：</p>
+<p>基于JIT的快速开发周期：Flutter在开发阶段采用，采用JIT模式，这样就避免了每次改动都要进行编译，极大的节省了开发时间；</p>
+<p>基于AOT的发布包: Flutter在发布时可以通过AOT生成高效的ARM代码以保证应用性能。而JavaScript则不具有这个能力。</p>
+<h2 id="高性能-1"><a href="#高性能-1" class="headerlink" title="高性能"></a>高性能</h2><p>Flutter旨在提供流畅、高保真的的UI体验。为了实现这一点，Flutter中需要能够在每个动画帧中运行大量的代码。这意味着需要一种既能提供高性能的语言，而不会出现会丢帧的周期性暂停，而Dart支持AOT，在这一点上可以做的比JavaScript更好。<br>Google作为一个轮子大厂，直接在两个平台上重写了各自的UIKit，对接到平台底层，减少UI层的多层转换，UI性能可以比肩原生，这个优势在滑动和播放动画时尤为明显。</p>
+<h2 id="高度一致性"><a href="#高度一致性" class="headerlink" title="高度一致性"></a>高度一致性</h2><p>这里的高度一致性不仅仅指各平台 UI 一致，更重要的是各个平台运行的是同一份代码。以前一份需求在 iOS 与 Android 上需要各实现一份，在迭代的时候就会带来额外的协商成本，对于迭代速度很快的我们来说，Flutter可以很好地抹平这个成本。<br>但是并不是说用了Flutter就不需要原生开发了，原来做业务实现的原生开发者可以更关注与本身系统相关的底层和性能实现。</p>
+<h2 id="高可控制性"><a href="#高可控制性" class="headerlink" title="高可控制性"></a>高可控制性</h2><p>什么是高可控制性？Flutter 对宿主的依赖很低，宿主提供一个画布就可以自己运行起来，还有渲染流程和时间派发都是自行运作的。换句话说，无论是修改内部实现还是优化内部逻辑，我们都可以很轻松地做到，这点和过去的 Native 应用开发有很大区别，使用 Native 开发需要各种 Hook，API 还有较高的风险。</p>
+<h2 id="快速内存分配"><a href="#快速内存分配" class="headerlink" title="快速内存分配"></a>快速内存分配</h2><p>Flutter框架使用函数式流，这使得它在很大程度上依赖于底层的内存分配器。因此，拥有一个能够有效地处理琐碎任务的内存分配器将显得十分重要，在缺乏此功能的语言中，Flutter将无法有效地工作。当然Chrome V8的JavaScript引擎在内存分配上也已经做的很好，事实上Dart开发团队的很多成员都是来自Chrome团队的，所以在内存分配上Dart并不能作为超越JavaScript的优势，而对于Flutter来说，它需要这样的特性，而Dart也正好满足而已。</p>
+<h2 id="类型安全"><a href="#类型安全" class="headerlink" title="类型安全"></a>类型安全</h2><p>由于Dart是类型安全的语言，支持静态类型检测，所以可以在编译前发现一些类型的错误，并排除潜在问题，这一点对于前端开发者来说可能会更具有吸引力。与之不同的，JavaScript是一个弱类型语言，也因此前端社区出现了很多给JavaScript代码添加静态类型检测的扩展语言和工具，如：微软的TypeScript以及Facebook的Flow。相比之下，Dart本身就支持静态类型，这是它的一个重要优势。</p>
+<h1 id="Flutter与RN的优势"><a href="#Flutter与RN的优势" class="headerlink" title="Flutter与RN的优势"></a>Flutter与RN的优势</h1><p>RN是通过JavaScript通过 bridge 传递到native完成原生绘制， bridge 的成本高，因为需要频繁的跨桥调用，导致卡顿等性能问题。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3637091-784fcf2f330b2654.png?imageMogr2/auto-orient/strip|imageView2/2/w/658" alt=""></p>
+<p>Flutter利用DVM(dart虚拟机) 减少了桥的交互，在运行时期直接执行这些编译后的原生代码，就和我们进行原生开发一样，不再需要Bridge来担任中介的角色</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3637091-656facaec9cb5335.png?imageMogr2/auto-orient/strip|imageView2/2/w/648" alt=""></p>
+<h1 id="用chflutter工具包安装和更新Flutter环境"><a href="#用chflutter工具包安装和更新Flutter环境" class="headerlink" title="用chflutter工具包安装和更新Flutter环境"></a>用chflutter工具包安装和更新Flutter环境</h1><p>因为实现版本的统一等功能，我们开发了chflutter工具包，按下面步骤可以直接安装和配置好Flutter的SDK环境。</p>
+<h2 id="chflutter工具安装："><a href="#chflutter工具安装：" class="headerlink" title="chflutter工具安装："></a>chflutter工具安装：</h2><p>1、打开终端下载<code>flutter_tool_kit</code>代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">➜ cd /Code-Flutter/Codes</div><div class="line">➜ git clone http://gitlab.108sq.org/flutter_app/flutter_tool_kit.git</div></pre></td></tr></table></figure></p>
+<p>2、切换到目录，然后根据终端提示初始化步骤输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">➜ cd framework_config.config</div><div class="line">➜ python3 framework.py install</div><div class="line">请输入flutter项目根目录:/Code-Flutter/Codes/ChangShuo/</div><div class="line">请输入gitlab用户token:LNHmxYB1PCuuwJb-bRf5</div></pre></td></tr></table></figure></p>
+<p>3、其中用到的access token需要在Gitlab上面设置获取<br><img src="http://doc.108sq.org:4999/server/../Public/Uploads/2020-04-14/5e9546493cea5.png" alt=""></p>
+<p>4、 配置本地环境变量，在终端输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">➜ vim ~/.bash_profile</div><div class="line"></div><div class="line">.bash_profile文件中添加保存：</div><div class="line">alias chflutter=&quot;python3 /Code-Flutter/Codes/flutter_tool_kit/framework_config.config/framework.py&quot;</div><div class="line">export PUB_HOSTED_URL=https://pub.flutter-io.cn</div><div class="line">export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</div><div class="line">export FLUTTER_ROOT=/flutter</div><div class="line">export PATH=/flutter/bin:$PATH</div><div class="line"></div><div class="line">➜ source ~/.bash_profile</div><div class="line">➜ chflutter -h</div></pre></td></tr></table></figure></p>
+<h2 id="安装flutterSDK环境"><a href="#安装flutterSDK环境" class="headerlink" title="安装flutterSDK环境"></a>安装flutterSDK环境</h2><p>设置flutter路径，安装SDK。这边定的地址是：/flutter<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">➜ chflutter -eh</div><div class="line">➜ chflutter -ufd /flutter</div><div class="line">flutter安装目录已更新</div><div class="line">➜ chflutter -i</div></pre></td></tr></table></figure></p>
+<h1 id="Dart语言简介"><a href="#Dart语言简介" class="headerlink" title="Dart语言简介"></a>Dart语言简介</h1><h2 id="Dart-的特性"><a href="#Dart-的特性" class="headerlink" title="Dart 的特性"></a>Dart 的特性</h2><h3 id="JIT-与-AOT"><a href="#JIT-与-AOT" class="headerlink" title="JIT 与 AOT"></a>JIT 与 AOT</h3><p>JIT 在运行时即时编译，在开发周期中使用，可以动态下发和执行代码，开发测试效率高，但运行速度和执行性能则会因为运行时即时编译受到影响。<br>AOT 即提前编译，可以生成被直接执行的二进制代码，运行速度快、执行性能表现好，但每次执行前都需要提前编译，开发测试效率低。</p>
+<h3 id="内存分配与垃圾回收"><a href="#内存分配与垃圾回收" class="headerlink" title="内存分配与垃圾回收"></a>内存分配与垃圾回收</h3><p>Dart VM 的内存分配策略比较简单，创建对象时只需要在堆上移动指针，内存增长始终是线性的，省去了查找可用内存的过程。<br>在 Dart 中，并发是通过 Isolate 实现的。Isolate 是类似于线程但不共享内存，独立运行的 worker。这样的机制，就可以让 Dart 实现无锁的快速分配。<br>Dart 的垃圾回收，则是采用了多生代算法。新生代在回收内存时采用“半空间”机制，触发垃圾回收时，Dart 会将当前半空间中的“活跃”对象拷贝到备用空间，然后整体释放当前空间的所有内存。回收过程中，Dart 只需要操作少量的“活跃”对象，没有引用的大量“死亡”对象则被忽略，这样的回收机制很适合 Flutter 框架中大量 Widget 销毁重建的场景。</p>
+<h3 id="单线程模型"><a href="#单线程模型" class="headerlink" title="单线程模型"></a>单线程模型</h3><p>Dart 是单线程的。那单线程意味着什么呢？这意味着 Dart 代码是有序的，按照在 main 函数出现的次序一个接一个地执行，不会被其他代码中断。<br>另外，Dart 当然也支持异步。需要注意的是，单线程和异步并不冲突。<br>单线程模型可以在等待的过程中做别的事情，等真正需要响应结果了，再去做对应的处理。因为等待过程并不是阻塞的，所以给我们的感觉就像是同时在做多件事情一样。但其实始终只有一个线程在处理你的事情。等待这个行为是通过 Event Loop 驱动的。<br><img src="https://static001.geekbang.org/resource/image/0c/ec/0cb6e6d34295cef460e48d139bc944ec.png" alt=""><br>在 Dart 中，实际上有两个队列，一个事件队列（Event Queue），另一个则是微任务队列（Microtask Queue）。在每一次事件循环中，Dart 总是先去第一个微任务队列中查询是否有可执行的任务，如果没有，才会处理后续的事件队列的流程。<br>异步任务我们用的最多的还是优先级更低的 Event Queue。比如，I/O、绘制、定时器这些异步事件，都是通过事件队列驱动主线程执行的。<br>Dart 为 Event Queue 的任务建立提供了一层封装，叫作 Future。<br><img src="https://static001.geekbang.org/resource/image/70/bc/70dc4e1c222ddfaee8aa06df85c22bbc.png" alt=""></p>
+<h2 id="差异性"><a href="#差异性" class="headerlink" title="差异性"></a>差异性</h2><h3 id="1-变量声明"><a href="#1-变量声明" class="headerlink" title="1. 变量声明"></a>1. 变量声明</h3><h4 id="1-1-var"><a href="#1-1-var" class="headerlink" title="1.1 var"></a>1.1 var</h4><p>类似于JavaScript中的var，它可以接收任何类型的变量，但最大的不同是Dart中var变量一旦赋值，类型便会确定，则不能再改变其类型，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var t;</div><div class="line">t = &quot;hi world&quot;;</div><div class="line">// 下面代码在dart中会报错，因为变量t的类型已经确定为String，</div><div class="line">// 类型一旦确定后则不能再更改其类型。</div><div class="line">t = 1000;</div></pre></td></tr></table></figure></p>
+<p>上面的代码在JavaScript是没有问题的，前端开发者需要注意一下，之所以有此差异是因为Dart本身是一个强类型语言，任何变量都是有确定类型的，在Dart中，当用var声明一个变量后，Dart在编译时会根据第一次赋值数据的类型来推断其类型，编译结束后其类型就已经被确定，而JavaScript是纯粹的弱类型脚本语言，var只是变量的声明方式而已。</p>
+<h4 id="1-2-dynamic和Object"><a href="#1-2-dynamic和Object" class="headerlink" title="1.2 dynamic和Object"></a>1.2 dynamic和Object</h4><p>Object 是Dart所有对象的根基类，也就是说所有类型都是Object的子类(包括Function和Null)，所以任何类型的数据都可以赋值给Object声明的对象.<br>dynamic与var一样都是关键词,声明的变量可以赋值任意对象。<br>dynamic与Object相同之处在于,他们声明的变量可以在后期改变赋值类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">dynamic t;</div><div class="line">Object x;</div><div class="line">t = &quot;hi world&quot;;</div><div class="line">x = &apos;Hello Object&apos;;</div><div class="line">//下面代码没有问题</div><div class="line">t = 1000;</div><div class="line">x = 1000;</div></pre></td></tr></table></figure></p>
+<p>dynamic与Object不同的是,dynamic声明的对象编译器会提供所有可能的组合, 而Object声明的对象只能使用Object的属性与方法, 否则编译器会报错。如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">dynamic a;</div><div class="line">Object b;</div><div class="line">main() &#123;</div><div class="line">    a = &quot;&quot;;</div><div class="line">    b = &quot;&quot;;</div><div class="line">    printLengths();</div><div class="line">&#125;</div><div class="line"></div><div class="line">printLengths() &#123;</div><div class="line">    // no warning</div><div class="line">    print(a.length);</div><div class="line">    // warning:</div><div class="line">    // The getter &apos;length&apos; is not defined for the class &apos;Object&apos;</div><div class="line">    print(b.length);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>变量a不会报错, 变量b编译器会报错<br>dynamic的这个特性与Objective-C中的id作用很像. dynamic的这个特点使得我们在使用它时需要格外注意,这很容易引入一个运行时错误.</p>
+<h4 id="1-3-final和const"><a href="#1-3-final和const" class="headerlink" title="1.3 final和const"></a>1.3 final和const</h4><p>如果您从未打算更改一个变量，那么使用 final 或 const，不是var，也不是一个类型。 一个 final 变量只能被设置一次，两者区别在于：const 变量是一个编译时常量，final变量在第一次使用时被初始化。被final或者const修饰的变量，变量类型可以省略，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">//可以省略String这个类型声明</div><div class="line">final str = &quot;hi world&quot;;</div><div class="line">//final String str = &quot;hi world&quot;; </div><div class="line">const str1 = &quot;hi world&quot;;</div><div class="line">//const String str1 = &quot;hi world&quot;;</div></pre></td></tr></table></figure></p>
+<h3 id="2-函数"><a href="#2-函数" class="headerlink" title="2. 函数"></a>2. 函数</h3><h4 id="2-1-对于只包含一个表达式的函数，可以使用简写语法"><a href="#2-1-对于只包含一个表达式的函数，可以使用简写语法" class="headerlink" title="2.1 对于只包含一个表达式的函数，可以使用简写语法"></a>2.1 对于只包含一个表达式的函数，可以使用简写语法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">bool isNoble (int atomicNumber)=&gt; _nobleGases [ atomicNumber ] ！= null ;</div><div class="line">等价于</div><div class="line">bool isNoble (int atomicNumber) &#123;</div><div class="line">	return _nobleGases [ atomicNumber ] ！= null ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="2-2-可选的位置参数"><a href="#2-2-可选的位置参数" class="headerlink" title="2.2 可选的位置参数"></a>2.2 可选的位置参数</h4><p>包装一组函数参数，用[]标记为可选的位置参数，并放在参数列表的最后面：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">String say(String from, String msg, [String device]) &#123;</div><div class="line">  var result = &apos;$from says $msg&apos;;</div><div class="line">  if (device != null) &#123;</div><div class="line">    result = &apos;$result with a $device&apos;;</div><div class="line">  &#125;</div><div class="line">  return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下面是一个不带可选参数调用这个函数的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">say(&apos;Bob&apos;, &apos;Howdy&apos;); //结果是： Bob says Howdy</div></pre></td></tr></table></figure></p>
+<p>下面是用第三个参数调用这个函数的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">say(&apos;Bob&apos;, &apos;Howdy&apos;, &apos;smoke signal&apos;); //结果是：Bob says Howdy with a smoke signal</div></pre></td></tr></table></figure></p>
+<h4 id="2-3-可选的命名参数"><a href="#2-3-可选的命名参数" class="headerlink" title="2.3 可选的命名参数"></a>2.3 可选的命名参数</h4><p>定义函数时，使用{param1, param2, …}，放在参数列表的最后面，用于指定命名参数。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//设置[bold]和[hidden]标志</div><div class="line">void enableFlags(&#123;bool bold, bool hidden&#125;) &#123;</div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>调用函数时，可以使用指定命名参数。例如：paramName: value<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">enableFlags(bold: true, hidden: false);</div></pre></td></tr></table></figure></p>
+<p>可选命名参数在Flutter中使用非常多。</p>
+<p>注意，不能同时使用可选的位置参数和可选的命名参数</p>
+<h3 id="3-异步支持"><a href="#3-异步支持" class="headerlink" title="3. 异步支持"></a>3. 异步支持</h3><h4 id="3-1-Async-await"><a href="#3-1-Async-await" class="headerlink" title="3.1 Async/await"></a>3.1 Async/await</h4><p>async和await关键词支持了异步编程，允许您写出和同步代码很像的异步代码。</p>
+<h4 id="3-2-Future"><a href="#3-2-Future" class="headerlink" title="3.2 Future"></a>3.2 Future</h4><p>Future与JavaScript中的Promise非常相似，表示一个异步操作的最终完成（或失败）及其结果值的表示。简单来说，它就是用于处理异步操作的，异步处理成功了就执行成功的操作，异步处理失败了就捕获错误或者停止后续操作。一个Future只会对应一个结果，要么成功，要么失败。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Future.delayed(new Duration(seconds: 2),()&#123;</div><div class="line">   //return &quot;hi world!&quot;;</div><div class="line">   throw AssertionError(&quot;Error&quot;);</div><div class="line">&#125;).then((data)&#123;</div><div class="line">   //执行成功会走到这里</div><div class="line">   print(data);</div><div class="line">&#125;).catchError((e)&#123;</div><div class="line">   //执行失败会走到这里</div><div class="line">   print(e);</div><div class="line">&#125;).whenComplete(()&#123;</div><div class="line">   //无论成功或失败都会走到这里</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h4 id="3-3-回调地狱-Callback-Hell"><a href="#3-3-回调地狱-Callback-Hell" class="headerlink" title="3.3 回调地狱(Callback Hell)"></a>3.3 回调地狱(Callback Hell)</h4><p>如果代码中有大量异步逻辑，并且出现大量异步任务依赖其它异步任务的结果时，必然会出现Future.then回调中套回调情况。<br>举个例子，比如现在有个需求场景是用户先登录，登录成功后会获得用户ID，然后通过用户ID，再去请求用户个人信息，获取到用户个人信息后，为了使用方便，我们需要将其缓存在本地文件系统，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//用户登录</div><div class="line">Future&lt;String&gt; login(String userName, String pwd)&#123;</div><div class="line">    ...</div><div class="line">	//返回用户ID</div><div class="line">&#125;;</div><div class="line">//获取用户信息</div><div class="line">Future&lt;String&gt; getUserInfo(String id)&#123;</div><div class="line">    ...</div><div class="line">	//返回用户个人信息</div><div class="line">&#125;;</div><div class="line">// 保存用户信息</div><div class="line">Future saveUserInfo(String userInfo)&#123;</div><div class="line">    ...</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>接下来，执行整个任务流：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">login(&quot;alice&quot;,&quot;******&quot;).then((id)&#123;</div><div class="line"> //登录成功后通过，id获取用户信息</div><div class="line"> getUserInfo(id).then((userInfo)&#123;</div><div class="line">    //获取用户信息后保存</div><div class="line">    saveUserInfo(userInfo).then(()&#123;</div><div class="line">       //保存用户信息，接下来执行其它操作</div><div class="line">        ...</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>使用Future消除Callback Hell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">login(&quot;alice&quot;,&quot;******&quot;).then((id)&#123;</div><div class="line">      return getUserInfo(id);</div><div class="line">&#125;).then((userInfo)&#123;</div><div class="line">    return saveUserInfo(userInfo);</div><div class="line">&#125;).then((e)&#123;</div><div class="line">   //执行接下来的操作</div><div class="line">&#125;).catchError((e)&#123;</div><div class="line">  //错误处理</div><div class="line">  print(e);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>使用async/await消除callback hell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">task() async &#123;</div><div class="line">   try&#123;</div><div class="line">    String id = await login(&quot;alice&quot;,&quot;******&quot;);</div><div class="line">    String userInfo = await getUserInfo(id);</div><div class="line">    await saveUserInfo(userInfo);</div><div class="line">    //执行接下来的操作</div><div class="line">   &#125; catch(e)&#123;</div><div class="line">    //错误处理</div><div class="line">    print(e);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="4-字符串拼接的方式"><a href="#4-字符串拼接的方式" class="headerlink" title="4. 字符串拼接的方式"></a>4. 字符串拼接的方式</h3><p>变量取值 $name<br>函数取值 ${code??” 没有 “}<br>三引号：’’’  ‘’’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">getInfo() =&gt; &apos;&apos;&apos;</div><div class="line">购物车信息:</div><div class="line">-----------------------------</div><div class="line">  用户名: $name</div><div class="line">  优惠码: $&#123;code??&quot; 没有 &quot;&#125;</div><div class="line">  总价: $price</div><div class="line">  Date: $date</div><div class="line">-----------------------------</div><div class="line">&apos;&apos;&apos;;</div></pre></td></tr></table></figure></p>
+<h1 id="一些Flutter开发中的心得："><a href="#一些Flutter开发中的心得：" class="headerlink" title="一些Flutter开发中的心得："></a>一些Flutter开发中的心得：</h1><h2 id="1-Dart-Flutter-扩展方法-ExtensionMethod"><a href="#1-Dart-Flutter-扩展方法-ExtensionMethod" class="headerlink" title="1. Dart/Flutter - 扩展方法(ExtensionMethod)"></a>1. Dart/Flutter - 扩展方法(ExtensionMethod)</h2><p>目前Dart-SDK-2.6.0及以上是可以正常使用的，但是在Flutter的Stable分支中是属于实验性的支持，因此我们需要做一下几个步骤的操作：</p>
+<p>1.Flutter项目根目录创建一个analysis_options.yaml文件，然后添加以下内容到文件中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">analyzer:</div><div class="line">    enable-experiment:</div><div class="line">        - extension-methods</div></pre></td></tr></table></figure></p>
+<p>2.语法是怎么样的呢，其实很简单。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">/// 字符串扩展方法</div><div class="line">extension StringExtension on String&#123;</div><div class="line">  /// 是否是电话号码</div><div class="line">  bool get isMobileNumber &#123;</div><div class="line">    if(this?.isNotEmpty != true) return false;</div><div class="line">    return RegExp(r&apos;^((13[0-9])|(14[5,7,9])|(15[^4])|(18[0-9])|(17[0,1,3,5,6,7,8])|(19)[0-9])\d&#123;8&#125;$&apos;).hasMatch(this);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>3.怎么使用呢？那就更简单了，看实例！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">void test()&#123;</div><div class="line">  bool isMobileNumber= &quot;电话号码&quot;.isMobileNumber;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="2-Flutter渲染、State原理和优化"><a href="#2-Flutter渲染、State原理和优化" class="headerlink" title="2. Flutter渲染、State原理和优化"></a>2. Flutter渲染、State原理和优化</h2><p><img src="https://static001.geekbang.org/resource/image/ac/2f/ac7d1cec200f7ea7cb6cbab04eda252f.png" alt=""></p>
+<h3 id="渲染方面基本的理解"><a href="#渲染方面基本的理解" class="headerlink" title="渲染方面基本的理解"></a>渲染方面基本的理解</h3><p>优化之前我们先来介绍下Flutter的渲染原理，通过这部分基础了解渲染流程以及主要耗时花费。</p>
+<p>Flutter视图树包含了三颗树：Widget、Element、RenderObject</p>
+<p>Widget: 存放渲染内容、它只是一个配置数据结构，创建是非常轻量的，在页面刷新的过程中随时会重建</p>
+<p>Element: 同时持有Widget和RenderObject，存放上下文信息，通过它来遍历视图树，支撑UI结构</p>
+<p>RenderObject: 根据Widget的布局属性进行layout，paint ，负责真正的渲染</p>
+<p>从创建到渲染的大体流程是：根据Widget生成Element，然后创建相应的RenderObject并关联到Element.renderObject属性上，最后再通过RenderObject来完成布局排列和绘制。</p>
+<p>例如下面这段布局代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Container(</div><div class="line">      color: Colors.blue,</div><div class="line">      child: Row(</div><div class="line">        children: &lt;Widget&gt;[</div><div class="line">	Image.asset(&apos;image&apos;),</div><div class="line">	Text(&apos;text&apos;),</div><div class="line">	],</div><div class="line">    ),</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p>对应三棵树的结构如下图<br><img src="https://mmbiz.qpic.cn/mmbiz_png/DUwiayJ0Mj1Hia4gUAaqCwjBKQeSXYRwID3FZD6hyZpZocPJiaBoibAYfTTFicdwuRFg406vDHwpXN09FsJCRtYRILA/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<p>了解了这三棵树，我们再来看下页面刷新的时候具体做了哪些操作</p>
+<p>当需要更新UI的时候，Framework通知Engine，Engine会等到下个Vsync信号到达的时候，会通知Framework进行animate, build，layout，paint，最后生成layer提交给Engine。Engine会把layer进行组合，生成纹理，最后通过Open Gl接口提交数据给GPU， GPU经过处理后在显示器上面显示，如下图：<br><img src="https://mmbiz.qpic.cn/mmbiz_png/DUwiayJ0Mj1Hia4gUAaqCwjBKQeSXYRwIDfvhQ6WSqzWBxwXpFwhyXtvKjBywzDGeL6LcSCAu0LxG57QF2xkzkOw/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<p>结合前面的例子，如果text文本或者image内容发生变化会触发哪些操作呢？</p>
+<p>Widget是不可改变，需要重新创建一颗新树，build开始，然后对上一帧的element树做遍历，调用他的updateChild，看子节点类型跟之前是不是一样，不一样的话就把子节点扔掉，创造一个新的，一样的话就做内容更新，对renderObject做updateRenderObject操作，updateRenderObject内部实现会判断现在的节点跟上一帧是不是有改动，有改动才会别标记dirty，重新layout、paint，再生成新的layer交给GPU，流程如下图：<br><img src="https://mmbiz.qpic.cn/mmbiz_png/DUwiayJ0Mj1Hia4gUAaqCwjBKQeSXYRwID2NnHYibAqVQEfJuVhAySGTibOnFFB023Nvw7chJxicQmhKyXfgzrbpPKw/640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<h3 id="Widget中的State到底是什么？"><a href="#Widget中的State到底是什么？" class="headerlink" title="Widget中的State到底是什么？"></a>Widget中的State到底是什么？</h3><p>Widget 有 StatelessWidget 和 StatefulWidget 两种类型。StatefulWidget 应对有交互、需要动态变化视觉效果的场景，而 StatelessWidget 则用于处理静态的、无状态的视图展示。StatefulWidget 的场景已经完全覆盖了 StatelessWidget，因此我们在构建界面时，往往会大量使用 StatefulWidget 来处理静态的视图展示需求，看起来似乎也没什么问题。</p>
+<p>那么，StatelessWidget 存在的必要性在哪里？StatefulWidget 是否是 Flutter 中的万金油？</p>
+<h4 id="UI-编程范式"><a href="#UI-编程范式" class="headerlink" title="UI 编程范式"></a>UI 编程范式</h4><p>如果你有过原生系统（Android、iOS）或原生 JavaScript 开发经验的话，应该知道视图开发是命令式的，需要精确地告诉操作系统或浏览器用何种方式去做事情。比如，如果我们想要变更界面的某个文案，则需要找到具体的文本控件并调用它的控件方法命令，才能完成文字变更。<br>Flutter 的视图开发是声明式的，其核心设计思想就是将视图和数据分离<br>对我们来说，如果要实现同样的需求，则要稍微麻烦点：除了设计好 Widget 布局方案之外，还需要提前维护一套文案数据集，并为需要变化的 Widget 绑定数据集中的数据，使 Widget 根据这个数据集完成渲染。<br>但是，当需要变更界面的文案时，我们只要改变数据集中的文案数据，并通知 Flutter 框架触发 Widget 的重新渲染即可。这样一来，开发者将无需再精确关注 UI 编程中的各个过程细节，只要维护好数据集即可。比起命令式的视图开发方式需要挨个设置不同组件（Widget）的视觉属性，这种方式要便捷得多。<br>总结来说，命令式编程强调精确控制过程细节；而声明式编程强调通过意图输出结果整体。对应到 Flutter 中，意图是绑定了组件状态的 State，结果则是重新渲染后的组件。在 Widget 的生命周期内，应用到 State 中的任何更改都将强制 Widget 重新构建。<br>其中，对于组件完成创建后就无需变更的场景，状态的绑定是可选项。这里“可选”就区分出了 Widget 的两种类型，即：StatelessWidget 不带绑定状态，而 StatefulWidget 带绑定状态。当你所要构建的用户界面不随任何状态信息的变化而变化时，需要选择使用 StatelessWidget，反之则选用 StatefulWidget。前者一般用于静态内容的展示，而后者则用于存在交互反馈的内容呈现中。<br><img src="https://static001.geekbang.org/resource/image/3e/cc/3ec97a9f584132c2bcdbca60fd2888cc.png" alt=""><br><img src="https://static001.geekbang.org/resource/image/8a/f6/8ae7bf36f618a999da8847cbb4da4bf6.png" alt=""></p>
+<p><code>StatefulWidget 不是万金油，要慎用</code><br>对于 UI 框架而言，同样的展示效果一般可以通过多种控件实现。从定义来看，StatefulWidget 仿佛是万能的，替代 StatelessWidget 看起来合情合理。于是 StatefulWidget 的滥用，也容易因此变得顺理成章，难以避免。<br>但事实是，StatefulWidget 的滥用会直接影响 Flutter 应用的渲染性能。<br>如果我们的根布局是一个 StatefulWidget，在其 State 中每调用一次更新 UI，都将是一整个页面所有 Widget 的销毁和重建。<br>在上面渲染方面有基本的理解，我们了解到，虽然 Flutter 内部通过 Element 层可以最大程度地降低对真实渲染视图的修改，提高渲染效率，而不是销毁整个 RenderObject 树重建。但，<code>大量 Widget 对象的销毁重建是无法避免的。如果某个子 Widget 的重建涉及到一些耗时操作，那页面的渲染性能将会急剧下降</code>。<br>因此，正确评估你的视图展示需求，避免无谓的 StatefulWidget 使用，是提高 Flutter 应用渲染性能最简单也是最直接的手段。</p>
+<h3 id="优化措施"><a href="#优化措施" class="headerlink" title="优化措施:"></a>优化措施:</h3><ul>
+<li>提高build效率，setState刷新数据尽量下发到底层节点，减少build层级深度。</li>
+<li>提高paint效率，RepaintBoundry创建单独layer减少重绘区域。</li>
+<li>StatefulWidget使用在实际有改变的Widget。</li>
+<li>减少build中逻辑处理，因为widget在页面刷新的过程中随时会通过build重建，build调用频繁，我们应该只处理跟UI相关的逻辑</li>
+<li>减少saveLayer（ShaderMask、ColorFilter、Text Overflow）、clipPath的使用，saveLayer会在GPU中分配一块新的绘图缓冲区，切换绘图目标，这个操作是在GPU中非常耗时的，clipPath会影响每个绘图指令,做相交操作，之外的部分剔除掉，所以这也是个耗时操作</li>
+<li>减少Opacity Widget 使用，尤其是在动画中，因为他会导致widget每一帧都会被重建，可以用 AnimatedOpacity 或 FadeInImage 进行代替</li>
+</ul>
+<h2 id="3-对于类中的属性和方法的定义规范的建议："><a href="#3-对于类中的属性和方法的定义规范的建议：" class="headerlink" title="3. 对于类中的属性和方法的定义规范的建议："></a>3. 对于类中的属性和方法的定义规范的建议：</h2><ul>
+<li>不引用其他属性的成员，定义为属性</li>
+<li>引用其他属性，且不接收参数的成员，定义为getter <code>bool get isEmptyString</code></li>
+<li>引用其他属性，且接受参数的成员，定义为function</li>
+</ul>
+<h1 id="iOS接入flutter问题"><a href="#iOS接入flutter问题" class="headerlink" title="iOS接入flutter问题"></a>iOS接入flutter问题</h1><ol>
+<li><p>flutter以module形式接入到iOS主工程的时候（<a href="https://flutter.dev/docs/development/add-to-app/ios/project-setup)，官网默认`*.xcworkspace`和`*.xcodeproj`是同一目录下，changshuo的ios工程由于历史原因`ChangShuo.xcworkspace`和`ChangShuo.xcodeproj`不在同一目录下，因此需要调整.iOS下的podhelp.rb脚本" target="_blank" rel="external">https://flutter.dev/docs/development/add-to-app/ios/project-setup)，官网默认`*.xcworkspace`和`*.xcodeproj`是同一目录下，changshuo的ios工程由于历史原因`ChangShuo.xcworkspace`和`ChangShuo.xcodeproj`不在同一目录下，因此需要调整.iOS下的podhelp.rb脚本</a></p>
+<figure class="highlight rb"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">flutter_export_environment_path = File.join(current_directory_pathname, <span class="string">'flutter_export_environment.sh'</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p>flutter的plugin是依赖Cocoapods建立的，当plugin依赖自定义的私有pod库的时候，需要手工在podfile中添加对于私有库的依赖,例如需要对<code>changshuo_logic_account</code>进行调试就需要在<code>changshuo_logic_account/example/Podfile</code>中添加<code>pod &#39;changshuo_ios_initialize&#39;</code>  </p>
+</li>
+<li><p>flutter在需要使用到原生的UIKit控件的时(由于功能还在测试中),需要在<code>info.plist</code>中添加<code>io.flutter.embedded_views_preview</code>为true</p>
+</li>
+<li><p>flutter引擎官方在Appdelegate的<code>didFinishLaunchingWithOptions</code>中初始化，但是运用到实际项目中，这样并不准确，引擎接入到历史工程中的时候，应该在初始化在FlutterController的前一个页面来同时保证内存资源和加载效率。</p>
+</li>
+<li><p>使用 <code>DecorationImage.ExactAssetImage</code>加载图片的时候，并不会通过assets目录下的2x，3x加载，只会加载1x的图片</p>
+</li>
+<li><p>dart里所有可定义的变量都是对象，包括int,double，enum这些简单的变量，这和Objective-C是有本质的区别，最直观的例子在OC中定义<code>BOOL aBool;</code>和dart定义<code>bool aBool</code>在OC中<code>aBool</code>未NO,在dart中为<code>null</code></p>
+</li>
+<li><p>dart中的泛型是编译期的真泛型，例如Map<string,dynamic>和Map<string,string>是不同的类型，这2个类型做相互赋值的时候会抛异常</string,string></string,dynamic></p>
+</li>
+<li><p>flutter中的<code>BuildContext context</code>是一个由上到下的环境变量记录，并且不同的Navigator对应不同的context，所以InheritWidget是使用同一个页面的子child中，而不是用于2个页面的传值。</p>
+</li>
+<li><p>dart语言是没有析构函数，只有在StatefulWidget的State中才存在<code>dispose()</code>（严格意义上也不是析构函数），所有再使用StreamController做释放操作的时候，只能依赖StatefulWidget。</p>
+</li>
+<li><p>遇到 <code>Waiting for another flutter command to release the startup lock...</code>的时候，表示非正常结束了上一个flutter应用，这个时候需要手工删除<code>{flutter}/bin/cache/lockfile</code>文件</p>
+</li>
+</ol>
+<h1 id="Android进阶实践"><a href="#Android进阶实践" class="headerlink" title="Android进阶实践"></a>Android进阶实践</h1><h3 id="Flutter环境配置"><a href="#Flutter环境配置" class="headerlink" title="Flutter环境配置"></a>Flutter环境配置</h3><ul>
+<li>安装flutter过程中可能会遇到从github上clone过程非常慢的现象[镜像包问题];团队多人开发为解决这种现象，我们可以先把github flutter 项目同步到gitee(码云)上（这一过程大概只需要20秒左右）再次gitee上同步下来就非常快了;</li>
+<li><p>另外安装完后在环境变量中务必配置一下国内镜像，要不然在更新flutter upgrade将会非常慢有时还会下载不下来:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">export PUB_HOSTED_URL=https://pub.flutter-io.cn</div><div class="line">export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="创建Flutter工程与AndroidX迁移"><a href="#创建Flutter工程与AndroidX迁移" class="headerlink" title="创建Flutter工程与AndroidX迁移"></a>创建Flutter工程与AndroidX迁移</h3><ul>
+<li>1.在创建flutter项目或模块时，务必将project name和package name填写好不要使用默认.往往在创建项目什么都没看很容易就行一直next,然后结束.当然一定要这样做也没什么问题，不足的之处就是回头再改一个比较麻烦另外很容易改不全;<br>2.在finished之后最好勾选Use androidx.* artifacts;</li>
+<li>因flutter sdk相关引用包使用的是androidx模块，因此如果要对接flutter项目就要把项目迁移到androidx.官网提供的迁移步骤：<a href="https://www.bookstack.cn/read/flutter-1.2-zh/40336d41b348da21.md" target="_blank" rel="external">https://www.bookstack.cn/read/flutter-1.2-zh/40336d41b348da21.md</a></li>
+</ul>
+<h3 id="Android-Flutter引擎升级带来的问题"><a href="#Android-Flutter引擎升级带来的问题" class="headerlink" title="Android Flutter引擎升级带来的问题"></a>Android Flutter引擎升级带来的问题</h3><ul>
+<li>Flutter升级1.12后做了比较大的发动,相关参考链接:<br><a href="https://flutter.cn/docs/development/tools/sdk/release-notes/release-notes-1.12.13" target="_blank" rel="external">https://flutter.cn/docs/development/tools/sdk/release-notes/release-notes-1.12.13</a><br><br><a href="https://baijiahao.baidu.com/s?id=1657245790948868968&amp;wfr=spider&amp;for=pc" target="_blank" rel="external">https://baijiahao.baidu.com/s?id=1657245790948868968&amp;wfr=spider&amp;for=pc</a></li>
+<li>升级之后原io.flutter.app包下的有些类已经被弃用改用io.flutter.embedding.android（如FlutterActivity）</li>
+<li><p>升级之后的项目需要在manimafest文件中添加配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;meta-data</div><div class="line">      android:name=&quot;flutterEmbedding&quot;</div><div class="line">      android:value=&quot;2&quot; /&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>FlutterActivity 设置透明问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">  官方api有问题，BackgroundMode枚举并没有暴露出来</div><div class="line">FlutterActivity</div><div class="line">  .withNewEngine()</div><div class="line">  .backgroundMode(FlutterActivity.BackgroundMode.transparent).build(context)</div><div class="line">  </div><div class="line">  暂时可以通过下面代码来设置</div><div class="line">  Intent intent = FlutterActivity.withNewEngine().initialRoute(&apos;route&apos;).build(activity);</div><div class="line">  intent.putExtra(&quot;background_mode&quot;,&quot;transparent&quot;);</div><div class="line">  activity.startActivity(intent);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Flutter包体积压缩"><a href="#Flutter包体积压缩" class="headerlink" title="Flutter包体积压缩"></a>Flutter包体积压缩</h3><p>安装包体积决定了用户等待下载的时间和可能会耗费的流量，如何控制安装包体积，减小flutter产物的大小成为当务之急，那么如何减少包大小？<br>1.打包时通过增加参数:<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./gradlew clean assembleRelease -Pextra-gen-snapshot-options=&quot;--dwarf_stack_traces,--print-snapshot-sizes,--obfuscate&quot;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><font color="gray" size="3">查看缩减方式:<br>  1.执行以下命令导出arm架构和包的组成结构:<br>  flutter –suppress-analytics build aot –output-dir=build/aot –target-platform=android –target=lib/main.dart –release –android-arch=arm64 –extra-gen-snapshot-options=”–dwarf_stack_traces,–print-snapshot-sizes,–print_instructions_sizes_to=build/aot.json”<br>  2.使用dart命令将aot.json转为可视化网页：<br>  dart ./bin/run_binary_size_analysis.dart  build/aot.json path_to_webpage_dir<br>  </font><br>  <img src="media/15873090806806/15873604446994.jpg" alt=""></p>
+</blockquote>
+<p>2.通过对flutter/native资源的压缩和共享<br>  <a href="https://www.devio.org/2019/04/11/flutter-image-widget/" target="_blank" rel="external">https://www.devio.org/2019/04/11/flutter-image-widget/</a><br>3.过滤掉不需要的cpu架构<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./gradlew clean assembleRelease -Ptarget-platform=&quot;android-arm&quot;</div></pre></td></tr></table></figure></p>
+<h3 id="Flutter集成"><a href="#Flutter集成" class="headerlink" title="Flutter集成"></a>Flutter集成</h3><ul>
+<li><p>flutter模块集成到工程项目中时最好在gradle添加source方式，如果按ant和脚本打包出来的产物进行集成可能会出现版本兼容或包的冲突问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">flutter &#123;</div><div class="line">  source &quot;flutter模块地址&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过封装中间产物降低原项目代码的侵入性或耦合度.(可查看<a href="http://192.168.200.131/flutter_app/changshuo_android/changshuo_android_initial" target="_blank" rel="external">changshuo_android_initial文档</a>)</p>
+</li>
+</ul>
+<h3 id="Flutter引擎的启动速度"><a href="#Flutter引擎的启动速度" class="headerlink" title="Flutter引擎的启动速度"></a>Flutter引擎的启动速度</h3><p>Android项目在启动flutter引擎时或首次打开flutter页面都会出现短暂的黑屏情况，这种情况我们要尽可能的去避免;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">对于加载flutter页面方式:</div><div class="line">1.manifest或xml layout注册方式;</div><div class="line">2.FlutterActivity.createDefaultIntent(this);</div><div class="line">3.FlutterActivity.withNewEngine();</div><div class="line">4.flutterView.attachToFlutterEngine(new FlutterEngine(this));</div><div class="line">5.FlutterActivity.withCachedEngine(&quot;engine id&quot;);</div></pre></td></tr></table></figure></p>
+<blockquote>
+<font color="gray" size="3">对于不同的沉浸方式建议withCachedEngine;flutter engin与页面状态是完全分离的，因此可以应用启动时即可在后面默默的启动并缓存好; 【这里需要做一定的封装与判断,直接使用可能导致资源释放不了问题,sdk内部对引擎缓存做了强引用处理.】</font>
+
+
+</blockquote>
+<h1 id="对技术前瞻性多些思考"><a href="#对技术前瞻性多些思考" class="headerlink" title="对技术前瞻性多些思考"></a>对技术前瞻性多些思考</h1><p>希望大家对于我们的技术前瞻性多些思考。空余时间多学一些。</p>
+<p>无论是 Weex、RN、小程序，还是 Flutter、SwiftUI，他们解决的问题是不一样的，本质更不同。到底哪个更优其实没有标准答案，不同的业务场景和业务所处的时间点，造成选择会不一样。“我们是工程师，并不是 Swift 或者 Flutter 工程师，我们选择的技术最终要为我们的业务和商业服务。”</p>
+<p>“拥有一把锤子可以敲一个钉子，拥有一个工具箱可以造一艘航母”。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2020/3/1/Flutter知识库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="林峰的小宇宙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/3/1/Flutter知识库/" itemprop="url">Flutter知识库</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-01T00:00:00+08:00">
+                2020-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Flutter-WIKI"><a href="#Flutter-WIKI" class="headerlink" title="Flutter WIKI"></a>Flutter WIKI</h1><p>[TOC]</p>
+<h2 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h2><p><a href="https://flutterchina.club/web-analogs/" target="_blank" rel="external">《Flutter官方中文教程》</a></p>
+<ul>
+<li><a href="https://flutterchina.club/flutter-for-android/" target="_blank" rel="external">Flutter for Android 开发者</a></li>
+<li><a href="https://flutterchina.club/flutter-for-ios/" target="_blank" rel="external">Flutter for iOS 开发者</a></li>
+</ul>
+<p><a href="https://book.flutterchina.club" target="_blank" rel="external">《Flutter实战》</a></p>
+<p><a href="https://www.showdoc.cc/411604771348975?page_id=2397870947016786" target="_blank" rel="external">《Flutter核心技术与实战》</a></p>
+<p><a href="https://juejin.im/collection/5db25bcff265da06a19a304e" target="_blank" rel="external">《Flutter完整开发实战详解 》</a></p>
+<p><a href="https://www.devio.org/2019/04/11/flutter-image-widget/" target="_blank" rel="external">带你快速掌握Flutter图片开发核心技能</a></p>
+<h2 id="架构相关"><a href="#架构相关" class="headerlink" title="架构相关"></a>架构相关</h2><p><a href="https://yq.aliyun.com/articles/739854" target="_blank" rel="external">Flutter+Serverless端到端研发架构实践</a></p>
+<p><a href="https://yq.aliyun.com/articles/697672" target="_blank" rel="external">编译技术在服务端的探索和应用</a></p>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><p><a href="https://mp.weixin.qq.com/s/IZ6rUfg3_-zvopc7jZZobg" target="_blank" rel="external">Flutter 沙龙回顾 | 跨平台技术趋势及字节跳动 Flutter 架构实践</a></p>
+<p><a href="https://www.infoq.cn/article/EYYIY7tp133QAC4U3Y5R" target="_blank" rel="external">Flutter 在字节跳动的现状与工程实践</a></p>
+<p><a href="https://mp.weixin.qq.com/s/Unox7RPZQsyxSiH04DiGtw" target="_blank" rel="external">京东：将Flutter扩展到微信小程序端的探索</a></p>
+<p><a href="https://yq.aliyun.com/articles/728144" target="_blank" rel="external">怎样的Flutter Engine定制流程，才能实现真正“开箱即用”？</a></p>
+<h2 id="优化性能"><a href="#优化性能" class="headerlink" title="优化性能"></a>优化性能</h2><p><a href="https://mp.weixin.qq.com/s/Ls3cDcqjlyOX80PXUO0wRw" target="_blank" rel="external">Flutter 沙龙回顾 | 如何缩减接近 50% 的 Flutter 包体积</a></p>
+<p><a href="https://yq.aliyun.com/articles/725876" target="_blank" rel="external">做一个高一致性、高性能的Flutter动态渲染，真的很难么？</a></p>
+<p><a href="https://mp.weixin.qq.com/s/iXFa9C68gUHr7PL8NHnZUA" target="_blank" rel="external">复杂业务如何保证Flutter的高性能高流畅度？</a></p>
+<h2 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h2><p><a href="https://juejin.im/post/5e58ceadf265da575918dd14" target="_blank" rel="external">Flutter 开发踩坑记录（干货总结）</a></p>
+<p><a href="https://my.oschina.net/u/1464083/blog/2877167" target="_blank" rel="external">在Flutter中嵌入Native组件的解决方案</a></p>
+<p><a href="https://www.jianshu.com/p/f9d00020b3a5" target="_blank" rel="external">Dart/Flutter - 扩展方法(ExtensionMethod)</a></p>
+<p><a href="https://juejin.im/post/5e5f1d41518825495b29a05b" target="_blank" rel="external">dna — 一个 dart 到 native 的超级通道</a></p>
+<p><a href="https://www.jianshu.com/p/14cbcbaa74b7" target="_blank" rel="external">FlutterJsonBeanFactory插件json使用</a></p>
+<p><a href="https://www.codingsky.com/doc/flutter-things/flutter-plugin.html" target="_blank" rel="external">Flutter插件详解及其发布插件</a></p>
+<h2 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h2><p><a href="http://dart.goodev.org/guides/language/effective-dart/style" target="_blank" rel="external">Flutter代码风格</a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><a href="https://juejin.im/collection/5db25d706fb9a069f422c374" target="_blank" rel="external">《Flutter番外的世界》</a></p>
+<h2 id="附录A"><a href="#附录A" class="headerlink" title="附录A"></a>附录A</h2><p><a href="https://flutterchina.club" target="_blank" rel="external">Flutter中文网</a></p>
+<p><a href="https://juejin.im/tag/Flutter" target="_blank" rel="external">掘金Flutter社区</a></p>
+<p><a href="https://my.oschina.net/u/1464083?q=Flutter" target="_blank" rel="external">阿里云官方博客(已过滤Flutter)</a></p>
+<p><a href="https://yq.aliyun.com/teams/290" target="_blank" rel="external">闲鱼技术博客</a></p>
+<p><a href="https://flutter.dev" target="_blank" rel="external">https://flutter.dev</a></p>
+<p><a href="https://pub.dev" target="_blank" rel="external">https://pub.dev</a></p>
+<p><a href="https://pub.flutter-io.cn" target="_blank" rel="external">https://pub.flutter-io.cn</a></p>
+<p><a href="https://github.com/flutter" target="_blank" rel="external">https://github.com/flutter</a></p>
+<h2 id="附录B"><a href="#附录B" class="headerlink" title="附录B"></a>附录B</h2><p><a href="https://dartpad.dartlang.org" target="_blank" rel="external">工具Dart Pad</a></p>
+<p>国内镜像地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 官方提供的国内镜像</div><div class="line">export PUB_HOSTED_URL=https://pub.flutter-io.cn</div><div class="line">export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</div><div class="line"></div><div class="line"># 上海交通大学提供的国内镜像</div><div class="line">export FLUTTER_STORAGE_BASE_URL=https://mirrors.sjtug.sjtu.edu.cn/</div><div class="line">expot PUB_HOSTED_URL=https://dart-pub.mirrors.sjtug.sjtu.edu.cn/</div></pre></td></tr></table></figure></p>
+<h3 id="widgets完整关系图"><a href="#widgets完整关系图" class="headerlink" title="widgets完整关系图"></a>widgets完整关系图</h3><p><img src="https://upload-images.jianshu.io/upload_images/8112345-bf44219f46c955aa?imageMogr2/auto-orient/strip|imageView2/2/w/846" alt="widgets"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+    <div>
+      
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2019/5/7/解决mac下Sourcetree每次拉取提交都需要输入密码/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1563,300 +2038,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/11/5/删除文件夹下所有的.git文件/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David Lin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="林峰的小宇宙">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/5/删除文件夹下所有的.git文件/" itemprop="url">删除文件夹下所有的.git文件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-05T00:00:00+08:00">
-                2017-11-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/经验心得/" itemprop="url" rel="index">
-                    <span itemprop="name">经验心得</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>find . -name “.git” | xargs rm -Rf</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-    <div>
-      
-    </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/11/4/如何设计一个安全的账号系统/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="David Lin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="林峰的小宇宙">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/4/如何设计一个安全的账号系统/" itemprop="url">如何设计一个安全的账号系统？</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-04T00:00:00+08:00">
-                2017-11-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/经验心得/" itemprop="url" rel="index">
-                    <span itemprop="name">经验心得</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>用正确的姿势保存密码。<br>用正确的姿势传输数据。<br>用正确的姿势加密敏感信息。<br>用正确的姿势对数据进行备份和监控。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/4/如何设计一个安全的账号系统/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-    <div>
-      
-    </div>
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1911,7 +2092,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1933,7 +2114,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1972,7 +2153,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
