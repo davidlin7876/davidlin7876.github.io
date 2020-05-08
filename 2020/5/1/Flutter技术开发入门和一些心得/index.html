@@ -99,7 +99,7 @@
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/3e/cc/3ec97a9f584132c2bcdbca60fd2888cc.png">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/8a/f6/8ae7bf36f618a999da8847cbb4da4bf6.png">
 <meta property="og:image" content="https://linfeng.xyz/2020/5/1/Flutter技术开发入门和一些心得/media/15873090806806/15873604446994.jpg">
-<meta property="og:updated_time" content="2020-05-08T00:55:13.440Z">
+<meta property="og:updated_time" content="2020-05-08T01:01:14.830Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flutter技术开发入门和一些心得">
 <meta name="twitter:description" content="[TOC] Flutter是什么？Flutter 是 Google推出并开源的移动应用开发框架，主打跨平台、高保真、高性能。  它开辟了全新的思路，提供了一整套从底层渲染逻辑到上层开发语言的完整解决方案：视图渲染完全闭环在其框架内部，不依赖于底层操作系统提供的任何组件，从根本上保证了视图渲染在 Android 和 iOS 上的高度一致性。 Flutter 的开发语言 Dart，是 Google 专">
@@ -428,6 +428,7 @@
 <h2 id="高可控制性"><a href="#高可控制性" class="headerlink" title="高可控制性"></a>高可控制性</h2><p>什么是高可控制性？Flutter 对宿主的依赖很低，宿主提供一个画布就可以自己运行起来，还有渲染流程和时间派发都是自行运作的。换句话说，无论是修改内部实现还是优化内部逻辑，我们都可以很轻松地做到，这点和过去的 Native 应用开发有很大区别，使用 Native 开发需要各种 Hook，API 还有较高的风险。</p>
 <h2 id="快速内存分配"><a href="#快速内存分配" class="headerlink" title="快速内存分配"></a>快速内存分配</h2><p>Flutter框架使用函数式流，这使得它在很大程度上依赖于底层的内存分配器。因此，拥有一个能够有效地处理琐碎任务的内存分配器将显得十分重要，在缺乏此功能的语言中，Flutter将无法有效地工作。当然Chrome V8的JavaScript引擎在内存分配上也已经做的很好，事实上Dart开发团队的很多成员都是来自Chrome团队的，所以在内存分配上Dart并不能作为超越JavaScript的优势，而对于Flutter来说，它需要这样的特性，而Dart也正好满足而已。</p>
 <h2 id="类型安全"><a href="#类型安全" class="headerlink" title="类型安全"></a>类型安全</h2><p>由于Dart是类型安全的语言，支持静态类型检测，所以可以在编译前发现一些类型的错误，并排除潜在问题，这一点对于前端开发者来说可能会更具有吸引力。与之不同的，JavaScript是一个弱类型语言，也因此前端社区出现了很多给JavaScript代码添加静态类型检测的扩展语言和工具，如：微软的TypeScript以及Facebook的Flow。相比之下，Dart本身就支持静态类型，这是它的一个重要优势。</p>
+<a id="more"></a>
 <h1 id="Flutter与RN的优势"><a href="#Flutter与RN的优势" class="headerlink" title="Flutter与RN的优势"></a>Flutter与RN的优势</h1><p>RN是通过JavaScript通过 bridge 传递到native完成原生绘制， bridge 的成本高，因为需要频繁的跨桥调用，导致卡顿等性能问题。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3637091-784fcf2f330b2654.png?imageMogr2/auto-orient/strip|imageView2/2/w/658" alt=""></p>
 <p>Flutter利用DVM(dart虚拟机) 减少了桥的交互，在运行时期直接执行这些编译后的原生代码，就和我们进行原生开发一样，不再需要Bridge来担任中介的角色</p>
