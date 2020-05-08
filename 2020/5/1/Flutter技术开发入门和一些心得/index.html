@@ -100,7 +100,7 @@
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/3e/cc/3ec97a9f584132c2bcdbca60fd2888cc.png">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/8a/f6/8ae7bf36f618a999da8847cbb4da4bf6.png">
 <meta property="og:image" content="https://linfeng.xyz/2020/5/1/Flutter技术开发入门和一些心得/media/15873090806806/15873604446994.jpg">
-<meta property="og:updated_time" content="2020-05-08T01:59:57.800Z">
+<meta property="og:updated_time" content="2020-05-08T02:03:48.902Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flutter技术开发入门和一些心得">
 <meta name="twitter:description" content="[TOC] Flutter是什么？Flutter 是 Google推出并开源的移动应用开发框架，主打跨平台、高保真、高性能。  它开辟了全新的思路，提供了一整套从底层渲染逻辑到上层开发语言的完整解决方案：视图渲染完全闭环在其框架内部，不依赖于底层操作系统提供的任何组件，从根本上保证了视图渲染在 Android 和 iOS 上的高度一致性。 Flutter 的开发语言 Dart，是 Google 专">
@@ -555,11 +555,7 @@
 </li>
 </ul>
 <h3 id="Flutter引擎的启动速度"><a href="#Flutter引擎的启动速度" class="headerlink" title="Flutter引擎的启动速度"></a>Flutter引擎的启动速度</h3><p>Android项目在启动flutter引擎时或首次打开flutter页面都会出现短暂的黑屏情况，这种情况我们要尽可能的去避免;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">对于加载flutter页面方式:</div><div class="line">1.manifest或xml layout注册方式;</div><div class="line">2.FlutterActivity.createDefaultIntent(this);</div><div class="line">3.FlutterActivity.withNewEngine();</div><div class="line">4.flutterView.attachToFlutterEngine(new FlutterEngine(this));</div><div class="line">5.FlutterActivity.withCachedEngine(&quot;engine id&quot;);</div></pre></td></tr></table></figure></p>
-<blockquote>
-<font color="gray" size="3">对于不同的沉浸方式建议withCachedEngine;flutter engin与页面状态是完全分离的，因此可以应用启动时即可在后面默默的启动并缓存好; 【这里需要做一定的封装与判断,直接使用可能导致资源释放不了问题,sdk内部对引擎缓存做了强引用处理.】</font>
-
-
-</blockquote>
+<p>对于不同的沉浸方式建议withCachedEngine;flutter engin与页面状态是完全分离的，因此可以应用启动时即可在后面默默的启动并缓存好; 【这里需要做一定的封装与判断,直接使用可能导致资源释放不了问题,sdk内部对引擎缓存做了强引用处理.】</p>
 <h1 id="对技术前瞻性多些思考"><a href="#对技术前瞻性多些思考" class="headerlink" title="对技术前瞻性多些思考"></a>对技术前瞻性多些思考</h1><p>希望大家对于我们的技术前瞻性多些思考。空余时间多学一些。</p>
 <p>无论是 Weex、RN、小程序，还是 Flutter、SwiftUI，他们解决的问题是不一样的，本质更不同。到底哪个更优其实没有标准答案，不同的业务场景和业务所处的时间点，造成选择会不一样。“我们是工程师，并不是 Swift 或者 Flutter 工程师，我们选择的技术最终要为我们的业务和商业服务。”</p>
 <p>“拥有一把锤子可以敲一个钉子，拥有一个工具箱可以造一艘航母”。</p>
