@@ -95,7 +95,7 @@
 <li>引用其他属性，且接受参数的成员，定义为function</li>
 </ul>
 <h1 id="iOS接入flutter问题"><a href="#iOS接入flutter问题" class="headerlink" title="iOS接入flutter问题"></a>iOS接入flutter问题</h1><ol>
-<li><p>flutter以module形式接入到iOS主工程的时候（<a href="https://flutter.dev/docs/development/add-to-app/ios/project-setup)，官网默认`*.xcworkspace`和`*.xcodeproj`是同一目录下，changshuo的ios工程由于历史原因`ChangShuo.xcworkspace`和`ChangShuo.xcodeproj`不在同一目录下，因此需要调整.iOS下的podhelp.rb脚本" target="_blank" rel="external">https://flutter.dev/docs/development/add-to-app/ios/project-setup)，官网默认`*.xcworkspace`和`*.xcodeproj`是同一目录下，changshuo的ios工程由于历史原因`ChangShuo.xcworkspace`和`ChangShuo.xcodeproj`不在同一目录下，因此需要调整.iOS下的podhelp.rb脚本</a></p>
+<li><p>flutter以module形式接入到iOS主工程的时候（<a href="https://flutter.dev/docs/development/add-to-app/ios/project-setup" target="_blank" rel="external"></a>)，官网默认<code>*.xcworkspace</code>和<code>*.xcodeproj</code>是同一目录下，changshuo的ios工程由于历史原因<code>ChangShuo.xcworkspace</code>和<code>ChangShuo.xcodeproj</code>不在同一目录下，因此需要调整.iOS下的podhelp.rb脚本</p>
 <figure class="highlight rb"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">flutter_export_environment_path = File.join(current_directory_pathname, <span class="string">'flutter_export_environment.sh'</span>);</div></pre></td></tr></table></figure>
 </li>
 <li><p>flutter的plugin是依赖Cocoapods建立的，当plugin依赖自定义的私有pod库的时候，需要手工在podfile中添加对于私有库的依赖,例如需要对<code>changshuo_logic_account</code>进行调试就需要在<code>changshuo_logic_account/example/Podfile</code>中添加<code>pod &#39;changshuo_ios_initialize&#39;</code>  </p>
@@ -4279,6 +4279,75 @@
     </entry>
     
     <entry>
+      <title><![CDATA[LoopBack学习之核心概念]]></title>
+      <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
+      <content type="html"><![CDATA[<p>英文地址：<br><a href="http://loopback.io/doc/en/lb3/Glossary.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/Glossary.html</a></p>
+<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><h4 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h4><p>访问控制列表，与标识所有可访问对象的主题及其访问权限的对象关联的列表。请参阅身份验证，授权和权限。</p>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>应用程序接口。允许以高级语言编写的应用程序使用操作系统或其他程序的特定数据或功能的接口。</p>
+<h4 id="APIC"><a href="#APIC" class="headerlink" title="APIC"></a>APIC</h4><p>IBM API Connect命令行工具。它为脚本LoopBack应用程序提供命令。有关更多信息，请参阅命令行工具。</p>
+<h4 id="adapter-适配器"><a href="#adapter-适配器" class="headerlink" title="adapter 适配器"></a>adapter 适配器</h4><p>提供传输特定机制，使远程对象（及其集合）在其传输中可用。看强力远程。<br><a id="more"></a></p>
+<h4 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h4><p>由Google创建的移动操作系统，其中大部分是根据Apache 2.0和GPLv2开源许可证发布的。</p>
+<h4 id="AngularJS"><a href="#AngularJS" class="headerlink" title="AngularJS"></a>AngularJS</h4><p>开源客户端JavaScript框架。</p>
+<h4 id="API-Connect-API连接"><a href="#API-Connect-API连接" class="headerlink" title="API Connect API连接"></a>API Connect API连接</h4><p>IBM产品集成了StrongLoop和LoopBack技术，用于创建，运行，管理和保护API。请参阅DeveloperWorks&gt; API连接。</p>
+<h4 id="Arc-弧"><a href="#Arc-弧" class="headerlink" title="Arc 弧"></a>Arc 弧</h4><p>StrongLoop API生命周期图形工具套件，包括用于构建，分析和监视节点应用程序的工具。StrongLoop Arc不再处于积极的开发阶段，不久将被淘汰。</p>
+<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><h4 id="boot-script-启动脚本"><a href="#boot-script-启动脚本" class="headerlink" title="boot script 启动脚本"></a>boot script 启动脚本</h4><p>默认情况下，/server/boot目录中启动应用程序时自动运行的JavaScript函数。请参阅定义启动脚本。</p>
+<h4 id="built-in-model-内置型号"><a href="#built-in-model-内置型号" class="headerlink" title="built-in model 内置型号"></a>built-in model 内置型号</h4><p>默认情况下，每个LoopBack应用程序都有一个预定义的模型。请参阅使用内置型号。</p>
+<h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><h4 id="cluster-簇"><a href="#cluster-簇" class="headerlink" title="cluster 簇"></a>cluster 簇</h4><p>一组相同的Node worker进程在同一端口上接收请求。参见： 工人。</p>
+<h4 id="component-零件"><a href="#component-零件" class="headerlink" title="component 零件"></a>component 零件</h4><p>扩展基本LoopBack应用程序的预定义包。从根本上说，组件是将相关代码捆绑在一起作为一个单元，以使LoopBack应用程序能够轻松重用。请参阅LoopBack组件。</p>
+<h4 id="component-连接器"><a href="#component-连接器" class="headerlink" title="component 连接器"></a>component 连接器</h4><p>请参阅LoopBack连接器。</p>
+<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><h4 id="data-source-数据源"><a href="#data-source-数据源" class="headerlink" title="data source 数据源"></a>data source 数据源</h4><p>数据源使用连接器与特定数据库或其他后端系统连接。请参阅将模型连接到数据源。</p>
+<h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><h4 id="endpoint-端点"><a href="#endpoint-端点" class="headerlink" title="endpoint 端点"></a>endpoint 端点</h4><p>看路线。</p>
+<h4 id="enterprise-connector-企业连接器"><a href="#enterprise-connector-企业连接器" class="headerlink" title="enterprise connector 企业连接器"></a>enterprise connector 企业连接器</h4><p>连接到后端数据源（如Oracle，MySQL或MongoDB）的模块。</p>
+<h4 id="environment-variable-环境变量"><a href="#environment-variable-环境变量" class="headerlink" title="environment variable 环境变量"></a>environment variable 环境变量</h4><p>定义进程操作环境方面的变量。例如，环境变量可以定义主目录，命令搜索路径，正在使用的终端或当前时区。</p>
+<h4 id="event-loop-事件循环"><a href="#event-loop-事件循环" class="headerlink" title="event loop 事件循环"></a>event loop 事件循环</h4><p>运行Node.js应用程序的单线程执行过程，通常进行一系列异步函数调用。</p>
+<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><h4 id="generator-发电机"><a href="#generator-发电机" class="headerlink" title="generator 发电机"></a>generator 发电机</h4><p>支持全部或部分LoopBack应用程序的交互式命令行工具。请参阅命令行工具。</p>
+<h1 id="I"><a href="#I" class="headerlink" title="I"></a>I</h1><h4 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h4><p>苹果设备的封闭源码专有移动操作系统。</p>
+<h1 id="J"><a href="#J" class="headerlink" title="J"></a>J</h1><h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><p>JavaScript对象符号; 一种基于JavaScript对象字面符号的轻量级数据交换格式。JSON是编程语言中性，但使用各种语言的约定。</p>
+<h1 id="L"><a href="#L" class="headerlink" title="L"></a>L</h1><h4 id="lb"><a href="#lb" class="headerlink" title="lb"></a>lb</h4><p>用于脚手架和开发LoopBack应用程序的LoopBack命令行界面（CLI）工具。取代传统slc工具。</p>
+<h4 id="LDL"><a href="#LDL" class="headerlink" title="LDL"></a>LDL</h4><p>LoopBack定义语言，一种用于定义LoopBack模型和其他配置的JSON形式。</p>
+<h4 id="load-balancer-负载均衡器"><a href="#load-balancer-负载均衡器" class="headerlink" title="load balancer 负载均衡器"></a>load balancer 负载均衡器</h4><p>在一组服务器上分发工作负载的软件或硬件，以确保服务器不会过载。如果初始服务器发生故障，负载平衡器也会将用户引导到另一台服务器。</p>
+<h4 id="LoopBack-connector-LoopBack连接器"><a href="#LoopBack-connector-LoopBack连接器" class="headerlink" title="LoopBack connector LoopBack连接器"></a>LoopBack connector LoopBack连接器</h4><p>提供对后端系统（如数据库，REST API或其他服务）的访问的连接器。</p>
+<h4 id="LoopBack-DataSource-Juggler"><a href="#LoopBack-DataSource-Juggler" class="headerlink" title="LoopBack DataSource Juggler"></a>LoopBack DataSource Juggler</h4><p>对象关系映射，提供了一组通用的接口，用于与数据库，REST API和其他数据源进行交互。</p>
+<h4 id="LoopBack-model-LoopBack模型"><a href="#LoopBack-model-LoopBack模型" class="headerlink" title="LoopBack model LoopBack模型"></a>LoopBack model LoopBack模型</h4><p>由应用程序数据，验证规则，数据访问功能以及默认提供REST API的业务逻辑组成的模型。</p>
+<h1 id="M"><a href="#M" class="headerlink" title="M"></a>M</h1><h4 id="MBaaS"><a href="#MBaaS" class="headerlink" title="MBaaS"></a>MBaaS</h4><p>移动后端即服务。将移动应用程序连接到云计算服务的计算模型，通过统一的API和SDK，提供用户管理，推送通知和社交网络集成等功能。</p>
+<h4 id="middleware-function-中间件功能"><a href="#middleware-function-中间件功能" class="headerlink" title="middleware function 中间件功能"></a>middleware function 中间件功能</h4><p>当向指定的REST端点发出HTTP请求时执行的功能。由于LoopBack基于Express，LoopBack中间件与Express中间件相同。请参阅定义中间件。</p>
+<h4 id="middleware-phase-中间件阶段"><a href="#middleware-phase-中间件阶段" class="headerlink" title="middleware phase 中间件阶段"></a>middleware phase 中间件阶段</h4><p>当您调用中间件功能时，应用程序执行阶段。请参阅定义中间件。</p>
+<h4 id="model-模型"><a href="#model-模型" class="headerlink" title="model 模型"></a>model 模型</h4><p>请参阅LoopBack模型。</p>
+<h4 id="model-property-模型属性"><a href="#model-property-模型属性" class="headerlink" title="model property 模型属性"></a>model property 模型属性</h4><p>附加到模型的值; 对于持久化模型，对应于数据库列或字段。</p>
+<h1 id="N"><a href="#N" class="headerlink" title="N"></a>N</h1><h4 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h4><p>节点包管理器，用于使用npm注册表安装应用程序和管理依赖关系的命令行工具。</p>
+<h1 id="O"><a href="#O" class="headerlink" title="O"></a>O</h1><h4 id="on-premises-本地"><a href="#on-premises-本地" class="headerlink" title="on-premises 本地"></a>on-premises 本地</h4><p>涉及在用户或组织的本地计算机上安装和运行的软件。</p>
+<h4 id="operation-hook-操作钩"><a href="#operation-hook-操作钩" class="headerlink" title="operation hook 操作钩"></a>operation hook 操作钩</h4><p>由模型的高级创建，检索，更新或删除（CRUD）操作触发的代码。请参阅操作钩。</p>
+<h1 id="P"><a href="#P" class="headerlink" title="P"></a>P</h1><h4 id="Persisted-model-持久模型"><a href="#Persisted-model-持久模型" class="headerlink" title="Persisted model 持久模型"></a>Persisted model 持久模型</h4><p>一个LoopBack模型，连接到持久性数据源，自动获取基本的创建，读取，更新和删除方法。</p>
+<h4 id="production-生产"><a href="#production-生产" class="headerlink" title="production 生产"></a>production 生产</h4><p>当应用程序或API通常可用于最终用户或消费者时，软件生命周期中的阶段。与“发展”和“测试”对比。也称为“部署”。</p>
+<h4 id="production-host-生产主机"><a href="#production-host-生产主机" class="headerlink" title="production host 生产主机"></a>production host 生产主机</h4><p>运行生产应用程序的服务器。</p>
+<h4 id="property-属性"><a href="#property-属性" class="headerlink" title="property 属性"></a>property 属性</h4><p>请参阅模型属性。</p>
+<h4 id="push-notification-推送通知"><a href="#push-notification-推送通知" class="headerlink" title="push notification 推送通知"></a>push notification 推送通知</h4><p>向移动应用发送警报或消息。请参阅推送通知。</p>
+<h1 id="R"><a href="#R" class="headerlink" title="R"></a>R</h1><h4 id="remote-object-远程对象"><a href="#remote-object-远程对象" class="headerlink" title="remote object 远程对象"></a>remote object 远程对象</h4><p>通过StrongLoop应用程序通过网络导出的JavaScript对象与从模块导出功能的方式相同。您可以使用JavaScript在本地调用远程对象上的方法。</p>
+<h4 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h4><p>用于分布式超媒体系统（如万维网）的软件架构风格。该术语还经常用于描述任何使用XML（或YAML，JSON，纯文本）的简单界面，而不需要附加的消息层，例如SOAP。</p>
+<h4 id="route-路由"><a href="#route-路由" class="headerlink" title="route 路由"></a>route 路由</h4><p>识别资源的URL的一部分。例如，在http: //foo.com/products/id, the route is /products/id.</p>
+<h4 id="runtime-运行"><a href="#runtime-运行" class="headerlink" title="runtime 运行"></a>runtime 运行</h4><p>与计算机程序运行的时间段有关。</p>
+<h1 id="S"><a href="#S" class="headerlink" title="S"></a>S</h1><h4 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h4><p>软件开发套件 一组工具，API和文档，以协助以特定的计算机语言或特定的操作环境开发软件。</p>
+<h4 id="SLC"><a href="#SLC" class="headerlink" title="SLC"></a>SLC</h4><p>用于开发和操作的传统StrongLoop命令行工具。它被LoopBack CLI工具所取代lb。</p>
+<h4 id="synchronization-同步"><a href="#synchronization-同步" class="headerlink" title="synchronization 同步"></a>synchronization 同步</h4><p>在两个端点（如提供商应用程序和移动应用程序）之间实现数据一致性的过程。在此过程中，在任一端点，可以更新，创建或删除数据。请参阅同步。</p>
+<h1 id="W"><a href="#W" class="headerlink" title="W"></a>W</h1><h4 id="worker"><a href="#worker" class="headerlink" title="worker"></a>worker</h4><p>Node.js子进程。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习笔记 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> NodeJS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[LoopBack学习之词汇表]]></title>
       <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%AF%8D%E6%B1%87%E8%A1%A8/</url>
       <content type="html"><![CDATA[<p>准备工作：<br>安装LTS版本的Node.js.<br>安装LoopBack CLI工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
@@ -4377,65 +4446,39 @@
     </entry>
     
     <entry>
-      <title><![CDATA[LoopBack学习之核心概念]]></title>
-      <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5/</url>
-      <content type="html"><![CDATA[<p>英文地址：<br><a href="http://loopback.io/doc/en/lb3/Glossary.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/Glossary.html</a></p>
-<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><h4 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h4><p>访问控制列表，与标识所有可访问对象的主题及其访问权限的对象关联的列表。请参阅身份验证，授权和权限。</p>
-<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>应用程序接口。允许以高级语言编写的应用程序使用操作系统或其他程序的特定数据或功能的接口。</p>
-<h4 id="APIC"><a href="#APIC" class="headerlink" title="APIC"></a>APIC</h4><p>IBM API Connect命令行工具。它为脚本LoopBack应用程序提供命令。有关更多信息，请参阅命令行工具。</p>
-<h4 id="adapter-适配器"><a href="#adapter-适配器" class="headerlink" title="adapter 适配器"></a>adapter 适配器</h4><p>提供传输特定机制，使远程对象（及其集合）在其传输中可用。看强力远程。<br><a id="more"></a></p>
-<h4 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h4><p>由Google创建的移动操作系统，其中大部分是根据Apache 2.0和GPLv2开源许可证发布的。</p>
-<h4 id="AngularJS"><a href="#AngularJS" class="headerlink" title="AngularJS"></a>AngularJS</h4><p>开源客户端JavaScript框架。</p>
-<h4 id="API-Connect-API连接"><a href="#API-Connect-API连接" class="headerlink" title="API Connect API连接"></a>API Connect API连接</h4><p>IBM产品集成了StrongLoop和LoopBack技术，用于创建，运行，管理和保护API。请参阅DeveloperWorks&gt; API连接。</p>
-<h4 id="Arc-弧"><a href="#Arc-弧" class="headerlink" title="Arc 弧"></a>Arc 弧</h4><p>StrongLoop API生命周期图形工具套件，包括用于构建，分析和监视节点应用程序的工具。StrongLoop Arc不再处于积极的开发阶段，不久将被淘汰。</p>
-<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><h4 id="boot-script-启动脚本"><a href="#boot-script-启动脚本" class="headerlink" title="boot script 启动脚本"></a>boot script 启动脚本</h4><p>默认情况下，/server/boot目录中启动应用程序时自动运行的JavaScript函数。请参阅定义启动脚本。</p>
-<h4 id="built-in-model-内置型号"><a href="#built-in-model-内置型号" class="headerlink" title="built-in model 内置型号"></a>built-in model 内置型号</h4><p>默认情况下，每个LoopBack应用程序都有一个预定义的模型。请参阅使用内置型号。</p>
-<h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><h4 id="cluster-簇"><a href="#cluster-簇" class="headerlink" title="cluster 簇"></a>cluster 簇</h4><p>一组相同的Node worker进程在同一端口上接收请求。参见： 工人。</p>
-<h4 id="component-零件"><a href="#component-零件" class="headerlink" title="component 零件"></a>component 零件</h4><p>扩展基本LoopBack应用程序的预定义包。从根本上说，组件是将相关代码捆绑在一起作为一个单元，以使LoopBack应用程序能够轻松重用。请参阅LoopBack组件。</p>
-<h4 id="component-连接器"><a href="#component-连接器" class="headerlink" title="component 连接器"></a>component 连接器</h4><p>请参阅LoopBack连接器。</p>
-<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><h4 id="data-source-数据源"><a href="#data-source-数据源" class="headerlink" title="data source 数据源"></a>data source 数据源</h4><p>数据源使用连接器与特定数据库或其他后端系统连接。请参阅将模型连接到数据源。</p>
-<h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><h4 id="endpoint-端点"><a href="#endpoint-端点" class="headerlink" title="endpoint 端点"></a>endpoint 端点</h4><p>看路线。</p>
-<h4 id="enterprise-connector-企业连接器"><a href="#enterprise-connector-企业连接器" class="headerlink" title="enterprise connector 企业连接器"></a>enterprise connector 企业连接器</h4><p>连接到后端数据源（如Oracle，MySQL或MongoDB）的模块。</p>
-<h4 id="environment-variable-环境变量"><a href="#environment-variable-环境变量" class="headerlink" title="environment variable 环境变量"></a>environment variable 环境变量</h4><p>定义进程操作环境方面的变量。例如，环境变量可以定义主目录，命令搜索路径，正在使用的终端或当前时区。</p>
-<h4 id="event-loop-事件循环"><a href="#event-loop-事件循环" class="headerlink" title="event loop 事件循环"></a>event loop 事件循环</h4><p>运行Node.js应用程序的单线程执行过程，通常进行一系列异步函数调用。</p>
-<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><h4 id="generator-发电机"><a href="#generator-发电机" class="headerlink" title="generator 发电机"></a>generator 发电机</h4><p>支持全部或部分LoopBack应用程序的交互式命令行工具。请参阅命令行工具。</p>
-<h1 id="I"><a href="#I" class="headerlink" title="I"></a>I</h1><h4 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h4><p>苹果设备的封闭源码专有移动操作系统。</p>
-<h1 id="J"><a href="#J" class="headerlink" title="J"></a>J</h1><h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><p>JavaScript对象符号; 一种基于JavaScript对象字面符号的轻量级数据交换格式。JSON是编程语言中性，但使用各种语言的约定。</p>
-<h1 id="L"><a href="#L" class="headerlink" title="L"></a>L</h1><h4 id="lb"><a href="#lb" class="headerlink" title="lb"></a>lb</h4><p>用于脚手架和开发LoopBack应用程序的LoopBack命令行界面（CLI）工具。取代传统slc工具。</p>
-<h4 id="LDL"><a href="#LDL" class="headerlink" title="LDL"></a>LDL</h4><p>LoopBack定义语言，一种用于定义LoopBack模型和其他配置的JSON形式。</p>
-<h4 id="load-balancer-负载均衡器"><a href="#load-balancer-负载均衡器" class="headerlink" title="load balancer 负载均衡器"></a>load balancer 负载均衡器</h4><p>在一组服务器上分发工作负载的软件或硬件，以确保服务器不会过载。如果初始服务器发生故障，负载平衡器也会将用户引导到另一台服务器。</p>
-<h4 id="LoopBack-connector-LoopBack连接器"><a href="#LoopBack-connector-LoopBack连接器" class="headerlink" title="LoopBack connector LoopBack连接器"></a>LoopBack connector LoopBack连接器</h4><p>提供对后端系统（如数据库，REST API或其他服务）的访问的连接器。</p>
-<h4 id="LoopBack-DataSource-Juggler"><a href="#LoopBack-DataSource-Juggler" class="headerlink" title="LoopBack DataSource Juggler"></a>LoopBack DataSource Juggler</h4><p>对象关系映射，提供了一组通用的接口，用于与数据库，REST API和其他数据源进行交互。</p>
-<h4 id="LoopBack-model-LoopBack模型"><a href="#LoopBack-model-LoopBack模型" class="headerlink" title="LoopBack model LoopBack模型"></a>LoopBack model LoopBack模型</h4><p>由应用程序数据，验证规则，数据访问功能以及默认提供REST API的业务逻辑组成的模型。</p>
-<h1 id="M"><a href="#M" class="headerlink" title="M"></a>M</h1><h4 id="MBaaS"><a href="#MBaaS" class="headerlink" title="MBaaS"></a>MBaaS</h4><p>移动后端即服务。将移动应用程序连接到云计算服务的计算模型，通过统一的API和SDK，提供用户管理，推送通知和社交网络集成等功能。</p>
-<h4 id="middleware-function-中间件功能"><a href="#middleware-function-中间件功能" class="headerlink" title="middleware function 中间件功能"></a>middleware function 中间件功能</h4><p>当向指定的REST端点发出HTTP请求时执行的功能。由于LoopBack基于Express，LoopBack中间件与Express中间件相同。请参阅定义中间件。</p>
-<h4 id="middleware-phase-中间件阶段"><a href="#middleware-phase-中间件阶段" class="headerlink" title="middleware phase 中间件阶段"></a>middleware phase 中间件阶段</h4><p>当您调用中间件功能时，应用程序执行阶段。请参阅定义中间件。</p>
-<h4 id="model-模型"><a href="#model-模型" class="headerlink" title="model 模型"></a>model 模型</h4><p>请参阅LoopBack模型。</p>
-<h4 id="model-property-模型属性"><a href="#model-property-模型属性" class="headerlink" title="model property 模型属性"></a>model property 模型属性</h4><p>附加到模型的值; 对于持久化模型，对应于数据库列或字段。</p>
-<h1 id="N"><a href="#N" class="headerlink" title="N"></a>N</h1><h4 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h4><p>节点包管理器，用于使用npm注册表安装应用程序和管理依赖关系的命令行工具。</p>
-<h1 id="O"><a href="#O" class="headerlink" title="O"></a>O</h1><h4 id="on-premises-本地"><a href="#on-premises-本地" class="headerlink" title="on-premises 本地"></a>on-premises 本地</h4><p>涉及在用户或组织的本地计算机上安装和运行的软件。</p>
-<h4 id="operation-hook-操作钩"><a href="#operation-hook-操作钩" class="headerlink" title="operation hook 操作钩"></a>operation hook 操作钩</h4><p>由模型的高级创建，检索，更新或删除（CRUD）操作触发的代码。请参阅操作钩。</p>
-<h1 id="P"><a href="#P" class="headerlink" title="P"></a>P</h1><h4 id="Persisted-model-持久模型"><a href="#Persisted-model-持久模型" class="headerlink" title="Persisted model 持久模型"></a>Persisted model 持久模型</h4><p>一个LoopBack模型，连接到持久性数据源，自动获取基本的创建，读取，更新和删除方法。</p>
-<h4 id="production-生产"><a href="#production-生产" class="headerlink" title="production 生产"></a>production 生产</h4><p>当应用程序或API通常可用于最终用户或消费者时，软件生命周期中的阶段。与“发展”和“测试”对比。也称为“部署”。</p>
-<h4 id="production-host-生产主机"><a href="#production-host-生产主机" class="headerlink" title="production host 生产主机"></a>production host 生产主机</h4><p>运行生产应用程序的服务器。</p>
-<h4 id="property-属性"><a href="#property-属性" class="headerlink" title="property 属性"></a>property 属性</h4><p>请参阅模型属性。</p>
-<h4 id="push-notification-推送通知"><a href="#push-notification-推送通知" class="headerlink" title="push notification 推送通知"></a>push notification 推送通知</h4><p>向移动应用发送警报或消息。请参阅推送通知。</p>
-<h1 id="R"><a href="#R" class="headerlink" title="R"></a>R</h1><h4 id="remote-object-远程对象"><a href="#remote-object-远程对象" class="headerlink" title="remote object 远程对象"></a>remote object 远程对象</h4><p>通过StrongLoop应用程序通过网络导出的JavaScript对象与从模块导出功能的方式相同。您可以使用JavaScript在本地调用远程对象上的方法。</p>
-<h4 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h4><p>用于分布式超媒体系统（如万维网）的软件架构风格。该术语还经常用于描述任何使用XML（或YAML，JSON，纯文本）的简单界面，而不需要附加的消息层，例如SOAP。</p>
-<h4 id="route-路由"><a href="#route-路由" class="headerlink" title="route 路由"></a>route 路由</h4><p>识别资源的URL的一部分。例如，在http: //foo.com/products/id, the route is /products/id.</p>
-<h4 id="runtime-运行"><a href="#runtime-运行" class="headerlink" title="runtime 运行"></a>runtime 运行</h4><p>与计算机程序运行的时间段有关。</p>
-<h1 id="S"><a href="#S" class="headerlink" title="S"></a>S</h1><h4 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h4><p>软件开发套件 一组工具，API和文档，以协助以特定的计算机语言或特定的操作环境开发软件。</p>
-<h4 id="SLC"><a href="#SLC" class="headerlink" title="SLC"></a>SLC</h4><p>用于开发和操作的传统StrongLoop命令行工具。它被LoopBack CLI工具所取代lb。</p>
-<h4 id="synchronization-同步"><a href="#synchronization-同步" class="headerlink" title="synchronization 同步"></a>synchronization 同步</h4><p>在两个端点（如提供商应用程序和移动应用程序）之间实现数据一致性的过程。在此过程中，在任一端点，可以更新，创建或删除数据。请参阅同步。</p>
-<h1 id="W"><a href="#W" class="headerlink" title="W"></a>W</h1><h4 id="worker"><a href="#worker" class="headerlink" title="worker"></a>worker</h4><p>Node.js子进程。</p>
-]]></content>
+      <title><![CDATA[CentOS配置Docker+NodeJS服务]]></title>
+      <url>/2017/9/17/CentOS%E9%85%8D%E7%BD%AEDocker+NodeJS%E6%9C%8D%E5%8A%A1/</url>
+      <content type="html"><![CDATA[<p>Mac端的本地环境请点击：<a href="http://www.jianshu.com/p/e33815e71e35" target="_blank" rel="external">Mac配置Docker+NodeJS服务</a></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>安装 NodeJS<br><a href="https://nodejs.org/en/download/" title="https://nodejs.org/en/download/" target="_blank" rel="external">https://nodejs.org/en/download/</a><br>准备命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install gcc make gcc-c++ openssl-devel wget</div></pre></td></tr></table></figure></p>
+<p>下载源码及解压：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://nodejs.org/dist/v6.11.3/node-v6.11.3.tar.gz</div><div class="line">tar -zvxf node-v6.11.3.tar.gz</div></pre></td></tr></table></figure></p>
+<p>检查所需要配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure</div></pre></td></tr></table></figure></p>
+<p>编译及安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure></p>
+<p>验证是否安装配置成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node -v</div></pre></td></tr></table></figure></p>
+<hr>
+<a id="more"></a>
+<p>安装loopback-cli<br><a href="http://loopback.io" title="http://loopback.io" target="_blank" rel="external">http://loopback.io</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
+<p>安装git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install git</div></pre></td></tr></table></figure></p>
+<p>安装cnpm<br><a href="https://npm.taobao.org/" title="https://npm.taobao.org/" target="_blank" rel="external">https://npm.taobao.org/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure></p>
+<p>安装zsh作为默认SHELL<br><a href="http://blog.csdn.net/w670328683/article/details/49782601" title="http://blog.csdn.net/w670328683/article/details/49782601" target="_blank" rel="external">http://blog.csdn.net/w670328683/article/details/49782601</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum -y install zsh</div><div class="line">chsh -s /bin/zsh</div><div class="line">echo $SHELL</div></pre></td></tr></table></figure></p>
+<p>安装oh-my-zsh美化zsh<br><a href="https://github.com/robbyrussell/oh-my-zsh" title="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">https://github.com/robbyrussell/oh-my-zsh</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh -c &quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;</div></pre></td></tr></table></figure></p>
+<p>安装docker和docker-compose<br><a href="http://www.linuxidc.com/Linux/2014-12/110034.htm" title="http://www.linuxidc.com/Linux/2014-12/110034.htm" target="_blank" rel="external">http://www.linuxidc.com/Linux/2014-12/110034.htm</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install docker</div><div class="line">yum install docker-compose</div></pre></td></tr></table></figure></p>
+<p>安装gem<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y gem</div></pre></td></tr></table></figure></p>
+<p>安装mosh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install mosh</div></pre></td></tr></table></figure></p>
+<p>安装Vim的插件janus<br>The distribution also requires ack, ctags, git, ruby and rake.<br><a href="https://github.com/carlhuda/janus" title="https://github.com/carlhuda/janus" target="_blank" rel="external">https://github.com/carlhuda/janus</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -L https://bit.ly/janus-bootstrap | bash</div></pre></td></tr></table></figure></p>
+<p>安装httpie<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install httpie</div></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="centOS的一些命令："><a href="#centOS的一些命令：" class="headerlink" title="centOS的一些命令："></a>centOS的一些命令：</h1><p>docker的一些命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker-compose down</div><div class="line">docker-compose up -d</div><div class="line">service docker start</div><div class="line">chkconfig docker on</div></pre></td></tr></table></figure></p>
+<p>安装caddy-docker例子,测试docker功能<br><a href="https://github.com/abiosoft/caddy-docker" title="https://github.com/abiosoft/caddy-docker" target="_blank" rel="external">https://github.com/abiosoft/caddy-docker</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 2015:2015 abiosoft/caddy</div></pre></td></tr></table></figure></p>
+<p>查看log<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker ps</div><div class="line">docker exec -it xiaoyx_ws_1 sh</div><div class="line">pm2 list</div><div class="line">pm2 logs 1</div></pre></td></tr></table></figure></p>
+<p>硬盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -h</div></pre></td></tr></table></figure></p>
+<p>内存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">free -h</div></pre></td></tr></table></figure></p>
+<p>目录详情<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -lh</div></pre></td></tr></table></figure></p>
+<p>安装路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">which node</div></pre></td></tr></table></figure></p>
+<p>连接服务器（免密码）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ls .ssh</div><div class="line">ssh-keygen</div><div class="line">ssh-copy-id root@dlin.top</div><div class="line">ssh root@dlin.top</div></pre></td></tr></table></figure></p>
+<p>mosh连接服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mosh root@dlin.top</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl http://0.0.0.0:2015</div><div class="line">curl http://google.com</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ip addr</div></pre></td></tr></table></figure>]]></content>
       
-        <categories>
-            
-            <category> 学习笔记 </category>
-            
-        </categories>
-        
         
         <tags>
             
@@ -4523,49 +4566,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[CentOS配置Docker+NodeJS服务]]></title>
-      <url>/2017/9/17/CentOS%E9%85%8D%E7%BD%AEDocker+NodeJS%E6%9C%8D%E5%8A%A1/</url>
-      <content type="html"><![CDATA[<p>Mac端的本地环境请点击：<a href="http://www.jianshu.com/p/e33815e71e35" target="_blank" rel="external">Mac配置Docker+NodeJS服务</a></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>安装 NodeJS<br><a href="https://nodejs.org/en/download/" title="https://nodejs.org/en/download/" target="_blank" rel="external">https://nodejs.org/en/download/</a><br>准备命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install gcc make gcc-c++ openssl-devel wget</div></pre></td></tr></table></figure></p>
-<p>下载源码及解压：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://nodejs.org/dist/v6.11.3/node-v6.11.3.tar.gz</div><div class="line">tar -zvxf node-v6.11.3.tar.gz</div></pre></td></tr></table></figure></p>
-<p>检查所需要配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure</div></pre></td></tr></table></figure></p>
-<p>编译及安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure></p>
-<p>验证是否安装配置成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node -v</div></pre></td></tr></table></figure></p>
-<hr>
-<a id="more"></a>
-<p>安装loopback-cli<br><a href="http://loopback.io" title="http://loopback.io" target="_blank" rel="external">http://loopback.io</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
-<p>安装git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install git</div></pre></td></tr></table></figure></p>
-<p>安装cnpm<br><a href="https://npm.taobao.org/" title="https://npm.taobao.org/" target="_blank" rel="external">https://npm.taobao.org/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure></p>
-<p>安装zsh作为默认SHELL<br><a href="http://blog.csdn.net/w670328683/article/details/49782601" title="http://blog.csdn.net/w670328683/article/details/49782601" target="_blank" rel="external">http://blog.csdn.net/w670328683/article/details/49782601</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">yum -y install zsh</div><div class="line">chsh -s /bin/zsh</div><div class="line">echo $SHELL</div></pre></td></tr></table></figure></p>
-<p>安装oh-my-zsh美化zsh<br><a href="https://github.com/robbyrussell/oh-my-zsh" title="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">https://github.com/robbyrussell/oh-my-zsh</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh -c &quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;</div></pre></td></tr></table></figure></p>
-<p>安装docker和docker-compose<br><a href="http://www.linuxidc.com/Linux/2014-12/110034.htm" title="http://www.linuxidc.com/Linux/2014-12/110034.htm" target="_blank" rel="external">http://www.linuxidc.com/Linux/2014-12/110034.htm</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yum install docker</div><div class="line">yum install docker-compose</div></pre></td></tr></table></figure></p>
-<p>安装gem<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y gem</div></pre></td></tr></table></figure></p>
-<p>安装mosh<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install mosh</div></pre></td></tr></table></figure></p>
-<p>安装Vim的插件janus<br>The distribution also requires ack, ctags, git, ruby and rake.<br><a href="https://github.com/carlhuda/janus" title="https://github.com/carlhuda/janus" target="_blank" rel="external">https://github.com/carlhuda/janus</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -L https://bit.ly/janus-bootstrap | bash</div></pre></td></tr></table></figure></p>
-<p>安装httpie<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install httpie</div></pre></td></tr></table></figure></p>
-<hr>
-<h1 id="centOS的一些命令："><a href="#centOS的一些命令：" class="headerlink" title="centOS的一些命令："></a>centOS的一些命令：</h1><p>docker的一些命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker-compose down</div><div class="line">docker-compose up -d</div><div class="line">service docker start</div><div class="line">chkconfig docker on</div></pre></td></tr></table></figure></p>
-<p>安装caddy-docker例子,测试docker功能<br><a href="https://github.com/abiosoft/caddy-docker" title="https://github.com/abiosoft/caddy-docker" target="_blank" rel="external">https://github.com/abiosoft/caddy-docker</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d -p 2015:2015 abiosoft/caddy</div></pre></td></tr></table></figure></p>
-<p>查看log<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker ps</div><div class="line">docker exec -it xiaoyx_ws_1 sh</div><div class="line">pm2 list</div><div class="line">pm2 logs 1</div></pre></td></tr></table></figure></p>
-<p>硬盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -h</div></pre></td></tr></table></figure></p>
-<p>内存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">free -h</div></pre></td></tr></table></figure></p>
-<p>目录详情<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -lh</div></pre></td></tr></table></figure></p>
-<p>安装路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">which node</div></pre></td></tr></table></figure></p>
-<p>连接服务器（免密码）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ls .ssh</div><div class="line">ssh-keygen</div><div class="line">ssh-copy-id root@dlin.top</div><div class="line">ssh root@dlin.top</div></pre></td></tr></table></figure></p>
-<p>mosh连接服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mosh root@dlin.top</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl http://0.0.0.0:2015</div><div class="line">curl http://google.com</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ip addr</div></pre></td></tr></table></figure>]]></content>
-      
-        
-        <tags>
-            
-            <tag> NodeJS </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[身份证校验算法swift版本]]></title>
       <url>/2017/9/2/%E8%BA%AB%E4%BB%BD%E8%AF%81%E6%A0%A1%E9%AA%8C%E7%AE%97%E6%B3%95swift%E7%89%88%E6%9C%AC/</url>
       <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/454522-e8a20d7db71d6992.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="参考的算法资料"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">func checkIsIdentityCard(_ identityCard: String) -&gt; Bool &#123;</div><div class="line">    //判断是否为空</div><div class="line">    if identityCard.characters.count &lt;= 0 &#123;</div><div class="line">        return false</div><div class="line">    &#125;</div><div class="line">    //判断是否是18位，末尾是否是x</div><div class="line">    let regex2: String = &quot;^(\\d&#123;14&#125;|\\d&#123;17&#125;)(\\d|[xX])$&quot;</div><div class="line">    let identityCardPredicate = NSPredicate(format: &quot;SELF MATCHES %@&quot;, regex2)</div><div class="line">    if !identityCardPredicate.evaluate(with: identityCard) &#123;</div><div class="line">        return false</div><div class="line">    &#125;</div><div class="line">    //判断生日是否合法</div><div class="line">    let range = NSRange(location: 6, length: 8)</div><div class="line">    let datestr: String = (identityCard as NSString).substring(with: range)</div><div class="line">    let formatter = DateFormatter()</div><div class="line">    formatter.dateFormat = &quot;yyyyMMdd&quot;</div><div class="line">    if formatter.date(from: datestr) == nil &#123;</div><div class="line">        return false</div><div class="line">    &#125;</div><div class="line">    //判断校验位</div><div class="line">    if  identityCard.characters.count == 18 &#123;</div><div class="line">        let idCardWi: [String] = [&quot;7&quot;, &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;, &quot;1&quot;, &quot;6&quot;, &quot;3&quot;, &quot;7&quot;, &quot;9&quot;, &quot;10&quot;, &quot;5&quot;, &quot;8&quot;, &quot;4&quot;, &quot;2&quot;]</div><div class="line">        //将前17位加权因子保存在数组里</div><div class="line">        let idCardY: [String] = [&quot;1&quot;, &quot;0&quot;, &quot;10&quot;, &quot;9&quot;, &quot;8&quot;, &quot;7&quot;, &quot;6&quot;, &quot;5&quot;, &quot;4&quot;, &quot;3&quot;, &quot;2&quot;]</div><div class="line">        //这是除以11后，可能产生的11位余数、验证码，也保存成数组</div><div class="line">        var idCardWiSum: Int = 0</div><div class="line">        //用来保存前17位各自乖以加权因子后的总和</div><div class="line">        for i in 0..&lt;17 &#123;</div><div class="line">            idCardWiSum += Int((identityCard as NSString).substring(with: NSRange(location: i, length: 1)))! * Int(idCardWi[i])!</div><div class="line">        &#125;</div><div class="line">        let idCardMod: Int = idCardWiSum % 11</div><div class="line">        //计算出校验码所在数组的位置</div><div class="line">        let idCardLast: String = identityCard.substring(from: identityCard.index(identityCard.endIndex, offsetBy: -1))</div><div class="line">        //得到最后一位身份证号码</div><div class="line">        //如果等于2，则说明校验码是10，身份证号码最后一位应该是X</div><div class="line">        if idCardMod == 2 &#123;</div><div class="line">            if idCardLast == &quot;X&quot; || idCardLast == &quot;x&quot; &#123;</div><div class="line">                return true</div><div class="line">            &#125; else &#123;</div><div class="line">                return false</div><div class="line">            &#125;</div><div class="line">        &#125; else &#123;</div><div class="line">            //用计算出的验证码与最后一位身份证号码匹配，如果一致，说明通过，否则是无效的身份证号码</div><div class="line">            if (idCardLast as NSString).integerValue == Int(idCardY[idCardMod]) &#123;</div><div class="line">                return true</div><div class="line">            &#125; else &#123;</div><div class="line">                return false</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return false</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -4575,6 +4575,34 @@
         <categories>
             
             <category> 经验心得 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[LaunchImage载入界面标准大小]]></title>
+      <url>/2016/1/15/LaunchImage%E8%BD%BD%E5%85%A5%E7%95%8C%E9%9D%A2%E6%A0%87%E5%87%86%E5%A4%A7%E5%B0%8F/</url>
+      <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/454522-0329a0b0dc2ad0ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="载入界面标准大小"></p>
+<p>iPhone Portrait iOS 8,9 Retina HD 5.5 （1242×2208） @3x</p>
+<p>iPhone Portrait iOS 8,9 Retina HD 4.7 （750×1334） @2x</p>
+<p>iPhone Portrait iOS 7-9 2x （640×960） @2x</p>
+<p>iPhone Portrait iOS 7-9 Retina 4 （640×1136） @2x</p>
+<p>iPhone Portrait iOS 5,6 1x （320×480） @1x</p>
+<p>iPhone Portrait iOS 5,6 2x （640×960） @2x</p>
+<p>iPhone Portrait iOS 5,6 Retina4 （640×1136） @2x</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习笔记 </category>
             
         </categories>
         
@@ -4610,34 +4638,6 @@
 <p>在cocoapods 执行 sudo gem install cocoapods 的时候出现  While executing gem … (Gem::FilePermissionError)<br>    You don’t have write permissions for the /usr/bin directory.<br>改为 sudo gem install -n /usr/local/bin cocoapods  即可</p>
 ]]></content>
       
-        
-        <tags>
-            
-            <tag> iOS </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[LaunchImage载入界面标准大小]]></title>
-      <url>/2016/1/15/LaunchImage%E8%BD%BD%E5%85%A5%E7%95%8C%E9%9D%A2%E6%A0%87%E5%87%86%E5%A4%A7%E5%B0%8F/</url>
-      <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/454522-0329a0b0dc2ad0ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="载入界面标准大小"></p>
-<p>iPhone Portrait iOS 8,9 Retina HD 5.5 （1242×2208） @3x</p>
-<p>iPhone Portrait iOS 8,9 Retina HD 4.7 （750×1334） @2x</p>
-<p>iPhone Portrait iOS 7-9 2x （640×960） @2x</p>
-<p>iPhone Portrait iOS 7-9 Retina 4 （640×1136） @2x</p>
-<p>iPhone Portrait iOS 5,6 1x （320×480） @1x</p>
-<p>iPhone Portrait iOS 5,6 2x （640×960） @2x</p>
-<p>iPhone Portrait iOS 5,6 Retina4 （640×1136） @2x</p>
-]]></content>
-      
-        <categories>
-            
-            <category> 学习笔记 </category>
-            
-        </categories>
-        
         
         <tags>
             
