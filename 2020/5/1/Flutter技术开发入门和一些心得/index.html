@@ -87,9 +87,10 @@
 <meta property="og:site_name" content="林峰的小宇宙">
 <meta property="og:description" content="[TOC] Flutter是什么？Flutter 是 Google推出并开源的移动应用开发框架，主打跨平台、高保真、高性能。  它开辟了全新的思路，提供了一整套从底层渲染逻辑到上层开发语言的完整解决方案：视图渲染完全闭环在其框架内部，不依赖于底层操作系统提供的任何组件，从根本上保证了视图渲染在 Android 和 iOS 上的高度一致性。 Flutter 的开发语言 Dart，是 Google 专">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3637091-784fcf2f330b2654.png?imageMogr2/auto-orient/strip|imageView2/2/w/658">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/3637091-656facaec9cb5335.png?imageMogr2/auto-orient/strip|imageView2/2/w/648">
-<meta property="og:image" content="http://doc.108sq.org:4999/server/../Public/Uploads/2020-04-14/5e9546493cea5.png">
+<meta property="og:image" content="http://static.flin.catxn.cn/3637091-784fcf2f330b2654-2.png">
+<meta property="og:image" content="ttp://static.flin.catxn.cn/3637091-656facaec9cb5335-2.png">
+<meta property="og:image" content="http://static.flin.catxn.cn/2020-05-07%20%E4%B8%8B%E5%8D%8810.55.14.png">
+<meta property="og:image" content="http://static.flin.catxn.cn/5e9546493cea5.png">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/0c/ec/0cb6e6d34295cef460e48d139bc944ec.png">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/70/bc/70dc4e1c222ddfaee8aa06df85c22bbc.png">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/ac/2f/ac7d1cec200f7ea7cb6cbab04eda252f.png">
@@ -99,11 +100,11 @@
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/3e/cc/3ec97a9f584132c2bcdbca60fd2888cc.png">
 <meta property="og:image" content="https://static001.geekbang.org/resource/image/8a/f6/8ae7bf36f618a999da8847cbb4da4bf6.png">
 <meta property="og:image" content="https://linfeng.xyz/2020/5/1/Flutter技术开发入门和一些心得/media/15873090806806/15873604446994.jpg">
-<meta property="og:updated_time" content="2020-05-08T01:01:14.830Z">
+<meta property="og:updated_time" content="2020-05-08T01:40:04.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flutter技术开发入门和一些心得">
 <meta name="twitter:description" content="[TOC] Flutter是什么？Flutter 是 Google推出并开源的移动应用开发框架，主打跨平台、高保真、高性能。  它开辟了全新的思路，提供了一整套从底层渲染逻辑到上层开发语言的完整解决方案：视图渲染完全闭环在其框架内部，不依赖于底层操作系统提供的任何组件，从根本上保证了视图渲染在 Android 和 iOS 上的高度一致性。 Flutter 的开发语言 Dart，是 Google 专">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/3637091-784fcf2f330b2654.png?imageMogr2/auto-orient/strip|imageView2/2/w/658">
+<meta name="twitter:image" content="http://static.flin.catxn.cn/3637091-784fcf2f330b2654-2.png">
 
 
 
@@ -430,13 +431,14 @@
 <h2 id="类型安全"><a href="#类型安全" class="headerlink" title="类型安全"></a>类型安全</h2><p>由于Dart是类型安全的语言，支持静态类型检测，所以可以在编译前发现一些类型的错误，并排除潜在问题，这一点对于前端开发者来说可能会更具有吸引力。与之不同的，JavaScript是一个弱类型语言，也因此前端社区出现了很多给JavaScript代码添加静态类型检测的扩展语言和工具，如：微软的TypeScript以及Facebook的Flow。相比之下，Dart本身就支持静态类型，这是它的一个重要优势。</p>
 <a id="more"></a>
 <h1 id="Flutter与RN的优势"><a href="#Flutter与RN的优势" class="headerlink" title="Flutter与RN的优势"></a>Flutter与RN的优势</h1><p>RN是通过JavaScript通过 bridge 传递到native完成原生绘制， bridge 的成本高，因为需要频繁的跨桥调用，导致卡顿等性能问题。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/3637091-784fcf2f330b2654.png?imageMogr2/auto-orient/strip|imageView2/2/w/658" alt=""></p>
+<p><img src="http://static.flin.catxn.cn/3637091-784fcf2f330b2654-2.png" alt=""></p>
 <p>Flutter利用DVM(dart虚拟机) 减少了桥的交互，在运行时期直接执行这些编译后的原生代码，就和我们进行原生开发一样，不再需要Bridge来担任中介的角色</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/3637091-656facaec9cb5335.png?imageMogr2/auto-orient/strip|imageView2/2/w/648" alt=""></p>
+<p><img src="ttp://static.flin.catxn.cn/3637091-656facaec9cb5335-2.png" alt=""></p>
 <h1 id="用chflutter工具包安装和更新Flutter环境"><a href="#用chflutter工具包安装和更新Flutter环境" class="headerlink" title="用chflutter工具包安装和更新Flutter环境"></a>用chflutter工具包安装和更新Flutter环境</h1><p>因为实现版本的统一等功能，我们开发了chflutter工具包，按下面步骤可以直接安装和配置好Flutter的SDK环境。</p>
-<h2 id="chflutter工具安装："><a href="#chflutter工具安装：" class="headerlink" title="chflutter工具安装："></a>chflutter工具安装：</h2><p>1、打开终端下载<code>flutter_tool_kit</code>代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">➜ cd /Code-Flutter/Codes</div><div class="line">➜ git clone http://gitlab.108sq.org/flutter_app/flutter_tool_kit.git</div></pre></td></tr></table></figure></p>
+<h2 id="chflutter工具安装："><a href="#chflutter工具安装：" class="headerlink" title="chflutter工具安装："></a>chflutter工具安装：</h2><p><img src="http://static.flin.catxn.cn/2020-05-07%20%E4%B8%8B%E5%8D%8810.55.14.png" alt="chflutter工具"></p>
+<p>1、打开终端下载<code>flutter_tool_kit</code>代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">➜ cd /Code-Flutter/Codes</div><div class="line">➜ git clone http://gitlab.108sq.org/flutter_app/flutter_tool_kit.git</div></pre></td></tr></table></figure></p>
 <p>2、切换到目录，然后根据终端提示初始化步骤输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">➜ cd framework_config.config</div><div class="line">➜ python3 framework.py install</div><div class="line">请输入flutter项目根目录:/Code-Flutter/Codes/ChangShuo/</div><div class="line">请输入gitlab用户token:LNHmxYB1PCuuwJb-bRf5</div></pre></td></tr></table></figure></p>
-<p>3、其中用到的access token需要在Gitlab上面设置获取<br><img src="http://doc.108sq.org:4999/server/../Public/Uploads/2020-04-14/5e9546493cea5.png" alt=""></p>
+<p>3、其中用到的access token需要在Gitlab上面设置获取<br><img src="http://static.flin.catxn.cn/5e9546493cea5.png" alt=""></p>
 <p>4、 配置本地环境变量，在终端输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">➜ vim ~/.bash_profile</div><div class="line"></div><div class="line">.bash_profile文件中添加保存：</div><div class="line">alias chflutter=&quot;python3 /Code-Flutter/Codes/flutter_tool_kit/framework_config.config/framework.py&quot;</div><div class="line">export PUB_HOSTED_URL=https://pub.flutter-io.cn</div><div class="line">export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn</div><div class="line">export FLUTTER_ROOT=/flutter</div><div class="line">export PATH=/flutter/bin:$PATH</div><div class="line"></div><div class="line">➜ source ~/.bash_profile</div><div class="line">➜ chflutter -h</div></pre></td></tr></table></figure></p>
 <h2 id="安装flutterSDK环境"><a href="#安装flutterSDK环境" class="headerlink" title="安装flutterSDK环境"></a>安装flutterSDK环境</h2><p>设置flutter路径，安装SDK。这边定的地址是：/flutter<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">➜ chflutter -eh</div><div class="line">➜ chflutter -ufd /flutter</div><div class="line">flutter安装目录已更新</div><div class="line">➜ chflutter -i</div></pre></td></tr></table></figure></p>
 <h1 id="Dart语言简介"><a href="#Dart语言简介" class="headerlink" title="Dart语言简介"></a>Dart语言简介</h1><h2 id="Dart-的特性"><a href="#Dart-的特性" class="headerlink" title="Dart 的特性"></a>Dart 的特性</h2><h3 id="JIT-与-AOT"><a href="#JIT-与-AOT" class="headerlink" title="JIT 与 AOT"></a>JIT 与 AOT</h3><p>JIT 在运行时即时编译，在开发周期中使用，可以动态下发和执行代码，开发测试效率高，但运行速度和执行性能则会因为运行时即时编译受到影响。<br>AOT 即提前编译，可以生成被直接执行的二进制代码，运行速度快、执行性能表现好，但每次执行前都需要提前编译，开发测试效率低。</p>
