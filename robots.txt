@@ -1,2 +1,0 @@
-Sitemap: http://linfeng.xyz/sitemap.xml
-Sitemap: http://linfeng.xyz/baidusitemap.xml
