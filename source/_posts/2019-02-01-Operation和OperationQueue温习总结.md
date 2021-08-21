@@ -55,6 +55,7 @@ NSOperation 是个抽象类，不能用来封装操作。我们只有使用它�
 
 在不使用 NSOperationQueue，单独使用 NSOperation 的情况下系统同步执行操作，下面我们学习以下操作的三种创建方式。
 
+<!--more-->
 ### 4.1.1 使用子类 `NSInvocationOperation` swift中无这种方式
 ```
 /**

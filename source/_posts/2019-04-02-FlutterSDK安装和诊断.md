@@ -179,3 +179,23 @@ Doctor summary (to see all details, run flutter doctor -v):
 [✓] VS Code (version 1.32.3)
 [✓] Connected device (1 available)
 ```
+
+## 7. 新建flutter项目flutter Resolving dependencies...很慢
+打开和新建flutter项目时发现，flutter Resolving dependencies...很慢。
+### 解决办法：
+打开Flutter SDK：flutter\packages\flutter_tools\gradle\flutter.gradle
+改为以下即可解决！
+```
+buildscript {
+    repositories {
+        // google()
+        // jcenter()
+        maven{ url 'https://maven.aliyun.com/repository/google' }
+        maven{ url 'https://maven.aliyun.com/repository/jcenter' }
+        maven{url 'http://maven.aliyun.com/nexus/content/groups/public'}
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+    }
+}
+```
