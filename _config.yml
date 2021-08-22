@@ -92,5 +92,7 @@ search:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/davidlin7876/davidlin7876.github.io.git
+  repository: 
+    github: git@github.com:davidlin7876/davidlin7876.github.io.git
+    coding: git@e.coding.net:davidmac/davidmac/davidmac.git
   branch: master

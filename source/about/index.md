@@ -19,4 +19,5 @@ type: "about"
 ## 联系方式
 - Email : davidlin7876@163.com
 - Github : [Davidlin7876](https://github.com/davidlin7876)
-- Homepage : [林峰的小宇宙](http://linfeng.xyz)
+- 个人主页 : [林峰的小宇宙](http://linfeng.xyz)
+- 抖音号: 2009405518（林峰） 
