@@ -438,7 +438,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/9/17/LoopBack学习之词汇表/">
+    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/9/17/LoopBack学习之命令行/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David Lin">
@@ -457,7 +457,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/9/17/LoopBack学习之词汇表/" itemprop="url">LoopBack学习之词汇表</a></h1>
+                <a class="post-title-link" href="/2017/9/17/LoopBack学习之命令行/" itemprop="url">LoopBack学习之命令行</a></h1>
         
 
         <div class="post-meta">
@@ -530,14 +530,27 @@
 
       
         
-          <p>准备工作：<br>安装LTS版本的Node.js.<br>安装LoopBack CLI工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
-<p>英文原地址：<a href="http://loopback.io/doc/en/lb3/LoopBack-core-concepts.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/LoopBack-core-concepts.html</a></p>
-<h1 id="LoopBack核心概念"><a href="#LoopBack核心概念" class="headerlink" title="LoopBack核心概念"></a>LoopBack核心概念</h1><p>模型是LoopBack的核心，代表后端数据源，如数据库或其他后端服务（REST，SOAP等）。LoopBack模型是具有Node和REST API的JavaScript对象。<br>LoopBack的一个关键功能是当您定义模型时，它将自动附带预定义的REST API，并具有完整的创建，读取，更新和删除操作。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/454522-ebe8bcfc2640ff85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="模型继承"></p>
-<p>在  基本模型对象对添加方法  挂钩  和验证数据。其他模型对象都“继承”它。模型具有继承层次结构，如图所示：将模型附加到持久性数据源时，它将成为 具有创建，检索，更新和删除操作的连接模型。LoopBack的内置模型从它继承。<br>
+          <h3 id="创建新应用程序"><a href="#创建新应用程序" class="headerlink" title="创建新应用程序:"></a>创建新应用程序:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb</div></pre></td></tr></table></figure>
+<p>然后，生成器将显示消息，因为它支架应用程序包括：</p>
+<ol>
+<li>初始化  项目文件夹结构。</li>
+<li>创建默认的JSON文件。</li>
+<li>创建默认的JavaScript文件。</li>
+<li>下载并安装依赖节点模块（就好像已经手动完成  npm install）。</li>
+</ol>
+<h3 id="创建模型"><a href="#创建模型" class="headerlink" title="创建模型:"></a>创建模型:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb model</div></pre></td></tr></table></figure>
+<ul>
+<li>型号名称：review</li>
+<li>资料来源：mongoDs（mongodb）</li>
+<li>基类：使用向下箭头键选择  PersistedModel。</li>
+<li>通过REST API公开审查？按RETURN接受默认值。</li>
+<li>自定义复数形式（用于构建REST URL）：按RETURN接受默认值，是。</li>
+<li>通用型号或服务器：按RETURN接受默认的常用型号。</li>
+</ul>
+<p>模型生成器将在应用程序的common/models目录中创建两个定义模型的文件<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/9/17/LoopBack学习之词汇表/#more" rel="contents">
+            <a class="btn" href="/2017/9/17/LoopBack学习之命令行/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1370,7 +1383,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
