@@ -4298,104 +4298,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[LoopBack学习之词汇表]]></title>
-      <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%AF%8D%E6%B1%87%E8%A1%A8/</url>
-      <content type="html"><![CDATA[<p>准备工作：<br>安装LTS版本的Node.js.<br>安装LoopBack CLI工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
-<p>英文原地址：<a href="http://loopback.io/doc/en/lb3/LoopBack-core-concepts.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/LoopBack-core-concepts.html</a></p>
-<h1 id="LoopBack核心概念"><a href="#LoopBack核心概念" class="headerlink" title="LoopBack核心概念"></a>LoopBack核心概念</h1><p>模型是LoopBack的核心，代表后端数据源，如数据库或其他后端服务（REST，SOAP等）。LoopBack模型是具有Node和REST API的JavaScript对象。<br>LoopBack的一个关键功能是当您定义模型时，它将自动附带预定义的REST API，并具有完整的创建，读取，更新和删除操作。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/454522-ebe8bcfc2640ff85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="模型继承"></p>
-<p>在  基本模型对象对添加方法  挂钩  和验证数据。其他模型对象都“继承”它。模型具有继承层次结构，如图所示：将模型附加到持久性数据源时，它将成为 具有创建，检索，更新和删除操作的连接模型。LoopBack的内置模型从它继承。<br><a id="more"></a></p>
-<h4 id="内置型号"><a href="#内置型号" class="headerlink" title="内置型号"></a>内置型号</h4><p>每个LoopBack应用程序都有一组预定义的  内置模型，如用户，角色和应用程序，因此您不必从头开始创建这些常见模型</p>
-<h4 id="定制机型"><a href="#定制机型" class="headerlink" title="定制机型"></a>定制机型</h4><p>您可以  定义自己的  特定于您的应用程序的自定义模型。您可以使您的自定义模型  扩展内置模型，  以建立在用户，  应用程序和其他内置模型的预定义功能的基础上 。</p>
-<p>您可以以各种方式创建LoopBack模型，具体取决于模型基于什么样的数据源。您可以创建模型：</p>
-<ul>
-<li>使用LoopBack模型生成器。</li>
-<li>从  使用模型发现的现有关系数据库中。然后，您可以使用LoopBack的模式/模型同步  API 将模型与数据库保持  同步。</li>
-<li>例如  NoSQL数据库或REST API中的自由格式数据的内省。</li>
-</ul>
-<p>所有这三种方法都创建了一个  模型定义JSON文件，它通过LoopBack项目的common/models目录中的约定在LoopBack中定义您的模型; 例如，common/models/account.json。</p>
-<p>您也可以使用LoopBack API以编程方式创建和自定义模型  ，也可以手动编辑  模型定义JSON文件。在大多数情况下，您不需要使用这些技术来创建模型，但您通常将使用它们来修改和定制模型。</p>
-<blockquote>
-<p> 注意：<br>该模型定义JSON文件包括idInjection指示环回是否会自动添加一个独特的财产  id 属性的模型。对于连接到数据库的模型，id属性对应于主键。有关详细信息，请参阅ID属性。</p>
-</blockquote>
-<h4 id="模型关系"><a href="#模型关系" class="headerlink" title="模型关系"></a>模型关系</h4><p>你可以表达  模型之间的关系，如  BelongsTo,  HasMany 和  HasAndBelongsToMany。 </p>
-<p>模型创建，检索，更新和删除操作</p>
-<p>当将模型连接到持久数据源（如数据库）时，它将成为一个  连接的模型，   其中包含来自PersistedModel  类的一整套创建，读取，更新和删除操作  ：</p>
-<table>
-<thead>
-<tr>
-<th>操作</th>
-<th>REST</th>
-<th>LoopBack模型方法</th>
-<th>相应的SQL操作</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>创建</td>
-<td>PUT / modelName 和 POST / modelName</td>
-<td>create()</td>
-<td>INSERT</td>
-</tr>
-<tr>
-<td>阅读（检索）</td>
-<td>GET / modelName？filter = …</td>
-<td>find()</td>
-<td>SELECT</td>
-</tr>
-<tr>
-<td>更新（修改）</td>
-<td>PUT / modelName</td>
-<td>updateAll()</td>
-<td>UPDATE</td>
-</tr>
-<tr>
-<td>删除（毁灭）</td>
-<td>DELETE / modelName / modelID</td>
-<td>destroyById()</td>
-<td>DELETE</td>
-</tr>
-</tbody>
-</table>
-<p>（*）列举的方法只是突出例子; 其他方法可以提供类似的功能; 例如：  findById()，  findOne()，和  findOrCreate()。 </p>
-<p>有关更多信息，请参阅PersistedModel API文档。</p>
-<h4 id="应用逻辑"><a href="#应用逻辑" class="headerlink" title="应用逻辑"></a>应用逻辑</h4><p>您可以以多种方式添加自定义应用程序逻辑; 您可以：</p>
-<ul>
-<li>通过远程方法（自定义REST端点）， 远程  方法触发的远程  钩子  以及由模型创建，检索，更新和删除方法触发的操作钩子将应用程序逻辑添加到模型中。</li>
-<li>添加应用程序启动时运行的引导脚本。</li>
-<li>定义自定义  中间件，类似于Express中间件。</li>
-</ul>
-<p>您可以在将数据保存到模型和后端数据存储之前添加验证数据的代码。</p>
-<h4 id="中间件阶段"><a href="#中间件阶段" class="headerlink" title="中间件阶段"></a>中间件阶段</h4><p>中间件  是指当HTTP请求到REST端点做出执行的功能。由于LoopBack基于  Express，LoopBack中间件与Express中间件相同  。然而，LoopBack增加了阶段的概念，以清楚地定义调用中间件的顺序。使用阶段有助于避免订购标准Express中间件可能发生的问题。</p>
-<h4 id="数据源和连接器"><a href="#数据源和连接器" class="headerlink" title="数据源和连接器"></a>数据源和连接器</h4><p><img src="http://upload-images.jianshu.io/upload_images/454522-03f84365a30b7b68.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据源和连接器模型"></p>
-<p>LoopBack将后端服务（如数据库，REST API，SOAP Web服务和存储服务）概括为  数据源。</p>
-<p>数据源由连接器支持，然后连接器直接与数据库或其他后端服务进行通信。应用程序不直接使用连接器，而是使用DataSource  和  PersistedModel  API 访问数据源  。</p>
-<h4 id="LoopBack组件"><a href="#LoopBack组件" class="headerlink" title="LoopBack组件"></a>LoopBack组件</h4><p>LoopBack组件提供额外的“插件”功能：</p>
-<ul>
-<li><strong>推送通知</strong>  - 可以将信息发送到移动应用，以立即在移动设备上的“徽章”，警报或弹出式消息中显示。</li>
-<li><strong>存储组件</strong>  - 可以向云存储提供商（Amazon，Rackspace，Openstack和Azure）以及服务器文件系统上传和下载文件。</li>
-<li><strong>第三方登录</strong>  - 集成  Passport  ，并使用来自Facebook，Google，Twitter，Github或支持OAuth，OAuth 2或OpenID的任何系统的第三方凭据启用用户登录（和帐户链接）。</li>
-<li><strong>同步</strong>  - 使移动应用程序能够脱机运行，然后在重新连接时将数据与服务器应用程序同步。</li>
-<li><strong>OAuth 2.0</strong>  - 使LoopBack应用程序能够作为oAuth 2.0提供程序来验证和授权客户端应用程序和用户访问受保护的API端点。</li>
-</ul>
-]]></content>
-      
-        <categories>
-            
-            <category> 学习笔记 </category>
-            
-        </categories>
-        
-        
-        <tags>
-            
-            <tag> NodeJS </tag>
-            
-        </tags>
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[CentOS配置Docker+NodeJS服务]]></title>
       <url>/2017/9/17/CentOS%E9%85%8D%E7%BD%AEDocker+NodeJS%E6%9C%8D%E5%8A%A1/</url>
       <content type="html"><![CDATA[<p>Mac端的本地环境请点击：<a href="http://www.jianshu.com/p/e33815e71e35" target="_blank" rel="external">Mac配置Docker+NodeJS服务</a></p>
@@ -4567,6 +4469,104 @@
 <h4 id="SLC"><a href="#SLC" class="headerlink" title="SLC"></a>SLC</h4><p>用于开发和操作的传统StrongLoop命令行工具。它被LoopBack CLI工具所取代lb。</p>
 <h4 id="synchronization-同步"><a href="#synchronization-同步" class="headerlink" title="synchronization 同步"></a>synchronization 同步</h4><p>在两个端点（如提供商应用程序和移动应用程序）之间实现数据一致性的过程。在此过程中，在任一端点，可以更新，创建或删除数据。请参阅同步。</p>
 <h1 id="W"><a href="#W" class="headerlink" title="W"></a>W</h1><h4 id="worker"><a href="#worker" class="headerlink" title="worker"></a>worker</h4><p>Node.js子进程。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 学习笔记 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> NodeJS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[LoopBack学习之词汇表]]></title>
+      <url>/2017/9/17/LoopBack%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%AF%8D%E6%B1%87%E8%A1%A8/</url>
+      <content type="html"><![CDATA[<p>准备工作：<br>安装LTS版本的Node.js.<br>安装LoopBack CLI工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
+<p>英文原地址：<a href="http://loopback.io/doc/en/lb3/LoopBack-core-concepts.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/LoopBack-core-concepts.html</a></p>
+<h1 id="LoopBack核心概念"><a href="#LoopBack核心概念" class="headerlink" title="LoopBack核心概念"></a>LoopBack核心概念</h1><p>模型是LoopBack的核心，代表后端数据源，如数据库或其他后端服务（REST，SOAP等）。LoopBack模型是具有Node和REST API的JavaScript对象。<br>LoopBack的一个关键功能是当您定义模型时，它将自动附带预定义的REST API，并具有完整的创建，读取，更新和删除操作。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/454522-ebe8bcfc2640ff85.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="模型继承"></p>
+<p>在  基本模型对象对添加方法  挂钩  和验证数据。其他模型对象都“继承”它。模型具有继承层次结构，如图所示：将模型附加到持久性数据源时，它将成为 具有创建，检索，更新和删除操作的连接模型。LoopBack的内置模型从它继承。<br><a id="more"></a></p>
+<h4 id="内置型号"><a href="#内置型号" class="headerlink" title="内置型号"></a>内置型号</h4><p>每个LoopBack应用程序都有一组预定义的  内置模型，如用户，角色和应用程序，因此您不必从头开始创建这些常见模型</p>
+<h4 id="定制机型"><a href="#定制机型" class="headerlink" title="定制机型"></a>定制机型</h4><p>您可以  定义自己的  特定于您的应用程序的自定义模型。您可以使您的自定义模型  扩展内置模型，  以建立在用户，  应用程序和其他内置模型的预定义功能的基础上 。</p>
+<p>您可以以各种方式创建LoopBack模型，具体取决于模型基于什么样的数据源。您可以创建模型：</p>
+<ul>
+<li>使用LoopBack模型生成器。</li>
+<li>从  使用模型发现的现有关系数据库中。然后，您可以使用LoopBack的模式/模型同步  API 将模型与数据库保持  同步。</li>
+<li>例如  NoSQL数据库或REST API中的自由格式数据的内省。</li>
+</ul>
+<p>所有这三种方法都创建了一个  模型定义JSON文件，它通过LoopBack项目的common/models目录中的约定在LoopBack中定义您的模型; 例如，common/models/account.json。</p>
+<p>您也可以使用LoopBack API以编程方式创建和自定义模型  ，也可以手动编辑  模型定义JSON文件。在大多数情况下，您不需要使用这些技术来创建模型，但您通常将使用它们来修改和定制模型。</p>
+<blockquote>
+<p> 注意：<br>该模型定义JSON文件包括idInjection指示环回是否会自动添加一个独特的财产  id 属性的模型。对于连接到数据库的模型，id属性对应于主键。有关详细信息，请参阅ID属性。</p>
+</blockquote>
+<h4 id="模型关系"><a href="#模型关系" class="headerlink" title="模型关系"></a>模型关系</h4><p>你可以表达  模型之间的关系，如  BelongsTo,  HasMany 和  HasAndBelongsToMany。 </p>
+<p>模型创建，检索，更新和删除操作</p>
+<p>当将模型连接到持久数据源（如数据库）时，它将成为一个  连接的模型，   其中包含来自PersistedModel  类的一整套创建，读取，更新和删除操作  ：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>REST</th>
+<th>LoopBack模型方法</th>
+<th>相应的SQL操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创建</td>
+<td>PUT / modelName 和 POST / modelName</td>
+<td>create()</td>
+<td>INSERT</td>
+</tr>
+<tr>
+<td>阅读（检索）</td>
+<td>GET / modelName？filter = …</td>
+<td>find()</td>
+<td>SELECT</td>
+</tr>
+<tr>
+<td>更新（修改）</td>
+<td>PUT / modelName</td>
+<td>updateAll()</td>
+<td>UPDATE</td>
+</tr>
+<tr>
+<td>删除（毁灭）</td>
+<td>DELETE / modelName / modelID</td>
+<td>destroyById()</td>
+<td>DELETE</td>
+</tr>
+</tbody>
+</table>
+<p>（*）列举的方法只是突出例子; 其他方法可以提供类似的功能; 例如：  findById()，  findOne()，和  findOrCreate()。 </p>
+<p>有关更多信息，请参阅PersistedModel API文档。</p>
+<h4 id="应用逻辑"><a href="#应用逻辑" class="headerlink" title="应用逻辑"></a>应用逻辑</h4><p>您可以以多种方式添加自定义应用程序逻辑; 您可以：</p>
+<ul>
+<li>通过远程方法（自定义REST端点）， 远程  方法触发的远程  钩子  以及由模型创建，检索，更新和删除方法触发的操作钩子将应用程序逻辑添加到模型中。</li>
+<li>添加应用程序启动时运行的引导脚本。</li>
+<li>定义自定义  中间件，类似于Express中间件。</li>
+</ul>
+<p>您可以在将数据保存到模型和后端数据存储之前添加验证数据的代码。</p>
+<h4 id="中间件阶段"><a href="#中间件阶段" class="headerlink" title="中间件阶段"></a>中间件阶段</h4><p>中间件  是指当HTTP请求到REST端点做出执行的功能。由于LoopBack基于  Express，LoopBack中间件与Express中间件相同  。然而，LoopBack增加了阶段的概念，以清楚地定义调用中间件的顺序。使用阶段有助于避免订购标准Express中间件可能发生的问题。</p>
+<h4 id="数据源和连接器"><a href="#数据源和连接器" class="headerlink" title="数据源和连接器"></a>数据源和连接器</h4><p><img src="http://upload-images.jianshu.io/upload_images/454522-03f84365a30b7b68.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="数据源和连接器模型"></p>
+<p>LoopBack将后端服务（如数据库，REST API，SOAP Web服务和存储服务）概括为  数据源。</p>
+<p>数据源由连接器支持，然后连接器直接与数据库或其他后端服务进行通信。应用程序不直接使用连接器，而是使用DataSource  和  PersistedModel  API 访问数据源  。</p>
+<h4 id="LoopBack组件"><a href="#LoopBack组件" class="headerlink" title="LoopBack组件"></a>LoopBack组件</h4><p>LoopBack组件提供额外的“插件”功能：</p>
+<ul>
+<li><strong>推送通知</strong>  - 可以将信息发送到移动应用，以立即在移动设备上的“徽章”，警报或弹出式消息中显示。</li>
+<li><strong>存储组件</strong>  - 可以向云存储提供商（Amazon，Rackspace，Openstack和Azure）以及服务器文件系统上传和下载文件。</li>
+<li><strong>第三方登录</strong>  - 集成  Passport  ，并使用来自Facebook，Google，Twitter，Github或支持OAuth，OAuth 2或OpenID的任何系统的第三方凭据启用用户登录（和帐户链接）。</li>
+<li><strong>同步</strong>  - 使移动应用程序能够脱机运行，然后在重新连接时将数据与服务器应用程序同步。</li>
+<li><strong>OAuth 2.0</strong>  - 使LoopBack应用程序能够作为oAuth 2.0提供程序来验证和授权客户端应用程序和用户访问受保护的API端点。</li>
+</ul>
 ]]></content>
       
         <categories>
