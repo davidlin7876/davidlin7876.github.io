@@ -1674,7 +1674,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/9/17/CentOS配置Docker+NodeJS服务/">
+    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/9/17/LoopBack学习之命令行/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="David Lin">
@@ -1693,7 +1693,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/9/17/CentOS配置Docker+NodeJS服务/" itemprop="url">CentOS配置Docker+NodeJS服务</a></h1>
+                <a class="post-title-link" href="/2017/9/17/LoopBack学习之命令行/" itemprop="url">LoopBack学习之命令行</a></h1>
         
 
         <div class="post-meta">
@@ -1715,6 +1715,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1744,16 +1766,27 @@
 
       
         
-          <p>Mac端的本地环境请点击：<a href="http://www.jianshu.com/p/e33815e71e35" target="_blank" rel="external">Mac配置Docker+NodeJS服务</a></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>安装 NodeJS<br><a href="https://nodejs.org/en/download/" title="https://nodejs.org/en/download/" target="_blank" rel="external">https://nodejs.org/en/download/</a><br>准备命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install gcc make gcc-c++ openssl-devel wget</div></pre></td></tr></table></figure></p>
-<p>下载源码及解压：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://nodejs.org/dist/v6.11.3/node-v6.11.3.tar.gz</div><div class="line">tar -zvxf node-v6.11.3.tar.gz</div></pre></td></tr></table></figure></p>
-<p>检查所需要配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure</div></pre></td></tr></table></figure></p>
-<p>编译及安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure></p>
-<p>验证是否安装配置成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node -v</div></pre></td></tr></table></figure></p>
-<hr>
+          <h3 id="创建新应用程序"><a href="#创建新应用程序" class="headerlink" title="创建新应用程序:"></a>创建新应用程序:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb</div></pre></td></tr></table></figure>
+<p>然后，生成器将显示消息，因为它支架应用程序包括：</p>
+<ol>
+<li>初始化  项目文件夹结构。</li>
+<li>创建默认的JSON文件。</li>
+<li>创建默认的JavaScript文件。</li>
+<li>下载并安装依赖节点模块（就好像已经手动完成  npm install）。</li>
+</ol>
+<h3 id="创建模型"><a href="#创建模型" class="headerlink" title="创建模型:"></a>创建模型:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ lb model</div></pre></td></tr></table></figure>
+<ul>
+<li>型号名称：review</li>
+<li>资料来源：mongoDs（mongodb）</li>
+<li>基类：使用向下箭头键选择  PersistedModel。</li>
+<li>通过REST API公开审查？按RETURN接受默认值。</li>
+<li>自定义复数形式（用于构建REST URL）：按RETURN接受默认值，是。</li>
+<li>通用型号或服务器：按RETURN接受默认的常用型号。</li>
+</ul>
+<p>模型生成器将在应用程序的common/models目录中创建两个定义模型的文件<br>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/9/17/CentOS配置Docker+NodeJS服务/#more" rel="contents">
+            <a class="btn" href="/2017/9/17/LoopBack学习之命令行/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
