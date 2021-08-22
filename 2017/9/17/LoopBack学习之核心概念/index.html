@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NodeJS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="英文地址：http://loopback.io/doc/en/lb3/Glossary.html AACL访问控制列表，与标识所有可访问对象的主题及其访问权限的对象关联的列表。请参阅身份验证，授权和权限。 API应用程序接口。允许以高级语言编写的应用程序使用操作系统或其他程序的特定数据或功能的接口。 APICIBM API Connect命令行工具。它为脚本LoopBack应用程序提供命令。有关更">
+<meta name="keywords" content="NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LoopBack学习之核心概念">
+<meta property="og:url" content="https://linfeng.xyz/2017/9/17/LoopBack学习之核心概念/index.html">
+<meta property="og:site_name" content="林峰的小宇宙">
+<meta property="og:description" content="英文地址：http://loopback.io/doc/en/lb3/Glossary.html AACL访问控制列表，与标识所有可访问对象的主题及其访问权限的对象关联的列表。请参阅身份验证，授权和权限。 API应用程序接口。允许以高级语言编写的应用程序使用操作系统或其他程序的特定数据或功能的接口。 APICIBM API Connect命令行工具。它为脚本LoopBack应用程序提供命令。有关更">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-04T02:04:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LoopBack学习之核心概念">
+<meta name="twitter:description" content="英文地址：http://loopback.io/doc/en/lb3/Glossary.html AACL访问控制列表，与标识所有可访问对象的主题及其访问权限的对象关联的列表。请参阅身份验证，授权和权限。 API应用程序接口。允许以高级语言编写的应用程序使用操作系统或其他程序的特定数据或功能的接口。 APICIBM API Connect命令行工具。它为脚本LoopBack应用程序提供命令。有关更">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://linfeng.xyz/2017/9/17/LoopBack学习之核心概念/"/>
+
+
+
+
+
+  <title>LoopBack学习之核心概念 | 林峰的小宇宙</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">林峰的小宇宙</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">🔥爆发了🔥</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            链接
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/9/17/LoopBack学习之核心概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="林峰的小宇宙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LoopBack学习之核心概念</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-17T00:00:00+08:00">
+                2017-09-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>英文地址：<br><a href="http://loopback.io/doc/en/lb3/Glossary.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/Glossary.html</a></p>
+<h1 id="A"><a href="#A" class="headerlink" title="A"></a>A</h1><h4 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h4><p>访问控制列表，与标识所有可访问对象的主题及其访问权限的对象关联的列表。请参阅身份验证，授权和权限。</p>
+<h4 id="API"><a href="#API" class="headerlink" title="API"></a>API</h4><p>应用程序接口。允许以高级语言编写的应用程序使用操作系统或其他程序的特定数据或功能的接口。</p>
+<h4 id="APIC"><a href="#APIC" class="headerlink" title="APIC"></a>APIC</h4><p>IBM API Connect命令行工具。它为脚本LoopBack应用程序提供命令。有关更多信息，请参阅命令行工具。</p>
+<h4 id="adapter-适配器"><a href="#adapter-适配器" class="headerlink" title="adapter 适配器"></a>adapter 适配器</h4><p>提供传输特定机制，使远程对象（及其集合）在其传输中可用。看强力远程。<br><a id="more"></a></p>
+<h4 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h4><p>由Google创建的移动操作系统，其中大部分是根据Apache 2.0和GPLv2开源许可证发布的。</p>
+<h4 id="AngularJS"><a href="#AngularJS" class="headerlink" title="AngularJS"></a>AngularJS</h4><p>开源客户端JavaScript框架。</p>
+<h4 id="API-Connect-API连接"><a href="#API-Connect-API连接" class="headerlink" title="API Connect API连接"></a>API Connect API连接</h4><p>IBM产品集成了StrongLoop和LoopBack技术，用于创建，运行，管理和保护API。请参阅DeveloperWorks&gt; API连接。</p>
+<h4 id="Arc-弧"><a href="#Arc-弧" class="headerlink" title="Arc 弧"></a>Arc 弧</h4><p>StrongLoop API生命周期图形工具套件，包括用于构建，分析和监视节点应用程序的工具。StrongLoop Arc不再处于积极的开发阶段，不久将被淘汰。</p>
+<h1 id="B"><a href="#B" class="headerlink" title="B"></a>B</h1><h4 id="boot-script-启动脚本"><a href="#boot-script-启动脚本" class="headerlink" title="boot script 启动脚本"></a>boot script 启动脚本</h4><p>默认情况下，/server/boot目录中启动应用程序时自动运行的JavaScript函数。请参阅定义启动脚本。</p>
+<h4 id="built-in-model-内置型号"><a href="#built-in-model-内置型号" class="headerlink" title="built-in model 内置型号"></a>built-in model 内置型号</h4><p>默认情况下，每个LoopBack应用程序都有一个预定义的模型。请参阅使用内置型号。</p>
+<h1 id="C"><a href="#C" class="headerlink" title="C"></a>C</h1><h4 id="cluster-簇"><a href="#cluster-簇" class="headerlink" title="cluster 簇"></a>cluster 簇</h4><p>一组相同的Node worker进程在同一端口上接收请求。参见： 工人。</p>
+<h4 id="component-零件"><a href="#component-零件" class="headerlink" title="component 零件"></a>component 零件</h4><p>扩展基本LoopBack应用程序的预定义包。从根本上说，组件是将相关代码捆绑在一起作为一个单元，以使LoopBack应用程序能够轻松重用。请参阅LoopBack组件。</p>
+<h4 id="component-连接器"><a href="#component-连接器" class="headerlink" title="component 连接器"></a>component 连接器</h4><p>请参阅LoopBack连接器。</p>
+<h1 id="D"><a href="#D" class="headerlink" title="D"></a>D</h1><h4 id="data-source-数据源"><a href="#data-source-数据源" class="headerlink" title="data source 数据源"></a>data source 数据源</h4><p>数据源使用连接器与特定数据库或其他后端系统连接。请参阅将模型连接到数据源。</p>
+<h1 id="E"><a href="#E" class="headerlink" title="E"></a>E</h1><h4 id="endpoint-端点"><a href="#endpoint-端点" class="headerlink" title="endpoint 端点"></a>endpoint 端点</h4><p>看路线。</p>
+<h4 id="enterprise-connector-企业连接器"><a href="#enterprise-connector-企业连接器" class="headerlink" title="enterprise connector 企业连接器"></a>enterprise connector 企业连接器</h4><p>连接到后端数据源（如Oracle，MySQL或MongoDB）的模块。</p>
+<h4 id="environment-variable-环境变量"><a href="#environment-variable-环境变量" class="headerlink" title="environment variable 环境变量"></a>environment variable 环境变量</h4><p>定义进程操作环境方面的变量。例如，环境变量可以定义主目录，命令搜索路径，正在使用的终端或当前时区。</p>
+<h4 id="event-loop-事件循环"><a href="#event-loop-事件循环" class="headerlink" title="event loop 事件循环"></a>event loop 事件循环</h4><p>运行Node.js应用程序的单线程执行过程，通常进行一系列异步函数调用。</p>
+<h1 id="G"><a href="#G" class="headerlink" title="G"></a>G</h1><h4 id="generator-发电机"><a href="#generator-发电机" class="headerlink" title="generator 发电机"></a>generator 发电机</h4><p>支持全部或部分LoopBack应用程序的交互式命令行工具。请参阅命令行工具。</p>
+<h1 id="I"><a href="#I" class="headerlink" title="I"></a>I</h1><h4 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h4><p>苹果设备的封闭源码专有移动操作系统。</p>
+<h1 id="J"><a href="#J" class="headerlink" title="J"></a>J</h1><h4 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h4><p>JavaScript对象符号; 一种基于JavaScript对象字面符号的轻量级数据交换格式。JSON是编程语言中性，但使用各种语言的约定。</p>
+<h1 id="L"><a href="#L" class="headerlink" title="L"></a>L</h1><h4 id="lb"><a href="#lb" class="headerlink" title="lb"></a>lb</h4><p>用于脚手架和开发LoopBack应用程序的LoopBack命令行界面（CLI）工具。取代传统slc工具。</p>
+<h4 id="LDL"><a href="#LDL" class="headerlink" title="LDL"></a>LDL</h4><p>LoopBack定义语言，一种用于定义LoopBack模型和其他配置的JSON形式。</p>
+<h4 id="load-balancer-负载均衡器"><a href="#load-balancer-负载均衡器" class="headerlink" title="load balancer 负载均衡器"></a>load balancer 负载均衡器</h4><p>在一组服务器上分发工作负载的软件或硬件，以确保服务器不会过载。如果初始服务器发生故障，负载平衡器也会将用户引导到另一台服务器。</p>
+<h4 id="LoopBack-connector-LoopBack连接器"><a href="#LoopBack-connector-LoopBack连接器" class="headerlink" title="LoopBack connector LoopBack连接器"></a>LoopBack connector LoopBack连接器</h4><p>提供对后端系统（如数据库，REST API或其他服务）的访问的连接器。</p>
+<h4 id="LoopBack-DataSource-Juggler"><a href="#LoopBack-DataSource-Juggler" class="headerlink" title="LoopBack DataSource Juggler"></a>LoopBack DataSource Juggler</h4><p>对象关系映射，提供了一组通用的接口，用于与数据库，REST API和其他数据源进行交互。</p>
+<h4 id="LoopBack-model-LoopBack模型"><a href="#LoopBack-model-LoopBack模型" class="headerlink" title="LoopBack model LoopBack模型"></a>LoopBack model LoopBack模型</h4><p>由应用程序数据，验证规则，数据访问功能以及默认提供REST API的业务逻辑组成的模型。</p>
+<h1 id="M"><a href="#M" class="headerlink" title="M"></a>M</h1><h4 id="MBaaS"><a href="#MBaaS" class="headerlink" title="MBaaS"></a>MBaaS</h4><p>移动后端即服务。将移动应用程序连接到云计算服务的计算模型，通过统一的API和SDK，提供用户管理，推送通知和社交网络集成等功能。</p>
+<h4 id="middleware-function-中间件功能"><a href="#middleware-function-中间件功能" class="headerlink" title="middleware function 中间件功能"></a>middleware function 中间件功能</h4><p>当向指定的REST端点发出HTTP请求时执行的功能。由于LoopBack基于Express，LoopBack中间件与Express中间件相同。请参阅定义中间件。</p>
+<h4 id="middleware-phase-中间件阶段"><a href="#middleware-phase-中间件阶段" class="headerlink" title="middleware phase 中间件阶段"></a>middleware phase 中间件阶段</h4><p>当您调用中间件功能时，应用程序执行阶段。请参阅定义中间件。</p>
+<h4 id="model-模型"><a href="#model-模型" class="headerlink" title="model 模型"></a>model 模型</h4><p>请参阅LoopBack模型。</p>
+<h4 id="model-property-模型属性"><a href="#model-property-模型属性" class="headerlink" title="model property 模型属性"></a>model property 模型属性</h4><p>附加到模型的值; 对于持久化模型，对应于数据库列或字段。</p>
+<h1 id="N"><a href="#N" class="headerlink" title="N"></a>N</h1><h4 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h4><p>节点包管理器，用于使用npm注册表安装应用程序和管理依赖关系的命令行工具。</p>
+<h1 id="O"><a href="#O" class="headerlink" title="O"></a>O</h1><h4 id="on-premises-本地"><a href="#on-premises-本地" class="headerlink" title="on-premises 本地"></a>on-premises 本地</h4><p>涉及在用户或组织的本地计算机上安装和运行的软件。</p>
+<h4 id="operation-hook-操作钩"><a href="#operation-hook-操作钩" class="headerlink" title="operation hook 操作钩"></a>operation hook 操作钩</h4><p>由模型的高级创建，检索，更新或删除（CRUD）操作触发的代码。请参阅操作钩。</p>
+<h1 id="P"><a href="#P" class="headerlink" title="P"></a>P</h1><h4 id="Persisted-model-持久模型"><a href="#Persisted-model-持久模型" class="headerlink" title="Persisted model 持久模型"></a>Persisted model 持久模型</h4><p>一个LoopBack模型，连接到持久性数据源，自动获取基本的创建，读取，更新和删除方法。</p>
+<h4 id="production-生产"><a href="#production-生产" class="headerlink" title="production 生产"></a>production 生产</h4><p>当应用程序或API通常可用于最终用户或消费者时，软件生命周期中的阶段。与“发展”和“测试”对比。也称为“部署”。</p>
+<h4 id="production-host-生产主机"><a href="#production-host-生产主机" class="headerlink" title="production host 生产主机"></a>production host 生产主机</h4><p>运行生产应用程序的服务器。</p>
+<h4 id="property-属性"><a href="#property-属性" class="headerlink" title="property 属性"></a>property 属性</h4><p>请参阅模型属性。</p>
+<h4 id="push-notification-推送通知"><a href="#push-notification-推送通知" class="headerlink" title="push notification 推送通知"></a>push notification 推送通知</h4><p>向移动应用发送警报或消息。请参阅推送通知。</p>
+<h1 id="R"><a href="#R" class="headerlink" title="R"></a>R</h1><h4 id="remote-object-远程对象"><a href="#remote-object-远程对象" class="headerlink" title="remote object 远程对象"></a>remote object 远程对象</h4><p>通过StrongLoop应用程序通过网络导出的JavaScript对象与从模块导出功能的方式相同。您可以使用JavaScript在本地调用远程对象上的方法。</p>
+<h4 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h4><p>用于分布式超媒体系统（如万维网）的软件架构风格。该术语还经常用于描述任何使用XML（或YAML，JSON，纯文本）的简单界面，而不需要附加的消息层，例如SOAP。</p>
+<h4 id="route-路由"><a href="#route-路由" class="headerlink" title="route 路由"></a>route 路由</h4><p>识别资源的URL的一部分。例如，在http: //foo.com/products/id, the route is /products/id.</p>
+<h4 id="runtime-运行"><a href="#runtime-运行" class="headerlink" title="runtime 运行"></a>runtime 运行</h4><p>与计算机程序运行的时间段有关。</p>
+<h1 id="S"><a href="#S" class="headerlink" title="S"></a>S</h1><h4 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h4><p>软件开发套件 一组工具，API和文档，以协助以特定的计算机语言或特定的操作环境开发软件。</p>
+<h4 id="SLC"><a href="#SLC" class="headerlink" title="SLC"></a>SLC</h4><p>用于开发和操作的传统StrongLoop命令行工具。它被LoopBack CLI工具所取代lb。</p>
+<h4 id="synchronization-同步"><a href="#synchronization-同步" class="headerlink" title="synchronization 同步"></a>synchronization 同步</h4><p>在两个端点（如提供商应用程序和移动应用程序）之间实现数据一致性的过程。在此过程中，在任一端点，可以更新，创建或删除数据。请参阅同步。</p>
+<h1 id="W"><a href="#W" class="headerlink" title="W"></a>W</h1><h4 id="worker"><a href="#worker" class="headerlink" title="worker"></a>worker</h4><p>Node.js子进程。</p>
+
+      
+    </div>
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束<i class="fa fa-paw"></i>感谢阅读------</div>
+    
+</div>
+      
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NodeJS/" rel="tag"><i class="fa fa-tag"></i> NodeJS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/9/2/身份证校验算法swift版本/" rel="next" title="身份证校验算法swift版本">
+                <i class="fa fa-chevron-left"></i> 身份证校验算法swift版本
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/9/17/LoopBack学习之词汇表/" rel="prev" title="LoopBack学习之词汇表">
+                LoopBack学习之词汇表 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="David Lin" />
+            
+              <p class="site-author-name" itemprop="name">David Lin</p>
+              <p class="site-description motion-element" itemprop="description">资深软件工程师，架构师，PMP。2001年毕业于浙江工业大学计算机系， Mac/iOS 应用开发十数年。在虹软科技，尼禄软件工作期间任苹果平台的核心工程师。2015年创办宗布科技，负责团队技术架构，技术指导，项目团队管理。2017年加入网易杭州研究院K12部门，组建团队，技术框架和项目管理</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#A"><span class="nav-number">1.</span> <span class="nav-text">A</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ACL"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">ACL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#APIC"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">APIC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#adapter-适配器"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">adapter 适配器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">Android</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AngularJS"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">AngularJS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API-Connect-API连接"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">API Connect API连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Arc-弧"><span class="nav-number">1.0.0.8.</span> <span class="nav-text">Arc 弧</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#B"><span class="nav-number">2.</span> <span class="nav-text">B</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#boot-script-启动脚本"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">boot script 启动脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#built-in-model-内置型号"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">built-in model 内置型号</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C"><span class="nav-number">3.</span> <span class="nav-text">C</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cluster-簇"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">cluster 簇</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#component-零件"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">component 零件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#component-连接器"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">component 连接器</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#D"><span class="nav-number">4.</span> <span class="nav-text">D</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#data-source-数据源"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">data source 数据源</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#E"><span class="nav-number">5.</span> <span class="nav-text">E</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#endpoint-端点"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">endpoint 端点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#enterprise-connector-企业连接器"><span class="nav-number">5.0.0.2.</span> <span class="nav-text">enterprise connector 企业连接器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#environment-variable-环境变量"><span class="nav-number">5.0.0.3.</span> <span class="nav-text">environment variable 环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#event-loop-事件循环"><span class="nav-number">5.0.0.4.</span> <span class="nav-text">event loop 事件循环</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#G"><span class="nav-number">6.</span> <span class="nav-text">G</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#generator-发电机"><span class="nav-number">6.0.0.1.</span> <span class="nav-text">generator 发电机</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#I"><span class="nav-number">7.</span> <span class="nav-text">I</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#iOS"><span class="nav-number">7.0.0.1.</span> <span class="nav-text">iOS</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#J"><span class="nav-number">8.</span> <span class="nav-text">J</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSON"><span class="nav-number">8.0.0.1.</span> <span class="nav-text">JSON</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#L"><span class="nav-number">9.</span> <span class="nav-text">L</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#lb"><span class="nav-number">9.0.0.1.</span> <span class="nav-text">lb</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LDL"><span class="nav-number">9.0.0.2.</span> <span class="nav-text">LDL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#load-balancer-负载均衡器"><span class="nav-number">9.0.0.3.</span> <span class="nav-text">load balancer 负载均衡器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LoopBack-connector-LoopBack连接器"><span class="nav-number">9.0.0.4.</span> <span class="nav-text">LoopBack connector LoopBack连接器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LoopBack-DataSource-Juggler"><span class="nav-number">9.0.0.5.</span> <span class="nav-text">LoopBack DataSource Juggler</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LoopBack-model-LoopBack模型"><span class="nav-number">9.0.0.6.</span> <span class="nav-text">LoopBack model LoopBack模型</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#M"><span class="nav-number">10.</span> <span class="nav-text">M</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MBaaS"><span class="nav-number">10.0.0.1.</span> <span class="nav-text">MBaaS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#middleware-function-中间件功能"><span class="nav-number">10.0.0.2.</span> <span class="nav-text">middleware function 中间件功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#middleware-phase-中间件阶段"><span class="nav-number">10.0.0.3.</span> <span class="nav-text">middleware phase 中间件阶段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#model-模型"><span class="nav-number">10.0.0.4.</span> <span class="nav-text">model 模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#model-property-模型属性"><span class="nav-number">10.0.0.5.</span> <span class="nav-text">model property 模型属性</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#N"><span class="nav-number">11.</span> <span class="nav-text">N</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NPM"><span class="nav-number">11.0.0.1.</span> <span class="nav-text">NPM</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#O"><span class="nav-number">12.</span> <span class="nav-text">O</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#on-premises-本地"><span class="nav-number">12.0.0.1.</span> <span class="nav-text">on-premises 本地</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#operation-hook-操作钩"><span class="nav-number">12.0.0.2.</span> <span class="nav-text">operation hook 操作钩</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#P"><span class="nav-number">13.</span> <span class="nav-text">P</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Persisted-model-持久模型"><span class="nav-number">13.0.0.1.</span> <span class="nav-text">Persisted model 持久模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#production-生产"><span class="nav-number">13.0.0.2.</span> <span class="nav-text">production 生产</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#production-host-生产主机"><span class="nav-number">13.0.0.3.</span> <span class="nav-text">production host 生产主机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#property-属性"><span class="nav-number">13.0.0.4.</span> <span class="nav-text">property 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#push-notification-推送通知"><span class="nav-number">13.0.0.5.</span> <span class="nav-text">push notification 推送通知</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#R"><span class="nav-number">14.</span> <span class="nav-text">R</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#remote-object-远程对象"><span class="nav-number">14.0.0.1.</span> <span class="nav-text">remote object 远程对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#REST"><span class="nav-number">14.0.0.2.</span> <span class="nav-text">REST</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#route-路由"><span class="nav-number">14.0.0.3.</span> <span class="nav-text">route 路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#runtime-运行"><span class="nav-number">14.0.0.4.</span> <span class="nav-text">runtime 运行</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#S"><span class="nav-number">15.</span> <span class="nav-text">S</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SDK"><span class="nav-number">15.0.0.1.</span> <span class="nav-text">SDK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SLC"><span class="nav-number">15.0.0.2.</span> <span class="nav-text">SLC</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#synchronization-同步"><span class="nav-number">15.0.0.3.</span> <span class="nav-text">synchronization 同步</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#W"><span class="nav-number">16.</span> <span class="nav-text">W</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#worker"><span class="nav-number">16.0.0.1.</span> <span class="nav-text">worker</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">David Lin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.3"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NodeJS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="英文地址：http://loopback.io/doc/en/lb3/Creating-an-application.html 创建应用程序使用应用程序生成器创建应用程序的最简单方法是使用应用程序生成器。 可以通过从头开始编写一个LoopBack应用程序，但应用程序生成器可以做所有的“繁重的”来创建标准项目布局的基本脚手架。然后，您可以使用CLI工具自定义应用程序以满足您的需求。 一般来说，文档假">
+<meta name="keywords" content="NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LoopBack学习之创建应用程序">
+<meta property="og:url" content="https://linfeng.xyz/2017/9/18/LoopBack学习之创建应用程序/index.html">
+<meta property="og:site_name" content="林峰的小宇宙">
+<meta property="og:description" content="英文地址：http://loopback.io/doc/en/lb3/Creating-an-application.html 创建应用程序使用应用程序生成器创建应用程序的最简单方法是使用应用程序生成器。 可以通过从头开始编写一个LoopBack应用程序，但应用程序生成器可以做所有的“繁重的”来创建标准项目布局的基本脚手架。然后，您可以使用CLI工具自定义应用程序以满足您的需求。 一般来说，文档假">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-04T02:04:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LoopBack学习之创建应用程序">
+<meta name="twitter:description" content="英文地址：http://loopback.io/doc/en/lb3/Creating-an-application.html 创建应用程序使用应用程序生成器创建应用程序的最简单方法是使用应用程序生成器。 可以通过从头开始编写一个LoopBack应用程序，但应用程序生成器可以做所有的“繁重的”来创建标准项目布局的基本脚手架。然后，您可以使用CLI工具自定义应用程序以满足您的需求。 一般来说，文档假">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://linfeng.xyz/2017/9/18/LoopBack学习之创建应用程序/"/>
+
+
+
+
+
+  <title>LoopBack学习之创建应用程序 | 林峰的小宇宙</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">林峰的小宇宙</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">🔥爆发了🔥</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            链接
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/9/18/LoopBack学习之创建应用程序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="林峰的小宇宙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LoopBack学习之创建应用程序</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-18T00:00:00+08:00">
+                2017-09-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>英文地址：<br><a href="http://loopback.io/doc/en/lb3/Creating-an-application.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/Creating-an-application.html</a></p>
+<h1 id="创建应用程序"><a href="#创建应用程序" class="headerlink" title="创建应用程序"></a>创建应用程序</h1><h3 id="使用应用程序生成器"><a href="#使用应用程序生成器" class="headerlink" title="使用应用程序生成器"></a>使用应用程序生成器</h3><p>创建应用程序的最简单方法是使用应用程序生成器。</p>
+<p>可以通过从头开始编写一个LoopBack应用程序，但应用程序生成器可以做所有的“繁重的”来创建标准项目布局的基本脚手架。然后，您可以使用CLI工具自定义应用程序以满足您的需求。</p>
+<p>一般来说，文档假设您已经使用应用程序生成器创建了应用程序。</p>
+<p>创建应用程序后，您可能需要配置它，例如：关闭堆栈跟踪，禁用API资源管理器，并检索环境变量的值。有关详细信息，请参阅  环境特定配置。</p>
+<h3 id="标准工程布局"><a href="#标准工程布局" class="headerlink" title="标准工程布局"></a>标准工程布局</h3><p>应用程序生成器创建具有标准项目布局的应用程序。<br><a id="more"></a><br>总结：</p>
+<ul>
+<li><p>server 目录</p>
+<ul>
+<li>server.js - 主要应用脚本; 见下文。</li>
+<li>config.json - 全局应用程序设置，如REST API根，要使用的主机名和端口等。请参阅config.json。</li>
+<li>model-config.json - 将模型绑定到数据源，并指定模型是否暴露于REST之外。请参阅model-config.json。</li>
+<li>datasources.json - 数据源配置文件。请参阅datasources.json。</li>
+</ul>
+</li>
+<li><p>client 目录（除README存根之外为空）</p>
+</li>
+<li>common/models目录 - 在使用模型生成器创建模型时创建。<br>每个模型的JSON文件和JavaScript文件（例如my-model.json和my-model.js）。</li>
+</ul>
+<p><strong>主应用脚本（server.js）</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">var loopback = require(&apos;loopback&apos;);</div><div class="line">var boot = require(&apos;loopback-boot&apos;);</div><div class="line">var app = module.exports = loopback();</div><div class="line">app.start = function() &#123;</div><div class="line">  // start the web server</div><div class="line">  return app.listen(function() &#123;</div><div class="line">    app.emit(&apos;started&apos;);</div><div class="line">    var baseUrl = app.get(&apos;url&apos;).replace(/\/$/, &apos;&apos;);</div><div class="line">    console.log(&apos;Web server listening at: %s&apos;, baseUrl);</div><div class="line">    if (app.get(&apos;loopback-component-explorer&apos;)) &#123;</div><div class="line">      var explorerPath = app.get(&apos;loopback-component-explorer&apos;).mountPath;</div><div class="line">      console.log(&apos;Browse your REST API at %s%s&apos;, baseUrl, explorerPath);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;;</div><div class="line">// Bootstrap the application, configure models, datasources and middleware.</div><div class="line">// Sub-apps like REST API are mounted via boot scripts.</div><div class="line">boot(app, __dirname, function(err) &#123;</div><div class="line">  if (err) throw err;</div><div class="line">  // start the server if `$ node server.js`</div><div class="line">  if (require.main === module)</div><div class="line">    app.start();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="环境特定配置"><a href="#环境特定配置" class="headerlink" title="环境特定配置"></a>环境特定配置</h1><h3 id="概观"><a href="#概观" class="headerlink" title="概观"></a>概观</h3><p>LoopBack应用程序具有以下类型的配置文件：</p>
+<ul>
+<li>默认情况下，  应用范围配置文件server/config.json。您也可以使用  server/config.local.js 设置不能使用简单JSON的值。</li>
+<li>默认情况下，  数据源配置文件server/datasources.json。您也可以使用  server/datasources.local.js 设置不能使用简单JSON的值。</li>
+<li>默认情况下  ，模型的应用程序级配置server/model-config.json。</li>
+<li>中间件配置文件，默认情况下  server/middleware.json。</li>
+<li>缺省情况下  ，LoopBack组件的配置文件server/component-config.json。<blockquote>
+<p> 注意： 使用*.js文件配置LoopBack应用程序将仅在原始.json文件保留到位时才起作用。而不是用.json文件替换文件.js ，您应该覆盖.json文件中的.js文件的值。也就是说，通过将默认.json文件保留为空，所有配置都可以在.js文件中完成。</p>
+</blockquote>
+</li>
+</ul>
+<p>LoopBack将始终加载以下配置文件（如果存在）</p>
+<ul>
+<li>server/config.json。</li>
+<li>server/config.local.json 或 server/config.local.js。 </li>
+<li>server/datasources.json</li>
+<li>server/datasources.local.json 要么 server/datasources.local.js</li>
+<li>server/model-config.json</li>
+<li>server/model-config.local.json 要么 server/model-config.local.js</li>
+<li>server/middleware.json</li>
+<li>server/middleware.local.json 要么 server/middleware.local.js</li>
+<li>server/component-config.json</li>
+<li>server/component-config.local.json 要么 server/component-config.local.js</li>
+</ul>
+<p>另外，当设置NODE_ENV环境变量时，LoopBack将从以下位置加载配置：</p>
+<ul>
+<li>server/config.env.json/js</li>
+<li>server/datasources.env.json/js</li>
+<li>server/model-config.env.json/js</li>
+<li>server/middleware.env.json/js</li>
+<li>server/component-config.env.json/js</li>
+</ul>
+<p>env NODE_ENV的值（通常是“开发”，“分期”或“生产”）在哪里  。 这使您能够为开发，分期和生产环境设置配置。</p>
+<blockquote>
+<p> 注意：<br>LoopBack应用程序可以加载多个可能会相互冲突的配置文件。由优先级最高的文件设置的值将始终生效。优先事项是：</p>
+<ol>
+<li>环境特定的配置，基于NODE_ENV的值; 例如，server/config.staging.json。</li>
+<li>本地配置文件 ; 例如，server/config.local.json。</li>
+<li>默认配置文件 ; 例如，server/config.json。</li>
+</ol>
+</blockquote>
+<p>应用程序配置文件示例：</p>
+<p>config.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;host&quot;: &quot;localhost&quot;,</div><div class="line">  &quot;restApiRoot&quot;: &quot;/api&quot;,</div><div class="line">  &quot;host&quot;: &quot;0.0.0.0&quot;,</div><div class="line">  &quot;port&quot;: 3000,</div><div class="line">  &quot;remoting&quot;: &#123;</div><div class="line">    &quot;context&quot;: false,</div><div class="line">    &quot;rest&quot;: &#123;</div><div class="line">      &quot;normalizeHttpPath&quot;: false,</div><div class="line">      &quot;xml&quot;: false</div><div class="line">    &#125;,</div><div class="line">    &quot;json&quot;: &#123;</div><div class="line">      &quot;strict&quot;: false,</div><div class="line">      &quot;limit&quot;: &quot;100kb&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;urlencoded&quot;: &#123;</div><div class="line">      &quot;extended&quot;: true,</div><div class="line">      &quot;limit&quot;: &quot;100kb&quot;</div><div class="line">    &#125;,</div><div class="line">    &quot;cors&quot;: false,</div><div class="line">    &quot;handleErrors&quot;: false</div><div class="line">  &#125;,</div><div class="line">  &quot;legacyExplorer&quot;: false</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>config.local.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;;</div><div class="line"></div><div class="line">var GLOBAL_CONFIG = require(&apos;../global-config&apos;);</div><div class="line"></div><div class="line">var env = (process.env.NODE_ENV || &apos;development&apos;);</div><div class="line">var isDevEnv = env === &apos;development&apos; || env === &apos;test&apos;;</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  hostname: GLOBAL_CONFIG.hostname,</div><div class="line">  restApiRoot: GLOBAL_CONFIG.restApiRoot,</div><div class="line">  livereload: process.env.LIVE_RELOAD,</div><div class="line">  isDevEnv: isDevEnv,</div><div class="line">  indexFile: require.resolve(isDevEnv ?</div><div class="line">    &apos;../client/ngapp/index.html&apos; : &apos;../client/dist/index.html&apos;),</div><div class="line">  port: GLOBAL_CONFIG.port,</div><div class="line">  legacyExplorer: GLOBAL_CONFIG.legacyExplorer</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>数据源配置文件示例：</p>
+<p>datasources.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;db&quot;: &#123;</div><div class="line">    &quot;name&quot;: &quot;db&quot;,</div><div class="line">    &quot;connector&quot;: &quot;memory&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>datasources.production.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// Use the same environment-based configuration as in staging</div><div class="line">module.exports = require(&apos;./datasources.staging.js&apos;);</div></pre></td></tr></table></figure>
+<p>datasources.staging.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  db: &#123;</div><div class="line">    connector: &apos;mongodb&apos;,</div><div class="line">    hostname: process.env.DB_HOST || &apos;localhost&apos;,</div><div class="line">    port: process.env.DB_PORT || 27017,</div><div class="line">    user: process.env.DB_USER,</div><div class="line">    password: process.env.DB_PASSWORD,</div><div class="line">    database: &apos;todo-example&apos;,</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>中间件配置文件的示例：<br>middleware.json<br><a href="http://loopback.io/doc/en/lb3/middleware.json.html" target="_blank" rel="external">http://loopback.io/doc/en/lb3/middleware.json.</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;initial:before&quot;: &#123;</div><div class="line">    &quot;loopback#favicon&quot;: &#123;&#125;</div><div class="line">  &#125;,</div><div class="line">  &quot;initial&quot;: &#123;</div><div class="line">    &quot;compression&quot;: &#123;&#125;,</div><div class="line">    &quot;cors&quot;: &#123;</div><div class="line">      &quot;params&quot;: &#123;</div><div class="line">        &quot;origin&quot;: true,</div><div class="line">        &quot;credentials&quot;: true,</div><div class="line">        &quot;maxAge&quot;: 86400</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    &quot;helmet#xssFilter&quot;: &#123;&#125;,</div><div class="line">    &quot;helmet#frameguard&quot;: &#123;</div><div class="line">      &quot;params&quot;: [</div><div class="line">        &quot;deny&quot;</div><div class="line">      ]</div><div class="line">    &#125;,</div><div class="line">    &quot;helmet#hsts&quot;: &#123;</div><div class="line">      &quot;params&quot;: &#123;</div><div class="line">        &quot;maxAge&quot;: 0,</div><div class="line">        &quot;includeSubdomains&quot;: true</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    &quot;helmet#hidePoweredBy&quot;: &#123;&#125;,</div><div class="line">    &quot;helmet#ieNoOpen&quot;: &#123;&#125;,</div><div class="line">    &quot;helmet#noSniff&quot;: &#123;&#125;,</div><div class="line">    &quot;helmet#noCache&quot;: &#123;</div><div class="line">      &quot;enabled&quot;: false</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  &quot;session&quot;: &#123;&#125;,</div><div class="line">  &quot;auth&quot;: &#123;&#125;,</div><div class="line">  &quot;parse&quot;: &#123;&#125;,</div><div class="line">  &quot;routes&quot;: &#123;</div><div class="line">    &quot;loopback#rest&quot;: &#123;</div><div class="line">      &quot;paths&quot;: [</div><div class="line">        &quot;$&#123;restApiRoot&#125;&quot;</div><div class="line">      ]</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  &quot;files&quot;: &#123;&#125;,</div><div class="line">  &quot;final&quot;: &#123;</div><div class="line">    &quot;loopback#urlNotFound&quot;: &#123;&#125;</div><div class="line">  &#125;,</div><div class="line">  &quot;final:after&quot;: &#123;</div><div class="line">    &quot;strong-error-handler&quot;: &#123;&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>middleware.development.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;final:after&quot;: &#123;</div><div class="line">    &quot;strong-error-handler&quot;: &#123;</div><div class="line">      &quot;params&quot;: &#123;</div><div class="line">        &quot;debug&quot;: true,</div><div class="line">        &quot;log&quot;: true</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>有关示例应用程序，请参见  <a href="https://github.com/strongloop/loopback-example-full-stack/tree/master/server。" target="_blank" rel="external">https://github.com/strongloop/loopback-example-full-stack/tree/master/server。</a></p>
+<blockquote>
+<p> 重要：<br>即使使用环境特定的配置文件，LoopBack仍然需要默认的基本文件。JSON文件中的空对象就足够了。</p>
+</blockquote>
+<h3 id="应用范围配置"><a href="#应用范围配置" class="headerlink" title="应用范围配置"></a>应用范围配置</h3><p>在其中定义应用程序服务器端设置  server/config.json。</p>
+<p>您可以覆盖在其中设置的值  config.json ：</p>
+<ul>
+<li>config.local.js 要么 config.local.json</li>
+<li>config.env.js 或者  ， （通常   或  ） 的值  在哪里  。例如。config.env.jsonenvNODE_ENVdevelopmentproductionconfig.production.json<blockquote>
+<p> 重要提示： 附加文件可以仅使用值类型（字符串，数字）覆盖顶级键。不支持嵌套对象和数组。</p>
+</blockquote>
+</li>
+</ul>
+<p>例如：</p>
+<p>config.production.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  host: process.env.CUSTOM_HOST,</div><div class="line">  port: process.env.CUSTOM_PORT</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h3 id="确保不返回堆栈跟踪"><a href="#确保不返回堆栈跟踪" class="headerlink" title="确保不返回堆栈跟踪"></a>确保不返回堆栈跟踪</h3><p>默认情况下，JSON回应中不会返回堆栈跟踪，但如果它们已被启用进行开发和调试，请确保它们已关闭生产。</p>
+<ul>
+<li>将NODE_ENV环境变量设置为“production”</li>
+<li>包括以下内容  server/middleware.production.json：</li>
+</ul>
+<p>server/middleware.production.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;final:after&quot;: &#123;</div><div class="line">    &quot;strong-error-handler&quot;: &#123;&#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p> 注： 该应用程序生成器创建一个middleware.developmnet.json与你的上述配置文件，因此，所有你需要做的就是确保NODE_ENV环境变量不是development。</p>
+</blockquote>
+<h3 id="禁用API资源管理器"><a href="#禁用API资源管理器" class="headerlink" title="禁用API资源管理器"></a>禁用API资源管理器</h3><p> 当您开发应用程序时，LoopBack  API Explorer非常棒，但出于安全考虑，您可能不希望在生产环境中公开它。</p>
+<p>对于使用loopback-component-explorer的应用程序，在生产中禁用资源管理器：</p>
+<ul>
+<li>将NODE_ENV环境变量设置为“production”。</li>
+<li>然后在server/component-config.production.json：</li>
+</ul>
+<p>server/middleware.production.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;loopback-component-explorer&quot;: null</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="在HTTP响应中包含堆栈跟踪"><a href="#在HTTP响应中包含堆栈跟踪" class="headerlink" title="在HTTP响应中包含堆栈跟踪"></a>在HTTP响应中包含堆栈跟踪</h3><p>默认情况下，LoopBack 3.0应用程序可以从HTTP响应（典型的生产）中排除错误堆栈跟踪。对于开发和调试，您可能希望包含它们; 要这样做，设置NODE_ENV环境变量，development以便应用程序使用middleware.development.json。</p>
+<p>该文件包括以下内容，其中包括HTTP响应中的堆栈跟踪：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;final:after&quot;: &#123;</div><div class="line">    &quot;strong-error-handler&quot;: &#123;</div><div class="line">      &quot;params&quot;: &#123;</div><div class="line">        &quot;debug&quot;: true,</div><div class="line">        &quot;log&quot;: true</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>数据源配置<br>您可以覆盖datasources.json 以下文件中设置的值  ：</p>
+<ul>
+<li>datasources.local.js 要么 datasources.local.json</li>
+<li>datasources.env.js 或者  ， 环境变量（通常为   或  ） 的值  在哪里  。例如，。datasources.env.jsonenvNODE_ENVdevelopmentproductiondatasources.production.json</li>
+</ul>
+<p>示例数据源：</p>
+<p>datasources.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  db: &#123;</div><div class="line">    connector: &apos;memory&apos;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>datasources.production.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  db: &#123;</div><div class="line">    connector: &apos;mongodb&apos;,</div><div class="line">    database: &apos;myapp&apos;,</div><div class="line">    user: &apos;myapp&apos;,</div><div class="line">    password: &apos;secret&apos;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>您还可以将文件配置为使用环境变量：datasource.env.js</p>
+<p>datasources.production.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line">  db: &#123;</div><div class="line">    connector: &apos;mongodb&apos;,</div><div class="line">    hostname: process.env.DB_HOST,</div><div class="line">    port: process.env.DB_PORT || 27017,</div><div class="line">    user: process.env.DB_USER,</div><div class="line">    password: process.env.DB_PASSWORD,</div><div class="line">    database: &apos;myapp&apos;,</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<p>在上面的例子中，运行export PRODUCTION=true（或set PRODUCTION=trueWindows）将加载数据源。</p>
+<h3 id="从环境变量获取值"><a href="#从环境变量获取值" class="headerlink" title="从环境变量获取值"></a>从环境变量获取值</h3><p>使用此命令设置环境变量并在一个命令中运行应用程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ MY_CUSTOM_VAR=&quot;some value&quot; node .</div></pre></td></tr></table></figure>
+<p>或单独命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ export MY_CUSTOM_VAR=&quot;some value&quot;</div><div class="line">$ node .</div></pre></td></tr></table></figure>
+<p>那么这个变量可以作为您的应用程序使用  process.env.MY_CUSTOM_VAR。</p>
+<h1 id="版本化您的API-编辑这个页面"><a href="#版本化您的API-编辑这个页面" class="headerlink" title="版本化您的API  编辑这个页面"></a>版本化您的API  编辑这个页面</h1><p>您可以根据应用程序“主要”版本轻松地将版本控制添加到REST API路由中package.json。</p>
+<p>config.local.js 在应用程序/server目录中添加一个名称  为以下代码的文件：</p>
+<p><strong>/server/config.local.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var p = require(&apos;../package.json&apos;);</div><div class="line">var version = p.version.split(&apos;.&apos;).shift();</div><div class="line">module.exports = &#123;</div><div class="line">  restApiRoot: &apos;/api&apos; + (version &gt; 0 ? &apos;/v&apos; + version : &apos;&apos;),</div><div class="line">  host: process.env.HOST || &apos;localhost&apos;,</div><div class="line">  port: process.env.PORT || 3000</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这需要从version属性中的主要版本号package.json并将其附加到REST API根目录。如果您的应用程序的主版本为0，那么REST API根目录仍然是默认的  /api。</p>
+<p>所以，例如，如果versionin package.json是2.0.1，那么默认情况下暴露的内置模型路由为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET http://localhost:3000/api/Users</div></pre></td></tr></table></figure>
+<p>现在暴露在：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GET http://localhost:3000/api/v2/Users</div></pre></td></tr></table></figure>
+<h1 id="标准项目结构-编辑这个页面"><a href="#标准项目结构-编辑这个页面" class="headerlink" title="标准项目结构  编辑这个页面"></a>标准项目结构  编辑这个页面</h1><p>使用LoopBack的标准项目结构，以便更容易地开发和维护您的项目。<br>LoopBack项目文件和目录位于应用程序根目录下。在该目录中，标准的LoopBack项目结构具有以下子目录：</p>
+<ul>
+<li>server - 节点应用程序脚本和配置文件。</li>
+<li>client - 客户端JavaScript，HTML和CSS文件（仅限于LoopBack工具）。</li>
+<li>common - 客户端和服务器通用的文件。 该/models子目录包含模型JSON和JavaScript文件。</li>
+<li>definitions- API和产品定义YAML文件（仅限IBM API连接）。<blockquote>
+<p> 注意： 客户端和服务器之间共享的模型JSON和JavaScript文件进入/common/models目录。仅服务器文件进入/server/models，客户端进入/client/models</p>
+</blockquote>
+</li>
+</ul>
+<p>顶级应用程序目录</p>
+<table>
+<thead>
+<tr>
+<th>文件或目录</th>
+<th>描述</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/node-modules 目录</td>
+<td>包含指定为依赖关系的节点包package.json。更新npm install。</td>
+<td>N / A</td>
+</tr>
+<tr>
+<td>package.json</td>
+<td>标准npm包装规格。请参阅package.json。</td>
+<td>N / A</td>
+</tr>
+<tr>
+<td>README.md</td>
+<td>Stub文件用于内部文档。</td>
+<td>N / A</td>
+</tr>
+</tbody>
+</table>
+<p>/ server目录 - 节点应用程序文件</p>
+<table>
+<thead>
+<tr>
+<th>文件或目录</th>
+<th>描述</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/boot 目录</td>
+<td>添加脚本以执行初始化和设置。请参阅引导脚本。</td>
+<td>脚本会按字母顺序自动执行。</td>
+</tr>
+<tr>
+<td>/models 目录</td>
+<td>仅限服务器的模型定义。</td>
+<td>节点：myModel = app.models.myModelName</td>
+</tr>
+<tr>
+<td>component-config.json</td>
+<td>指定要加载的LoopBack组件。 仅由Strongloop工具创建。不用于API连接。</td>
+</tr>
+<tr>
+<td>config.json</td>
+<td>应用设置。请参阅config.json。</td>
+<td>app.get(‘setting-name’)</td>
+</tr>
+<tr>
+<td>datasources.json</td>
+<td>数据源配置文件。请参阅datasources.json。有关示例，请参阅创建新的数据源。</td>
+<td>app.datasources[‘datasource-name’]</td>
+</tr>
+<tr>
+<td>middleware.json</td>
+<td>中间件定义文件。有关详细信息，请参阅定义中间件。</td>
+<td>N / A</td>
+</tr>
+<tr>
+<td>middleware.development.json</td>
+<td>具有开发配置的中间件定义文件。有关详细信息，请参阅定义中间件。请参阅准备部署。</td>
+<td></td>
+</tr>
+<tr>
+<td>model-config.json</td>
+<td>型号配置文件。请参阅model-config.json。有关详细信息，请参阅将模型连接到数据源。</td>
+<td>N / A</td>
+</tr>
+<tr>
+<td>server.js</td>
+<td>主应用程序文件。</td>
+<td>N / A</td>
+</tr>
+</tbody>
+</table>
+<p>/ client目录 - 客户端应用程序文件</p>
+<table>
+<thead>
+<tr>
+<th>文件或目录</th>
+<th>描述</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>README.md</td>
+<td>LoopBack生成器创建空README.md文件。</td>
+<td>N / A</td>
+</tr>
+<tr>
+<td>其他</td>
+<td>添加您的HTML，CSS，客户端JavaScript文件。</td>
+</tr>
+</tbody>
+</table>
+<p>/ common目录 - 共享应用程序文件</p>
+<table>
+<thead>
+<tr>
+<th>文件或目录</th>
+<th>描述</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/models 目录</td>
+<td>自定义模型文件：1. 模型定义JSON文件，按照约定命名model-name.json; 例如customer.json。2. 按惯例命名的自定义模型脚本model-name.js; 例如，customer.js。有关更多信息，请参阅模型定义JSON文件和自定义模型。 见下面的注释。</td>
+<td>节点：myModel = app.models.myModelName</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p> 重要：<br>LoopBack 模型生成器 将骆驼壳模型名称（例如MyModel）自动转换为小写虚线名称（my-model）。例如，如果您使用模型生成器创建名为“FooBar”的模型，则会创建文件foo-bar.json并foo-bar.js输入common/models。然而，模型名称（“FooBar”）将通过模型的name属性来保留。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束<i class="fa fa-paw"></i>感谢阅读------</div>
+    
+</div>
+      
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NodeJS/" rel="tag"><i class="fa fa-tag"></i> NodeJS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/9/17/LoopBack学习之命令行/" rel="next" title="LoopBack学习之命令行">
+                <i class="fa fa-chevron-left"></i> LoopBack学习之命令行
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/9/20/Mac配置Docker+NodeJS服务/" rel="prev" title="Mac配置Docker+NodeJS服务">
+                Mac配置Docker+NodeJS服务 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="David Lin" />
+            
+              <p class="site-author-name" itemprop="name">David Lin</p>
+              <p class="site-description motion-element" itemprop="description">资深软件工程师，架构师，PMP。2001年毕业于浙江工业大学计算机系， Mac/iOS 应用开发十数年。在虹软科技，尼禄软件工作期间任苹果平台的核心工程师。2015年创办宗布科技，负责团队技术架构，技术指导，项目团队管理。2017年加入网易杭州研究院K12部门，组建团队，技术框架和项目管理</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#创建应用程序"><span class="nav-number">1.</span> <span class="nav-text">创建应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用应用程序生成器"><span class="nav-number">1.0.1.</span> <span class="nav-text">使用应用程序生成器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标准工程布局"><span class="nav-number">1.0.2.</span> <span class="nav-text">标准工程布局</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境特定配置"><span class="nav-number">2.</span> <span class="nav-text">环境特定配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概观"><span class="nav-number">2.0.1.</span> <span class="nav-text">概观</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用范围配置"><span class="nav-number">2.0.2.</span> <span class="nav-text">应用范围配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确保不返回堆栈跟踪"><span class="nav-number">2.0.3.</span> <span class="nav-text">确保不返回堆栈跟踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁用API资源管理器"><span class="nav-number">2.0.4.</span> <span class="nav-text">禁用API资源管理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在HTTP响应中包含堆栈跟踪"><span class="nav-number">2.0.5.</span> <span class="nav-text">在HTTP响应中包含堆栈跟踪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从环境变量获取值"><span class="nav-number">2.0.6.</span> <span class="nav-text">从环境变量获取值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#版本化您的API-编辑这个页面"><span class="nav-number">3.</span> <span class="nav-text">版本化您的API  编辑这个页面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标准项目结构-编辑这个页面"><span class="nav-number">4.</span> <span class="nav-text">标准项目结构  编辑这个页面</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">David Lin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.3"></script>
+
+
+</body>
+</html>

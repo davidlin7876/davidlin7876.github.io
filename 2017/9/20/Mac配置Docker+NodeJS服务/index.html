@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="NodeJS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="服务器端环境配置请点击：CentOS配置Docker+NodeJS服务 Mac的一些安装安装 NodeJShttps://nodejs.org/en/download/ 安装loopback-clihttp://loopback.io1npm install -g loopback-cli">
+<meta name="keywords" content="NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac配置Docker+NodeJS服务">
+<meta property="og:url" content="https://linfeng.xyz/2017/9/20/Mac配置Docker+NodeJS服务/index.html">
+<meta property="og:site_name" content="林峰的小宇宙">
+<meta property="og:description" content="服务器端环境配置请点击：CentOS配置Docker+NodeJS服务 Mac的一些安装安装 NodeJShttps://nodejs.org/en/download/ 安装loopback-clihttp://loopback.io1npm install -g loopback-cli">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-04T02:04:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac配置Docker+NodeJS服务">
+<meta name="twitter:description" content="服务器端环境配置请点击：CentOS配置Docker+NodeJS服务 Mac的一些安装安装 NodeJShttps://nodejs.org/en/download/ 安装loopback-clihttp://loopback.io1npm install -g loopback-cli">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://linfeng.xyz/2017/9/20/Mac配置Docker+NodeJS服务/"/>
+
+
+
+
+
+  <title>Mac配置Docker+NodeJS服务 | 林峰的小宇宙</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">林峰的小宇宙</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">🔥爆发了🔥</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-link"></i> <br />
+            
+            链接
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://linfeng.xyz/2017/9/20/Mac配置Docker+NodeJS服务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="David Lin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="林峰的小宇宙">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mac配置Docker+NodeJS服务</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T00:00:00+08:00">
+                2017-09-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>服务器端环境配置请点击：<a href="http://www.jianshu.com/p/12cee6725b58" target="_blank" rel="external">CentOS配置Docker+NodeJS服务</a></p>
+<h1 id="Mac的一些安装"><a href="#Mac的一些安装" class="headerlink" title="Mac的一些安装"></a>Mac的一些安装</h1><h3 id="安装-NodeJS"><a href="#安装-NodeJS" class="headerlink" title="安装 NodeJS"></a>安装 NodeJS</h3><p><a href="https://nodejs.org/en/download/" target="_blank" rel="external">https://nodejs.org/en/download/</a></p>
+<h3 id="安装loopback-cli"><a href="#安装loopback-cli" class="headerlink" title="安装loopback-cli"></a>安装loopback-cli</h3><p><a href="http://loopback.io" title="http://loopback.io" target="_blank" rel="external">http://loopback.io</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g loopback-cli</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>安装zsh作为默认SHELL<br><a href="http://blog.csdn.net/w670328683/article/details/49782601" title="http://blog.csdn.net/w670328683/article/details/49782601" target="_blank" rel="external">http://blog.csdn.net/w670328683/article/details/49782601</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew install zsh</div><div class="line">zsh --version</div><div class="line">chsh -s /bin/zsh</div><div class="line">echo $SHELL</div></pre></td></tr></table></figure></p>
+<p>安装oh-my-zsh美化zsh<br><a href="https://github.com/robbyrussell/oh-my-zsh" title="https://github.com/robbyrussell/oh-my-zsh" target="_blank" rel="external">https://github.com/robbyrussell/oh-my-zsh</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh -c &quot;$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)&quot;</div></pre></td></tr></table></figure></p>
+<h3 id="安装tmux分屏幕"><a href="#安装tmux分屏幕" class="headerlink" title="安装tmux分屏幕"></a>安装tmux分屏幕</h3><p><a href="https://github.com/gpakosz/.tmux" title="https://github.com/gpakosz/.tmux" target="_blank" rel="external">https://github.com/gpakosz/.tmux</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install tmux</div></pre></td></tr></table></figure></p>
+<h3 id="安装mosh"><a href="#安装mosh" class="headerlink" title="安装mosh"></a>安装mosh</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install mosh</div></pre></td></tr></table></figure>
+<h3 id="安装mongodb数据库-只在docker使用的话不用装"><a href="#安装mongodb数据库-只在docker使用的话不用装" class="headerlink" title="安装mongodb数据库(只在docker使用的话不用装)"></a>安装mongodb数据库(只在docker使用的话不用装)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">brew update</div><div class="line">brew install mongodb</div></pre></td></tr></table></figure>
+<h5 id="遇到一个问题"><a href="#遇到一个问题" class="headerlink" title="遇到一个问题"></a>遇到一个问题</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Error: Running Homebrew as root is extremely dangerous and no longer supported.</div><div class="line">As Homebrew does not drop privileges on installation you would be giving all</div><div class="line">build scripts full access to your system.</div></pre></td></tr></table></figure>
+<h5 id="这样解决"><a href="#这样解决" class="headerlink" title="这样解决"></a>这样解决</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo chown -R $(whoami) /usr/local</div><div class="line">brew install mongodb</div></pre></td></tr></table></figure>
+<h3 id="安装redis数据-只在docker使用的话不用装"><a href="#安装redis数据-只在docker使用的话不用装" class="headerlink" title="安装redis数据(只在docker使用的话不用装)"></a>安装redis数据(只在docker使用的话不用装)</h3><p><a href="https://redis.io" target="_blank" rel="external">https://redis.io</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tar xzf redis-4.0.1.tar</div><div class="line">cd redis-4.0.1</div><div class="line">make</div><div class="line">make install</div></pre></td></tr></table></figure>
+<h3 id="安装mongo-express-只在docker使用的话不用装"><a href="#安装mongo-express-只在docker使用的话不用装" class="headerlink" title="安装mongo-express(只在docker使用的话不用装)"></a>安装mongo-express(只在docker使用的话不用装)</h3><p><a href="https://github.com/mongo-express/mongo-express" target="_blank" rel="external">https://github.com/mongo-express/mongo-express</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g mongo-express</div></pre></td></tr></table></figure>
+<h3 id="安装Vim的插件janus"><a href="#安装Vim的插件janus" class="headerlink" title="安装Vim的插件janus"></a>安装Vim的插件janus</h3><p>The distribution also requires ack, ctags, git, ruby and rake.<br><a href="https://github.com/carlhuda/janus" title="https://github.com/carlhuda/janus" target="_blank" rel="external">https://github.com/carlhuda/janus</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -L https://bit.ly/janus-bootstrap | bash</div></pre></td></tr></table></figure></p>
+<h3 id="安装pm2"><a href="#安装pm2" class="headerlink" title="安装pm2"></a>安装pm2</h3><p><a href="http://pm2.keymetrics.io" target="_blank" rel="external">http://pm2.keymetrics.io</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install pm2 -g</div><div class="line">npm install pm2@latest -g</div></pre></td></tr></table></figure></p>
+<h3 id="安装docker，docker-compose"><a href="#安装docker，docker-compose" class="headerlink" title="安装docker，docker-compose"></a>安装docker，docker-compose</h3><p><a href="https://www.docker.com/" target="_blank" rel="external">https://www.docker.com/</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew search docker</div><div class="line">brew update</div><div class="line">brew install docker</div><div class="line">brew install docker-compose</div></pre></td></tr></table></figure></p>
+<h3 id="安装httpie"><a href="#安装httpie" class="headerlink" title="安装httpie"></a>安装httpie</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install httpie</div></pre></td></tr></table></figure>
+<h1 id="Mac的代码管理："><a href="#Mac的代码管理：" class="headerlink" title="Mac的代码管理："></a>Mac的代码管理：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone https://git.coding.net/zbsas/webstore-backend.git</div><div class="line">git checkout next</div><div class="line">git submodule init</div><div class="line">git submodule update</div><div class="line">npm install</div></pre></td></tr></table></figure>
+<p>发现子模块代码下不来，这样解决：<br>查看公钥私钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd ~/.ssh</div></pre></td></tr></table></figure></p>
+<p>.pub 文件是你的公钥，另一个则是私钥。如果找不到这样的文件，你可以通过运行 程序来创建它们：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen</div></pre></td></tr></table></figure>
+<p>然后在coding上设上公钥，子目录代码可以下来了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git submodule update</div></pre></td></tr></table></figure>
+<h3 id="上传服务器代码"><a href="#上传服务器代码" class="headerlink" title="上传服务器代码"></a>上传服务器代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync -avuzb xiaoyx root@dlin.top:~/</div></pre></td></tr></table></figure>
+<h5 id="过滤没有必要的文件和目录"><a href="#过滤没有必要的文件和目录" class="headerlink" title="过滤没有必要的文件和目录"></a>过滤没有必要的文件和目录</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rsync -avuzb --exclude=.git --exclude=node_modules webstore-backend/* root@dlin.top:~/</div></pre></td></tr></table></figure>
+<h3 id="下载服务器代码"><a href="#下载服务器代码" class="headerlink" title="下载服务器代码"></a>下载服务器代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rsync -avuzb root@dlin.top:/root/xiaoyx/ .</div><div class="line">scp root@dlin.top:/root/xiaoyx/docker-compose.yml .</div></pre></td></tr></table></figure>
+<h1 id="代码调试："><a href="#代码调试：" class="headerlink" title="代码调试："></a>代码调试：</h1><h3 id="开启redis"><a href="#开启redis" class="headerlink" title="开启redis"></a>开启redis</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">src/redis-server</div></pre></td></tr></table></figure>
+<p>也可以用pm2开启redis<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pm2 start src/redis-server</div></pre></td></tr></table></figure></p>
+<h3 id="开启mongodb"><a href="#开启mongodb" class="headerlink" title="开启mongodb"></a>开启mongodb</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd /Code-Backend/mongodb</div><div class="line">mkdir data</div><div class="line">mkdir log</div><div class="line">mongod --dbpath data --logpath log/mongod.log --logappend --fork</div></pre></td></tr></table></figure>
+<h3 id="关闭mongodb"><a href="#关闭mongodb" class="headerlink" title="关闭mongodb"></a>关闭mongodb</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mongo</div><div class="line">use admin</div><div class="line">db.shutdownServer();</div></pre></td></tr></table></figure>
+<h3 id="pm2-看log"><a href="#pm2-看log" class="headerlink" title="pm2 看log"></a>pm2 看log</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">cd /Code-Backend/webstore-backend</div><div class="line">pm2 start development.json</div><div class="line">pm2 logs 1</div><div class="line">pm2 stop all</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="docker调试"><a href="#docker调试" class="headerlink" title="docker调试"></a>docker调试</h1><p><a href="http://www.cnblogs.com/52fhy/p/5991344.html" target="_blank" rel="external">Docker之Compose服务编排</a></p>
+<h5 id="开启和关闭"><a href="#开启和关闭" class="headerlink" title="开启和关闭"></a>开启和关闭</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker ps</div><div class="line">docker-compose up -d</div><div class="line">docker-compose stop</div><div class="line">docker-compose restart</div><div class="line">docker-compose down</div></pre></td></tr></table></figure>
+<h5 id="重置一个docker"><a href="#重置一个docker" class="headerlink" title="重置一个docker"></a>重置一个docker</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">docker-compose down</div><div class="line">docker ps -a</div><div class="line">docker rm codebackend_ws_1</div><div class="line">docker ps -a</div><div class="line">docker image ls</div><div class="line">docker image rm codebackend_ws</div><div class="line">docker-compose up -d</div></pre></td></tr></table></figure>
+<h5 id="启动并看log"><a href="#启动并看log" class="headerlink" title="启动并看log"></a>启动并看log</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose up</div></pre></td></tr></table></figure>
+<h5 id="看其中某一个log"><a href="#看其中某一个log" class="headerlink" title="看其中某一个log"></a>看其中某一个log</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">docker ps</div><div class="line">docker exec -it codebackend_ws_1 sh</div><div class="line">pm2 list</div><div class="line">pm2 logs 1</div></pre></td></tr></table></figure>
+<h5 id="批处理脚本"><a href="#批处理脚本" class="headerlink" title="批处理脚本"></a>批处理脚本</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 关闭所有正在运行容器</div><div class="line">docker ps | awk  &apos;&#123;print $1&#125;&apos; | xargs docker stop</div><div class="line"># 删除所有容器应用</div><div class="line">docker ps -a | awk  &apos;&#123;print $1&#125;&apos; | xargs docker rm</div><div class="line"># 或者</div><div class="line">docker rm $(docker ps -a -q)</div></pre></td></tr></table></figure>
+<h3 id="mongo-express"><a href="#mongo-express" class="headerlink" title="mongo-express"></a>mongo-express</h3><p><a href="https://github.com/mongo-express/mongo-express" target="_blank" rel="external">https://github.com/mongo-express/mongo-express</a></p>
+<h4 id="先建立用户"><a href="#先建立用户" class="headerlink" title="先建立用户"></a>先建立用户</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">docker exec -it codebackend_mongodb_1 mongo</div><div class="line">show dbs;</div><div class="line">use admin</div></pre></td></tr></table></figure>
+<h5 id="管理员用户"><a href="#管理员用户" class="headerlink" title="管理员用户"></a>管理员用户</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">db.createUser(&#123;</div><div class="line">   user : &quot;用户名&quot;,</div><div class="line">   pwd  : &quot;密码&quot;,</div><div class="line">   roles : [</div><div class="line">       &#123;</div><div class="line">           role : &quot;userAdminAnyDatabase&quot;,</div><div class="line">           db : &quot;admin&quot;</div><div class="line">       &#125;</div><div class="line">   ]</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h5 id="特定数据库管理权限的用户"><a href="#特定数据库管理权限的用户" class="headerlink" title="特定数据库管理权限的用户"></a>特定数据库管理权限的用户</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">use &quot;数据库名&quot;</div><div class="line"> db.createUser(&#123;</div><div class="line">    user : &quot;用户名&quot;,</div><div class="line">    pwd  : &quot;密码&quot;,</div><div class="line">    roles : [</div><div class="line">        &#123;</div><div class="line">            role : &quot;userAdmin&quot;,</div><div class="line">            db : &quot;数据库名&quot;</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line"> &#125;)</div></pre></td></tr></table></figure>
+<h5 id="一般用户"><a href="#一般用户" class="headerlink" title="一般用户"></a>一般用户</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">db &quot;数据库名&quot;</div><div class="line"> db.createUser(&#123;</div><div class="line">    user : &quot;用户名&quot;,</div><div class="line">    pwd  : &quot;密码&quot;,</div><div class="line">    roles: [</div><div class="line">        &#123;</div><div class="line">            role : &quot;read&quot;,  # or &quot;readWrite&quot;</div><div class="line">            db : &quot;数据库名&quot;,</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line"> &#125;)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>例：创建一个数据库用户，对该数据具有读写权限</p>
+<p>创建一个对数据库具有读写权限的数据库用户<br>use dbname ;<br>db.createUser({user: “dbuser”, pwd: “dbuseradmin”, roles:[{role: “readWrite”, db: “dbname”}] })</p>
+<p>数据库用户登录<br>mongo dbname -u dbuser -p dbduseradmin</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd YOUR_PATH/node_modules/mongo-express/ &amp;&amp; node app.js</div><div class="line">mongo-express -u user -p password -d database</div><div class="line">mongo-express -u dlin -p dlin -d webstore-prod</div></pre></td></tr></table></figure>
+<h5 id="远程"><a href="#远程" class="headerlink" title="远程"></a>远程</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongo-express -u user -p password -d database -H mongoDBHost -P mongoDBPort</div></pre></td></tr></table></figure>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mongo-express -a -u superuser -p password</div><div class="line">mongo-express -h</div></pre></td></tr></table></figure>
+<h5 id="Usage-Docker"><a href="#Usage-Docker" class="headerlink" title="Usage (Docker)"></a>Usage (Docker)</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker build -t mongo-express .</div><div class="line">docker run -it --rm -p 8081:8081 --link YOUR_MONGODB_CONTAINER:mongo mongo-express</div></pre></td></tr></table></figure>
+<p>例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -it --rm -p 8081:8081 --link codebackend_mongodb_1:mongo mongo-express</div></pre></td></tr></table></figure></p>
+<p>You can use the following environment variables to modify the container’s configuration:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ME_CONFIG_MONGODB_SERVER</code></td>
+<td><code>mongo</code> or <code>localhost</code></td>
+<td>MongoDB host name or IP address. The default is <code>localhost</code> in the config file and <code>mongo</code> in the docker image. If it is a replica set, use a comma delimited list of the host names.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_MONGODB_PORT</code></td>
+<td><code>27017</code></td>
+<td>MongoDB port.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_MONGODB_URL</code></td>
+<td><code>mongodb://admin:pass@localhost:27017/db?ssl=false</code></td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_MONGODB_ENABLE_ADMIN</code></td>
+<td><code>false</code></td>
+<td>Enable administrator access. Send strings: <code>&quot;true&quot;</code> or <code>&quot;false&quot;</code>.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_MONGODB_ADMINUSERNAME</code></td>
+<td><code> </code></td>
+<td>Administrator username.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_MONGODB_ADMINPASSWORD</code></td>
+<td><code> </code></td>
+<td>Administrator password.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_MONGODB_AUTH_DATABASE</code></td>
+<td><code>db</code></td>
+<td>Database name (only needed if <code>ENABLE_ADMIN</code> is <code>&quot;false&quot;</code>).</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_MONGODB_AUTH_USERNAME</code></td>
+<td><code>admin</code></td>
+<td>Database username (only needed if <code>ENABLE_ADMIN</code> is <code>&quot;false&quot;</code>).</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_MONGODB_AUTH_PASSWORD</code></td>
+<td><code>pass</code></td>
+<td>Database password (only needed if <code>ENABLE_ADMIN</code> is <code>&quot;false&quot;</code>).</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_SITE_BASEURL</code></td>
+<td><code>/</code></td>
+<td>Set the express baseUrl to ease mounting at a subdirectory. Remember to include a leading and trailing slash.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_SITE_COOKIESECRET</code></td>
+<td><code>cookiesecret</code></td>
+<td>String used by <a href="https://www.npmjs.com/package/cookie-parser" target="_blank" rel="external">cookie-parser middleware</a> to sign cookies.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_SITE_SESSIONSECRET</code></td>
+<td><code>sessionsecret</code></td>
+<td>String used to sign the session ID cookie by <a href="https://www.npmjs.com/package/express-session" target="_blank" rel="external">express-session middleware</a>.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_BASICAUTH_USERNAME</code></td>
+<td><code>admin</code></td>
+<td>mongo-express web login name. Sending an empty string will disable basic authentication.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_BASICAUTH_PASSWORD</code></td>
+<td><code>pass</code></td>
+<td>mongo-express web login password.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_REQUEST_SIZE</code></td>
+<td><code>100kb</code></td>
+<td>Used to configure maximum mongo update payload size. CRUD operations above this size will fail due to restrictions in <a href="https://www.npmjs.com/package/body-parser" target="_blank" rel="external">body-parser</a>.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_OPTIONS_EDITORTHEME</code></td>
+<td><code>rubyblue</code></td>
+<td>Web editor color theme, <a href="http://codemirror.net/demo/theme.html" target="_blank" rel="external">more here</a>.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_SITE_SSL_ENABLED</code></td>
+<td><code>false</code></td>
+<td>Enable SSL.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_MONGODB_SSLVALIDATE</code></td>
+<td><code>true</code></td>
+<td>Validate mongod server certificate against CA</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_SITE_SSL_CRT_PATH</code></td>
+<td><code> </code></td>
+<td>SSL certificate file.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_SITE_SSL_KEY_PATH</code></td>
+<td><code> </code></td>
+<td>SSL key file.</td>
+</tr>
+<tr>
+<td><code>ME_CONFIG_SITE_GRIDFS_ENABLED</code></td>
+<td><code>false</code></td>
+<td>Enable gridFS to manage uploaded files.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">docker run -it --rm \</div><div class="line">    --name mongo-express \</div><div class="line">    --link web_db_1:mongo \</div><div class="line">    -p 8081:8081 \</div><div class="line">    -e ME_CONFIG_OPTIONS_EDITORTHEME=&quot;ambiance&quot; \</div><div class="line">    -e ME_CONFIG_BASICAUTH_USERNAME=&quot;&quot; \</div><div class="line">    mongo-express</div></pre></td></tr></table></figure>
+<h5 id="设置dockor运行的配置文件"><a href="#设置dockor运行的配置文件" class="headerlink" title="设置dockor运行的配置文件"></a>设置dockor运行的配置文件</h5><p><strong>docker-compose.yml</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">mongo-express:</div><div class="line">    image: mongo-express</div><div class="line">    depends_on:</div><div class="line">      - mongodb</div><div class="line">    restart: always</div><div class="line">    links:</div><div class="line">      - mongodb:mongo</div><div class="line">    ports:</div><div class="line">      - &quot;8081:8081&quot;</div><div class="line">    environment:</div><div class="line">      - ME_CONFIG_MONGODB_ADMINUSERNAME = admin</div><div class="line">      - ME_CONFIG_MONGODB_ADMINPASSWORD = pass</div></pre></td></tr></table></figure>
+<h5 id="设置登录页账号密码"><a href="#设置登录页账号密码" class="headerlink" title="设置登录页账号密码"></a>设置登录页账号密码</h5><p><a href="https://caddyserver.com/docs/basicauth" target="_blank" rel="external">https://caddyserver.com/docs/basicauth</a></p>
+<h5 id="Caddyfile"><a href="#Caddyfile" class="headerlink" title="Caddyfile"></a>Caddyfile</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">http://db.local.dlin.top &#123;</div><div class="line">  basicauth / admin pass</div><div class="line">  proxy / mongo-express:8081 &#123;</div><div class="line">    transparent</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">------本文结束<i class="fa fa-paw"></i>感谢阅读------</div>
+    
+</div>
+      
+    </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NodeJS/" rel="tag"><i class="fa fa-tag"></i> NodeJS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/9/18/LoopBack学习之创建应用程序/" rel="next" title="LoopBack学习之创建应用程序">
+                <i class="fa fa-chevron-left"></i> LoopBack学习之创建应用程序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/9/24/XCode可清理空间的路径/" rel="prev" title="XCode可清理空间的路径">
+                XCode可清理空间的路径 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="David Lin" />
+            
+              <p class="site-author-name" itemprop="name">David Lin</p>
+              <p class="site-description motion-element" itemprop="description">资深软件工程师，架构师，PMP。2001年毕业于浙江工业大学计算机系， Mac/iOS 应用开发十数年。在虹软科技，尼禄软件工作期间任苹果平台的核心工程师。2015年创办宗布科技，负责团队技术架构，技术指导，项目团队管理。2017年加入网易杭州研究院K12部门，组建团队，技术框架和项目管理</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac的一些安装"><span class="nav-number">1.</span> <span class="nav-text">Mac的一些安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-NodeJS"><span class="nav-number">1.0.1.</span> <span class="nav-text">安装 NodeJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装loopback-cli"><span class="nav-number">1.0.2.</span> <span class="nav-text">安装loopback-cli</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装tmux分屏幕"><span class="nav-number">1.0.3.</span> <span class="nav-text">安装tmux分屏幕</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装mosh"><span class="nav-number">1.0.4.</span> <span class="nav-text">安装mosh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装mongodb数据库-只在docker使用的话不用装"><span class="nav-number">1.0.5.</span> <span class="nav-text">安装mongodb数据库(只在docker使用的话不用装)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#遇到一个问题"><span class="nav-number">1.0.5.0.1.</span> <span class="nav-text">遇到一个问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#这样解决"><span class="nav-number">1.0.5.0.2.</span> <span class="nav-text">这样解决</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装redis数据-只在docker使用的话不用装"><span class="nav-number">1.0.6.</span> <span class="nav-text">安装redis数据(只在docker使用的话不用装)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装mongo-express-只在docker使用的话不用装"><span class="nav-number">1.0.7.</span> <span class="nav-text">安装mongo-express(只在docker使用的话不用装)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Vim的插件janus"><span class="nav-number">1.0.8.</span> <span class="nav-text">安装Vim的插件janus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装pm2"><span class="nav-number">1.0.9.</span> <span class="nav-text">安装pm2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装docker，docker-compose"><span class="nav-number">1.0.10.</span> <span class="nav-text">安装docker，docker-compose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装httpie"><span class="nav-number">1.0.11.</span> <span class="nav-text">安装httpie</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac的代码管理："><span class="nav-number">2.</span> <span class="nav-text">Mac的代码管理：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#上传服务器代码"><span class="nav-number">2.0.1.</span> <span class="nav-text">上传服务器代码</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#过滤没有必要的文件和目录"><span class="nav-number">2.0.1.0.1.</span> <span class="nav-text">过滤没有必要的文件和目录</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载服务器代码"><span class="nav-number">2.0.2.</span> <span class="nav-text">下载服务器代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码调试："><span class="nav-number">3.</span> <span class="nav-text">代码调试：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开启redis"><span class="nav-number">3.0.1.</span> <span class="nav-text">开启redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启mongodb"><span class="nav-number">3.0.2.</span> <span class="nav-text">开启mongodb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭mongodb"><span class="nav-number">3.0.3.</span> <span class="nav-text">关闭mongodb</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pm2-看log"><span class="nav-number">3.0.4.</span> <span class="nav-text">pm2 看log</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker调试"><span class="nav-number">4.</span> <span class="nav-text">docker调试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#开启和关闭"><span class="nav-number">4.0.0.0.1.</span> <span class="nav-text">开启和关闭</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重置一个docker"><span class="nav-number">4.0.0.0.2.</span> <span class="nav-text">重置一个docker</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启动并看log"><span class="nav-number">4.0.0.0.3.</span> <span class="nav-text">启动并看log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#看其中某一个log"><span class="nav-number">4.0.0.0.4.</span> <span class="nav-text">看其中某一个log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#批处理脚本"><span class="nav-number">4.0.0.0.5.</span> <span class="nav-text">批处理脚本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mongo-express"><span class="nav-number">4.0.1.</span> <span class="nav-text">mongo-express</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#先建立用户"><span class="nav-number">4.0.1.1.</span> <span class="nav-text">先建立用户</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#管理员用户"><span class="nav-number">4.0.1.1.1.</span> <span class="nav-text">管理员用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#特定数据库管理权限的用户"><span class="nav-number">4.0.1.1.2.</span> <span class="nav-text">特定数据库管理权限的用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#一般用户"><span class="nav-number">4.0.1.1.3.</span> <span class="nav-text">一般用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#远程"><span class="nav-number">4.0.1.1.4.</span> <span class="nav-text">远程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#其他"><span class="nav-number">4.0.1.1.5.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Usage-Docker"><span class="nav-number">4.0.1.1.6.</span> <span class="nav-text">Usage (Docker)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设置dockor运行的配置文件"><span class="nav-number">4.0.1.1.7.</span> <span class="nav-text">设置dockor运行的配置文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设置登录页账号密码"><span class="nav-number">4.0.1.1.8.</span> <span class="nav-text">设置登录页账号密码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Caddyfile"><span class="nav-number">4.0.1.1.9.</span> <span class="nav-text">Caddyfile</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">David Lin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.3</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.3"></script>
+
+
+</body>
+</html>
